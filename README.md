@@ -11,7 +11,7 @@ Ver 4.0.3
 ## 必要であれば実行
 
 * nodeコマンドでnodejsを実行する: `sudo ln -s /usr/bin/nodejs /usr/bin/node`
-* foreverのインストール: `sudo npm install -g`
+* foreverのインストール: `sudo npm install -g forever`
 
 ## 実行
 
