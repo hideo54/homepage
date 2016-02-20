@@ -8,13 +8,16 @@ https://hideo54.com のソース
 
 Ver 4.0.3
 
-## 実行
+## 必要であれば実行
 
-(必要であれば: `sudo ln -s /usr/bin/nodejs /usr/bin/node`)
+* nodeコマンドでnodejsを実行する: `sudo ln -s /usr/bin/nodejs /usr/bin/node`
+* foreverのインストール: `sudo npm install -g forever`
+
+## 実行
 
 ```bash
 npm install
-PORT=xxx ./bin/www
+PORT=xxx forever start ./bin/www
 ```
 
 xxx番ポートで動作します。
