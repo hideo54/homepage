@@ -1,5 +1,7 @@
 # hideo54's Homepage
 
+[![Build Status](https://travis-ci.org/hideo54/www.svg?branch=master)](https://travis-ci.org/hideo54/www)
+
 ## 概要
 
 https://hideo54.com のソース
