@@ -3,51 +3,51 @@ html
     head
         title= title
         // CSS
-        link(rel='stylesheet', href='/stylesheets/style.css')
-        link(rel='stylesheet', href='/stylesheets/circle_color.css')
+        link(rel='stylesheet', href='pub/css/style.css')
+        link(rel='stylesheet', href='pub/css/circle_color.css')
 
         // Meta data
         meta(charset='utf-8')
-        meta(name='description', content="hideo54\'s homepage.")
+        meta(name='description', content='hideo54\'s homepage.')
         meta(name='author', content='hideo54')
-        meta(name="keywords", content='hideo54')
-        meta(name="viewport", content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+        meta(name='keywords', content='hideo54')
+        meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
 
         // TypeKit Font
         script(src='//use.typekit.net/qkg7iky.js')
         script try{Typekit.load();}catch(e){}
 
-        // favicon (generated on http://realfavicongenerator.net/, converted on http://html2jade.vida.io/)
-        link(rel="apple-touch-icon", sizes="57x57", href="favicon/apple-touch-icon-57x57.png")
-        link(rel="apple-touch-icon", sizes="60x60", href="favicon/apple-touch-icon-60x60.png")
-        link(rel="apple-touch-icon", sizes="72x72", href="favicon/apple-touch-icon-72x72.png")
-        link(rel="apple-touch-icon", sizes="76x76", href="favicon/apple-touch-icon-76x76.png")
-        link(rel="apple-touch-icon", sizes="114x114", href="favicon/apple-touch-icon-114x114.png")
-        link(rel="apple-touch-icon", sizes="120x120", href="favicon/apple-touch-icon-120x120.png")
-        link(rel="apple-touch-icon", sizes="144x144", href="favicon/apple-touch-icon-144x144.png")
-        link(rel="apple-touch-icon", sizes="152x152", href="favicon/apple-touch-icon-152x152.png")
-        link(rel="apple-touch-icon", sizes="180x180", href="favicon/apple-touch-icon-180x180.png")
-        link(rel="icon", type="image/png", href="favicon/favicon-32x32.png", sizes="32x32")
-        link(rel="icon", type="image/png", href="favicon/android-chrome-192x192.png", sizes="192x192")
-        link(rel="icon", type="image/png", href="favicon/favicon-96x96.png", sizes="96x96")
-        link(rel="icon", type="image/png", href="favicon/favicon-16x16.png", sizes="16x16")
-        link(rel="manifest", href="favicon/manifest.json")
-        link(rel="mask-icon", href="favicon/safari-pinned-tab.svg", color="#5bbad5")
-        link(rel="shortcut icon", href="favicon/favicon.ico")
-        meta(name="apple-mobile-web-app-title", content="hideo54")
-        meta(name="application-name", content="hideo54")
-        meta(name="msapplication-TileColor", content="#00aba9")
-        meta(name="msapplication-TileImage", content="favicon/mstile-144x144.png")
-        meta(name="msapplication-config", content="favicon/browserconfig.xml")
-        meta(name="theme-color", content="#ffffff")
+        // pub/favicon (generated on http://realpub/favicongenerator.net/, converted on http://html2jade.vida.io/)
+        link(rel='apple-touch-icon', sizes='57x57', href='pub/favicon/apple-touch-icon-57x57.png')
+        link(rel='apple-touch-icon', sizes='60x60', href='pub/favicon/apple-touch-icon-60x60.png')
+        link(rel='apple-touch-icon', sizes='72x72', href='pub/favicon/apple-touch-icon-72x72.png')
+        link(rel='apple-touch-icon', sizes='76x76', href='pub/favicon/apple-touch-icon-76x76.png')
+        link(rel='apple-touch-icon', sizes='114x114', href='pub/favicon/apple-touch-icon-114x114.png')
+        link(rel='apple-touch-icon', sizes='120x120', href='pub/favicon/apple-touch-icon-120x120.png')
+        link(rel='apple-touch-icon', sizes='144x144', href='pub/favicon/apple-touch-icon-144x144.png')
+        link(rel='apple-touch-icon', sizes='152x152', href='pub/favicon/apple-touch-icon-152x152.png')
+        link(rel='apple-touch-icon', sizes='180x180', href='pub/favicon/apple-touch-icon-180x180.png')
+        link(rel='icon', type='image/png', href='pub/favicon/pub/favicon-32x32.png', sizes='32x32')
+        link(rel='icon', type='image/png', href='pub/favicon/android-chrome-192x192.png', sizes='192x192')
+        link(rel='icon', type='image/png', href='pub/favicon/pub/favicon-96x96.png', sizes='96x96')
+        link(rel='icon', type='image/png', href='pub/favicon/pub/favicon-16x16.png', sizes='16x16')
+        link(rel='manifest', href='pub/favicon/manifest.json')
+        link(rel='mask-icon', href='pub/favicon/safari-pinned-tab.svg', color='#5bbad5')
+        link(rel='shortcut icon', href='pub/favicon/pub/favicon.ico')
+        meta(name='apple-mobile-web-app-title', content='hideo54')
+        meta(name='application-name', content='hideo54')
+        meta(name='msapplication-TileColor', content='#00aba9')
+        meta(name='msapplication-TileImage', content='pub/favicon/mstile-144x144.png')
+        meta(name='msapplication-config', content='pub/favicon/browserconfig.xml')
+        meta(name='theme-color', content='#ffffff')
 
         // Twitter Card
         meta(name='twitter:card', content='summary')
         meta(name='twitter:site', content='hideo54')
         meta(name='twitter:title', content='hideo54.com')
-        meta(name='twitter:description', content="This is hideo54's homepage.")
+        meta(name='twitter:description', content='This is hideo54\'s homepage.')
         meta(name='twitter:creator', content='hideo54')
-        meta(name='twitter:image:src', content='/images/icon.png')
+        meta(name='twitter:image:src', content='pub/img/icon.png')
         meta(name='twitter:domain', content='hideo54.com')
 
         // Google Analytics
@@ -55,10 +55,10 @@ html
 body
     nav
         ul
-            li: a(href='') Home
-            li: a(href='about') About
-            li: a(href='activity') Activity
-            li: a(href='links') Links
+            li: a(href='/') Home
+            li: a(href='/about') About
+            li: a(href='/activity') Activity
+            li: a(href='/links') Links
             li: a(href='https://blog.hideo54.com', target='_blank') Blog
     main
         block content
