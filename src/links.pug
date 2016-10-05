@@ -5,13 +5,13 @@ block content
         each section, name in links
             h2= name
             each obj in section
-                if obj.username
-                    div.non-link
-                        div(class='circle', id=obj.id)
-                        p= obj.name
-                        p= obj.username
-                else
+                if obj.link
                     a(href=obj.link, target='_blank')
                         div.link
-                            div(class='circle', id=obj.id)
+                            div.circle(id=obj.id)
                             p= obj.name
+                else
+                    div.non-link
+                        div.circle(id=obj.id)
+                        p= obj.name
+                        p= obj.username
