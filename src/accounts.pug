@@ -1,0 +1,17 @@
+extends _layout
+
+block content
+    h1 アカウント一覧
+        each section, kind in accounts
+            h2= kind
+            each account in section
+                if account.link
+                    a(href=account.link, target='_blank')
+                        div.link
+                            div.circle(id=account.id)
+                            p= account.name
+                else
+                    div.non-link
+                        div.circle(id=account.id)
+                        p= account.name
+                        p= account.username
