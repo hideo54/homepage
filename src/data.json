@@ -19,67 +19,61 @@
                 "name": "Twitter",
                 "id": "twitter",
                 "link": "https://twitter.com/hideo54",
-                "username": null
+                "username": "@hideo54"
             },
             {
                 "name": "Facebook",
                 "id": "facebook",
                 "link": "https://www.facebook.com/hideo54",
-                "username": null
+                "username": "安本 英雄"
             },
             {
                 "name": "Tumblr",
                 "id": "tumblr",
                 "link": "http://tumblr.hideo54.com",
-                "username": null
+                "username": "hideo54"
             },
             {
                 "name": "Ask.fm",
                 "id": "ask",
                 "link": "http://ask.fm/ask_hideo54",
-                "username": null
-            },
-            {
-                "name": "Google+",
-                "id": "google",
-                "link": "https://plus.google.com/105693738980996761708/posts",
-                "username": null
+                "username": "ask_hideo54"
             },
             {
                 "name": "LinkedIn",
                 "id": "linkedin",
                 "link": "https://www.linkedin.com/pub/hideo-yasumoto/a0/a02/24a",
-                "username": null
+                "username": "Hideo Yasumoto"
             },
             {
                 "name": "Favstar",
                 "id": "favstar",
                 "link": "http://favstar.fm/users/hideo54",
-                "username": null
+                "username": "@hideo54"
             },
             {
                 "name": "Booklog",
                 "id": "booklog",
                 "link": "http://booklog.jp/users/hideo54",
-                "username": null
+                "username": "hideo54"
             },
             {
                 "name": "Hatena",
                 "id": "hatena",
                 "link": "http://profile.hatena.ne.jp/hideo54/",
-                "username": null
+                "username": "hideo54"
             },
             {
                 "name": "Foursquare",
                 "id": "foursquare",
                 "link": "https://ja.foursquare.com/hideo54",
-                "username": null
+                "username": "hideo54"
             },
             {
                 "name": "AnimeTick",
                 "id": "animetick",
                 "link": "http://animetick.net/users/hideo54",
-                "username": null
+                "username": "hideo54"
             }
         ],
         "Photos": [
@@ -87,13 +81,13 @@
                 "name": "Instagram",
                 "id": "instagram",
                 "link": "http://instagram.com/hideo54/",
-                "username": null
+                "username": "hideo54"
             },
             {
                 "name": "pixiv",
                 "id": "pixiv",
                 "link": "http://pixiv.me/hideo54",
-                "username": null
+                "username": "hideo54"
             }
         ],
         "Videos": [
@@ -113,7 +107,7 @@
                 "name": "Vine",
                 "id": "vine",
                 "link": "https://vine.co/u/1112344694186508288",
-                "username": null
+                "username": "hideo54"
             }
         ],
         "Tech": [
@@ -121,13 +115,13 @@
                 "name": "GitHub",
                 "id": "github",
                 "link": "https://github.com/hideo54",
-                "username": null
+                "username": "hideo54"
             },
             {
                 "name": "SlideShare",
                 "id": "github",
                 "link": "http://www.slideshare.net/the-hideo54",
-                "username": null
+                "username": "the-hideo54"
             }
         ],
         "Chat": [
