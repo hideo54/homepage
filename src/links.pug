@@ -1,49 +1,17 @@
 extends _layout
 
-mixin generateCircle(name, id, url)
-    a(href='#{url}', target='_blank')
-        div.link
-            div(class='circle', id='#{id}')
-            p= name
-
-mixin generateUnlinkedCircle(name, id, username)
-    div.non-link
-        div(class='circle', id='#{id}')
-        p #{name}
-        p #{username}
-
 block content
     h1 リンク
-    section
-        h2 自己コンテンツ
-        +generateCircle('Wishlist', 'wishlist', 'https://wishlist.hideo54.com')
-        +generateCircle('Blog', 'blog', 'https://blog.hideo54.com')
-        h2 SNS
-        +generateCircle('Twitter', 'twitter', 'https://twitter.com/hideo54')
-        +generateCircle('Facebook', 'facebook', 'https://www.facebook.com/hideo54')
-        +generateCircle('Tumblr', 'tumblr', 'http://tumblr.hideo54.com')
-        +generateCircle('Ask.fm', 'ask', 'http://ask.fm/ask_hideo54')
-        +generateCircle('Google+', 'google', 'https://plus.google.com/105693738980996761708/posts')
-        +generateCircle('LinkedIn', 'linkedin', 'https://www.linkedin.com/pub/hideo-yasumoto/a0/a02/24a')
-        +generateCircle('Favstar', 'favstar', 'http://favstar.fm/users/hideo54')
-        +generateCircle('Booklog', 'booklog', 'http://booklog.jp/users/hideo54')
-        +generateCircle('Hatena', 'hatena', 'http://profile.hatena.ne.jp/hideo54/')
-        +generateCircle('Foursquare', 'foursquare', 'https://ja.foursquare.com/hideo54')
-        +generateCircle('AnimeTick', 'animetick', 'http://animetick.net/users/hideo54')
-        h2 Photos
-        +generateCircle('Instagram', 'instagram', 'http://instagram.com/hideo54/')
-        +generateCircle('pixiv', 'pixiv', 'http://pixiv.me/hideo54')
-        h2 Videos
-        +generateCircle('YouTube', 'youtube', 'https://www.youtube.com/channel/UCrsDu6krWbTBlE-Dta8Kcog')
-        +generateCircle('ニコニコ動画', 'nicovideos', 'http://www.nicovideo.jp/user/28234132')
-        +generateCircle('Vine', 'vine', 'https://vine.co/u/1112344694186508288')
-        h2 Tech
-        +generateCircle('GitHub', 'github', 'https://github.com/hideo54')
-        +generateCircle('SlideShare', 'github', 'http://www.slideshare.net/the-hideo54')
-        h2 Chat
-        +generateUnlinkedCircle('Skype', 'skype', 'tw-hideo54')
-        +generateUnlinkedCircle('LINE', 'line', 'hideo54')
-        +generateUnlinkedCircle('Yo', 'yo', 'hideo54')
-        h2 Others
-        +generateUnlinkedCircle('GameCenter', 'gamecenter', 'the-hideo54')
-        +generateUnlinkedCircle('Wikipedia', 'wikipedia', 'hideo54')
+        each section, name in links
+            h2= name
+            each obj in section
+                if obj.username
+                    div.non-link
+                        div(class='circle', id=obj.id)
+                        p= obj.name
+                        p= obj.username
+                else
+                    a(href=obj.link, target='_blank')
+                        div.link
+                            div(class='circle', id=obj.id)
+                            p= obj.name
