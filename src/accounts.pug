@@ -7,11 +7,12 @@ block content
             each account in section
                 if account.link
                     a(href=account.link, target='_blank')
-                        div.link
-                            div.circle(id=account.id)
+                        .account
+                            .circle(id=account.id)
                             p= account.name
+                            p= account.username
                 else
-                    div.non-link
-                        div.circle(id=account.id)
+                    .account
+                        .circle(id=account.id)
                         p= account.name
                         p= account.username
