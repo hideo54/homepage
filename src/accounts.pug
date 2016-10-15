@@ -5,14 +5,17 @@ block content
         each section, kind in accounts
             h2= kind
             each account in section
-                if account.link
-                    a(href=account.link, target='_blank')
-                        .account
+                .account
+                    if account.link
+                        a(href=account.link, target='_blank')
                             .circle(id=account.id)
-                            p= account.name
-                            p= account.username
-                else
-                    .account
+                            .text
+                                p= account.name
+                                if account.username
+                                    p= account.username
+                    else
                         .circle(id=account.id)
-                        p= account.name
-                        p= account.username
+                        .text
+                            p= account.name
+                            if account.username
+                                p= account.username
