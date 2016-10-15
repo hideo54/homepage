@@ -1,142 +1,99 @@
 body {
-    font-family: sans-serif;
-    text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    margin: 0 auto;
-    padding-bottom: 50px;
-    width: 100%;
+    margin: 0;
+    font-family: -apple-system, "BlinkMacSystemFont", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #E26A6A;
 }
 
 nav {
-    position: fixed;
     width: 100%;
+    height: 50px;
+    margin: 0;
+    padding: 0;
     background-color: #E26A6A;
 }
 
 nav ul {
     display: table;
     width: 100%;
-    max-width: 800px;
+    max-width: 500px;
     margin: 0 auto;
     padding: 0;
+    table-layout: fixed;
 }
 
-nav li {
+nav ul li {
     display: table-cell;
-    padding: 10px;
+    width: 50px;
+    height: 50px;
+    margin: 0 20px;
     text-align: center;
+    vertical-align: middle;
 }
 
-nav a {
+nav ul li a {
+    height: 50px;
     font-family: "proxima-nova", sans-serif;
-    font-weight: 400;
-    color: #fff;
+    color: #FFFFFF;
     text-decoration: none;
-}
-
-nav a:hover {
-    color: #ccc;
 }
 
 main {
     max-width: 800px;
-    width: expression(document.body.clientWidth > 801? "800px" : "auto");
-    margin: auto;
-    padding-top: 80px;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+main li {
+    margin-bottom: 5px;
+}
+
+.center {
+    margin: 20px;
     text-align: center;
 }
 
-h1, h2 {
-    font-family: "proxima-nova", sans-serif;
-    font-weight: 100;
-}
-
-p {
-    font-family: sans-serif;
-    margin-top: 10px;
-}
-
-a {
-    color: #E26A6A;
-    text-decoration: none;
-}
-
-.circle {
-    width: 80px;
-    height: 80px;
-    margin: 10px auto;
-    border: solid 0px;
+.center img {
     border-radius: 50%;
-    -webkit-border-radius: 50%;
 }
 
-ul {
-    padding: 0;
-}
-
-li {
-    list-style: none;
-}
-
-section a:hover {
-    background-color: #eeeeee;
-    border-radius: 10%;
-}
-
-section a, .non-link {
+.account {
     display: inline-block;
-    width: 100px;
     margin: 10px;
-    padding: 5px;
+    background-color: #EEEEEE;
+    border-radius: 1em;
 }
 
-@media screen and (max-width: 400px) {
-    section a, .non-link{
-        margin: 0px;
-    }
-}
-
-img {
+.account a {
     display: block;
-    margin: 0 auto;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
+    width: 100%;
+    height: 100%;
 }
 
-.icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
+.account a:hover {
+    background-color: #AAAAAA;
+    border-radius: 1em;
 }
 
-@media screen and (max-height: 400px) {
-    img {
-        width: 150px;
-        height: 150px;
-    }
+.account .circle {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0.5em;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.account .text {
+    display: inline-block;
+    margin: 0 0.5em;
+    vertical-align: middle;
 }
 
 footer {
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-    margin: auto;
+    color: #AAAAAA;
     text-align: center;
-    vertical-align: middle;
-    background: inherit;
-    background-color: white;
-    opacity: 0.9;
-    border-top: solid 1px #aaaaaa;
-}
-
-footer p {
-    height: 50px;
-    line-height: 50px;
-    margin: 0;
-    font-family: sans-serif;
-    font-weight: 100;
-    font-size: 0.8em;
-    color: #aaaaaa;
 }
