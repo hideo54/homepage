@@ -1,29 +1,21 @@
 # hideo54's Homepage
 
-[![Build Status](https://travis-ci.org/hideo54/www.svg?branch=master)](https://travis-ci.org/hideo54/www)
-
 ## 概要
 
 https://hideo54.com のソース
 
 ## バージョン
 
-Ver 4.0.3
+Ver 5.0.0
 
-## 必要であれば実行
+## ビルド
 
-* nodeコマンドでnodejsを実行する: `sudo ln -s /usr/bin/nodejs /usr/bin/node`
-* foreverのインストール: `sudo npm install -g forever`
+`npm install`
+`npm run build`
 
 ## 実行
 
-```bash
-npm install
-PORT=xxx forever start ./bin/www
-```
-
-xxx番ポートで動作します。
-`PORT=xxx`表記を省略した場合、3000番ポートで動作します。
+web/以下をディレクトリとすればよし
 
 ## 連絡先
 
