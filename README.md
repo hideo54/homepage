@@ -10,12 +10,9 @@ Ver 5.0.0
 
 ## ビルド
 
-`npm install`
-`npm run build`
-
-## 実行
-
-web/以下をディレクトリとすればよし
+1. `npm install`
+2. `npm run build`
+3. web/以下に必要なファイルが生成されます
 
 ## 連絡先
 
