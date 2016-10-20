@@ -6,7 +6,7 @@
     "homepage": "https://hideo54.com",
     "private": true,
     "scripts": {
-        "build": "pug src/ -O src/data.json --out web/ && rm web/_layout.html && cp -R pub/ web/pub/"
+        "build": "pug src/ -O src/data.json --out web/ && rm web/_layout.html && echo \"deleted _layout.html\" && cp -R pub/ web/pub/"
     },
     "repository": {
         "type": "git",
