@@ -1,0 +1,57 @@
+doctype html
+html(amp)
+    head
+        // AMP requirements
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width,minimum-scale=1')
+        script(async src='https://cdn.ampproject.org/v0.js')
+        style(amp-boilerplate) body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}
+        noscript
+            style(amp-boilerplate) body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}
+
+        // Customizes for AMP
+        style(amp-custom)
+            include ../pub/css/style.css
+            include ../pub/css/circle_color.css
+
+        //- It must include title, link(rel='canonical' href=URL)
+        block head
+
+        // Basic customizes
+
+        // Meta data
+        meta(name='description', content='hideo54\'s homepage.')
+        meta(name='author', content='hideo54')
+        meta(name='keywords', content='hideo54')
+
+        meta(name='apple-mobile-web-app-title', content='hideo54')
+        meta(name='application-name', content='hideo54')
+        meta(name='msapplication-TileColor', content='#00aba9')
+        meta(name='msapplication-TileImage', content='pub/favicon/mstile-144x144.png')
+        meta(name='msapplication-config', content='pub/favicon/browserconfig.xml')
+        meta(name='theme-color', content='#ffffff')
+
+        // Twitter Card
+        meta(name='twitter:card', content='summary')
+        meta(name='twitter:site', content='hideo54')
+        meta(name='twitter:title', content='hideo54.com')
+        meta(name='twitter:description', content='This is hideo54\'s homepage.')
+        meta(name='twitter:creator', content='hideo54')
+        meta(name='twitter:image:src', content='pub/img/icon.png')
+        meta(name='twitter:domain', content='hideo54.com')
+
+        // Open Graph Protocol
+        meta(property='og:title', content='hideo54\'s homepage')
+        meta(property='og:type', content='website')
+        meta(property='og:image', content='https://hideo54.com/pub/img/icon.png')
+    body
+        header
+            nav: ul
+                li: a(href='/') Home
+                li: a(href='/activity') Activity
+                li: a(href='/accounts') Accounts
+        main
+            block content
+        footer
+            hr
+            p Ver 5.0.0
