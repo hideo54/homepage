@@ -6,7 +6,9 @@
     "homepage": "https://hideo54.com",
     "private": true,
     "scripts": {
-        "build": "pug src/ -O src/data.json --out web/ && rm web/_layout.html && echo \"deleted _layout.html\" && cp -R pub/ web/pub/"
+        "build": "pug src/ -O src/data.json --out web/ && rm web/_layout.html && echo \"deleted _layout.html\" && cp -R pub/ web/pub/",
+        "ampbuild": "pug ampsrc/ -O src/data.json --out amp/ && rm amp/_layout.html && echo \"deleted _layout.html\" && cp -R pub/ amp/pub/",
+        "ampcheck": "amphtml-validator amp/*.html"
     },
     "repository": {
         "type": "git",
@@ -14,5 +16,8 @@
     },
     "dependencies": {
         "pug-cli": "^1.0.0-alpha6"
+    },
+    "devDependencies": {
+        "amphtml-validator": "^1.0.15"
     }
 }
