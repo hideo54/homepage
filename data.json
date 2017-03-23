@@ -1,6 +1,6 @@
 {
     "accounts": {
-        "自己コンテンツ": [
+        "My pages": [
             {
                 "name": "Wishlist",
                 "id": "wishlist",
@@ -76,7 +76,7 @@
                 "username": "hideo54"
             }
         ],
-        "Photos": [
+        "Pictures": [
             {
                 "name": "Instagram",
                 "id": "instagram",
@@ -102,12 +102,6 @@
                 "id": "nicovideos",
                 "link": "http://www.nicovideo.jp/user/28234132",
                 "username": null
-            },
-            {
-                "name": "Vine",
-                "id": "vine",
-                "link": "https://vine.co/u/1112344694186508288",
-                "username": "hideo54"
             }
         ],
         "Tech": [
@@ -156,6 +150,12 @@
                 "id": "wikipedia",
                 "link": null,
                 "username": "hideo54"
+            },
+            {
+                "name": "スクフェス",
+                "id": "lovelive",
+                "link": null,
+                "username": "319300853"
             }
         ]
     }
