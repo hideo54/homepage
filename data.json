@@ -1,19 +1,5 @@
 {
     "accounts": {
-        "My pages": [
-            {
-                "name": "Wishlist",
-                "id": "wishlist",
-                "link": "https://wishlist.hideo54.com",
-                "username": null
-            },
-            {
-                "name": "Blog",
-                "id": "blog",
-                "link": "https://blog.hideo54.com",
-                "username": null
-            }
-        ],
         "SNS": [
             {
                 "name": "Twitter",
