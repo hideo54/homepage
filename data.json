@@ -14,12 +14,6 @@
                 "username": "安本 英雄"
             },
             {
-                "name": "Tumblr",
-                "id": "tumblr",
-                "link": "http://tumblr.hideo54.com",
-                "username": "hideo54"
-            },
-            {
                 "name": "Ask.fm",
                 "id": "ask",
                 "link": "http://ask.fm/ask_hideo54",
@@ -62,7 +56,7 @@
                 "username": "hideo54"
             }
         ],
-        "Pictures": [
+        "Pictures / Videos": [
             {
                 "name": "Instagram",
                 "id": "instagram",
@@ -74,14 +68,6 @@
                 "id": "pixiv",
                 "link": "http://pixiv.me/hideo54",
                 "username": "hideo54"
-            }
-        ],
-        "Videos": [
-            {
-                "name": "YouTube",
-                "id": "youtube",
-                "link": "https://www.youtube.com/channel/UCrsDu6krWbTBlE-Dta8Kcog",
-                "username": null
             },
             {
                 "name": "ニコニコ動画",
@@ -104,36 +90,10 @@
                 "username": "the-hideo54"
             }
         ],
-        "Chat": [
-            {
-                "name": "Skype",
-                "id": "skype",
-                "link": null,
-                "username": "tw-hideo54"
-            },
+        "Others": [
             {
                 "name": "LINE",
                 "id": "line",
-                "link": null,
-                "username": "hideo54"
-            },
-            {
-                "name": "Yo",
-                "id": "yo",
-                "link": null,
-                "username": "hideo54"
-            }
-        ],
-        "Others": [
-            {
-                "name": "GameCenter",
-                "id": "gamecenter",
-                "link": null,
-                "username": "the-hideo54"
-            },
-            {
-                "name": "Wikipedia",
-                "id": "wikipedia",
                 "link": null,
                 "username": "hideo54"
             },
