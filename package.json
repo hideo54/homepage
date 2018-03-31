@@ -1,14 +1,12 @@
 {
     "license": "Apache-2.0",
     "name": "www",
-    "version": "5.0.0",
+    "version": "5.2",
     "description": "hideo54's Homepage",
     "homepage": "https://hideo54.com",
     "private": true,
     "scripts": {
-        "build": "pug src/ -O data.json --out dist/ && rm dist/_layout.html && echo \"Deleted _layout.html\" && cp -R pub/ dist/pub/",
-        "ampbuild": "pug ampsrc/ -O data.json --out ampdist/ && rm ampdist/_layout.html && echo \"Deleted _layout.html\" && cp -R pub/ ampdist/pub/",
-        "ampcheck": "amphtml-validator amp/*.html"
+        "build": "pug src/ -O data.json --out dist/ && rm dist/_layout.html && echo \"Deleted _layout.html\" && cp -R pub/ dist/pub/"
     },
     "repository": {
         "type": "git",
@@ -16,8 +14,5 @@
     },
     "dependencies": {
         "pug-cli": "^1.0.0-alpha6"
-    },
-    "devDependencies": {
-        "amphtml-validator": "^1.0.15"
     }
 }

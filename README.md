@@ -6,13 +6,13 @@ https://hideo54.com のソース
 
 ## バージョン
 
-Ver 5.1.5
+Ver 5.2
 
 ## ビルド
 
-1. `npm install`
-2. `npm run build`
-3. web/以下に一般向け、amp/以下にAMP(Accelarated Mobile Pages)向けの必要なファイルが生成されます。 `?amp` が付与されるとAMP向けページになることを前提としています。
+1. `yarn`
+2. `yarn run build`
+3. dist/以下に必要なファイルが生成されます。
 
 ## 連絡先
 
