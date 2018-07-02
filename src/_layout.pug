@@ -2,58 +2,7 @@ doctype html
 html
     head
         block head
-
-        // CSS
-        link(rel='stylesheet', href='pub/css/style.css')
-        link(rel='stylesheet', href='pub/css/circle_color.css')
-
-        // Meta data
-        meta(charset='utf-8')
-        meta(name='description', content='hideo54\'s homepage.')
-        meta(name='author', content='hideo54')
-        meta(name='keywords', content='hideo54')
-        meta(name='viewport', content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no')
-
-        // pub/favicon (generated on http://realpub/favicongenerator.net/, converted on http://html2jade.vida.io/)
-        link(rel='apple-touch-icon', sizes='57x57', href='pub/favicon/apple-touch-icon-57x57.png')
-        link(rel='apple-touch-icon', sizes='60x60', href='pub/favicon/apple-touch-icon-60x60.png')
-        link(rel='apple-touch-icon', sizes='72x72', href='pub/favicon/apple-touch-icon-72x72.png')
-        link(rel='apple-touch-icon', sizes='76x76', href='pub/favicon/apple-touch-icon-76x76.png')
-        link(rel='apple-touch-icon', sizes='114x114', href='pub/favicon/apple-touch-icon-114x114.png')
-        link(rel='apple-touch-icon', sizes='120x120', href='pub/favicon/apple-touch-icon-120x120.png')
-        link(rel='apple-touch-icon', sizes='144x144', href='pub/favicon/apple-touch-icon-144x144.png')
-        link(rel='apple-touch-icon', sizes='152x152', href='pub/favicon/apple-touch-icon-152x152.png')
-        link(rel='apple-touch-icon', sizes='180x180', href='pub/favicon/apple-touch-icon-180x180.png')
-        link(rel='icon', type='image/png', href='pub/favicon/pub/favicon-32x32.png', sizes='32x32')
-        link(rel='icon', type='image/png', href='pub/favicon/android-chrome-192x192.png', sizes='192x192')
-        link(rel='icon', type='image/png', href='pub/favicon/pub/favicon-96x96.png', sizes='96x96')
-        link(rel='icon', type='image/png', href='pub/favicon/pub/favicon-16x16.png', sizes='16x16')
-        link(rel='manifest', href='pub/favicon/manifest.json')
-        link(rel='mask-icon', href='pub/favicon/safari-pinned-tab.svg', color='#5bbad5')
-        link(rel='shortcut icon', href='pub/favicon/pub/favicon.ico')
-        meta(name='apple-mobile-web-app-title', content='hideo54')
-        meta(name='application-name', content='hideo54')
-        meta(name='msapplication-TileColor', content='#00aba9')
-        meta(name='msapplication-TileImage', content='pub/favicon/mstile-144x144.png')
-        meta(name='msapplication-config', content='pub/favicon/browserconfig.xml')
-        meta(name='theme-color', content='#ffffff')
-
-        // Twitter Card
-        meta(name='twitter:card', content='summary')
-        meta(name='twitter:site', content='hideo54')
-        meta(name='twitter:title', content='hideo54.com')
-        meta(name='twitter:description', content='This is hideo54\'s homepage.')
-        meta(name='twitter:creator', content='hideo54')
-        meta(name='twitter:image:src', content='pub/img/icon.png')
-        meta(name='twitter:domain', content='hideo54.com')
-
-        // Open Graph Protocol
-        meta(property='og:title', content='hideo54\'s homepage')
-        meta(property='og:type', content='website')
-        meta(property='og:image', content='https://hideo54.com/pub/img/icon.png')
-
-        // Google Analytics
-        script (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-34190148-6', 'auto');ga('send', 'pageview');
+        include _header
 body
     header
         nav: ul
