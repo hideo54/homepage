@@ -6,7 +6,7 @@
     "homepage": "https://hideo54.com",
     "private": true,
     "scripts": {
-        "build": "pug src/[^_]*.pug -O data.json --out dist/ && cp src/style.css dist/ && cp src/circle_color.css dist/ && cp src/icon.png dist/ && cp -R favicon/ dist/favicon/"
+        "build": "pug src/[^_]*.pug -O data.json --out dist/ && cp src/style.css dist/ && cp src/circle_color.css dist/ && cp src/icon.png dist/ && cp -R src/favicon/ dist/favicon/"
     },
     "repository": {
         "type": "git",
