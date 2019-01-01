@@ -28,13 +28,13 @@
             {
                 "name": "Booklog",
                 "id": "booklog",
-                "link": "http://booklog.jp/users/hideo54",
+                "link": "https://booklog.jp/users/hideo54",
                 "username": "hideo54"
             },
             {
                 "name": "Hatena",
                 "id": "hatena",
-                "link": "http://profile.hatena.ne.jp/hideo54/",
+                "link": "https://profile.hatena.ne.jp/hideo54/",
                 "username": "hideo54"
             },
             {
@@ -54,19 +54,19 @@
             {
                 "name": "Instagram",
                 "id": "instagram",
-                "link": "http://instagram.com/hideo54/",
+                "link": "https://www.instagram.com/hideo54/",
                 "username": "hideo54"
             },
             {
                 "name": "pixiv",
                 "id": "pixiv",
-                "link": "http://pixiv.me/hideo54",
+                "link": "https://www.pixiv.net/member.php?id=11278413",
                 "username": "hideo54"
             },
             {
                 "name": "ニコニコ動画",
                 "id": "nicovideos",
-                "link": "http://www.nicovideo.jp/user/28234132",
+                "link": "https://www.nicovideo.jp/user/28234132",
                 "username": null
             }
         ],
@@ -80,7 +80,7 @@
             {
                 "name": "SlideShare",
                 "id": "github",
-                "link": "http://www.slideshare.net/the-hideo54",
+                "link": "https://www.slideshare.net/the-hideo54",
                 "username": "the-hideo54"
             }
         ],
