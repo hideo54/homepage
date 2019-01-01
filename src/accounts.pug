@@ -11,7 +11,7 @@ block content
             each account in section
                 .account
                     if account.link
-                        a(href=account.link)
+                        a(href=account.link target='_blank')
                             .circle(id=account.id)
                             .text
                                 p= account.name
