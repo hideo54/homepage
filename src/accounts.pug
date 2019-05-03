@@ -1,0 +1,26 @@
+extends _layout
+
+block head
+    title アカウント一覧 | hideo54.com
+    meta(name='description', content='hideo54の各種SNS等のアカウント一覧です。')
+
+block header
+    include _nav
+
+block main
+    h1 アカウント一覧
+    each section, kind in accounts
+        h2=kind
+        each account in section
+            .account
+                if account.link
+                    a(href=account.link, target='_blank', rel='noopener')
+                        .circle(style=`background-color:#${account.color}`)
+                        .text
+                            p= account.name
+                            p= account.username
+                else
+                    .circle(style=`background-color:#${account.color}`)
+                    .text
+                        p= account.name
+                        p= account.username

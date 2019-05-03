@@ -1,0 +1,56 @@
+extends _layout
+
+block head
+    title hideo54.com
+    meta(name='description', content='hideo54のホームページです。')
+
+block main
+    .center
+        +image('https://img.hideo54.com/icons/main', 'Icon', 200)
+        h1 hideo54
+        p 1999年8月2日生まれ、19歳。
+            br
+            span コンピュータを使って
+            wbr
+            span 遊ぶのが
+            wbr
+            span 好きです。
+    section
+        h2 好きなこと
+        ul
+            li プログラミング (Web, iOS, IoT, etc.)
+            li アニメ観賞 (ゆるふわ日常系、その他気まぐれ)
+            li 言語
+            li 好きなものを食べること (ただし好き嫌いが激しい)
+            li 温泉、サウナ (ただしのぼせやすい)
+            li 一人旅
+    section
+        h2 現在の所属
+        ul
+            li 東京大学教養学部前期課程(理科1類)
+            li: +externalLink('https://tsg.ne.jp/', '東京大学コンピュータ系サークルTSG')
+            li
+                +externalLink('https://sunpro.io/', 'SunPro')
+                |  (趣味プログラマーサークル)
+            li
+                +externalLink('https://ctftime.org/team/34478', 'elfjp')
+                |  (幽霊CTFチーム)
+            li
+                +externalLink('https://harekaze.com/', 'Harekaze')
+                |  (CTFチーム) (幽霊メンバー)
+        p 僕個人へは、上記の所属先は通さず、以下の連絡先に直接ご連絡ください。
+    h2: a(href='/intro') もう少し詳しい自己紹介
+    h2: a(href='/activity') 活動
+    section
+        h2 連絡先
+        ul
+            li Mastodon: 
+                +externalLink('https://social.hideo54.com/@hideo54', '@hideo54@social.hideo54.com')
+            li Twitter: 
+                +externalLink('https://twitter.com/hideo54', '@hideo54')
+            li E-mail: 
+                code contact@hideo54.com
+    h2: a(href='/accounts') アカウント一覧
+    h2: a(href='/pay') hideo54 Pay
+    h2: +externalLink('https://blog.hideo54.com', 'ブログ')
+    h2: +externalLink('https://www.amazon.co.jp/registry/wishlist/3IQ53EU2L62AI', 'Amazon欲しいものリスト')
