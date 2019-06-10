@@ -6,12 +6,12 @@ https://hideo54.com のソース
 
 ## バージョン
 
-Ver 5.3
+Ver 6.0
 
 ## ビルド
 
-1. `yarn`
-2. `yarn run build`
+1. `npm i`
+2. `npm run build`
 3. dist/以下に必要なファイルが生成されます。
 
 ## 連絡先
