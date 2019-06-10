@@ -52,6 +52,10 @@ accounts:
           color: '0575B1'
           link: https://www.slideshare.net/the-hideo54
           username: the-hideo54
+        - name: MDN
+          color: '333333'
+          link: https://developer.mozilla.org/ja/profiles/hideo54
+          username: hideo54
     Games:
         - name: スクフェス
           color: 'E4007F'
