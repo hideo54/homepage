@@ -52,6 +52,9 @@ accounts:
           color: '333333'
           link: https://developer.mozilla.org/ja/profiles/hideo54
           username: hideo54
+        - name: Wikipedia
+          color: 'F6F6F6'
+          username: Hideo54
     Games:
         - name: スクフェス
           color: 'E4007F'
