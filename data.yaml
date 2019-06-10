@@ -28,10 +28,6 @@ accounts:
           color: 'F84777'
           link: https://ja.foursquare.com/hideo54
           username: hideo54
-        - name: AnimeTick (HTTP)
-          color: 'FF440E'
-          link: http://animetick.net/users/hideo54
-          username: hideo54
         - name: Instagram
           color: '517FA4'
           link: https://www.instagram.com/hideo54/
