@@ -28,7 +28,7 @@ accounts:
           color: 'F84777'
           link: https://ja.foursquare.com/hideo54
           username: hideo54
-        - name: AnimeTick
+        - name: AnimeTick (HTTP)
           color: 'FF440E'
           link: http://animetick.net/users/hideo54
           username: hideo54
