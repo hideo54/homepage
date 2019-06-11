@@ -1,0 +1,128 @@
+extends _layout
+
+block head
+    title 自己PR | hideo54.com
+    meta(name='description', content='hideo54の自己PRです。')
+
+block header
+    include _nav
+
+block main
+    a(href='/') トップに戻る
+    h1 自己PR
+    p このページでは
+        a(href='/intro') 自己紹介
+        | に比べ、より技術的内容にフォーカスした内容を書いています。これは私の雇用を検討している方に対して、私の能力のPRの側面を意識したものです。
+    section
+        h2 TL;DR
+        ul
+            li 多興味な人間ですが、特にWeb(フロントエンド/バックエンド), iOS, 機械学習に興味があります。日常生活に関連するトピックだと特に興味が惹かれやすいです。
+            li 最低限の言語能力や情報リテラシ、プログラミング経験があるので、比較的コミュニケーションを取りやすいと思います。
+            li しかし大きめのプロダクトに携わった経験がほぼなく、そうした設計などに疎いです。
+            li 楽しいプロダクトに関わりたいです。気軽にご連絡ください。
+    p 以下、詳細です。
+    section
+        h2 現在の所属
+        p 現在は東京大学教養学部前期課程(理科1類)にて1年生をしています。
+        p 東京大学では2年生の夏に自分の進む学科を選択します。今の所一つに定めてはいないものの、情報系学科への進学を志望しています。
+    section
+        h2 言語能力
+        h3 日本語能力
+        p 語彙力はやや少ないですが、比較的しっかりした文を書いていると自覚しています(本気でしっかりした文を書こうとするとやや時間をかけてしまいがちですが)。
+        h3 英語能力
+        p native speaker には敵わない程度の実力ではありますが、周囲の日本人と比べると比較的高い英語力があるようです。(CEFR: B2)
+        ul
+            li 調べながらで構わなければしっかりしたReading/Writingができます。
+                ul
+                    li 気が向いた時にWikipediaやMozilla Developer Network(MDN)の翻訳をしています。
+            li Listening能力は高くはありませんが、例えば英語のconferenceの英語程度なら十分聞き取れます。
+            li Speaking能力は結構低いです。行動力の問題かもしれません。
+    section
+        h2 情報リテラシ
+        ul
+            li macOS, Debian, iOSを日常的に利用しており、それらについては比較的詳しいです。
+            li Windowsについては、一般ユーザー程度以上には触れますが、込み入った設定や技術的細部などについては全然わかりません。
+            li ファイルの取扱い、ハードウェア、git, Linuxコマンド、セキュリティなどについて、最低限必要な基本的な知識はあります。
+            li Adobe Illustrator の操作には比較的慣れており、簡単なものであれば制作できます。
+            li Python, Node.js を日常的に使用しており、比較的慣れています。Swiftもかなり好きですが最近はあまり書いていません。
+    section
+        h2 制作物紹介
+        h3 Webページ
+        p フロントエンドJavaScript力は、ぜひ身につけたいと思っていますが、現状全然ありません。
+        p HTML/CSSは小中規模程度であれば書けます。生で書くことは好きではなく、PugとLessを愛用しています。
+        ul
+            li このホームページはPugとLessで書いたあとNode.jsでHTMLとCSSの静的ファイルに書き起こし、nginxで公開しています。
+                +externalLink('https://github.com/hideo54/homepage', 'ソースはこちら')
+            li 長い文章を書きたくなった時用に
+                +externalLink('https://blog.hideo54.com/', 'ブログ')
+                | を持っています。最近は何気ない日常よりの記事が多いですが、技術的な投稿もあります。
+                br
+                | このブログはMarkdownから静的Webページを生成できるNode.js製ブログエンジン
+                +externalLink('https://hexo.io/', 'Hexo')
+                | を使用しています。テーマは完全な自作です(Pug, Less製)。OSS化する予定ですが着手中です。
+            li Mastodonの思想に共感し、また
+                +externalLink('https://social.hideo54.com/@hideo54', '自分専用のインスタンス')
+                | を構築しています。しかし最近はあまり使っていません(なんせ人が少ないので…)。
+        h3 Webアプリケーション
+        p Node.jsが好きで、簡単なアプリケーションをいくつか書いたことがあります。見せられるものとしては以下があります:
+        ul
+            li: +externalLink('https://github.com/hideo54/img.hideo54.com', '自分専用画像サーバー')
+            li 都合により見せられませんが、MySQLやSQLiteを使ったAPIサーバーもいくつか書いたことがあります。
+        p このようにいわゆるバックエンドが中心で、フロントエンドは素人です。(ごく最近ReactやVueを勉強し始めましたが未だ素人。)
+        h3 iOS
+        p Appleのソフトウェアのデザインが好きなので、日常的にiOSを愛用してます。またiOSアプリケーションの開発の経験もあります。
+        p もっとも、大規模なものを作った経験はなく、またStoreに公開したこともないため、実践的開発力は低いと自覚しています。しかし、iOSのAPIについての知識はある程度あると思っています。
+        h3 技術的執筆活動
+        p 大したものを書いたことはありませんが、SunProという小さなサークルが出した同人誌でいくつか記事を書いたことがあります。
+        ul
+            li
+                +externalLink('https://sunpro.io/c91/hideo54.html', '機械学習でμ’sの声を識別する | SunPro 2017')
+                | #{' '}(2016年12月): PythonでMFCCをSVC
+                +externalLink('', 'ソース')
+            li
+                +externalLink('https://sunpro.io/techbookfest/hideo54.html', 'まだReactionで消耗してるの? | SunPro 2016 技術書典')
+                | #{' '}(2016年6月): Raspberry Piを使ったスイッチ押下認識と通信
+            li
+                +externalLink('https://sunpro.io/c89/pub/hideo/ch01', 'Raspberry Pi で照明のスイッチと永遠におさらばする方法 | SunPro 2016') 
+                | #{' '}(2015年12月): Raspberry Piを使ったNFCタグ検知と赤外線LED点灯
+
+    section
+        h2 まだ深く取り組んでいないが興味を持っている分野
+        ul
+            li フロントエンド<br/>: 今のところ一番優先順位が高いなと思っています。ごく最近ReactやVueを学習し始めました。
+            li 競技プログラミング<br/>: アルゴリズムやデータ構造についての知識が少ないので、勉強中です。
+            li 機械学習<br/>: かなり興味があります。特に自然言語処理を伴うものに興味を持っています。
+    section
+        h2 性格
+        ul
+            li 見えるものにすることが好き。デザイン(特にUI)の設計やデータの可視化が好き。
+            li 言語、言語化が好き。
+            li 記録を残すことが好き。趣味で記録しているものには以下があります:
+                ul
+                    li Apple Watchを使った健康情報の自動収集 (5年)
+                    li 手動でつけている睡眠記録 (4年)
+                    li 自作スプレッドシート上の家計簿 (3年)
+                    li 自分専用Wiki(crowi), Slack (3年)
+                    li 旅行記録 (2年)
+                p 正確性に拘りすぎてしまって必要以上に手間をかけてしまうという悪癖もあります…。
+            li 変なところで綺麗さにこだわってしまう
+                ul
+                    li AmazonのURLは<code>/dp/XXXXXX</code>とだけ書く
+                    li 大文字/小文字や空白の有無に敏感なので "Macbook", "Drop box" のような表記にもやっとしてしまう
+            li 拘りたくないものについては拘らず、面倒くさがります
+            li 暗記がかなり苦手です
+            li 仲良くなるまで人の顔や名前を覚えられません
+            li 気が向いた時にやる性格で、計画性がありません
+
+block footer
+    script(type='application/ld+json').
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "自己PR",
+                "item": "https://hideo54.com/skill"
+            }]
+        }
