@@ -1,0 +1,64 @@
+extends _layout
+
+block head
+    title 自己紹介 | hideo54.com
+    meta(name='description', content='hideo54の自己紹介です。')
+
+block header
+    include _nav
+
+block main
+    h1 自己紹介
+    section
+        h2 好きなこと
+        ul
+            li プログラミング (Web, iOS, IoT, etc.)
+            li アニメや漫画 (ゆるふわ日常系、その他気まぐれ)
+            li 言語
+            li 好きなものを食べること (ただし好き嫌いが激しい)
+            li 温泉、サウナ (ただしのぼせやすい)
+            li 一人旅
+    section
+        h2 現在の所属
+        ul
+            li 東京大学教養学部前期課程(理科1類)
+            li: +externalLink('https://tsg.ne.jp/', '東京大学コンピュータ系サークルTSG')
+            li
+                +externalLink('https://sunpro.io/', 'SunPro')
+                |  (趣味プログラマーサークル)
+            li
+                +externalLink('https://ctftime.org/team/34478', 'elfjp')
+                |  (幽霊CTFチーム)
+            li
+                +externalLink('https://harekaze.com/', 'Harekaze')
+                |  (CTFチーム) (幽霊メンバー)
+        p 僕個人へは、上記の所属先は通さず、以下の連絡先に直接ご連絡ください。
+    section
+        h2 使用言語
+        ul
+            li 日本語 (C2) (母語)
+            li English (B2)
+            li français (初学者)
+            li Python (少し前までメインだった)
+            li JavaScript (メイン)
+            li Swift (iOS App を書く時用)
+    section
+        h2 食べ物の好き嫌い
+        p 本当はかなり複雑だが、わかりやすくざっくり言うと
+        ul
+            li 好き: 肉、麺、緑の野菜
+            li 嫌い: 豆、卵、黒いやつ
+        p 食物アレルギーはありません。
+
+block footer
+    script(type='application/ld+json').
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Intro",
+                "item": "https://hideo54.com/intro"
+            }]
+        }
