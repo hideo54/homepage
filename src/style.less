@@ -6,12 +6,23 @@
 body {
     margin: 0;
     font-family: -apple-system, "BlinkMacSystemFont", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
-    color: @black;
+    @media (prefers-color-scheme: light) {
+        color: @black;
+    }
+    @media (prefers-color-scheme: dark) {
+        color: @white;
+        background-color: @black;
+    }
 }
 
 a {
     text-decoration: none;
-    color: @pink;
+    @media (prefers-color-scheme: light) {
+        color: @pink;
+    }
+    @media (prefers-color-scheme: dark) {
+        color: lighten(@pink, 10%);
+    }
 }
 
 li {
@@ -22,6 +33,9 @@ code {
     font-family: Ricty, Menlo, Monaco, Consolas, Courier New, monospace;
     word-break: break-all;
     background: @cloud;
+    @media (prefers-color-scheme: dark) {
+        color: @black;
+    }
     padding: 0.2em 0.5em;
     border-radius: 0.3em;
 }
@@ -41,7 +55,7 @@ nav {
         justify-content: space-around;
         max-width: 800px;
         margin: 0 auto;
-        
+
         .element {
             display: flex;
 
@@ -86,7 +100,13 @@ main {
 .account {
     display: inline-block;
     margin: 10px;
-    background-color: @white;
+    @media (prefers-color-scheme: light) {
+        background-color: @white;
+    }
+    @media (prefers-color-scheme: dark) {
+        color: @white;
+        background-color: lighten(@black, 10%);
+    }
     border-radius: 1em;
 
     .account a {
