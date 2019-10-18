@@ -1,5 +1,13 @@
+import styled from 'styled-components';
+
+const Paragraph = styled.p`
+  color: red;
+`;
+
 const Header = () => (
-  <div><p>This is the header.</p></div>
+  <div>
+    <Paragraph>This is the header.</Paragraph>
+  </div>
 );
 
 export default Header;
