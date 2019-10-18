@@ -6,7 +6,7 @@ https://hideo54.com のソース
 
 ## バージョン
 
-Ver 6.0
+Ver 7.0
 
 ## ビルド
 
