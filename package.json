@@ -6,10 +6,17 @@
     "homepage": "https://hideo54.com",
     "private": true,
     "scripts": {
+        "dev": "next",
+        "build": "next build",
+        "start": "next start"
     },
     "repository": {
         "type": "git",
         "url": "git@github.com:hideo54/homepage.git"
     },
-    "dependencies": {}
+    "dependencies": {
+        "next": "^9.1.1",
+        "react": "^16.10.2",
+        "react-dom": "^16.10.2"
+    }
 }
