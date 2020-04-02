@@ -1,0 +1,56 @@
+extends _layout
+
+block head
+    title Twitter 凍結のお知らせ
+    meta(name='description', content='Twitter 凍結のお知らせ')
+    meta(name='robots' content='noindex')
+
+block header
+    include _nav
+
+block header
+    include _nav
+
+block main
+    p 最終更新: 2020年4月3日 2:45
+    section
+        h1(style='text-align: center') Twitter アカウント
+            +externalLink('https://twitter.com', ' @hideo54 ')
+            | が凍結されました。
+        .center: +image('https://img.hideo54.com/icons/black', 'Black hideo54', 200)
+        p(style='text-align: center') 凍結日時: 2020年4月3日(金) 1:11
+    section
+        h2 心当たりは?
+        p
+            strong 本当に全く思い当たりません。
+            | ロックでもなく、突然凍結されました。
+        p 最近、COVID-19 関係の発言をしてロックされるフォロワーを多数見てきました。現在、Twitter のアルゴリズムは「コロナウイルス」を含むツイートにかなり敏感に反応しています。新型コロナウイルスは、今の Twitter では、もはや
+            strong 名前を言ってはいけないウイルス
+            | と化しています。皆さんもご注意ください。
+        p しかし、私はこの情勢を以前から把握しており、「コロナウイルス」についての発言を控えてきました。また、アカウントの「ロック」ではなく「凍結」を突然食らったことからも、このケースとは異なる可能性が高いことが伺えます。
+    section
+        h2 影響範囲は?
+        p 今回影響を受けたのは、メインアカウント @hideo54 が凍結されたのみで、執筆現在、他のアカウントはロックも凍結もされていません。
+    section
+        h2
+            +externalLink('https://twitter.com/UT_COVID19', '@UT_COVID19')
+            | bot はどうなる?
+        p 結論から言うと、普段どおりに動作しており、ロックも凍結もされていません。投稿漏れもありません。
+        p botを動かすために使っていた開発者用 app も suspend されてしまいましたが、すぐに友人の @hakatashi が代わりの app を貸してくれました。
+        p このため、クライアント表示はしばらく、"hideo54" から "HakataBot" に変わります。
+    section
+        h2 これからどうするのか?
+        h3 Mastodon ありましたよね?
+        p 12月に障害で止めてしまって以来、「そのうち直そう」と思ったまま放置してしまいました...。そういうとこだぞ。
+        p 4月4日までには復旧させようかと画策しております。現在アクセスできない状況ですが、4月4日になったら
+            +externalLink('https://social.hideo54.com/@hideo54', '@hideo54@social.hideo54.com')
+            | にアクセスしてみてください。
+        p もし4月4日に間に合わなかったら、
+            +externalLink('https://pawoo.net/web/accounts/364118', 'Pawoo')
+            | を使うかもしれませんが、あまり積極的でないです。
+        h3 Twitter には戻るのか?
+        p: strong 復活したら戻ります。
+        p ただし、復活の目処は立っていません。Twitter からは、なぜ凍結したのかさえも教えてもらえていない状況です。すぐ復活できるかもしれませんが、「聞く耳を持たれないまま永久凍結されてしまう」というケースもあります。Twitter はそういうサービスです。
+        p とりあえず、1週間程度は様子を見ます。もし一生凍結を宣告されたら、Twitter Japan を訪問するかもしれません。
+    section
+        p: strong 続報はこのページや上記 Mastodon (4月4日以降) でお伝えします。
