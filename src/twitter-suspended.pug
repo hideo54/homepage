@@ -27,13 +27,13 @@ block header
     include _nav
 
 block main
-    p 最終更新: 2020年4月3日 2:45
+    p(style='text-align: right') 最終更新: 2020年4月3日 3:30
     section
         h1(style='text-align: center') Twitter アカウント
             +externalLink('https://twitter.com', ' @hideo54 ')
             | が凍結されました。
         .center: +image('https://img.hideo54.com/icons/black', 'Black hideo54', 200)
-        p(style='text-align: center') 凍結日時: 2020年4月3日(金) 1:11
+        p(style='text-align: center') 凍結日時: 2020年4月3日(金) 1:11ごろ
         .center: a(class='twitter-share-button' href='https://twitter.com/intent/tweet?text=Twitter%3A%20%40hideo54%20%E3%81%AF%E5%87%8D%E7%B5%90%E3%81%95%E3%82%8C%E3%81%BE%E3%81%97%E3%81%9F' data-size='large') Tweet
     section
         h2 心当たりは?
@@ -46,11 +46,11 @@ block main
         p しかし、私はこの情勢を以前から把握しており、「コロナウイルス」についての発言を控えてきました。また、アカウントの「ロック」ではなく「凍結」を突然食らったことからも、このケースとは異なる可能性が高いことが伺えます。
     section
         h2 影響範囲は?
-        p 今回影響を受けたのは、メインアカウント @hideo54 が凍結されたのみで、執筆現在、他のアカウントはロックも凍結もされていません。
+        p 今回影響を受けたのは、メインアカウント @hideo54 が凍結されたのみで、執筆現在、他のアカウントはロックも凍結もされていません。(なお、代わりのアカウントを使用する予定は現在ありません。)
     section
         h2
             +externalLink('https://twitter.com/UT_COVID19', '@UT_COVID19')
-            | bot はどうなる?
+            | #{' '}bot はどうなる?
         p 結論から言うと、普段どおりに動作しており、ロックも凍結もされていません。投稿漏れもありません。
         p botを動かすために使っていた開発者用 app も suspend されてしまいましたが、すぐに友人の @hakatashi が代わりの app を貸してくれました。
         p このため、クライアント表示はしばらく、"hideo54" から "HakataBot" に変わります。
