@@ -1,5 +1,4 @@
 {
-  "license": "Apache-2.0",
   "name": "homepage",
   "version": "7.0.0",
   "description": "hideo54's Homepage",
@@ -15,15 +14,18 @@
     "url": "git@github.com:hideo54/homepage.git"
   },
   "dependencies": {
-    "@types/styled-components": "^4.1.19",
-    "next": "^9.1.1",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "styled-components": "^4.4.0"
+    "next": "latest",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "styled-components": "^5.0.0"
   },
   "devDependencies": {
-    "@types/node": "^12.11.1",
-    "@types/react": "^16.9.9",
-    "typescript": "^3.6.4"
-  }
+    "@types/node": "12.0.12",
+    "@types/react": "16.8.23",
+    "@types/react-dom": "16.8.4",
+    "@types/styled-components": "5.0.1",
+    "babel-plugin-styled-components": "^1.10.0",
+    "typescript": "3.5.2"
+  },
+  "license": "Apache-2.0"
 }
