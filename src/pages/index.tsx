@@ -5,7 +5,7 @@ import {
     UnorderedList,
     ExternalAnchor,
 } from '../components';
-import { Center, BigTitle } from '../styles';
+import { Main, Footer, Center, BigTitle, Small } from '../styles';
 
 const likes = [
     'プログラミング (Web, iOS, IoT, etc.)',
@@ -34,25 +34,40 @@ const was = [
 
 export default () => {
     return <>
-        <Center>
-            <LocalImage src='/icon-main.png' width='200px' isRounded />
-            <BigTitle>hideo54</BigTitle>
-            <p>1999年8月2日生まれ、20歳。</p>
-            <CustomWordBreak>
-                コンピュータを使って\遊ぶのが\好き。
-            </CustomWordBreak>
-        </Center>
-        <section>
-            <h2>好きなもの</h2>
-            <UnorderedList list={likes} />
-        </section>
-        <section>
-            <h2>所属</h2>
-            <UnorderedList list={belongs} />
-        </section>
-        <section>
-            <h2>いた</h2>
-            <UnorderedList list={was} />
-        </section>
+        <Main>
+            <Center>
+                <LocalImage src='/icon-main.png' width='200px' isRounded />
+                <BigTitle>hideo54</BigTitle>
+                <p>1999年8月2日生まれ、20歳。</p>
+                <CustomWordBreak>
+                    コンピュータを使って\遊ぶのが\好き。
+                </CustomWordBreak>
+            </Center>
+            <section>
+                <h2>好きなもの</h2>
+                <UnorderedList list={likes} />
+            </section>
+            <section>
+                <h2>所属</h2>
+                <UnorderedList list={belongs} />
+            </section>
+            <section>
+                <h2>いた</h2>
+                <UnorderedList list={was} />
+            </section>
+        </Main>
+        <Footer>
+            <Small>
+                アイコンのキツネは、Webブラウザ “Firefox” のマスコットキャラクター「フォクすけ」です。
+                <ExternalAnchor href='https://creativecommons.org/licenses/by-nc/4.0/deed.ja'>
+                    CC BY-NC 4.0 ライセンス
+                </ExternalAnchor>
+                で提供された、Mozilla Japan による
+                <ExternalAnchor href='http://foxkeh.jp/downloads/materials/'>
+                    画像素材
+                </ExternalAnchor>
+                を使用しています。
+            </Small>
+        </Footer>
     </>;
 }
