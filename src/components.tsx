@@ -1,4 +1,5 @@
-import { RoundImage } from './styles';
+import { PropsWithChildren } from 'react';
+import { RoundImage, ParagraphWithoutWrap } from './styles';
 
 interface LocalImageProps {
     src: string;
@@ -30,4 +31,18 @@ export const LocalImage = (props: LocalImageProps) => {
             height={props.height}
         />;
     }
+};
+
+interface CustomWordBreakProps {
+    separator?: string;
+}
+
+export const CustomWordBreak = (props: PropsWithChildren<CustomWordBreakProps>) => {
+    const childrenString = props.children?.toString();
+    const separator = props.separator || '\\'; // Actually '\'
+    const elements = childrenString?.split(separator).map(str => <>
+        <span>{str}</span>
+        <wbr />
+    </>);
+    return <ParagraphWithoutWrap>{elements}</ParagraphWithoutWrap>;
 };

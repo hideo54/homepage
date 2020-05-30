@@ -10,3 +10,7 @@ export const Center = styled.div`
     margin: 0 auto;
     text-align: center;
 `;
+
+export const ParagraphWithoutWrap = styled.p`
+    white-space: nowrap;
+`;
