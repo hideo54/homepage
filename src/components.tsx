@@ -46,3 +46,9 @@ export const CustomWordBreak = (props: PropsWithChildren<CustomWordBreakProps>) 
     </>);
     return <ParagraphWithoutWrap>{elements}</ParagraphWithoutWrap>;
 };
+
+export const UnorderedList = (props: { list: any[]; }) => (
+    <ul>
+        {props.list.map(li => <li>{li}</li>)}
+    </ul>
+);
