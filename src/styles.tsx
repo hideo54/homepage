@@ -19,5 +19,7 @@ export const ParagraphWithoutWrap = styled.p`
 
 export const Anchor = styled.a`
     color: ${accentColor};
-    text-decoration: underline dotted;
+    text-decoration: none;
+    /* text-decoration: underline dashed */
+    text-underline-position: under;
 `;

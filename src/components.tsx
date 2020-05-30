@@ -54,6 +54,7 @@ export const UnorderedList = (props: { list: any[]; }) => (
 );
 
 export const ExternalAnchor = (props: PropsWithChildren<{ href: string }>) => (
+    // About rel, see: https://web.dev/external-anchors-use-rel-noopener/
     <Anchor href={props.href} target='_blank' rel='noreferrer' >
         {props.children}
     </Anchor>
