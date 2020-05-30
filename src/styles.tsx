@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+const accentColor = '#E26A6A';
+
 export const RoundImage = styled.img`
     border-radius: 50%;
 `;
@@ -13,4 +15,9 @@ export const Center = styled.div`
 
 export const ParagraphWithoutWrap = styled.p`
     white-space: nowrap;
+`;
+
+export const Anchor = styled.a`
+    color: ${accentColor};
+    text-decoration: underline dotted;
 `;

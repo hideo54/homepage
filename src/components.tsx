@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { RoundImage, ParagraphWithoutWrap } from './styles';
+import { RoundImage, ParagraphWithoutWrap, Anchor } from './styles';
 
 interface LocalImageProps {
     src: string;
@@ -51,4 +51,10 @@ export const UnorderedList = (props: { list: any[]; }) => (
     <ul>
         {props.list.map(li => <li>{li}</li>)}
     </ul>
+);
+
+export const ExternalAnchor = (props: PropsWithChildren<{ href: string }>) => (
+    <Anchor href={props.href} target='_blank' rel='noreferrer' >
+        {props.children}
+    </Anchor>
 );
