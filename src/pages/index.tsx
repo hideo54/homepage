@@ -5,7 +5,7 @@ import {
     UnorderedList,
     ExternalAnchor,
 } from '../components';
-import { Main, Footer, Center, BigTitle, Small } from '../styles';
+import { Main, Footer, Center, BigTitle, Code, Small } from '../styles';
 
 const likes = [
     'プログラミング (Web, iOS, IoT, etc.)',
@@ -54,6 +54,13 @@ export default () => {
             <section>
                 <h2>いた</h2>
                 <UnorderedList list={was} />
+            </section>
+            <section>
+                <h2>連絡先</h2>
+                <ul>
+                    <li>Twitter: <ExternalAnchor href='https://twitter.com/hideo54'>@hideo54</ExternalAnchor></li>
+                    <li>E-mail: <Code>contact@hideo54.com</Code></li>
+                </ul>
             </section>
         </Main>
         <Footer>

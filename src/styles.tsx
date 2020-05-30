@@ -1,13 +1,29 @@
 import styled from 'styled-components';
 
-const accentColor = '#E26A6A';
+const color = {
+    text: '#1D1D1F', // Respect Apple
+    accent: '#E26A6A',
+    cloud: '#ECF0F1',
+}
+
+const fonts = {
+    sansSerif: [
+        '-apple-system', 'BlinkMacSystemFont',
+        'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'sans-serif',
+    ],
+    monospace: [
+        'Ricty', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace',
+    ],
+};
 
 const maxWidth = '800px';
 
 export const Main = styled.main`
     max-width: ${maxWidth};
     margin: 0 auto;
-    padding: 1em;
+    padding: 0 1em;
+    color: ${color.text};
+    font-family: ${fonts.sansSerif.join(',')};
     /* For IE */
     display: block;
 `;
@@ -15,7 +31,9 @@ export const Main = styled.main`
 export const Footer = styled.footer`
     max-width: ${maxWidth};
     margin: 0 auto;
-    padding: 1em;
+    padding: 0 1em;
+    color: ${color.text};
+    font-family: ${fonts.sansSerif.join(',')};
     /* For IE */
     display: block;
 `;
@@ -36,7 +54,7 @@ export const ParagraphWithoutWrap = styled.p`
 `;
 
 export const Anchor = styled.a`
-    color: ${accentColor};
+    color: ${color.accent};
     text-decoration: none;
     /* text-decoration: underline dashed */
     text-underline-position: under;
@@ -44,4 +62,12 @@ export const Anchor = styled.a`
 
 export const Small = styled.small`
     color: gray;
+`;
+
+export const Code = styled.code`
+    padding: 0.2em 0.5em;
+    background-color: ${color.cloud};
+    font-family: ${fonts.monospace.join(',')};
+    word-break: break-all;
+    border-radius: 0.3em;
 `;
