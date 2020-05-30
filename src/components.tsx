@@ -1,4 +1,3 @@
-import path from 'path';
 import { RoundImage } from './styles';
 
 interface LocalImageProps {
@@ -10,7 +9,12 @@ interface LocalImageProps {
 }
 
 export const LocalImage = (props: LocalImageProps) => {
-    const name = path.parse(props.src).name;
+    // Get name from the path.
+    // Note: `path.parse()` cannot be used,
+    //     for node-libs-browser (webpack's dependency) uses old path-browserify.
+    //     This won't be fixed for a while. https://github.com/webpack/node-libs-browser/pull/79
+    const base = props.src.split('/')[props.src.split('/').length - 1];
+    const name = base.split('.').slice(0, -1).join('.');
     if (props.isRounded !== true) { // undefined (default) or false
         return <img
             src={props.src}
