@@ -53,9 +53,23 @@ export const UnorderedList = (props: { list: any[]; }) => (
     </ul>
 );
 
-export const ExternalAnchor = (props: PropsWithChildren<{ href: string }>) => (
+interface ExternalAnchorInterface {
+    href: string;
+    openInNewTab?: boolean;
+    attachReferrer?: boolean;
+}
+
+export const ExternalAnchor = (props: PropsWithChildren<ExternalAnchorInterface>) => {
+    const openInNewTab = props.openInNewTab === undefined ? true : props.openInNewTab;
+    const target = openInNewTab ? '_blank' : undefined;
     // About rel, see: https://web.dev/external-anchors-use-rel-noopener/
-    <Anchor href={props.href} target='_blank' rel='noreferrer' >
-        {props.children}
-    </Anchor>
-);
+    if (props.attachReferrer) {
+        return <Anchor href={props.href} target={target} rel='noopener'>
+            {props.children}
+        </Anchor>;
+    } else {
+        return <Anchor href={props.href} target={target} rel='noreferrer'>
+            {props.children}
+        </Anchor>;
+    }
+};
