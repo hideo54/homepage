@@ -17,11 +17,11 @@
     "@mdx-js/loader": "^1.6.5",
     "@next/mdx": "^9.4.4",
     "@types/mdx-js__react": "^1.5.2",
-    "next": "latest",
+    "next": "^9.4.4",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-icons": "^3.10.0",
-    "styled-components": "^5.0.0",
+    "styled-components": "^5.1.1",
     "yaml-loader": "^0.6.0"
   },
   "devDependencies": {
@@ -30,7 +30,7 @@
     "@types/react-dom": "16.8.4",
     "@types/styled-components": "5.0.1",
     "babel-plugin-styled-components": "^1.10.0",
-    "typescript": "3.5.2"
+    "typescript": "^3.9.3"
   },
   "license": "Apache-2.0"
 }
