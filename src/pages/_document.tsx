@@ -30,6 +30,7 @@ export default class MyDocument extends Document {
         return (
             <Html>
                 <Head>
+                    <title>hideo54.com</title>
                     <style>{`
                         body {
                             margin: 0;
