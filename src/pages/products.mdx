@@ -1,0 +1,127 @@
+# 制作物紹介
+
+今まで製作したもののうち、public なものをご紹介します。
+
+## Webページ
+
+### hideo54.com
+
+このページです。中学生の頃に初めて作った web ページであり、歴史と愛着があります。
+
+現在のバージョンは最近開発したものです。
+Next.js (React), TypeScript, styled-components, MDX を使っています。静的なので GitHub Pages にホストし配信しています。
+
+[GitHub にてソースを公開しています。](https://github.com/hideo54/homepage)
+
+### [ブログ](https://blog.hideo54.com)
+
+こちらも中学生の頃からの歴史があります。更新は少ないですが…。
+
+現在のバージョンは、2018年に開発したものです。
+Markdown から静的 webページを生成できる Node.js 製ブログエンジン [Hexo](https://hexo.io/) を使っています。
+テーマは Pug と Less での完全な自作です。静的ページで、nginx で配信しています。
+
+近々、hideo54.com と同じ技術構成で renewal しようと思っています。
+
+### Mastodon
+
+Mastodon の思想に共感し、[自分専用のインスタンス](https://social.hideo54.com/@hideo54)を構築して使用しています。(2018-)
+
+契約している VPS で動かしているものですが、容量の都合上、画像は自宅のサーバーに構築した S3 互換 object strage に保存・配信しています。
+
+2019年12月から自宅のネットワーク構成の変更により停止中ですが、そのうち再開予定です。
+
+### [しぇか椅子マップ](https://sheka.hideo54.com/)
+
+ガタガタの椅子が多すぎる灘校最寄りのラーメン屋「しぇからしか 東灘店」の椅子のガタガタ度を可視化したしょうもないページです。
+
+[GitHub にてソースを公開しています。](https://github.com/hideo54/shekaisumap)
+
+### [第71回灘校文化祭 “Seek it!” ホームページ](https://fest.nada-sc.jp/2017/) (2017)
+
+Pug, Less で作りました。マップ (SVG) の区域を押すと企画のページに移れるのが地味に便利。
+
+[GitHub にてソースを公開しています。](https://github.com/hideo54/NadaCultureFest2017)
+
+## Webアプリケーション
+
+Public なものには以下があります:
+
+* [自分専用画像サーバー](https://github.com/hideo54/img.hideo54.com) (2019-)
+* [画像サイズ変形アプリ](https://github.com/hideo54/transformer) (2018-)
+
+## hideout
+
+私の日々の一人暮らしを支える、自作スマートホームシステムです。次のような機能があります:
+
+* 時刻を知らせる
+* 新着 NHK ラジオニュースを再生する
+* 緊急地震速報を再生する
+* 夜に電気を自動消灯する (徐々に消灯)  
+  生活習慣崩壊の化身である私はすぐに手動で電気を点けてしまうので、いくら明るくしようとまた暗くなっていく仕組みにしています。
+* 朝に電気を自動点灯する (徐々に点灯)  
+  怠惰の化身である私はすぐに手動で電気を消してしまうので、いくら消そうとまた点く仕組みにしています。
+* 部屋の CO2 濃度が 1,000 ppm を超えた時に換気を促す
+* 部屋の温度や湿度が高すぎたり低すぎたりした時、それを通知する
+
+Node.js, TypeScript, Raspberry Pi 2, BME-280 センサ、MH-Z19 センサ、Google Text-to-Speech を使用しています。
+
+[GitHub にてソースを公開しています。](https://github.com/hideo54/hideout)
+
+## その他
+
+### [@UT_COVID19](https://twitter.com/UT_COVID19) (Twitter bot, 2020-)
+
+2020年3月、突如として世界を襲った新型コロナウイルス。前例のない事態ながらも、東京大学は比較的早くから対応を模索し、授業のオンライン化や事務手続の変更に関わる情報をいち早く学生に周知すべく、特設情報サイトを立ち上げました。
+しかし、そのサイトの更新は学生に push されないため、学生は適宜自らサイトにアクセスして、最新情報を確認する必要がありました。
+
+これでは不便だということで、その更新のたびに更新箇所を通知する Slack bot をその日のうちに作成し、クラスの Slack に投稿する bot を作りました。
+
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">昨日、教養学部の「講義オンライン化に関する情報サイト」 <a href="https://t.co/ggbBAeVN6b">https://t.co/ggbBAeVN6b</a> を監視して更新を通知する Slack bot を作り、クラスの Slack で動かし始めました。(こんな感じ) <a href="https://t.co/kpTDXuyZkr">pic.twitter.com/kpTDXuyZkr</a></p>&mdash; hideo54 (@hideo54) <a href="https://twitter.com/hideo54/status/1243113812124782593?ref_src=twsrc%5Etfw">March 26, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+またその翌日には、同様の機能をもつ Twitter bot を作成し、公開しました。それが @UT_COVID19 です。
+
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">講義オンライン化に関する情報サイト <a href="https://t.co/LRLkLzKoa8">https://t.co/LRLkLzKoa8</a> が更新されました。 <a href="https://t.co/MMWfD33EdY">pic.twitter.com/MMWfD33EdY</a></p>&mdash; (非公式) 教養学部講義対応更新通知bot (@UT_COVID19) <a href="https://twitter.com/UT_COVID19/status/1254995267419398146?ref_src=twsrc%5Etfw">April 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+手前味噌ですが、情勢が目まぐるしく変化する中、非常に有用な bot になったと思います。非公式ながら900人以上にフォローされており、元の公式サイトにもリンクが掲載されています。
+
+技術的には、定期的にアクセスし DOM を解析してテキスト化したものを保存し、差分を検知したらそれを示す画像を生成・ツイートする、という流れをすべて Node.js (TypeScript) で行っています。
+
+画像の生成も web 技術で成り立っています。自作の Pug テンプレートに差分データを流し込み、puppeteer で Headless Chrome を立ち上げて screenshot を撮影しています。
+また、Jest, GitHub Actions による test, CI 環境も整えています。
+
+[GitHub にてソースを公開しています。](https://github.com/hideo54/UT_COVID-19)
+
+### クラス Slack 向け bot (2019-)
+
+大学の同じクラスの学生向けに Slack bot を作成し、運用しています。次のような機能があります:
+
+* 大学の「教務課からのお知らせ」ページの更新を通知する
+* 数学教員のホームページの更新を通知する
+* 教員の配付したスライド PDF から見えない文字を抽出する
+
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">これを突いて、スライドファイルをアップロードしたら穴埋めしてくれる Slack bot を作ったぞ。最高。 <a href="https://t.co/3e5jih3O5t">pic.twitter.com/3e5jih3O5t</a></p>&mdash; hideo54 (@hideo54) <a href="https://twitter.com/hideo54/status/1251740824712306689?ref_src=twsrc%5Etfw">April 19, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+特に「教務課からのお知らせ」の通知はとても有用で、クラスメイトからも好評を得ています。
+
+[GitHub にてソースを公開しています。](https://github.com/hideo54/ut-slack)
+
+これらの他にも多くの scraping program を制作しました。ソースを公開しているものも多いので、興味があれば [GitHub](https://github.com/hideo54) をご参照ください。
+
+### [schfeslog](https://github.com/hideo54/schfeslog) (2016-2017)
+
+スマートフォンゲーム「ラブライブ! スクールアイドルフェスティバル」のプレイログを取得する HTTP proxy server です。
+
+ゲームの仕様変更と私の motivation 不足により現在は動作せず、対応予定もありません。
+
+## 執筆
+
+### [機械学習でμ’sの声を識別する](https://sunpro.io/c91/hideo54.html)
+
+私の所属する趣味プログラマサークル SunPro がコミックマーケット91 (2016年冬) で発刊した「SunPro会誌 2017」に投稿した記事です。
+
+[記事内で作成したプログラムは GitHub で公開しています。](https://github.com/hideo54/ML-LoveLive-Voice)
+
+### [ブログ](https://blog.hideo54.com)
+
+既述。日常系記事が大半。
