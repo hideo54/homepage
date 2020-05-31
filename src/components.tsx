@@ -6,13 +6,13 @@ import {
     ParagraphWithoutWrap, TagBlock, TwoParagraphBlock, Circle, ImageCircle,
 } from './styles';
 
-interface SectionInterface {
+interface SectionProps {
     title?: string;
     href?: string;
     attachReferrer?: boolean;
 }
 
-export const Section = (props: PropsWithChildren<SectionInterface>) => {
+export const Section = (props: PropsWithChildren<SectionProps>) => {
     if (props.href) {
         const child = props.href.startsWith('/')
             ? (
@@ -99,14 +99,14 @@ export const InternalAnchor = (props: PropsWithChildren<{ href: string; }>) => (
     </Link>
 );
 
-interface ExternalAnchorInterface {
+interface ExternalAnchorProps {
     href: string;
     showOpenIcon?: boolean;
     openInNewTab?: boolean;
     attachReferrer?: boolean;
 }
 
-export const ExternalAnchor = (props: PropsWithChildren<ExternalAnchorInterface>) => {
+export const ExternalAnchor = (props: PropsWithChildren<ExternalAnchorProps>) => {
     const showOpenIcon = props.showOpenIcon === undefined ? true : props.showOpenIcon;
     const openInNewTab = props.openInNewTab === undefined ? true : props.openInNewTab;
     const attachReferrer = props.attachReferrer === undefined ? false : props.attachReferrer;

@@ -22,9 +22,9 @@ const belongs = [
     <ExternalAnchor href='https://tsg.ne.jp/'>
         東京大学コンピュータ系サークル TSG
     </ExternalAnchor>,
-    // <ExternalAnchor href='https://sunpro.io/'>
-    //     SunPro (趣味プログラマーサークル)
-    // </ExternalAnchor>,
+    <ExternalAnchor href='https://sunpro.io/'>
+        SunPro (趣味プログラマーサークル)
+    </ExternalAnchor>,
 ];
 
 const was = [
