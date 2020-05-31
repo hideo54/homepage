@@ -35,39 +35,37 @@ const was = [
 
 export default () => {
     return <>
-        <Main>
-            <Center>
-                <LocalImage src='/icon-main.png' width='200px' isRounded />
-                <h1>hideo54</h1>
-                <p>1999年8月2日生まれ、20歳。</p>
-                <CustomWordBreak>
-                    コンピュータを使って\遊ぶのが\好き。
-                </CustomWordBreak>
-            </Center>
-            <Section title='好きなもの'>
-                <UnorderedList list={likes} />
-            </Section>
-            <Section title='現在の所属'>
-                <UnorderedList list={belongs} />
-                <p>私個人へは、上記の所属先は通さずに直接ご連絡ください。</p>
-            </Section>
-            <Section title='いた'>
-                <UnorderedList list={was} />
-            </Section>
-            <Section title='もう少し詳しい自己紹介' href='/intro' />
-            <Section title='活動' href='/activity' />
-            <Section title='連絡先'>
-                <ul>
-                    <Li>Twitter: <ExternalAnchor href='https://twitter.com/hideo54'>@hideo54</ExternalAnchor></Li>
-                    <Li>E-mail: <Code>contact@hideo54.com</Code></Li>
-                </ul>
-            </Section>
-            <Section title='アカウント一覧' href='/accounts' />
-            <Section title='hideo54 Pay' href='/pay' />
-            <Section title='ブログ' href='https://blog.hideo54.com' attachReferrer />
-            <Section title='Amazon ほしいものリスト' href='https://www.amazon.co.jp/registry/wishlist/3IQ53EU2L62AI' />
-        </Main>
-        <Footer>
+        <Center>
+            <LocalImage src='/icon-main.png' width='200px' isRounded />
+            <h1>hideo54</h1>
+            <p>1999年8月2日生まれ、20歳。</p>
+            <CustomWordBreak>
+                コンピュータを使って\遊ぶのが\好き。
+            </CustomWordBreak>
+        </Center>
+        <Section title='好きなもの'>
+            <UnorderedList list={likes} />
+        </Section>
+        <Section title='現在の所属'>
+            <UnorderedList list={belongs} />
+            <p>私個人へは、上記の所属先は通さずに直接ご連絡ください。</p>
+        </Section>
+        <Section title='いた'>
+            <UnorderedList list={was} />
+        </Section>
+        <Section title='もう少し詳しい自己紹介' href='/intro' />
+        <Section title='活動' href='/activity' />
+        <Section title='連絡先'>
+            <ul>
+                <Li>Twitter: <ExternalAnchor href='https://twitter.com/hideo54'>@hideo54</ExternalAnchor></Li>
+                <Li>E-mail: <Code>contact@hideo54.com</Code></Li>
+            </ul>
+        </Section>
+        <Section title='アカウント一覧' href='/accounts' />
+        <Section title='hideo54 Pay' href='/pay' />
+        <Section title='ブログ' href='https://blog.hideo54.com' attachReferrer />
+        <Section title='Amazon ほしいものリスト' href='https://www.amazon.co.jp/registry/wishlist/3IQ53EU2L62AI' />
+        <p style={{ marginTop: '2em' }}>
             <Small>
                 アイコンのキツネは、Webブラウザ “Firefox” のマスコットキャラクター「フォクすけ」です。
                 <ExternalAnchor href='https://creativecommons.org/licenses/by-nc/4.0/deed.ja'>
@@ -79,6 +77,6 @@ export default () => {
                 </ExternalAnchor>
                 を使用しています。
             </Small>
-        </Footer>
+        </p>
     </>;
 }
