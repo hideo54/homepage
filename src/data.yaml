@@ -1,61 +1,69 @@
 accounts:
     SNS:
         - name: Mastodon
-          color: '313543'
+          color: '#313543'
           link: https://social.hideo54.com/@hideo54
           username: '@hideo54'
         - name: Twitter
-          color: '55ACEE'
+          color: '#55ACEE'
           link: https://twitter.com/hideo54
           username: '@hideo54'
         - name: Facebook
-          color: '3C5998'
+          color: '#3C5998'
           link: https://www.facebook.com/hideo54
           username: 安本英雄
-        - name: LinkedIn
-          color: '007BB6'
-          link: https://www.linkedin.com/pub/hideo-yasumoto/a0/a02/24a
-          username: Hideo Yasumoto
+        # - name: LinkedIn
+        #   color: '#007BB6'
+        #   link: https://www.linkedin.com/pub/hideo-yasumoto/a0/a02/24a
+        #   username: Hideo Yasumoto
         - name: Booklog
-          color: '66330A'
+          color: '#66330A'
           link: https://booklog.jp/users/hideo54
           username: hideo54
         - name: はてな
-          color: '5279E7'
+          color: '#5279E7'
           link: https://profile.hatena.ne.jp/hideo54/
           username: hideo54
         - name: Foursquare
-          color: 'F84777'
+          color: '#F84777'
           link: https://ja.foursquare.com/hideo54
           username: hideo54
         - name: Instagram
-          color: '517FA4'
+          color: '#517FA4'
           link: https://www.instagram.com/hideo54/
           username: hideo54
         - name: pixiv
-          color: '0096DB'
+          color: '#0096DB'
           link: https://www.pixiv.net/member.php?id=11278413
           username: hideo54
         - name: LINE
-          color: '00C300'
+          color: '#00C300'
           username: hideo54
     Tech:
         - name: GitHub
-          color: '333333'
+          color: '#333333'
           link: https://github.com/hideo54
           username: hideo54
+        - name: AtCoder
+          color: '#008000'
+          link: https://atcoder.jp/users/hideo54
+          username: hideo54
         - name: SlideShare
-          color: '0575B1'
+          color: '#0575B1'
           link: https://www.slideshare.net/the-hideo54
           username: the-hideo54
         - name: MDN
-          color: '333333'
+          color: '#333333'
           link: https://developer.mozilla.org/ja/profiles/hideo54
           username: hideo54
         - name: Wikipedia
-          color: 'F6F6F6'
+          color: '#F6F6F6'
+          link: https://ja.wikipedia.org/wiki/%E5%88%A9%E7%94%A8%E8%80%85:Hideo54
           username: Hideo54
     Games:
         - name: スクフェス
-          color: 'E4007F'
+          color: '#E4007F'
           username: 319300853
+        - name: Nintendo Switch
+          color: '#E60012'
+          username: SW-7571-3727-1408

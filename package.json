@@ -1,21 +1,36 @@
 {
-    "license": "Apache-2.0",
-    "name": "homepage",
-    "version": "6.0.0",
-    "description": "hideo54's Homepage",
-    "homepage": "https://hideo54.com",
-    "private": true,
-    "scripts": {
-        "build": "pug src/ -O data.yaml -o dist/ && lessc --clean-css src/style.less dist/style.css",
-        "deploy": "git checkout gh-pages && cp dist/* ./; git add --all; git commit -m 'Update'; git push origin gh-pages; git checkout master"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:hideo54/homepage.git"
-    },
-    "dependencies": {
-        "less": "^3.11.1",
-        "less-plugin-clean-css": "^1.5.1",
-        "pug-cli": "git+https://github.com/hideo54/pug-cli#master"
-    }
+  "name": "homepage",
+  "version": "7.0.0",
+  "description": "hideo54's Homepage",
+  "homepage": "https://hideo54.com",
+  "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hideo54/homepage.git"
+  },
+  "dependencies": {
+    "@mdx-js/loader": "^1.6.5",
+    "@next/mdx": "^9.4.4",
+    "@types/mdx-js__react": "^1.5.2",
+    "next": "latest",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-icons": "^3.10.0",
+    "styled-components": "^5.0.0",
+    "yaml-loader": "^0.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "12.0.12",
+    "@types/react": "16.8.23",
+    "@types/react-dom": "16.8.4",
+    "@types/styled-components": "5.0.1",
+    "babel-plugin-styled-components": "^1.10.0",
+    "typescript": "3.5.2"
+  },
+  "license": "Apache-2.0"
 }
