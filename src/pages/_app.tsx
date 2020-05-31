@@ -10,7 +10,7 @@ const mdComponents = {
     a: (props: PropsWithChildren<{ href: string; }>) => <ExternalAnchor {...props} />,
     ul: (props: PropsWithChildren<{ href: string; }>) => <Ul {...props} />,
     li: (props: PropsWithChildren<{ href: string; }>) => <Li {...props} />,
-    code: (props: PropsWithChildren<{}>) => <Code {...props} />,
+    inlineCode: (props: PropsWithChildren<{}>) => <Code {...props} />,
 };
 
 const App = ({ Component, pageProps }: AppProps) => (
