@@ -54,7 +54,7 @@ export default () => {
             <Section title='いた'>
                 <UnorderedList list={was} />
             </Section>
-            <Section title='もう少し詳しい自己紹介' href='/about' />
+            <Section title='もう少し詳しい自己紹介' href='/intro' />
             <Section title='活動' href='/activity' />
             <Section title='連絡先'>
                 <ul>
