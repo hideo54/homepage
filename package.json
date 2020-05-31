@@ -14,6 +14,9 @@
     "url": "git@github.com:hideo54/homepage.git"
   },
   "dependencies": {
+    "@mdx-js/loader": "^1.6.5",
+    "@next/mdx": "^9.4.4",
+    "@types/mdx-js__react": "^1.5.2",
     "next": "latest",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
