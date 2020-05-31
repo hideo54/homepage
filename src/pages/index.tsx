@@ -6,7 +6,7 @@ import {
     UnorderedList,
     ExternalAnchor,
 } from '../components';
-import { Main, Footer, Center, Code, Small, Li } from '../styles';
+import { Center, Code, Small, Li } from '../styles';
 
 const likes = [
     'プログラミング (web, iOS, IoT, etc.)',
