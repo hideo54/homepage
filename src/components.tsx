@@ -1,7 +1,10 @@
 import { PropsWithChildren } from 'react';
 import Link from 'next/link';
 import { IoIosArrowForward, IoMdOpen } from 'react-icons/io';
-import { RoundImage, ParagraphWithoutWrap, H2, Anchor, Ul, Li } from './styles';
+import {
+    Anchor, Ul, Li,
+    ParagraphWithoutWrap, TagBlock, TwoParagraphBlock, Circle, ImageCircle,
+} from './styles';
 
 interface SectionInterface {
     title?: string;
@@ -13,25 +16,25 @@ export const Section = (props: PropsWithChildren<SectionInterface>) => {
     if (props.href) {
         const child = props.href.startsWith('/')
             ? (
-                <H2>
+                <h2>
                     <InternalAnchor href={props.href}>
                         {props.title}
                         <IoIosArrowForward style={{ verticalAlign: 'middle' }} />
                     </InternalAnchor>
-                </H2>
+                </h2>
             )
             : (
-                <H2>
+                <h2>
                     <ExternalAnchor href={props.href} attachReferrer={props.attachReferrer}>
                         {props.title}
                     </ExternalAnchor>
-                </H2>
+                </h2>
             )
         return <section style={{ marginBottom: '1em' }}>{child}</section>;
     } else {
         return (
             <section>
-                {props.title && <H2>{props.title}</H2>}
+                {props.title && <h2>{props.title}</h2>}
                 {props.children}
             </section>
         );
@@ -61,7 +64,7 @@ export const LocalImage = (props: LocalImageProps) => {
             height={props.height}
         />;
     } else {
-        return <RoundImage
+        return <ImageCircle
             src={props.src}
             alt={props.alt ? props.alt : name}
             width={props.width}
@@ -98,11 +101,13 @@ export const InternalAnchor = (props: PropsWithChildren<{ href: string; }>) => (
 
 interface ExternalAnchorInterface {
     href: string;
+    showOpenIcon?: boolean;
     openInNewTab?: boolean;
     attachReferrer?: boolean;
 }
 
 export const ExternalAnchor = (props: PropsWithChildren<ExternalAnchorInterface>) => {
+    const showOpenIcon = props.showOpenIcon === undefined ? true : props.showOpenIcon;
     const openInNewTab = props.openInNewTab === undefined ? true : props.openInNewTab;
     const attachReferrer = props.attachReferrer === undefined ? false : props.attachReferrer;
     const target = openInNewTab ? '_blank' : undefined;
@@ -110,7 +115,39 @@ export const ExternalAnchor = (props: PropsWithChildren<ExternalAnchorInterface>
     return (
         <Anchor href={props.href} target={target} rel={rel} >
             {props.children}
-            <IoMdOpen style={{verticalAlign: 'text-bottom', marginLeft: '.2em'}} />
+            {showOpenIcon &&
+                <IoMdOpen style={{
+                    verticalAlign: 'text-bottom',
+                    marginLeft: '.2em',
+                }} />
+            }
         </Anchor>
     );
+};
+
+export interface TagProps {
+    color: string;
+    name: string;
+    username: string;
+    link?: string;
+}
+
+export const Tag = (props: TagProps) => {
+    const block = (
+        <TagBlock>
+            <Circle diameter='1.5em' color={props.color} />
+            <TwoParagraphBlock>
+                <p>{props.name}</p>
+                <p>{props.username}</p>
+            </TwoParagraphBlock>
+        </TagBlock>
+    );
+    if (props.link) {
+        return (
+            <ExternalAnchor href={props.link} showOpenIcon={false}>
+                {block}
+            </ExternalAnchor>
+        );
+    }
+    return block;
 };

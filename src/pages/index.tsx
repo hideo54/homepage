@@ -6,7 +6,7 @@ import {
     UnorderedList,
     ExternalAnchor,
 } from '../components';
-import { Main, Footer, Center, H1, Code, Small, Li } from '../styles';
+import { Main, Footer, Center, Code, Small, Li } from '../styles';
 
 const likes = [
     'プログラミング (web, iOS, IoT, etc.)',
@@ -38,7 +38,7 @@ export default () => {
         <Main>
             <Center>
                 <LocalImage src='/icon-main.png' width='200px' isRounded />
-                <H1>hideo54</H1>
+                <h1>hideo54</h1>
                 <p>1999年8月2日生まれ、20歳。</p>
                 <CustomWordBreak>
                     コンピュータを使って\遊ぶのが\好き。

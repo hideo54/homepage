@@ -35,25 +35,6 @@ export const Footer = styled.footer`
     display: block;
 `;
 
-export const RoundImage = styled.img`
-    border-radius: 50%;
-`;
-
-export const H1 = styled.h1``;
-
-export const H2 = styled.h2`
-    margin: .1em 0;
-`;
-
-export const Center = styled.div`
-    margin: 1em auto;
-    text-align: center;
-`;
-
-export const ParagraphWithoutWrap = styled.p`
-    white-space: nowrap;
-`;
-
 export const Anchor = styled.a`
     color: ${color.accent};
     cursor: pointer;
@@ -80,4 +61,46 @@ export const Ul = styled.ul`
 
 export const Li = styled.li`
     margin: .5em 0;
+`;
+
+export const Center = styled.div`
+    margin: 1em auto;
+    text-align: center;
+`;
+
+export const ParagraphWithoutWrap = styled.p`
+    white-space: nowrap;
+`;
+
+export const TagBlock = styled.div`
+    display: inline-block;
+    margin: 0.5em;
+    border-radius: 1em;
+    vertical-align: middle;
+    background-color: ${color.cloud};
+`;
+
+export const TwoParagraphBlock = styled.div`
+    display: inline-block;
+    padding-right: 0.5em;
+    vertical-align: middle;
+`;
+
+interface CircleProps {
+    color: string;
+    diameter: string;
+}
+
+export const Circle = styled.div`
+    display: inline-block;
+    width: ${(props: CircleProps) => props.diameter};
+    height: ${(props: CircleProps) => props.diameter};
+    margin: 0.5em;
+    border-radius: 50%;
+    background-color: ${(props: CircleProps) => props.color};
+    vertical-align: middle;
+`;
+
+export const ImageCircle = styled.img`
+    border-radius: 50%;
 `;
