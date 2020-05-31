@@ -1,8 +1,8 @@
 import { PropsWithChildren } from 'react';
 import Link from 'next/link';
-import { IoIosArrowForward, IoMdOpen } from 'react-icons/io';
+import { IoIosArrowForward, IoMdOpen, IoIosArrowBack } from 'react-icons/io';
 import {
-    Anchor, Ul, Li,
+    Header, Anchor, Ul, Li,
     ParagraphWithoutWrap, TagBlock, TwoParagraphBlock, Circle, ImageCircle,
 } from './styles';
 
@@ -122,6 +122,26 @@ export const ExternalAnchor = (props: PropsWithChildren<ExternalAnchorProps>) =>
                 }} />
             }
         </Anchor>
+    );
+};
+
+export const GoTopHeader = () => {
+    const height = '2em';
+    return (
+        <Header>
+            <InternalAnchor href='/'>
+                <IoIosArrowBack style={{
+                    width: height,
+                    height: height,
+                    marginLeft: '-2em',
+                    verticalAlign: 'middle',
+                }} />
+                <span style={{
+                    fontSize: height,
+                    verticalAlign: 'middle',
+                }}>hideo54.com TOP</span>
+            </InternalAnchor>
+        </Header>
     );
 };
 

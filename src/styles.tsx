@@ -18,6 +18,14 @@ export const fonts = {
 
 const maxWidth = '800px';
 
+export const Header = styled.header`
+    max-width: ${maxWidth};
+    margin: 0 auto;
+    padding: 0 1em;
+    /* For IE */
+    display: block;
+`;
+
 export const Main = styled.main`
     max-width: ${maxWidth};
     margin: 0 auto;
