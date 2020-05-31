@@ -1,5 +1,12 @@
 import { PropsWithChildren } from 'react';
-import { RoundImage, ParagraphWithoutWrap, Anchor } from './styles';
+import { RoundImage, ParagraphWithoutWrap, H2, Anchor, Ul, Li } from './styles';
+
+export const Section = (props: PropsWithChildren<{ title?: string }>) => (
+    <section>
+        {props.title && <H2>{props.title}</H2>}
+        {props.children}
+    </section>
+);
 
 interface LocalImageProps {
     src: string;
@@ -48,9 +55,9 @@ export const CustomWordBreak = (props: PropsWithChildren<CustomWordBreakProps>) 
 };
 
 export const UnorderedList = (props: { list: any[]; }) => (
-    <ul>
-        {props.list.map(li => <li>{li}</li>)}
-    </ul>
+    <Ul>
+        {props.list.map((li, i) => <Li key={i}>{li}</Li>)}
+    </Ul>
 );
 
 interface ExternalAnchorInterface {

@@ -29,6 +29,7 @@ export const Main = styled.main`
 export const Footer = styled.footer`
     max-width: ${maxWidth};
     margin: 0 auto;
+    margin-top: 2em;
     padding: 0 1em;
     /* For IE */
     display: block;
@@ -40,8 +41,12 @@ export const RoundImage = styled.img`
 
 export const BigTitle = styled.h1``;
 
+export const H2 = styled.h1`
+    margin: .1em 0;
+`;
+
 export const Center = styled.div`
-    margin: 0 auto;
+    margin: 1em auto;
     text-align: center;
 `;
 
@@ -66,4 +71,12 @@ export const Code = styled.code`
     font-family: ${fonts.monospace.join(',')};
     word-break: break-all;
     border-radius: 0.3em;
+`;
+
+export const Ul = styled.ul`
+    margin-top: 0;
+`;
+
+export const Li = styled.li`
+    margin: .5em 0;
 `;

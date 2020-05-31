@@ -1,11 +1,12 @@
 import React from 'react';
 import {
+    Section,
     LocalImage,
     CustomWordBreak,
     UnorderedList,
     ExternalAnchor,
 } from '../components';
-import { Main, Footer, Center, BigTitle, Code, Small } from '../styles';
+import { Main, Footer, Center, BigTitle, Code, Small, Li } from '../styles';
 
 const likes = [
     'プログラミング (Web, iOS, IoT, etc.)',
@@ -43,25 +44,21 @@ export default () => {
                     コンピュータを使って\遊ぶのが\好き。
                 </CustomWordBreak>
             </Center>
-            <section>
-                <h2>好きなもの</h2>
+            <Section title='好きなもの'>
                 <UnorderedList list={likes} />
-            </section>
-            <section>
-                <h2>所属</h2>
+            </Section>
+            <Section title='現在の所属'>
                 <UnorderedList list={belongs} />
-            </section>
-            <section>
-                <h2>いた</h2>
+            </Section>
+            <Section title='いた'>
                 <UnorderedList list={was} />
-            </section>
-            <section>
-                <h2>連絡先</h2>
+            </Section>
+            <Section title='連絡先'>
                 <ul>
-                    <li>Twitter: <ExternalAnchor href='https://twitter.com/hideo54'>@hideo54</ExternalAnchor></li>
-                    <li>E-mail: <Code>contact@hideo54.com</Code></li>
+                    <Li>Twitter: <ExternalAnchor href='https://twitter.com/hideo54'>@hideo54</ExternalAnchor></Li>
+                    <Li>E-mail: <Code>contact@hideo54.com</Code></Li>
                 </ul>
-            </section>
+            </Section>
         </Main>
         <Footer>
             <Small>
