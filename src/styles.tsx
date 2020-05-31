@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-const color = {
+export const color = {
     text: '#1D1D1F', // Respect Apple
     accent: '#E26A6A',
     cloud: '#ECF0F1',
-}
+};
 
-const fonts = {
+export const fonts = {
     sansSerif: [
         '-apple-system', 'BlinkMacSystemFont',
         'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'sans-serif',
@@ -22,8 +22,6 @@ export const Main = styled.main`
     max-width: ${maxWidth};
     margin: 0 auto;
     padding: 0 1em;
-    color: ${color.text};
-    font-family: ${fonts.sansSerif.join(',')};
     /* For IE */
     display: block;
 `;
@@ -32,8 +30,6 @@ export const Footer = styled.footer`
     max-width: ${maxWidth};
     margin: 0 auto;
     padding: 0 1em;
-    color: ${color.text};
-    font-family: ${fonts.sansSerif.join(',')};
     /* For IE */
     display: block;
 `;
