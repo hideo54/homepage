@@ -1,13 +1,42 @@
 import { PropsWithChildren } from 'react';
-import { IoMdOpen } from 'react-icons/io';
+import Link from 'next/link';
+import { IoIosArrowForward, IoMdOpen } from 'react-icons/io';
 import { RoundImage, ParagraphWithoutWrap, H2, Anchor, Ul, Li } from './styles';
 
-export const Section = (props: PropsWithChildren<{ title?: string }>) => (
-    <section>
-        {props.title && <H2>{props.title}</H2>}
-        {props.children}
-    </section>
-);
+interface SectionInterface {
+    title?: string;
+    href?: string;
+    attachReferrer?: boolean;
+}
+
+export const Section = (props: PropsWithChildren<SectionInterface>) => {
+    if (props.href) {
+        const child = props.href.startsWith('/')
+            ? (
+                <H2>
+                    <InternalAnchor href={props.href}>
+                        {props.title}
+                        <IoIosArrowForward style={{ verticalAlign: 'middle' }} />
+                    </InternalAnchor>
+                </H2>
+            )
+            : (
+                <H2>
+                    <ExternalAnchor href={props.href} attachReferrer={props.attachReferrer}>
+                        {props.title}
+                    </ExternalAnchor>
+                </H2>
+            )
+        return <section style={{ marginBottom: '1em' }}>{child}</section>;
+    } else {
+        return (
+            <section>
+                {props.title && <H2>{props.title}</H2>}
+                {props.children}
+            </section>
+        );
+    }
+};
 
 interface LocalImageProps {
     src: string;
@@ -61,6 +90,12 @@ export const UnorderedList = (props: { list: any[]; }) => (
     </Ul>
 );
 
+export const InternalAnchor = (props: PropsWithChildren<{ href: string; }>) => (
+    <Link href={props.href}>
+        <Anchor>{props.children}</Anchor>
+    </Link>
+);
+
 interface ExternalAnchorInterface {
     href: string;
     openInNewTab?: boolean;
@@ -69,21 +104,13 @@ interface ExternalAnchorInterface {
 
 export const ExternalAnchor = (props: PropsWithChildren<ExternalAnchorInterface>) => {
     const openInNewTab = props.openInNewTab === undefined ? true : props.openInNewTab;
+    const attachReferrer = props.attachReferrer === undefined ? false : props.attachReferrer;
     const target = openInNewTab ? '_blank' : undefined;
-    // About rel, see: https://web.dev/external-anchors-use-rel-noopener/
-    if (props.attachReferrer) {
-        return (
-            <Anchor href={props.href} target={target} rel='noopener'>
-                {props.children}
-                <IoMdOpen style={{verticalAlign: 'text-bottom', marginLeft: '.2em'}} />
-            </Anchor>
-        );
-    } else {
-        return (
-            <Anchor href={props.href} target={target} rel='noreferrer'>
-                {props.children}
-                <IoMdOpen style={{verticalAlign: 'text-bottom', marginLeft: '.2em'}} />
-            </Anchor>
-        );
-    }
+    const rel = attachReferrer ? 'noopener' : 'noreferrer'; // https://web.dev/external-anchors-use-rel-noopener/
+    return (
+        <Anchor href={props.href} target={target} rel={rel} >
+            {props.children}
+            <IoMdOpen style={{verticalAlign: 'text-bottom', marginLeft: '.2em'}} />
+        </Anchor>
+    );
 };

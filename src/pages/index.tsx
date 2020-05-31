@@ -9,7 +9,7 @@ import {
 import { Main, Footer, Center, BigTitle, Code, Small, Li } from '../styles';
 
 const likes = [
-    'プログラミング (Web, iOS, IoT, etc.)',
+    'プログラミング (web, iOS, IoT, etc.)',
     'アニメ、マンガ',
     '言語',
     '美味しいもの',
@@ -18,9 +18,9 @@ const likes = [
 ];
 
 const belongs = [
-    '東京大学教養学部前期課程(理科1類)',
+    '東京大学教養学部前期課程 (理科1類)',
     <ExternalAnchor href='https://tsg.ne.jp/'>
-        東京大学コンピュータ系サークルTSG
+        東京大学コンピュータ系サークル TSG
     </ExternalAnchor>,
     // <ExternalAnchor href='https://sunpro.io/'>
     //     SunPro (趣味プログラマーサークル)
@@ -49,16 +49,23 @@ export default () => {
             </Section>
             <Section title='現在の所属'>
                 <UnorderedList list={belongs} />
+                <p>私個人へは、上記の所属先は通さずに直接ご連絡ください。</p>
             </Section>
             <Section title='いた'>
                 <UnorderedList list={was} />
             </Section>
+            <Section title='もう少し詳しい自己紹介' href='/about' />
+            <Section title='活動' href='/activity' />
             <Section title='連絡先'>
                 <ul>
                     <Li>Twitter: <ExternalAnchor href='https://twitter.com/hideo54'>@hideo54</ExternalAnchor></Li>
                     <Li>E-mail: <Code>contact@hideo54.com</Code></Li>
                 </ul>
             </Section>
+            <Section title='アカウント一覧' href='/accounts' />
+            <Section title='hideo54 Pay' href='/pay' />
+            <Section title='ブログ' href='https://blog.hideo54.com' attachReferrer />
+            <Section title='Amazon ほしいものリスト' href='https://www.amazon.co.jp/registry/wishlist/3IQ53EU2L62AI' />
         </Main>
         <Footer>
             <Small>

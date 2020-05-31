@@ -41,7 +41,7 @@ export const RoundImage = styled.img`
 
 export const BigTitle = styled.h1``;
 
-export const H2 = styled.h1`
+export const H2 = styled.h2`
     margin: .1em 0;
 `;
 
@@ -56,9 +56,10 @@ export const ParagraphWithoutWrap = styled.p`
 
 export const Anchor = styled.a`
     color: ${color.accent};
+    cursor: pointer;
     text-decoration: none;
     /* text-decoration: underline dashed */
-    text-underline-position: under;
+    /* text-underline-position: under; */
 `;
 
 export const Small = styled.small`
