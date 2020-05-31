@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+import { IoMdOpen } from 'react-icons/io';
 import { RoundImage, ParagraphWithoutWrap, H2, Anchor, Ul, Li } from './styles';
 
 export const Section = (props: PropsWithChildren<{ title?: string }>) => (
@@ -71,12 +72,18 @@ export const ExternalAnchor = (props: PropsWithChildren<ExternalAnchorInterface>
     const target = openInNewTab ? '_blank' : undefined;
     // About rel, see: https://web.dev/external-anchors-use-rel-noopener/
     if (props.attachReferrer) {
-        return <Anchor href={props.href} target={target} rel='noopener'>
-            {props.children}
-        </Anchor>;
+        return (
+            <Anchor href={props.href} target={target} rel='noopener'>
+                {props.children}
+                <IoMdOpen style={{verticalAlign: 'text-bottom', marginLeft: '.2em'}} />
+            </Anchor>
+        );
     } else {
-        return <Anchor href={props.href} target={target} rel='noreferrer'>
-            {props.children}
-        </Anchor>;
+        return (
+            <Anchor href={props.href} target={target} rel='noreferrer'>
+                {props.children}
+                <IoMdOpen style={{verticalAlign: 'text-bottom', marginLeft: '.2em'}} />
+            </Anchor>
+        );
     }
 };
