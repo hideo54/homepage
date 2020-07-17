@@ -33,7 +33,7 @@
     "@types/react-dom": "16.8.4",
     "@types/styled-components": "5.0.1",
     "babel-plugin-styled-components": "^1.10.0",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.7"
   },
   "license": "Apache-2.0"
 }
