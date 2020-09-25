@@ -1,9 +1,9 @@
 accounts:
     SNS:
-        - name: Mastodon
-          color: '#313543'
-          link: https://social.hideo54.com/@hideo54
-          username: '@hideo54'
+        # - name: Mastodon
+        #   color: '#313543'
+        #   link: https://social.hideo54.com/@hideo54
+        #   username: '@hideo54'
         - name: Twitter
           color: '#55ACEE'
           link: https://twitter.com/hideo54
