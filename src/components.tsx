@@ -29,7 +29,7 @@ export const Section = (props: PropsWithChildren<SectionProps>) => {
                         {props.title}
                     </ExternalAnchor>
                 </h2>
-            )
+            );
         return <section style={{ marginBottom: '1em' }}>{child}</section>;
     } else {
         return (

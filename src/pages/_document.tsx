@@ -1,6 +1,13 @@
+import { CSSProperties } from 'react';
 import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import { color, fonts } from '../styles';
+
+const globalStyle: CSSProperties = {
+    margin: 0,
+    color: color.text,
+    fontFamily: fonts.sansSerif.join(','),
+};
 
 export default class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
@@ -31,15 +38,8 @@ export default class MyDocument extends Document {
             <Html>
                 <Head>
                     <link rel='shortcut icon' type="image/png" href="/icon-main.png" />
-                    <style>{`
-                        body {
-                            margin: 0;
-                            color: ${color.text};
-                            font-family: ${fonts.sansSerif.join(',')};
-                        }
-                    `}</style>
                 </Head>
-                <body>
+                <body style={globalStyle}>
                     <Main />
                     <NextScript />
                 </body>
