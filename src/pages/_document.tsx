@@ -31,6 +31,7 @@ export default class MyDocument extends Document {
             <Html>
                 <Head>
                     <title>hideo54.com</title>
+                    <link rel='shortcut icon' type="image/png" href="/icon-main.png" />
                     <style>{`
                         body {
                             margin: 0;
