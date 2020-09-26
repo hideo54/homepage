@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build && next export",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && cp CNAME out",
     "deploy": "gh-pages -d out --dotfiles",
     "start": "next start"
   },
