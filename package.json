@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build && next export",
-    "predeploy": "npm run build && cp CNAME out",
+    "predeploy": "npm run build && cp CNAME out && touch out/.nojekyll",
     "deploy": "gh-pages -d out --dotfiles",
     "start": "next start"
   },
