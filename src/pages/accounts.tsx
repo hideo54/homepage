@@ -18,7 +18,9 @@ const tagGroups = Object.keys(accounts).map(category => (
     </section>
 ));
 
-export default () => <>
+const main = () => <>
     <h1>アカウント一覧</h1>
     {tagGroups}
 </>;
+
+export default main;

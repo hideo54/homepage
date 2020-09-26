@@ -33,7 +33,7 @@ const was = [
     'SECCON Final 2016, 2019',
 ];
 
-export default () => {
+const main = () => {
     return <>
         <Center>
             <LocalImage src='/icon-main.png' width='200px' isRounded />
@@ -79,4 +79,6 @@ export default () => {
             </Small>
         </p>
     </>;
-}
+};
+
+export default main;

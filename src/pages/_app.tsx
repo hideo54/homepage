@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react';
-import { AppProps } from 'next/app'
+import { AppProps } from 'next/app';
+import Head from 'next/head';
 import { MDXProvider } from '@mdx-js/react';
 import { ExternalAnchor } from '../components';
 import { Main, Ul, Li, Code } from '../styles';
@@ -12,11 +13,16 @@ const mdComponents = {
 };
 
 const App = ({ Component, pageProps }: AppProps) => (
-    <Main>
-        <MDXProvider components={mdComponents}>
-            <Component {...pageProps} />
-        </MDXProvider>
-    </Main>
+    <>
+        <Head>
+            <title>hideo54.com</title>
+        </Head>
+        <Main>
+            <MDXProvider components={mdComponents}>
+                <Component {...pageProps} />
+            </MDXProvider>
+        </Main>
+    </>
 );
 
 export default App;

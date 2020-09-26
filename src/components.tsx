@@ -80,10 +80,12 @@ interface CustomWordBreakProps {
 export const CustomWordBreak = (props: PropsWithChildren<CustomWordBreakProps>) => {
     const childrenString = props.children?.toString();
     const separator = props.separator || '\\'; // Actually '\'
-    const elements = childrenString?.split(separator).map(str => <>
-        <span>{str}</span>
-        <wbr />
-    </>);
+    const elements = childrenString?.split(separator).map(str => (
+        <span key={str}>
+            <span>{str}</span>
+            <wbr />
+        </span>
+    ));
     return <ParagraphWithoutWrap>{elements}</ParagraphWithoutWrap>;
 };
 
