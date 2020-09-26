@@ -8,10 +8,10 @@ accounts:
           color: '#55ACEE'
           link: https://twitter.com/hideo54
           username: '@hideo54'
-        - name: Facebook
-          color: '#3C5998'
-          link: https://www.facebook.com/hideo54
-          username: 安本英雄
+        # - name: Facebook
+        #   color: '#3C5998'
+        #   link: https://www.facebook.com/hideo54
+        #   username: 安本英雄
         # - name: LinkedIn
         #   color: '#007BB6'
         #   link: https://www.linkedin.com/pub/hideo-yasumoto/a0/a02/24a

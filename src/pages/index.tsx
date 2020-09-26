@@ -38,7 +38,7 @@ const main = () => {
         <Center>
             <LocalImage src='/icon-main.png' width='200px' isRounded />
             <h1>hideo54</h1>
-            <p>1999年8月2日生まれ、20歳。</p>
+            <p>1999年8月2日生まれ、21歳。</p>
             <CustomWordBreak>
                 コンピュータを使って\遊ぶのが\好き。
             </CustomWordBreak>
