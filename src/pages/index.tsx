@@ -31,6 +31,9 @@ const was = [
     '灘校パソコン研究部 (NPCA)',
     'セキュリティ・キャンプ (参加: 2016全国、チューター: 2018山梨、2019福岡、2019沖縄)',
     'SECCON Final 2016, 2019',
+    <ExternalAnchor href='https://twitter.com/hideo54/status/1204218275233558528'>
+        バーガーキングの壁
+    </ExternalAnchor>,
 ];
 
 const main = () => {
