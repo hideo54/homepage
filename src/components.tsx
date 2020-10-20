@@ -106,16 +106,21 @@ interface ExternalAnchorProps {
     showOpenIcon?: boolean;
     openInNewTab?: boolean;
     attachReferrer?: boolean;
+    isInlineBlock?: boolean;
 }
 
 export const ExternalAnchor = (props: PropsWithChildren<ExternalAnchorProps>) => {
     const showOpenIcon = props.showOpenIcon === undefined ? true : props.showOpenIcon;
     const openInNewTab = props.openInNewTab === undefined ? true : props.openInNewTab;
     const attachReferrer = props.attachReferrer === undefined ? false : props.attachReferrer;
+    const isInlineBlock = props.isInlineBlock === undefined ? false : props.isInlineBlock;
     const target = openInNewTab ? '_blank' : undefined;
     const rel = attachReferrer ? 'noopener' : 'noreferrer'; // https://web.dev/external-anchors-use-rel-noopener/
     return (
-        <Anchor href={props.href} target={target} rel={rel} >
+        <Anchor
+            href={props.href} target={target} rel={rel}
+            style={isInlineBlock ? {display: 'inline-block'} : undefined}
+        >
             {props.children}
             {showOpenIcon &&
                 <IoMdOpen style={{
@@ -166,7 +171,7 @@ export const Tag = (props: TagProps) => {
     );
     if (props.link) {
         return (
-            <ExternalAnchor href={props.link} showOpenIcon={false}>
+            <ExternalAnchor href={props.link} showOpenIcon={false} isInlineBlock={true}>
                 {block}
             </ExternalAnchor>
         );
