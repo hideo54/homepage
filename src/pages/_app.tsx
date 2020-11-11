@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { MDXProvider } from '@mdx-js/react';
-import { ExternalAnchor } from '../components';
+import { Meta, ExternalAnchor } from '../components';
 import { Main, Ul, Li, Code } from '../styles';
 
 const mdComponents = {
@@ -17,6 +17,11 @@ const App = ({ Component, pageProps }: AppProps) => (
         <Head>
             <title>hideo54.com</title>
         </Head>
+        <Meta
+            title='hideo54.com'
+            description='hideo54のホームページです。'
+            imageUrl='https://hideo54.com/icon-main.png'
+        />
         <Main>
             <MDXProvider components={mdComponents}>
                 <Component {...pageProps} />

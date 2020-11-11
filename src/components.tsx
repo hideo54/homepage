@@ -1,10 +1,45 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, Fragment } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 import { IoIosArrowForward, IoMdOpen, IoIosArrowBack } from 'react-icons/io';
 import {
     Header, Anchor, Ul, Li,
     ParagraphWithoutWrap, TagBlock, TwoParagraphBlock, Circle, ImageCircle,
 } from './styles';
+
+interface MetaProps {
+    title: string;
+    description: string;
+    url?: string;
+    imageUrl?: string;
+    twitterCardType?: 'summary' | 'summary_large_image' | 'app' | 'player';
+    labels?: [string, string][];
+}
+
+export const Meta = (props: MetaProps) => {
+    return (
+        <Head>
+            <title>{props.title}</title>
+            <meta key='og:title' property='og:title' content={props.title} />
+            <meta key='og:description' property='og:description' content={props.description} />
+            {props.url &&
+                <meta property='og:url' content={props.url} />
+            }
+            {props.imageUrl &&
+                <meta property='og:image' content={props.imageUrl} />
+            }
+            <meta key='twitter:card' name='twitter:card' content={props.twitterCardType || 'summary'} />
+            <meta key='twitter:site' name='twitter:site' content='@hideo54' />
+            <meta key='twitter:creator' name='twitter:creator' content='@hideo54' />
+            {props.labels && props.labels.map(([label, data], i) =>
+                <Fragment key={i}>
+                    <meta key={`twitter:label${i+1}`} name={`twitter:label${i+1}`} content={label} />
+                    <meta key={`twitter:data${i+1}`} name={`twitter:data${i+1}`} content={data} />
+                </Fragment>
+            )}
+        </Head>
+    );
+};
 
 interface SectionProps {
     title?: string;
