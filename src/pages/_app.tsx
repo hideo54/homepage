@@ -14,12 +14,10 @@ const mdComponents = {
 
 const App = ({ Component, pageProps }: AppProps) => (
     <>
-        <Head>
-            <title>hideo54.com</title>
-        </Head>
         <Meta
             title='hideo54.com'
             description='hideo54のホームページです。'
+            url='https://hideo54.com'
             imageUrl='https://hideo54.com/icon-main.png'
         />
         <Main>

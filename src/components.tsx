@@ -10,7 +10,7 @@ import {
 interface MetaProps {
     title: string;
     description: string;
-    url?: string;
+    url: string;
     imageUrl?: string;
     twitterCardType?: 'summary' | 'summary_large_image' | 'app' | 'player';
     labels?: [string, string][];
@@ -22,9 +22,7 @@ export const Meta = (props: MetaProps) => {
             <title>{props.title}</title>
             <meta key='og:title' property='og:title' content={props.title} />
             <meta key='og:description' property='og:description' content={props.description} />
-            {props.url &&
-                <meta property='og:url' content={props.url} />
-            }
+            <meta property='og:url' content={props.url} />
             {props.imageUrl &&
                 <meta property='og:image' content={props.imageUrl} />
             }
