@@ -1,6 +1,5 @@
 import { PropsWithChildren } from 'react';
 import { AppProps } from 'next/app';
-import Head from 'next/head';
 import { MDXProvider } from '@mdx-js/react';
 import { Meta, ExternalAnchor } from '../components';
 import { Main, Ul, Li, Code } from '../styles';
