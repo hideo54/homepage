@@ -53,7 +53,7 @@ export const Section = (props: PropsWithChildren<SectionProps>) => {
             ? (
                 <h2>
                     <InternalAnchor href={props.href}>
-                        {props.title}
+                        <span style={{ verticalAlign: 'middle' }}>{props.title}</span>
                         <IoIosArrowForward style={{ verticalAlign: 'middle' }} />
                     </InternalAnchor>
                 </h2>
@@ -61,7 +61,7 @@ export const Section = (props: PropsWithChildren<SectionProps>) => {
             : (
                 <h2>
                     <ExternalAnchor href={props.href} attachReferrer={props.attachReferrer}>
-                        {props.title}
+                        <span style={{ verticalAlign: 'middle' }}>{props.title}</span>
                     </ExternalAnchor>
                 </h2>
             );
@@ -156,10 +156,10 @@ export const ExternalAnchor = (props: PropsWithChildren<ExternalAnchorProps>) =>
             href={props.href} target={target} rel={rel}
             style={isInlineBlock ? {display: 'inline-block'} : undefined}
         >
-            {props.children}
+            <span style={{ verticalAlign: 'middle' }}>{props.children}</span>
             {showOpenIcon &&
                 <IoMdOpen style={{
-                    verticalAlign: 'text-bottom',
+                    verticalAlign: 'middle',
                     marginLeft: '.2em',
                 }} />
             }
