@@ -6,7 +6,7 @@ import {
     UnorderedList,
     ExternalAnchor,
 } from '../components';
-import { Center, Code, Small, Li } from '../styles';
+import { Center, Code, Small, Li, ImageCircle } from '../styles';
 
 const likes = [
     'プログラミング (web, iOS, IoT, etc.)',
@@ -39,7 +39,7 @@ const was = [
 const main = () => {
     return <>
         <Center>
-            <LocalImage src='/icon-main.png' width='200px' isRounded />
+            <ImageCircle src='https://img.hideo54.com/icons/main.png' width='200px' height='200px' />
             <h1>hideo54</h1>
             <p>1999年8月2日生まれ、21歳。</p>
             <CustomWordBreak>
