@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     Section,
-    LocalImage,
     CustomWordBreak,
     UnorderedList,
     ExternalAnchor,
