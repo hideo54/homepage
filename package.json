@@ -28,7 +28,7 @@
     "yaml-loader": "^0.6.0"
   },
   "devDependencies": {
-    "@types/node": "14.14.22",
+    "@types/node": "14.14.25",
     "@types/react": "17.0.1",
     "@types/react-dom": "17.0.0",
     "@types/styled-components": "5.1.7",
