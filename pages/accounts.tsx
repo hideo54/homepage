@@ -1,4 +1,4 @@
-import { Tag, TagProps } from '../components';
+import { Tag, TagProps } from '../src/components';
 import data from '../data.yaml';
 
 const accounts = data.accounts as {[key: string]: TagProps[]};

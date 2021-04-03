@@ -4,8 +4,8 @@ import {
     CustomWordBreak,
     UnorderedList,
     ExternalAnchor,
-} from '../components';
-import { Center, Code, Small, Li, ImageCircle } from '../styles';
+} from '../src/components';
+import { Center, Code, Small, Li, ImageCircle } from '../src/styles';
 
 const likes = [
     'プログラミング (web, iOS, IoT, etc.)',

@@ -1,8 +1,8 @@
 import { PropsWithChildren } from 'react';
 import { AppProps } from 'next/app';
 import { MDXProvider } from '@mdx-js/react';
-import { Meta, ExternalAnchor } from '../components';
-import { Main, Ul, Li, Code } from '../styles';
+import { Meta, ExternalAnchor } from '../src/components';
+import { Main, Ul, Li, Code } from '../src/styles';
 
 const mdComponents = {
     a: (props: PropsWithChildren<{ href: string; }>) => <ExternalAnchor {...props} />,
