@@ -1,32 +1,31 @@
-import { CSSProperties } from 'react';
-import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import { color, fonts } from '../styles';
+import { GA_TRACKING_ID } from '../../lib/gtag';
 
-const globalStyle: CSSProperties = {
-    margin: 0,
-    color: color.text,
-    fontFamily: fonts.sansSerif.join(','),
-};
+const minify = (s: string) => s.replace(/(\s{4}|\n)/g, '');
 
 export default class MyDocument extends Document {
-    static async getInitialProps(ctx: DocumentContext) {
+    static async getInitialProps(ctx: any) {
         const sheet = new ServerStyleSheet();
         const originalRenderPage = ctx.renderPage;
 
         try {
-            ctx.renderPage = () =>
+            ctx.renderPage = () => (
                 originalRenderPage({
-                    enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
-                });
+                    enhanceApp: (App: any) =>
+                        (props: any) => sheet.collectStyles(<App {...props} />),
+                })
+            );
 
             const initialProps = await Document.getInitialProps(ctx);
             return {
                 ...initialProps,
-                styles: <>
-                    {initialProps.styles}
-                    {sheet.getStyleElement()}
-                </>,
+                styles: (
+                    <>
+                        {initialProps.styles}
+                        {sheet.getStyleElement()}
+                    </>
+                ),
             };
         } finally {
             sheet.seal();
@@ -35,11 +34,25 @@ export default class MyDocument extends Document {
 
     render() {
         return (
-            <Html>
+            <Html lang='ja'>
                 <Head>
-                    <link rel='shortcut icon' type="image/png" href="/icon-main.png" />
+                    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: minify(`
+                                if (window.location.hostname === "hideo54-172008.web.app" || window.location.hostname === "hideo54-172008.firebaseapp.com") {
+                                    window.location.href = 'https://hideo54.info';
+                                }
+                                window.dataLayer = window.dataLayer || [];
+                                function gtag(){dataLayer.push(arguments);}
+                                gtag('js', new Date());
+                                gtag('config', '${GA_TRACKING_ID}');
+                            `),
+                        }}
+                        // Feels dangerous, but actually written on an official example: https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics/pages/_document.js
+                    />
                 </Head>
-                <body style={globalStyle}>
+                <body>
                     <Main />
                     <NextScript />
                 </body>
