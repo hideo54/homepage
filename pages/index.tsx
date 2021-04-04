@@ -1,4 +1,4 @@
-import React from 'react';
+import Layout from '../components/Layout';
 import {
     Section,
     CustomWordBreak,
@@ -35,8 +35,8 @@ const was = [
     </ExternalAnchor>,
 ];
 
-const main = () => {
-    return <>
+const App = () => (
+    <Layout>
         <Center>
             <ImageCircle src='https://img.hideo54.com/icons/main.png' width='200px' height='200px' />
             <h1>hideo54</h1>
@@ -80,7 +80,7 @@ const main = () => {
                 を使用しています。
             </Small>
         </p>
-    </>;
-};
+    </Layout>
+);
 
-export default main;
+export default App;
