@@ -2,8 +2,7 @@ import { PropsWithChildren } from 'react';
 import { AppProps } from 'next/app';
 import { MDXProvider } from '@mdx-js/react';
 import { createGlobalStyle } from 'styled-components';
-import { ExternalAnchor } from '../src/components';
-import { Ul, Li, Code } from '../src/styles';
+import { ExternalAnchor, Ul, Li, Code } from '../components/atoms';
 
 const mdComponents = {
     a: (props: PropsWithChildren<{ href: string; }>) => <ExternalAnchor {...props} />,

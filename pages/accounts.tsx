@@ -1,7 +1,7 @@
 import { InferGetStaticPropsType, NextPage } from 'next';
 import fs from 'fs/promises';
 import yaml from 'yaml';
-import { Tag, TagProps } from '../src/components';
+import { Tag, TagProps } from '../components/atoms';
 
 interface Data {
     accounts: {
