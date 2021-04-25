@@ -1,25 +1,35 @@
-import { LocalImage, ExternalAnchor, Center } from '../components/atoms';
+import Layout from '../components/Layout';
+import { GoBackIconLink, OpenIconLink } from '../components/atoms';
 
-<Center>
-    <LocalImage src='/icon-main.png' width='200px' isRounded />
+<div style={{ textAlign: 'center' }}>
+    <img src='https://img.hideo54.com/icons/main.png' width={200} height={200} style={{ borderRadius: 100 }} />
     <h1>
         このページにてお伝えしていた
         <br />
         Twitter アカウント
-        <ExternalAnchor href='https://twitter.com/hideo54'>
+        <OpenIconLink href='https://twitter.com/hideo54'>
             @hideo54
-        </ExternalAnchor>
+        </OpenIconLink>
         の凍結は
         <br />
         解除されました。
     </h1>
     <p>凍結日時: 2020年4月3日(金) 1:11 ごろ</p>
     <p>解除日時: 2020年4月4日(土) 1:08 ごろ</p>
-</Center>
+</div>
 
 ## 心当たりは?
 
 **本当に全く思い当たりません。**
 ロックでもなく、突然凍結されました。そして、突然解除されました。
 
-Twitter 社には丁寧な説明を求め続けていますが、2020年9月26日現在、返答はありません。
+Twitter 社には丁寧な説明を求め続けていますが、2021年4月26日現在、返答はありません。
+
+export default ({ children }) => (
+    <Layout title='hideo54.com'>
+        <nav style={{ margin: '1em 0' }}>
+            <GoBackIconLink href='/'>トップページ</GoBackIconLink>
+        </nav>
+        {children}
+    </Layout>
+);
