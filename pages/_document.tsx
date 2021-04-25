@@ -41,7 +41,7 @@ export default class MyDocument extends Document {
                         dangerouslySetInnerHTML={{
                             __html: minify(`
                                 if (window.location.hostname === "hideo54-172008.web.app" || window.location.hostname === "hideo54-172008.firebaseapp.com") {
-                                    window.location.href = 'https://hideo54.info';
+                                    window.location.href = 'https://hideo54.com';
                                 }
                                 window.dataLayer = window.dataLayer || [];
                                 function gtag(){dataLayer.push(arguments);}

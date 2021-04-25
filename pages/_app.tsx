@@ -1,15 +1,5 @@
-import { PropsWithChildren } from 'react';
 import { AppProps } from 'next/app';
-import { MDXProvider } from '@mdx-js/react';
 import { createGlobalStyle } from 'styled-components';
-import { ExternalAnchor, Ul, Li, Code } from '../components/atoms';
-
-const mdComponents = {
-    a: (props: PropsWithChildren<{ href: string; }>) => <ExternalAnchor {...props} />,
-    ul: (props: PropsWithChildren<{ href: string; }>) => <Ul {...props} />,
-    li: (props: PropsWithChildren<{ href: string; }>) => <Li {...props} />,
-    inlineCode: (props: PropsWithChildren<{}>) => <Code {...props} />,
-};
 
 const GlobalStyle = createGlobalStyle`
     body, select {
@@ -22,22 +12,25 @@ const GlobalStyle = createGlobalStyle`
     }
 
     main {
-        max-width: 1200px;
+        max-width: 800px;
         margin: 0 auto;
         padding: 0 1em;
     }
 
     h1, h2, h3, h4, h5, h6, p, div {
+        margin-top: 0;
         color: #333333;
+    }
+
+    li {
+        line-height: 1.8;
     }
 `;
 
 const App = ({ Component, pageProps }: AppProps) => (
     <>
-        <MDXProvider components={mdComponents}>
-            <Component {...pageProps} />
-            <GlobalStyle />
-        </MDXProvider>
+        <Component {...pageProps} />
+        <GlobalStyle />
     </>
 );
 

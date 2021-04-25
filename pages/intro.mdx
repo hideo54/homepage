@@ -1,3 +1,6 @@
+import Layout from '../components/Layout';
+import { GoBackIconLink } from '../components/atoms';
+
 # 詳しい自己紹介
 
 ## よく使う言語
@@ -62,3 +65,13 @@
 * iPad Pro 9.7″ w/Apple Pencil
 * 自作 Windows マシン (録画サーバー、ファイルサーバー、Webサーバー、ゲーム機。)
 * Raspberry Pi 3 (自作スマートホームプログラムなどが走っている)
+
+
+export default ({ children }) => (
+    <Layout title='詳しい自己紹介 | hideo54.com'>
+        <nav style={{ margin: '1em 0' }}>
+            <GoBackIconLink href='/'>トップページ</GoBackIconLink>
+        </nav>
+        {children}
+    </Layout>
+);

@@ -1,3 +1,6 @@
+import Layout from '../components/Layout';
+import { GoBackIconLink } from '../components/atoms';
+
 # hideo54 Pay
 
 …という名前は冗談ですが、hideo54にお金を送ったり請求したりしたい時に助かる方法を下記に記します。
@@ -13,3 +16,12 @@
 * BTC: `39pov3BeXeuuiQ52E2ZqKr9nGWEAtxAtEE`
 
 これ以外の手段についてはご連絡ください。
+
+export default ({ children }) => (
+    <Layout title='hideo54 Pay | hideo54.com'>
+        <nav style={{ margin: '1em 0' }}>
+            <GoBackIconLink href='/'>トップページ</GoBackIconLink>
+        </nav>
+        {children}
+    </Layout>
+);
