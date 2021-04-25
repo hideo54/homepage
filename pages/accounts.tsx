@@ -22,7 +22,8 @@ const TagComponent: React.FC<Tag> = ({ color, name, username, link }) => {
         <div style={{
             display: 'flex',
             alignItems: 'center',
-            margin: '1em',
+            marginRight: '1em',
+            marginBottom: '1em',
             padding: '1em',
             border: `2px solid ${color}`,
             borderRadius: '20px',
@@ -71,6 +72,7 @@ const main: NextPage<StaticProps> = ({ data }) => (
                 <div style={{
                     display: 'flex',
                     flexWrap: 'wrap',
+                    marginBottom: '2em',
                 }}>
                     {data.accounts[category].map(tag => (
                         <TagComponent

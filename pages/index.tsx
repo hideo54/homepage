@@ -13,7 +13,7 @@ const likes = [
 const App = () => (
     <Layout>
         <div style={{ textAlign: 'center' }}>
-            <img src='https://img.hideo54.com/icons/main.png' width='200px' height='200px' style={{ borderRadius: '50%' }} />
+            <img src='https://img.hideo54.com/icons/main.png' width={200} height={200} style={{ borderRadius: 100, margin: '1em' }} />
             <h1>hideo54</h1>
             <p>1999年8月2日生まれ、21歳。</p>
             <p>コンピュータを使って遊ぶのが好き。</p>
