@@ -6,11 +6,22 @@ import dayjs from 'dayjs';
 
 const url = 'https://github.com/hideo54';
 
+const css = `
+    <style>
+        rect[data-level="0"] { fill: #ebedf0; }
+        rect[data-level="1"] { fill: #9be9a8; }
+        rect[data-level="2"] { fill: #40c463; }
+        rect[data-level="3"] { fill: #30a14e; }
+        rect[data-level="4"] { fill: #216e39; }
+    </style>
+`;
+
 const saveGrassSvg = async () => {
     const html = (await axios.get(url)).data;
     const $ = cheerio.load(html);
-    const svgInnerHtml = $('svg.js-calendar-graph-svg').html();
-    const svgStr = `<svg  xmlns="http://www.w3.org/2000/svg" width="772" height="112">${svgInnerHtml}</svg>`
+    $('text').remove();
+    const svgInnerHtml = $('svg.js-calendar-graph-svg').children().html();
+    const svgStr = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="14 0 686 88">${svgInnerHtml?.trim()}${css}</svg>`
     const date = dayjs().format('YYYY-MM-DD');
     await fs.writeFile(`${date}.svg`, svgStr);
     if (process.env.NODE_ENV === 'development') {
