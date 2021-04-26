@@ -4,8 +4,6 @@ import fs from 'fs/promises';
 import { Storage } from '@google-cloud/storage';
 import dayjs from 'dayjs';
 
-const storage = new Storage({keyFilename: 'key.json'});
-
 const url = 'https://github.com/hideo54';
 
 const saveGrassSvg = async () => {
@@ -15,6 +13,7 @@ const saveGrassSvg = async () => {
     const svgStr = $.html(svg);
     await fs.writeFile('tmp.svg', svgStr);
     if (process.env.NODE_ENV === 'development') {
+        const storage = new Storage({keyFilename: 'key.json'});
         const filename = dayjs().format('YYYY-MM-DD');
         await storage.bucket('img.hideo54.com').upload('tmp.svg', {
             destination: `github-grass/${filename}.svg`,

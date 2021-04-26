@@ -8,7 +8,7 @@
     "develop": "next",
     "build": "next build && next export",
     "start": "next start",
-    "crawl": "npm run crawl"
+    "crawl": "ts-node crawl.ts"
   },
   "repository": {
     "type": "git",
