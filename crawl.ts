@@ -9,8 +9,8 @@ const url = 'https://github.com/hideo54';
 const saveGrassSvg = async () => {
     const html = (await axios.get(url)).data;
     const $ = cheerio.load(html);
-    const svg = $('svg.js-calendar-graph-svg');
-    const svgStr = $.html(svg);
+    const svgInnerHtml = $('svg.js-calendar-graph-svg').html();
+    const svgStr = `<svg  xmlns="http://www.w3.org/2000/svg" width="772" height="112">${svgInnerHtml}</svg>`
     const date = dayjs().format('YYYY-MM-DD');
     await fs.writeFile(`${date}.svg`, svgStr);
     if (process.env.NODE_ENV === 'development') {
