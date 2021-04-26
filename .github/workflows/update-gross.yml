@@ -1,0 +1,33 @@
+name: GitHub Gross Update
+
+on:
+  schedule:
+    - cron: '0 14 * * *' # 毎日23時 (JST)
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [15.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - name: Crawl
+      run: npm run crawl
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+    - name: Upload SVG to Cloud Storage
+      uses: google-github-actions/upload-cloud-storage@main
+      with:
+        credentials: ${{secrets.gcp_credentials}}
+        path: tmp.svg
+        destination: github-gross/${{steps.date.outputs.date}}.svg

@@ -7,7 +7,8 @@
   "scripts": {
     "develop": "next",
     "build": "next build && next export",
-    "start": "next start"
+    "start": "next start",
+    "crawl": "npm run crawl"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
     "@next/mdx": "^10.1.2",
     "@styled-icons/ionicons-outline": "^10.28.0",
     "@styled-icons/styled-icon": "^10.6.3",
+    "dayjs": "^1.10.4",
     "next": "^10.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -26,11 +28,14 @@
     "yaml": "^1.10.0"
   },
   "devDependencies": {
+    "@google-cloud/storage": "^5.8.4",
     "@types/mdx-js__react": "^1.5.3",
     "@types/node": "14.14.37",
     "@types/react": "17.0.3",
     "@types/react-dom": "17.0.3",
     "@types/styled-components": "5.1.9",
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.6",
     "typescript": "^4.2.4"
   },
   "license": "Apache-2.0"
