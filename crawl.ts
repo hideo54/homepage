@@ -11,12 +11,12 @@ const saveGrassSvg = async () => {
     const $ = cheerio.load(html);
     const svg = $('svg.js-calendar-graph-svg');
     const svgStr = $.html(svg);
-    await fs.writeFile('tmp.svg', svgStr);
+    const date = dayjs().format('YYYY-MM-DD');
+    await fs.writeFile(`${date}.svg`, svgStr);
     if (process.env.NODE_ENV === 'development') {
         const storage = new Storage({keyFilename: 'key.json'});
-        const filename = dayjs().format('YYYY-MM-DD');
-        await storage.bucket('img.hideo54.com').upload('tmp.svg', {
-            destination: `github-grass/${filename}.svg`,
+        await storage.bucket('img.hideo54.com').upload(`${date}.svg`, {
+            destination: 'github-grass',
             public: true,
         });
     }
