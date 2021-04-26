@@ -1,4 +1,4 @@
-name: GitHub Gross Update
+name: GitHub Grass Update
 
 on:
   schedule:
@@ -30,4 +30,4 @@ jobs:
       with:
         credentials: ${{secrets.gcp_credentials}}
         path: tmp.svg
-        destination: github-gross/${{steps.date.outputs.date}}.svg
+        destination: github-grass/${{steps.date.outputs.date}}.svg
