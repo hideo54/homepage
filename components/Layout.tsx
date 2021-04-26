@@ -29,9 +29,8 @@ const Layout = ({
             <meta key='twitter:card' name='twitter:card' content={twitterCardType} />
             <meta key='twitter:site' name='twitter:site' content='@hideo54' />
             <title>{title}</title>
-            <link rel='icon' type='image/svg+xml' href='/logo.svg' />
-            <link rel='icon' type='image/png' href='/logo.png' />
-            <link rel='apple-touch-icon' href='/logo.svg' />
+            <link rel='icon' type='image/png' href='https://img.hideo54.com/icons/main.png' />
+            <link rel='apple-touch-icon' href='https://img.hideo54.com/icons/main.png' />
         </Head>
         <main>
             {children}
