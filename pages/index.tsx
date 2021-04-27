@@ -3,9 +3,9 @@ import Layout from '../components/Layout';
 import { OpenIconLink, GoNextIconLink } from '../components/atoms';
 
 const likes = [
-    'プログラミング (主に web)',
+    'プログラミング (主にweb)',
     'アニメ、マンガ',
-    '政治',
+    '政治・法',
     '言語',
     '美味しいもの',
     '温泉、サウナ',

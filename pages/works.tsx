@@ -127,7 +127,7 @@ const works: Work[] = [
         category: 'Twitter bot',
         title: '@UT_COVID19',
         description: '2020年前半に突如発生したコロナ危機をうけ東京大学教養学部が臨時に設けた情報サイトの更新を監視し、その差分をツイートするbot。',
-        url: 'https://twitter/com/UT_COVID19',
+        url: 'https://twitter.com/UT_COVID19',
         imageUrl: 'https://pbs.twimg.com/profile_images/1282485077570514945/DyibRRov_200x200.png',
         repoUrl: 'https://github.com/hideo54/UT_COVID-19',
         until: '2020年夏',
