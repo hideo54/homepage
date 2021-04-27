@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import styled from 'styled-components';
 import { Github, Slack, Twitter } from '@styled-icons/fa-brands';
 import { Construct, Globe, HardwareChip } from '@styled-icons/ionicons-outline';
+import dayjs from 'dayjs';
 import Layout from '../components/Layout';
 import { GoBackIconLink, IconLink, OpenIconLink, IconText } from '../components/atoms';
 
@@ -45,7 +46,7 @@ const GitHubProfileP = styled.p`
 
 const GitHubProfileBanner: React.FC<{ height: number; }> = ({ height }) => {
     const url = 'https://github.com/hideo54';
-    const date = '2021-04-26'; // tmp
+    const date = dayjs().subtract(1, 'day').format('YYYY-MM-DD');
     return (
         <a href={url} target='_blank' rel='noopener noreferrer'>
             <GrassCoverDiv height={height}>
