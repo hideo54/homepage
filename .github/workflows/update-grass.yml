@@ -31,3 +31,4 @@ jobs:
         credentials: ${{secrets.gcp_credentials}}
         path: ${{steps.date.outputs.date}}.svg
         destination: img.hideo54.com/github-grass
+        predefinedAcl: publicRead
