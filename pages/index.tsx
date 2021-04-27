@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import Layout from '../components/Layout';
 import { OpenIconLink, GoNextIconLink } from '../components/atoms';
 
@@ -16,7 +17,7 @@ const App = () => (
         <div style={{ textAlign: 'center' }}>
             <img src='https://img.hideo54.com/icons/main.png' width={200} height={200} style={{ borderRadius: 100, margin: '1em' }} />
             <h1>hideo54</h1>
-            <p>1999年8月2日生まれ、21歳。</p>
+            <p>1999年8月2日生まれ、{dayjs().diff('1999-08-02', 'years')}歳。</p>
             <p>コンピュータを使って遊ぶのが好き。</p>
         </div>
         <section>
