@@ -2,8 +2,9 @@ import Layout from '../components/Layout';
 import { OpenIconLink, GoNextIconLink } from '../components/atoms';
 
 const likes = [
-    'プログラミング (web, iOS, IoT, etc.)',
+    'プログラミング (主に web)',
     'アニメ、マンガ',
+    '政治',
     '言語',
     '美味しいもの',
     '温泉、サウナ',
@@ -27,7 +28,7 @@ const App = () => (
         <section>
             <h2>現在の所属</h2>
             <ul>
-                <li>東京大学教養学部前期課程 (理科1類)</li>
+                <li>東京大学工学部システム創成学科 (PSI)</li>
                 <li>
                     <OpenIconLink href='https://tsg.ne.jp/'>
                         東京大学コンピュータ系サークル TSG
@@ -44,6 +45,7 @@ const App = () => (
         <section>
             <h2>いた</h2>
             <ul>
+                <li>東京大学教養学部理科1類</li>
                 <li>灘校パソコン研究部 (NPCA)</li>
                 <li>セキュリティ・キャンプ (参加: 2016全国、チューター: 2018山梨、2019福岡、2019沖縄)</li>
                 <li>SECCON Final 2016, 2019</li>
