@@ -58,6 +58,9 @@ const App = () => (
             <GoNextIconLink href='/intro'>もう少し詳しい自己紹介</GoNextIconLink>
         </h2>
         <h2>
+            <GoNextIconLink href='/works'>つくったもの</GoNextIconLink>
+        </h2>
+        <h2>
             <GoNextIconLink href='/activity'>活動</GoNextIconLink>
         </h2>
         <section>
