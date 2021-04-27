@@ -3,31 +3,35 @@ import styled from 'styled-components';
 import type { StyledIcon } from '@styled-icons/styled-icon';
 import { Open, ChevronForward, ChevronBack } from '@styled-icons/ionicons-outline';
 
-const LinkSpan = styled.span`
+const LinkSpan = styled.span<{
+    color: string;
+}>`
     a {
-        color: #E26A6A;
+        color: ${props => props.color};
         text-decoration: none;
     }
     svg {
         vertical-align: text-bottom;
         path {
-            stroke: #E26A6A;
+            stroke: ${props => props.color};
         }
     }
 `;
 
-const IconLink: React.FC<{
+export const IconLink: React.FC<{
     href: string;
     LeftIcon?: StyledIcon;
     RightIcon?: StyledIcon;
-}> = ({ children, href, LeftIcon, RightIcon }) => {
+    color?: string;
+    margin?: string;
+}> = ({ children, href, LeftIcon, RightIcon, color = '#E26A6A', margin }) => {
     if (href.startsWith('/')) {
         return (
-            <LinkSpan>
+            <LinkSpan color={color}>
                 <Link href={href} passHref>
                     <a>
                         {LeftIcon && <LeftIcon size='1.2em' />}
-                        {children}
+                        <span style={margin ? { margin: `0 ${margin}` } : undefined}>{children}</span>
                         {RightIcon && <RightIcon size='1.2em' />}
                     </a>
                 </Link>
@@ -35,10 +39,10 @@ const IconLink: React.FC<{
         );
     }
     return (
-        <LinkSpan>
+        <LinkSpan color={color}>
             <a href={href} target='_blank' rel='noopener noreferrer'>
                 {LeftIcon && <LeftIcon size='1.2em' />}
-                {children}
+                <span style={margin ? { margin: `0 ${margin}` } : undefined}>{children}</span>
                 {RightIcon && <RightIcon size='1.2em' />}
             </a>
         </LinkSpan>
