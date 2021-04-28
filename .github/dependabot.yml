@@ -1,0 +1,44 @@
+version: 2
+registries:
+  npm-registry-npm-pkg-github-com-hideo54:
+    type: npm-registry
+    url: https://npm.pkg.github.com/hideo54
+    username: "${{secrets.NPM_REGISTRY_NPM_PKG_GITHUB_COM_HIDEO54_USERNAME}}"
+    password: "${{secrets.NPM_REGISTRY_NPM_PKG_GITHUB_COM_HIDEO54_PASSWORD}}"
+
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "11:00"
+  open-pull-requests-limit: 10
+  assignees:
+  - hideo54
+  ignore:
+  - dependency-name: "@types/node"
+    versions:
+    - 14.14.32
+    - 14.14.33
+    - 14.14.34
+    - 14.14.39
+    - 15.0.0
+  - dependency-name: next
+    versions:
+    - 10.1.3
+  - dependency-name: "@next/mdx"
+    versions:
+    - 10.0.6
+    - 10.0.7
+    - 10.0.8
+    - 10.1.3
+  - dependency-name: styled-components
+    versions:
+    - 5.2.2
+    - 5.2.3
+  - dependency-name: "@types/react-dom"
+    versions:
+    - 17.0.1
+    - 17.0.3
+  registries:
+  - npm-registry-npm-pkg-github-com-hideo54
