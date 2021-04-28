@@ -1,10 +1,12 @@
-import type { NextPage } from 'next';
+import type { InferGetStaticPropsType, NextPage } from 'next';
 import styled from 'styled-components';
 import { Github, Slack, Twitter } from '@styled-icons/fa-brands';
 import { Construct, Globe, HardwareChip } from '@styled-icons/ionicons-outline';
 import dayjs from 'dayjs';
 import Layout from '../components/Layout';
 import { GoBackIconLink, IconLink, OpenIconLink, IconText } from '../components/atoms';
+
+import axios from 'axios';
 
 const GrassCoverDiv = styled.div<{ height: number; }>`
     position: relative;
@@ -168,16 +170,59 @@ const getCategoryIcon = (category: Work['category']) => {
     return Globe;
 };
 
-const main: NextPage = () => {
+export const getStaticProps = async () => {
+    const res = await axios.get<{
+        total_count: number;
+        incomplete_results: boolean;
+        items: {
+            html_url: string;
+            title: string;
+        }[];
+    }>('https://api.github.com/search/issues', {
+        headers: {
+            accept: 'application/vnd.github.v3+json',
+        },
+        params: {
+            q: 'is:pr is:merged author:hideo54',
+            per_page: 100,
+        },
+    });
+    const { items } = res.data;
+    const repoNames = new Set(items.map(item => {
+        const [ , name ] = item.html_url.match(/^https:\/\/github.com\/(.+)\/pull\/\d+$/)!;
+        return name;
+    }));
+    const itemDetailRequests = Array.from(repoNames).map(name => axios.get<{
+        full_name: string;
+        stargazers_count: number;
+        html_url: string;
+    }>(`https://api.github.com/repos/${name}`, {
+        headers: {
+            accept: 'application/vnd.github.v3+json',
+        },
+    }));
+    const targetRepos = (await Promise.all(itemDetailRequests)).map(res => res.data).filter(repo =>
+        repo.stargazers_count > 10
+    ).sort((repoA, repoB) =>
+        repoA.stargazers_count < repoB.stargazers_count ? 1 : -1
+    );
+    return {
+        props: { contributions: targetRepos },
+    };
+};
+
+type StaticProps = InferGetStaticPropsType<typeof getStaticProps>;
+
+const main: NextPage<StaticProps> = ({ contributions }) => {
     return (
         <Layout title='つくったもの' description='hideo54が個人で制作したものの一部を紹介します。'>
             <nav style={{ margin: '1em 0' }}>
                 <GoBackIconLink href='/'>トップページ</GoBackIconLink>
             </nav>
             <GitHubProfileBanner height={200} />
-            <h1>つくったもの</h1>
-            <p>…のうち、hideo54が個人で制作したもので、公開されているもの。</p>
             <section>
+                <h1>つくったもの</h1>
+                <p>…のうち、hideo54が個人で制作したもので、公開されているもの。</p>
                 {works.map(work => (
                     <WorkDiv key={work.title}>
                         <div style={{ display: 'flex' }}>
@@ -204,6 +249,17 @@ const main: NextPage = () => {
                         )}
                     </WorkDiv>
                 ))}
+            </section>
+            <section>
+                <h2>Contributions</h2>
+                <p>hideo54が出した pull request が merge されたことのある著名OSS</p>
+                <ul>
+                    {contributions.map(repo => (
+                        <li key={repo.full_name}>
+                            <OpenIconLink href={repo.html_url}>{repo.full_name}</OpenIconLink>
+                        </li>
+                    ))}
+                </ul>
             </section>
         </Layout>
     );
