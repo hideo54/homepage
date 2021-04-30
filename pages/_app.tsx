@@ -25,6 +25,14 @@ const GlobalStyle = createGlobalStyle`
     li {
         line-height: 1.8;
     }
+
+    code {
+        font-family: Ricty, 'Ricty Diminished', 'Courier New', Courier, monospace;
+        font-size: 1.2em;
+        background-color: #EEEEEE;
+        padding: 0 0.2em;
+        border-radius: 0.2em;
+    }
 `;
 
 const App = ({ Component, pageProps }: AppProps) => (
