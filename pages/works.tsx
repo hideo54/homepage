@@ -252,7 +252,7 @@ const main: NextPage<StaticProps> = ({ contributions }) => {
             </section>
             <section>
                 <h2>Contributions</h2>
-                <p>hideo54が出した pull request が merge されたことのある著名OSS</p>
+                <p>hideo54 が出した pull request が merge されたことのある著名 OSS</p>
                 <ul>
                     {contributions.map(repo => (
                         <li key={repo.full_name}>
