@@ -1,10 +1,14 @@
+import { useState, useEffect } from 'react';
 import { AppProps } from 'next/app';
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
+type Theme = 'light' | 'dark';
+
+const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
     body, select {
         font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
         margin: 0;
+        background-color: ${props => props.theme === 'light' ? '#FFFFFF' : '#000000'};
     }
 
     header, main, footer {
@@ -19,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
 
     h1, h2, h3, h4, h5, h6, p, div {
         margin-top: 0;
-        color: #333333;
+        color: ${props => props.theme === 'light' ? '#333333' : '#EEEEEE'};
     }
 
     li {
@@ -29,17 +33,31 @@ const GlobalStyle = createGlobalStyle`
     code {
         font-family: Ricty, 'Ricty Diminished', 'Courier New', Courier, monospace;
         font-size: 1.2em;
-        background-color: #EEEEEE;
+        background-color: ${props => props.theme === 'light' ? '#EEEEEE' : '#666666'};
         padding: 0 0.2em;
         border-radius: 0.2em;
     }
 `;
 
-const App = ({ Component, pageProps }: AppProps) => (
-    <>
-        <Component {...pageProps} />
-        <GlobalStyle />
-    </>
-);
+const App = ({ Component, pageProps }: AppProps) => {
+    const [ theme, setTheme ] = useState<Theme>('light');
+    useEffect(() => {
+        if (typeof 'window' === undefined) return;
+        if (!('matchMedia' in window)) return;
+        const query = window.matchMedia('(prefers-color-scheme: dark)');
+        if (query.matches) {
+            setTheme('dark');
+        }
+        query.onchange = () => {
+            setTheme(query.matches ? 'dark' : 'light');
+        };
+    }, []);
+    return (
+        <>
+            <Component {...pageProps} />
+            <GlobalStyle theme={theme} />
+        </>
+    )
+};
 
 export default App;
