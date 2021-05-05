@@ -29,7 +29,7 @@
     "yaml": "^1.10.2"
   },
   "devDependencies": {
-    "@google-cloud/storage": "^5.8.4",
+    "@google-cloud/storage": "^5.8.5",
     "@types/mdx-js__react": "^1.5.3",
     "@types/node": "15.0.1",
     "@types/react": "17.0.4",
