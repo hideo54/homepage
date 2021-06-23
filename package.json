@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@mdx-js/loader": "^1.6.22",
-    "@next/mdx": "^11.0.0",
+    "@next/mdx": "^11.0.1",
     "@styled-icons/fa-brands": "^10.34.0",
     "@styled-icons/ionicons-outline": "^10.34.0",
     "@styled-icons/styled-icon": "^10.6.3",
