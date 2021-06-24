@@ -1,6 +1,7 @@
 import type { InferGetStaticPropsType, NextPage } from 'next';
 import styled from 'styled-components';
 import { Github, Slack, Twitter } from '@styled-icons/fa-brands';
+import { Robot } from '@styled-icons/fa-solid';
 import { Construct, Globe, HardwareChip } from '@styled-icons/ionicons-outline';
 import dayjs from 'dayjs';
 import Layout from '../components/Layout';
@@ -62,7 +63,7 @@ const GitHubProfileBanner: React.FC<{ height: number; }> = ({ height }) => {
 };
 
 interface Work {
-    category: 'Web' | 'Slack bot' | 'Twitter bot' | 'Utility' | 'IoT';
+    category: 'Web' | 'Machine Learning' | 'Slack bot' | 'Twitter bot' | 'Utility' | 'IoT';
     title: string;
     description: string;
     until?: string;
@@ -136,6 +137,18 @@ const works: Work[] = [
     },
 ];
 
+const articles: Work[] = [
+    {
+        category: 'Machine Learning',
+        title: '機械学習でμ’sの声を識別する',
+        description: "アイドルグループ「μ's」のメンバーの声質を学習し、ソロ曲の音声を与えると誰の声かを当てるプログラムを作成し、それについてまとめた記事です。",
+        url: 'https://sunpro.io/c91/hideo54.html',
+        imageUrl: 'https://sunpro.io/c91/favicon.png',
+        repoUrl: 'https://github.com/hideo54/ML-LoveLive-Voice',
+        until: '2016年冬',
+    },
+];
+
 const WorkDiv = styled.div`
     margin: 2em 0;
     padding: 1em;
@@ -161,14 +174,49 @@ const DescriptionP = styled.p<{ marginTop?: string; fontSize?: string; color?: s
     `}
 `;
 
+const WorkDetail: React.FC<{ work: Work, untilTransformer: (s: string) => string }> = ({ work, untilTransformer }) => (
+    <WorkDiv key={work.title}>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+        }}>
+            <div>
+                <div>
+                    <IconText margin='0.2em' color='#888888' Icon={getCategoryIcon(work.category)}>{work.category}</IconText>
+                </div>
+                <DescriptionP fontSize='1.2em' marginTop='0.5em'>
+                    <OpenIconLink href={work.url}>{work.title}</OpenIconLink>
+                </DescriptionP>
+            </div>
+            {work.imageUrl && <LogoImg src={work.imageUrl} />}
+        </div>
+        <DescriptionP>{work.description}</DescriptionP>
+        {work.until && (
+            <DescriptionP>
+                {untilTransformer(work.until)}
+            </DescriptionP>
+        )}
+        {work.repoUrl && (
+            <DescriptionP>
+                <IconLink LeftIcon={Github} href={work.repoUrl} margin='0.1em'>オープンソースです。</IconLink>
+            </DescriptionP>
+        )}
+    </WorkDiv>
+);
+
 const getCategoryIcon = (category: Work['category']) => {
     if (category === 'Web') return Globe;
+    if (category === 'Machine Learning') return Robot;
     if (category === 'Slack bot') return Slack;
     if (category === 'Twitter bot') return Twitter;
     if (category === 'Utility') return Construct;
     if (category === 'IoT') return HardwareChip;
     return Globe;
 };
+
+const Section = styled.section`
+    margin-bottom: 4em;
+`;
 
 export const getStaticProps = async () => {
     const res = await axios.get<{
@@ -223,35 +271,16 @@ const main: NextPage<StaticProps> = ({ contributions }) => {
             <section>
                 <h1>つくったもの</h1>
                 <p>…のうち、hideo54が個人で制作したもので、公開されているもので、お気に入りのもの。</p>
-                {works.map(work => (
-                    <WorkDiv key={work.title}>
-                        <div style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                        }}>
-                            <div>
-                                <div>
-                                    <IconText margin='0.2em' color='#888888' Icon={getCategoryIcon(work.category)}>{work.category}</IconText>
-                                </div>
-                                <DescriptionP fontSize='1.2em' marginTop='0.5em'>
-                                    <OpenIconLink href={work.url}>{work.title}</OpenIconLink>
-                                </DescriptionP>
-                            </div>
-                            {work.imageUrl && <LogoImg src={work.imageUrl} />}
-                        </div>
-                        <DescriptionP>{work.description}</DescriptionP>
-                        {work.until && (
-                            <DescriptionP>
-                                ({work.until}に運営終了)
-                            </DescriptionP>
-                        )}
-                        {work.repoUrl && (
-                            <DescriptionP>
-                                <IconLink LeftIcon={Github} href={work.repoUrl} margin='0.1em'>オープンソースです。</IconLink>
-                            </DescriptionP>
-                        )}
-                    </WorkDiv>
-                ))}
+                {works.map(work =>
+                    <WorkDetail key={work.title} work={work} untilTransformer={s => `(${s}に運営終了)`} />
+                )}
+            </section>
+            <section>
+                <h2>書いたもの</h2>
+                <p>…のうち、お気に入りのもの。</p>
+                {articles.map(article =>
+                    <WorkDetail key={article.title} work={article} untilTransformer={s => `(${s}に執筆・公開)`} />
+                )}
             </section>
             <section>
                 <h2>Contributions</h2>

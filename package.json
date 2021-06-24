@@ -18,6 +18,7 @@
     "@mdx-js/loader": "^1.6.22",
     "@next/mdx": "^11.0.1",
     "@styled-icons/fa-brands": "^10.34.0",
+    "@styled-icons/fa-solid": "^10.34.0",
     "@styled-icons/ionicons-outline": "^10.34.0",
     "@styled-icons/styled-icon": "^10.6.3",
     "dayjs": "^1.10.5",
