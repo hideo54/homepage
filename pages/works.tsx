@@ -147,7 +147,7 @@ const WorkDiv = styled.div`
 const LogoImg = styled.img`
     width: 48px;
     height: 48px;
-    margin-right: 1em;
+    margin-left: 1em;
 `;
 
 const DescriptionP = styled.p<{ marginTop?: string; fontSize?: string; color?: string; }>`
@@ -225,8 +225,10 @@ const main: NextPage<StaticProps> = ({ contributions }) => {
                 <p>…のうち、hideo54が個人で制作したもので、公開されているもの。</p>
                 {works.map(work => (
                     <WorkDiv key={work.title}>
-                        <div style={{ display: 'flex' }}>
-                            {work.imageUrl && <LogoImg src={work.imageUrl} />}
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                        }}>
                             <div>
                                 <div>
                                     <IconText margin='0.2em' color='#888888' Icon={getCategoryIcon(work.category)}>{work.category}</IconText>
@@ -235,6 +237,7 @@ const main: NextPage<StaticProps> = ({ contributions }) => {
                                     <OpenIconLink href={work.url}>{work.title}</OpenIconLink>
                                 </DescriptionP>
                             </div>
+                            {work.imageUrl && <LogoImg src={work.imageUrl} />}
                         </div>
                         <DescriptionP>{work.description}</DescriptionP>
                         {work.until && (
