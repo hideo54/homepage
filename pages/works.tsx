@@ -75,7 +75,7 @@ const works: Work[] = [
     {
         category: 'Web',
         title: 'Candidates2021 - 衆院選情報サイト',
-        description: '2021年の衆議院選挙に向けた各党の候補者擁立状況をまとめたウェブサイト。複雑な候補者調整・競合状況を地図でわかりやすく確認できます。実は情報収集の多くが自動化されている点も特徴。',
+        description: '2021年の衆議院選挙に向けた各党の候補者擁立状況をまとめたウェブサイト。複雑な候補者調整・競合状況の最新の情報を地図でわかりやすく確認できるほか、議席数予想もできます。実は情報収集の多くが自動化されている点も特徴。',
         url: 'https://candidates2021.info',
         imageUrl: 'https://candidates2021.info/logo.svg',
     },
@@ -222,7 +222,7 @@ const main: NextPage<StaticProps> = ({ contributions }) => {
             <GitHubProfileBanner height={200} />
             <section>
                 <h1>つくったもの</h1>
-                <p>…のうち、hideo54が個人で制作したもので、公開されているもの。</p>
+                <p>…のうち、hideo54が個人で制作したもので、公開されているもので、お気に入りのもの。</p>
                 {works.map(work => (
                     <WorkDiv key={work.title}>
                         <div style={{
@@ -242,7 +242,7 @@ const main: NextPage<StaticProps> = ({ contributions }) => {
                         <DescriptionP>{work.description}</DescriptionP>
                         {work.until && (
                             <DescriptionP>
-                                {work.until}、終了。
+                                ({work.until}に運営終了)
                             </DescriptionP>
                         )}
                         {work.repoUrl && (
