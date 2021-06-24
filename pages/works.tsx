@@ -268,21 +268,21 @@ const main: NextPage<StaticProps> = ({ contributions }) => {
                 <GoBackIconLink href='/'>トップページ</GoBackIconLink>
             </nav>
             <GitHubProfileBanner height={200} />
-            <section>
+            <Section>
                 <h1>つくったもの</h1>
                 <p>…のうち、hideo54が個人で制作したもので、公開されているもので、お気に入りのもの。</p>
                 {works.map(work =>
                     <WorkDetail key={work.title} work={work} untilTransformer={s => `(${s}に運営終了)`} />
                 )}
-            </section>
-            <section>
+            </Section>
+            <Section>
                 <h2>書いたもの</h2>
                 <p>…のうち、お気に入りのもの。</p>
                 {articles.map(article =>
                     <WorkDetail key={article.title} work={article} untilTransformer={s => `(${s}に執筆・公開)`} />
                 )}
-            </section>
-            <section>
+            </Section>
+            <Section>
                 <h2>Contributions</h2>
                 <p>hideo54 が出した pull request が merge されたことのある著名 OSS</p>
                 <ul>
@@ -292,7 +292,7 @@ const main: NextPage<StaticProps> = ({ contributions }) => {
                         </li>
                     ))}
                 </ul>
-            </section>
+            </Section>
         </Layout>
     );
 };
