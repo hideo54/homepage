@@ -96,6 +96,12 @@ const works: Work[] = [
         imageUrl: 'https://img.hideo54.com/icons/main.png',
     },
     {
+        category: 'Web',
+        title: 'hideo54 Lab',
+        description: 'サービスにするほどでもない小さな制作物や研究結果を公開。',
+        url: 'https://lab.hideo54.com',
+    },
+    {
         category: 'IoT',
         title: 'hideout',
         description: '自作スマートホームシステム。時報、室内の気温や室温・二酸化炭素の情報、緊急速報などを音声で通知。部屋の照明を時刻に合わせて自動で調整。',
