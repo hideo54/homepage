@@ -1,7 +1,8 @@
 import { InferGetStaticPropsType, NextPage } from 'next';
-import Layout from '../components/Layout';
+import styled from 'styled-components';
 import fs from 'fs/promises';
 import yaml from 'yaml';
+import Layout from '../components/Layout';
 import { GoBackIconLink } from '../components/atoms';
 
 interface Tag {
@@ -17,30 +18,41 @@ interface Data {
     };
 }
 
+const TagDiv = styled.div<{ color: string; hoverable?: boolean; }>`
+    display: flex;
+    align-items: center;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    padding: 1em;
+    border: 2px solid ${props => props.color};
+    border-radius: 20px;
+    ${props => props.hoverable ? `
+        &:hover {
+            background-color: #EEEEEE;
+        }
+    ` : ''}
+    div.circle {
+        display: inline-block;
+        background-color: ${props => props.color};
+        width: 1em;
+        height: 1em;
+        margin-right: 1em;
+        border-radius: 50%;
+    }
+    div.username {
+        margin-top: 1em;
+    }
+`;
+
 const TagComponent: React.FC<Tag> = ({ color, name, username, link }) => {
     const body = (
-        <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginRight: '1em',
-            marginBottom: '1em',
-            padding: '1em',
-            border: `2px solid ${color}`,
-            borderRadius: '20px',
-        }}>
-            <div style={{
-                display: 'inline-block',
-                backgroundColor: color,
-                width: '1em',
-                height: '1em',
-                marginRight: '1em',
-                borderRadius: '50%',
-            }} />
+        <TagDiv color={color} hoverable={Boolean(link)}>
+            <div className='circle' />
             <div>
                 <div>{name}</div>
-                <div style={{ marginTop: '1em' }}>{username}</div>
+                <div className='username'>{username}</div>
             </div>
-        </div>
+        </TagDiv>
     );
     if (link) {
         return (
