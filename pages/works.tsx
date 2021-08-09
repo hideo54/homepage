@@ -1,13 +1,13 @@
+import { useRef, useEffect } from 'react';
 import type { InferGetStaticPropsType, NextPage } from 'next';
 import styled from 'styled-components';
 import { Github, Slack, Twitter } from '@styled-icons/fa-brands';
 import { Robot } from '@styled-icons/fa-solid';
 import { Construct, Globe, HardwareChip } from '@styled-icons/ionicons-outline';
 import dayjs from 'dayjs';
+import axios from 'axios';
 import Layout from '../components/Layout';
 import { GoBackIconLink, IconLink, OpenIconLink, IconText } from '../components/atoms';
-
-import axios from 'axios';
 
 const GrassCoverDiv = styled.div<{ height: number; }>`
     position: relative;
@@ -49,11 +49,17 @@ const GitHubProfileP = styled.p`
 
 const GitHubProfileBanner: React.FC<{ height: number; }> = ({ height }) => {
     const url = 'https://github.com/hideo54';
-    const date = dayjs().subtract(1, 'day').format('YYYY-MM-DD');
+    const imgRef = useRef<HTMLImageElement>(null);
+    useEffect(() => {
+        const date = dayjs().subtract(1, 'day').format('YYYY-MM-DD');
+        if (imgRef.current) {
+            imgRef.current.src = `https://img.hideo54.com/github-grass/${date}.svg`;
+        }
+    }, [ imgRef ]);
     return (
         <a href={url} target='_blank' rel='noopener noreferrer'>
             <GrassCoverDiv height={height}>
-                <GrassImg src={`https://img.hideo54.com/github-grass/${date}.svg`} height={height} />
+                <GrassImg ref={imgRef} height={height} />
                 <GitHubProfileP>
                     <IconText Icon={Github} color='#CCCCCC' margin='0.2em'>hideo54</IconText>
                 </GitHubProfileP>
