@@ -285,7 +285,7 @@ type StaticProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const main: NextPage<StaticProps> = ({ contributions }) => {
     return (
-        <Layout title='つくったもの' description='hideo54が個人で制作したものの一部を紹介します。'>
+        <Layout title='つくったもの | hideo54.com' description='hideo54が個人で制作したものの一部を紹介します。'>
             <nav style={{ margin: '1em 0' }}>
                 <GoBackIconLink href='/'>トップページ</GoBackIconLink>
             </nav>

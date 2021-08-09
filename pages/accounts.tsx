@@ -74,7 +74,7 @@ export const getStaticProps = async () => {
 type StaticProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const main: NextPage<StaticProps> = ({ data }) => (
-    <Layout>
+    <Layout title='アカウント一覧 | hideo54.com' description='hideo54が所持している各サービスのアカウントの一覧です。'>
         <nav style={{ margin: '1em 0' }}>
             <GoBackIconLink href='/'>トップページ</GoBackIconLink>
         </nav>
