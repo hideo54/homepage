@@ -69,6 +69,7 @@ const main: NextPage<StaticProps> = ({ data }) => (
         {Object.keys(data.accounts).map(category => (
             <section key={category}>
                 <h2>{category}</h2>
+                {category === 'Games' && <p>私が知っている人からの友達申請しか受け付けません。</p>}
                 <div style={{
                     display: 'flex',
                     flexWrap: 'wrap',
