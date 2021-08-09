@@ -315,6 +315,16 @@ const main: NextPage<StaticProps> = ({ contributions }) => {
                     ))}
                 </ul>
             </Section>
+            <iframe
+                src='https://github.com/sponsors/hideo54/card'
+                title='Sponsor hideo54'
+                height='225'
+                width='600'
+                style={{
+                    border: 0,
+                    maxWidth: '100%',
+                }}
+            />
         </Layout>
     );
 };
