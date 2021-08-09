@@ -29,6 +29,7 @@ const TagDiv = styled.div<{ color: string; hoverable?: boolean; }>`
     ${props => props.hoverable ? `
         &:hover {
             background-color: #EEEEEE;
+            transform: scale(1.1);
         }
     ` : ''}
     div.circle {
