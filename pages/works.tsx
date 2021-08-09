@@ -230,6 +230,17 @@ const Section = styled.section`
 `;
 
 export const getStaticProps = async () => {
+    if (process.env.NODE_ENV === 'development') {
+        return {
+            props: { contributions: [
+                {
+                    full_name: 'hideo54/homepage (sample in developemnt environment!)',
+                    stargazers_count: 25252,
+                    html_url: 'https://github.com/hideo54/homepage',
+                },
+            ]},
+        };
+    }
     const res = await axios.get<{
         total_count: number;
         incomplete_results: boolean;
