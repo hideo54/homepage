@@ -21,11 +21,11 @@ const saveGrassSvg = async () => {
     const $ = cheerio.load(html);
     $('text').remove();
     const svgInnerHtml = $('svg.js-calendar-graph-svg').children().html();
-    const svgStr = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="14 0 686 88">${svgInnerHtml?.trim()}${css}</svg>`
+    const svgStr = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="14 0 686 88">${svgInnerHtml?.trim()}${css}</svg>`;
     const date = dayjs().format('YYYY-MM-DD');
     await fs.writeFile(`${date}.svg`, svgStr);
     if (process.env.NODE_ENV === 'development') {
-        const storage = new Storage({keyFilename: 'key.json'});
+        const storage = new Storage({ keyFilename: 'key.json' });
         await storage.bucket('img.hideo54.com').upload(`${date}.svg`, {
             destination: 'github-grass',
             public: true,

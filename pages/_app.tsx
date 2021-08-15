@@ -40,7 +40,7 @@ const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
 `;
 
 const App = ({ Component, pageProps }: AppProps) => {
-    const [ theme, setTheme ] = useState<Theme>('light');
+    const [theme, setTheme] = useState<Theme>('light');
     useEffect(() => {
         if (typeof 'window' === undefined) return;
         if (!('matchMedia' in window)) return;
@@ -57,7 +57,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             <Component {...pageProps} />
             <GlobalStyle theme={theme} />
         </>
-    )
+    );
 };
 
 export default App;

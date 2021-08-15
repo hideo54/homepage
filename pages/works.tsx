@@ -55,7 +55,7 @@ const GitHubProfileBanner: React.FC<{ height: number; }> = ({ height }) => {
         if (imgRef.current) {
             imgRef.current.src = `https://img.hideo54.com/github-grass/${date}.svg`;
         }
-    }, [ imgRef ]);
+    }, [imgRef]);
     return (
         <a href={url} target='_blank' rel='noopener noreferrer'>
             <GrassCoverDiv height={height}>
@@ -153,7 +153,7 @@ const articles: Work[] = [
     {
         category: 'Machine Learning',
         title: '機械学習でμ’sの声を識別する',
-        description: "アイドルグループ「μ's」のメンバーの声質を学習し、ソロ曲の音声を与えると誰の声かを当てるプログラムを作成し、それについてまとめた記事です。",
+        description: 'アイドルグループ「μ\'s」のメンバーの声質を学習し、ソロ曲の音声を与えると誰の声かを当てるプログラムを作成し、それについてまとめた記事です。',
         url: 'https://sunpro.io/c91/hideo54.html',
         imageUrl: 'https://sunpro.io/c91/favicon.png',
         repoUrl: 'https://github.com/hideo54/ML-LoveLive-Voice',
@@ -238,7 +238,7 @@ export const getStaticProps = async () => {
                     stargazers_count: 25252,
                     html_url: 'https://github.com/hideo54/homepage',
                 },
-            ]},
+            ] },
         };
     }
     const res = await axios.get<{
@@ -259,7 +259,8 @@ export const getStaticProps = async () => {
     });
     const { items } = res.data;
     const repoNames = new Set(items.map(item => {
-        const [ , name ] = item.html_url.match(/^https:\/\/github.com\/(.+)\/pull\/\d+$/)!;
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const [, name] = item.html_url.match(/^https:\/\/github.com\/(.+)\/pull\/\d+$/)!;
         return name;
     }));
     const itemDetailRequests = Array.from(repoNames).map(name => axios.get<{
