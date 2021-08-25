@@ -166,6 +166,9 @@ const WorkDiv = styled.div`
     padding: 1em;
     border-radius: 24px;
     box-shadow: 0px 5px 10px 0px #CCCCCC;
+    @media (prefers-color-scheme: dark) {
+        box-shadow: 0px 5px 10px 0px #333333;
+    }
 `;
 
 const LogoImg = styled.img`

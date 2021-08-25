@@ -29,6 +29,9 @@ const TagDiv = styled.div<{ color: string; hoverable?: boolean; }>`
     ${props => props.hoverable ? `
         &:hover {
             background-color: #EEEEEE;
+            @media (prefers-color-scheme: dark) {
+                background-color: #333333;
+            }
             transform: scale(1.1);
         }
     ` : ''}
