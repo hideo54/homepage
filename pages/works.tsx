@@ -319,16 +319,18 @@ const main: NextPage<StaticProps> = ({ contributions }) => {
                     ))}
                 </ul>
             </Section>
-            <iframe
-                src='https://github.com/sponsors/hideo54/card'
-                title='Sponsor hideo54'
-                height='225'
-                width='600'
-                style={{
-                    border: 0,
-                    maxWidth: '100%',
-                }}
-            />
+            <Section>
+                <h2>Sponsor me!</h2>
+                <iframe
+                    src='https://github.com/sponsors/hideo54/button'
+                    title='Sponsor hideo54'
+                    height='35'
+                    width='116'
+                    style={{
+                        border: 0,
+                    }}
+                />
+            </Section>
         </Layout>
     );
 };
