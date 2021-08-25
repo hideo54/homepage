@@ -77,9 +77,9 @@ const App = () => (
         <h2>
             <GoNextIconLink href='/accounts'>アカウント一覧</GoNextIconLink>
         </h2>
-        <h2>
+        {/* <h2>
             <GoNextIconLink href='/pay'>hideo54 Pay</GoNextIconLink>
-        </h2>
+        </h2> */}
         <h2>
             <OpenIconLink href='https://blog.hideo54.com'>hideo54のブログ</OpenIconLink>
         </h2>
