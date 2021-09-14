@@ -17,13 +17,13 @@
   },
   "dependencies": {
     "@mdx-js/loader": "^2.0.0-next.9",
-    "@next/mdx": "^11.1.0",
-    "@styled-icons/fa-brands": "^10.34.0",
+    "@next/mdx": "^11.1.2",
+    "@styled-icons/fa-brands": "^10.38.0",
     "@styled-icons/fa-solid": "^10.34.0",
     "@styled-icons/ionicons-outline": "^10.34.0",
     "@styled-icons/styled-icon": "^10.6.3",
-    "dayjs": "^1.10.6",
-    "next": "^11.1.0",
+    "dayjs": "^1.10.7",
+    "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
@@ -31,18 +31,18 @@
     "yaml": "^1.10.2"
   },
   "devDependencies": {
-    "@google-cloud/storage": "^5.13.1",
+    "@google-cloud/storage": "^5.14.1",
     "@hideo54/eslint-config": "^1.0.5",
     "@types/mdx-js__react": "^1.5.4",
-    "@types/node": "16.7.1",
-    "@types/react": "17.0.19",
+    "@types/node": "16.9.1",
+    "@types/react": "17.0.20",
     "@types/react-dom": "17.0.9",
-    "@types/styled-components": "5.1.12",
-    "axios": "^0.21.1",
+    "@types/styled-components": "5.1.14",
+    "axios": "^0.21.4",
     "cheerio": "^1.0.0-rc.10",
     "eslint": "^7.32.0",
     "ts-node": "^10.2.1",
-    "typescript": "^4.3.5"
+    "typescript": "^4.4.3"
   },
   "license": "Apache-2.0"
 }
