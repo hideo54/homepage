@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import { AppProps } from 'next/app';
+import type { AppProps } from 'next/app';
 import { createGlobalStyle } from 'styled-components';
 
-type Theme = 'light' | 'dark';
-
-const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
+const GlobalStyle = createGlobalStyle`
     body, select {
         font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
         margin: 0;
-        background-color: ${props => props.theme === 'light' ? '#FFFFFF' : '#000000'};
+
+        @media (prefers-color-scheme: dark) {
+            background-color: #000000;
+        }
     }
 
     header, main, footer {
@@ -23,7 +23,15 @@ const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
 
     h1, h2, h3, h4, h5, h6, p, div {
         margin-top: 0;
-        color: ${props => props.theme === 'light' ? '#333333' : '#EEEEEE'};
+        color: '#333333';
+
+        @media (prefers-color-scheme: dark) {
+            color: #EEEEEE;
+        }
+
+        a :not(&) {
+            color: #e26a6a;
+        }
     }
 
     li {
@@ -33,29 +41,21 @@ const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
     code {
         font-family: Ricty, 'Ricty Diminished', 'Courier New', Courier, monospace;
         font-size: 1.2em;
-        background-color: ${props => props.theme === 'light' ? '#EEEEEE' : '#666666'};
+        background-color: #EEEEEE;
         padding: 0 0.2em;
         border-radius: 0.2em;
+
+        @media (prefers-color-scheme: dark) {
+            background-color: #666666;
+        }
     }
 `;
 
 const App = ({ Component, pageProps }: AppProps) => {
-    const [theme, setTheme] = useState<Theme>('light');
-    useEffect(() => {
-        if (typeof 'window' === undefined) return;
-        if (!('matchMedia' in window)) return;
-        const query = window.matchMedia('(prefers-color-scheme: dark)');
-        if (query.matches) {
-            setTheme('dark');
-        }
-        query.onchange = () => {
-            setTheme(query.matches ? 'dark' : 'light');
-        };
-    }, []);
     return (
         <>
             <Component {...pageProps} />
-            <GlobalStyle theme={theme} />
+            <GlobalStyle />
         </>
     );
 };
