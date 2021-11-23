@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 import Head from 'next/head';
+import { ChevronBack } from '@styled-icons/ionicons-outline';
+import { IconNextLink } from '@hideo54/reactor';
 
 const Layout = ({
     children,
@@ -7,6 +9,7 @@ const Layout = ({
     description = 'hideo54のホームページ',
     imageUrl = 'https://img.hideo54.com/icons/main.png',
     twitterCardType = 'summary',
+    showGoTop = true,
 }: {
     children?: ReactNode;
     title?: string;
@@ -14,6 +17,7 @@ const Layout = ({
     imageUrl?: string;
     twitterCardType?: 'summary' | 'summary_large_image' | 'app' | 'player';
     Header?: JSX.Element;
+    showGoTop?: boolean;
 }) => (
     <>
         <Head>
@@ -33,6 +37,11 @@ const Layout = ({
             <link rel='apple-touch-icon' href='https://img.hideo54.com/icons/main.png' />
         </Head>
         <main>
+            {showGoTop &&
+                <nav style={{ margin: '1em 0' }}>
+                    <IconNextLink href='/' LeftIcon={ChevronBack}>トップページ</IconNextLink>
+                </nav>
+            }
             {children}
         </main>
     </>

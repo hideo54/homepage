@@ -1,5 +1,5 @@
-import { IconAnchor, IconNextLink } from '@hideo54/reactor';
-import { Open, ChevronBack } from '@styled-icons/ionicons-outline';
+import { IconAnchor } from '@hideo54/reactor';
+import { Open } from '@styled-icons/ionicons-outline';
 import Layout from '../components/Layout';
 
 # 詳しい自己紹介
@@ -51,9 +51,6 @@ import Layout from '../components/Layout';
 
 export default ({ children }) => (
     <Layout title='詳しい自己紹介 | hideo54.com'>
-        <nav style={{ margin: '1em 0' }}>
-            <IconNextLink href='/' LeftIcon={ChevronBack}>トップページ</IconNextLink>
-        </nav>
         {children}
     </Layout>
 );

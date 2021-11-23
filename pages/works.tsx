@@ -3,8 +3,8 @@ import type { InferGetStaticPropsType, NextPage } from 'next';
 import styled from 'styled-components';
 import { Github, Slack, Twitter } from '@styled-icons/fa-brands';
 import { Robot } from '@styled-icons/fa-solid';
-import { Construct, Globe, HardwareChip, Open, ChevronBack } from '@styled-icons/ionicons-outline';
-import { IconAnchor, IconNextLink, IconSpan } from '@hideo54/reactor';
+import { Construct, Globe, HardwareChip, Open } from '@styled-icons/ionicons-outline';
+import { IconAnchor, IconSpan } from '@hideo54/reactor';
 import dayjs from 'dayjs';
 import axios from 'axios';
 import Layout from '../components/Layout';
@@ -290,9 +290,6 @@ type StaticProps = InferGetStaticPropsType<typeof getStaticProps>;
 const main: NextPage<StaticProps> = ({ contributions }) => {
     return (
         <Layout title='つくったもの | hideo54.com' description='hideo54が個人で制作したものの一部を紹介します。'>
-            <nav style={{ margin: '1em 0' }}>
-                <IconNextLink href='/' LeftIcon={ChevronBack}>トップページ</IconNextLink>
-            </nav>
             <GitHubProfileBanner height={200} />
             <Section>
                 <h1>つくったもの</h1>

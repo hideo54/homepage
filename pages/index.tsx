@@ -14,7 +14,7 @@ const likes = [
 ];
 
 const App = () => (
-    <Layout>
+    <Layout showGoTop={false}>
         <div style={{ textAlign: 'center' }}>
             <img src='https://img.hideo54.com/icons/main.png' alt='icon' width={200} height={200} style={{ borderRadius: 100, margin: '1em' }} />
             <h1>hideo54</h1>
