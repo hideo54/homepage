@@ -6,7 +6,7 @@ import Layout from '../components/Layout';
 const likes = [
     'プログラミング (主にweb)',
     'アニメ、マンガ',
-    '政治・法',
+    '政治、社会',
     '言語',
     '美味しいもの',
     '温泉、サウナ',

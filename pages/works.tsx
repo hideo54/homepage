@@ -81,13 +81,6 @@ interface Work {
 const works: Work[] = [
     {
         category: 'Web',
-        title: 'Candidates2021 - 衆院選情報サイト',
-        description: '2021年の衆議院選挙に向けた各党の候補者擁立状況をまとめたウェブサイト。複雑な候補者調整・競合状況の最新の情報を地図でわかりやすく確認できるほか、議席数予想もできます。実は情報収集の多くが自動化されている点も特徴。',
-        url: 'https://candidates2021.info',
-        imageUrl: 'https://candidates2021.info/logo.svg',
-    },
-    {
-        category: 'Web',
         title: 'hideo54.com',
         description: 'このページ。hideo54について。',
         url: 'https://hideo54.com',
@@ -128,6 +121,14 @@ const works: Work[] = [
         url: 'https://github.com/hideo54/psi-slack',
         imageUrl: 'https://pbs.twimg.com/profile_images/2224958669/PSIlogo_400x400.PNG',
         repoUrl: 'https://github.com/hideo54/psi-slack',
+    },
+    {
+        category: 'Web',
+        title: 'Candidates2021 - 衆院選情報サイト',
+        description: '2021年の衆議院選挙に向けた各党の候補者擁立状況をまとめたウェブサイト。複雑な候補者調整・競合状況の最新の情報を地図でわかりやすく確認できるほか、議席数予想もできます。実は情報収集の多くが自動化されている点も特徴。',
+        url: 'https://candidates2021.info',
+        imageUrl: 'https://candidates2021.info/logo.svg',
+        until: '2021年秋',
     },
     {
         category: 'Slack bot',
