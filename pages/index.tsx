@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 import dayjs from 'dayjs';
+import { Open, ChevronForward } from '@styled-icons/ionicons-outline';
+import { IconAnchor, IconNextLink } from '@hideo54/reactor';
 import Layout from '../components/Layout';
-import { OpenIconLink, GoNextIconLink } from '../components/atoms';
 
 const likes = [
     'プログラミング (主にweb)',
@@ -32,14 +32,14 @@ const App = () => (
             <ul>
                 <li>東京大学工学部システム創成学科 (PSI)</li>
                 <li>
-                    <OpenIconLink href='https://tsg.ne.jp/'>
+                    <IconAnchor RightIcon={Open} href='https://tsg.ne.jp/'>
                         東京大学コンピュータ系サークル TSG
-                    </OpenIconLink>
+                    </IconAnchor>
                 </li>
                 <li>
-                    <OpenIconLink href='https://sunpro.io/'>
+                    <IconAnchor RightIcon={Open} href='https://sunpro.io/'>
                         SunPro (趣味プログラマーサークル)
-                    </OpenIconLink>
+                    </IconAnchor>
                 </li>
             </ul>
             <p>私個人へは、上記の所属先は通さずに直接ご連絡ください。</p>
@@ -52,50 +52,63 @@ const App = () => (
                 <li>セキュリティ・キャンプ (参加: 2016全国、チューター: 2018山梨、2019福岡、2019沖縄)</li>
                 <li>SECCON Final 2016, 2019</li>
                 <li>
-                    <OpenIconLink href='https://twitter.com/hideo54/status/1204218275233558528'>
+                    <IconAnchor RightIcon={Open} href='https://twitter.com/hideo54/status/1204218275233558528'>
                         バーガーキングの壁
-                    </OpenIconLink>
+                    </IconAnchor>
                 </li>
             </ul>
         </section>
         <h2>
-            <GoNextIconLink href='/intro'>もう少し詳しい自己紹介</GoNextIconLink>
+            <IconNextLink href='/intro' RightIcon={ChevronForward}>
+                もう少し詳しい自己紹介
+            </IconNextLink>
         </h2>
         <h2>
-            <GoNextIconLink href='/works'>つくったもの</GoNextIconLink>
+            <IconNextLink href='/works' RightIcon={ChevronForward}>
+                つくったもの
+            </IconNextLink>
         </h2>
         <h2>
-            <GoNextIconLink href='/activity'>活動</GoNextIconLink>
+            <IconNextLink href='/activity' RightIcon={ChevronForward}>
+                活動
+            </IconNextLink>
         </h2>
         <section>
             <h2>連絡先</h2>
             <ul>
-                <li>Twitter: <OpenIconLink href='https://twitter.com/hideo54'>@hideo54</OpenIconLink></li>
+                <li>Twitter:{' '}
+                    <IconAnchor RightIcon={Open} href='https://twitter.com/hideo54'>
+                        @hideo54
+                    </IconAnchor>
+                </li>
                 <li>E-mail: <code>contact@hideo54.com</code></li>
             </ul>
         </section>
         <h2>
-            <GoNextIconLink href='/accounts'>アカウント一覧</GoNextIconLink>
-        </h2>
-        {/* <h2>
-            <GoNextIconLink href='/pay'>hideo54 Pay</GoNextIconLink>
-        </h2> */}
-        <h2>
-            <OpenIconLink href='https://blog.hideo54.com'>hideo54のブログ</OpenIconLink>
+            <IconNextLink href='/accounts' RightIcon={ChevronForward}>
+                アカウント一覧
+            </IconNextLink>
         </h2>
         <h2>
-            <OpenIconLink href='https://www.amazon.co.jp/registry/wishlist/3IQ53EU2L62AI'>Amazonほしいものリスト</OpenIconLink>
+            <IconAnchor RightIcon={Open} href='https://blog.hideo54.com'>
+                hideo54のブログ
+            </IconAnchor>
+        </h2>
+        <h2>
+            <IconAnchor RightIcon={Open} href='https://www.amazon.co.jp/registry/wishlist/3IQ53EU2L62AI'>
+                Amazonほしいものリスト
+            </IconAnchor>
         </h2>
         <p style={{ marginTop: '2em' }}>
             <small>
                 アイコンのキツネは、Webブラウザ “Firefox” のマスコットキャラクター「フォクすけ」です。
-                <OpenIconLink href='https://creativecommons.org/licenses/by-nc/4.0/deed.ja'>
+                <IconAnchor RightIcon={Open} href='https://creativecommons.org/licenses/by-nc/4.0/deed.ja'>
                     CC BY-NC 4.0 ライセンス
-                </OpenIconLink>
+                </IconAnchor>
                 で提供された、Mozilla Japan による
-                <OpenIconLink href='http://foxkeh.jp/downloads/materials/'>
+                <IconAnchor RightIcon={Open} href='http://foxkeh.jp/downloads/materials/'>
                     画像素材
-                </OpenIconLink>
+                </IconAnchor>
                 を使用しています。
             </small>
         </p>

@@ -1,5 +1,6 @@
+import { IconNextLink } from '@hideo54/reactor';
+import { ChevronBack } from '@styled-icons/ionicons-outline';
 import Layout from '../components/Layout';
-import { GoBackIconLink } from '../components/atoms';
 
 # hideo54 Pay
 
@@ -20,7 +21,7 @@ import { GoBackIconLink } from '../components/atoms';
 export default ({ children }) => (
     <Layout title='hideo54 Pay | hideo54.com'>
         <nav style={{ margin: '1em 0' }}>
-            <GoBackIconLink href='/'>トップページ</GoBackIconLink>
+            <IconNextLink href='/' LeftIcon={ChevronBack}>トップページ</IconNextLink>
         </nav>
         {children}
     </Layout>

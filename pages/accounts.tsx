@@ -1,9 +1,10 @@
-import { InferGetStaticPropsType, NextPage } from 'next';
+import type { InferGetStaticPropsType, NextPage } from 'next';
 import styled from 'styled-components';
 import fs from 'fs/promises';
 import yaml from 'yaml';
+import { ChevronBack } from '@styled-icons/ionicons-outline';
+import { IconNextLink } from '@hideo54/reactor';
 import Layout from '../components/Layout';
-import { GoBackIconLink } from '../components/atoms';
 
 interface Tag {
     color: string;
@@ -79,7 +80,7 @@ type StaticProps = InferGetStaticPropsType<typeof getStaticProps>;
 const main: NextPage<StaticProps> = ({ data }) => (
     <Layout title='アカウント一覧 | hideo54.com' description='hideo54が所持している各サービスのアカウントの一覧です。'>
         <nav style={{ margin: '1em 0' }}>
-            <GoBackIconLink href='/'>トップページ</GoBackIconLink>
+            <IconNextLink href='/' LeftIcon={ChevronBack}>トップページ</IconNextLink>
         </nav>
         <h1>アカウント一覧</h1>
         {Object.keys(data.accounts).map(category => (

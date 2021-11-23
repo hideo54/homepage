@@ -1,12 +1,13 @@
+import { IconAnchor, IconNextLink } from '@hideo54/reactor';
+import { Open, ChevronBack } from '@styled-icons/ionicons-outline';
 import Layout from '../components/Layout';
-import { GoBackIconLink, OpenIconLink } from '../components/atoms';
 
 # 詳しい自己紹介
 
 ## よく使う言語
 
 * 日本語 (母語)
-* English (<OpenIconLink href='https://www.efset.org/cefr/b2/'>CEFR: B2</OpenIconLink>)
+* English (<IconAnchor href='https://www.efset.org/cefr/b2/' RightIcon={Open}>CEFR: B2</IconAnchor>)
 * français (初学者)
 * Python (たまに、機械学習や競技プログラミング、一時的な雑スクリプトなどで。)
 * TypeScript (メイン。いつもの。)
@@ -25,7 +26,7 @@ import { GoBackIconLink, OpenIconLink } from '../components/atoms';
 
 ## 性格
 
-<OpenIconLink href='https://www.16personalities.com/ja/enfp%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC'>ENFP-T</OpenIconLink>.
+<IconAnchor href='https://www.16personalities.com/ja/enfp%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC' RightIcon={Open}>ENFP-T</IconAnchor>.
 
 * 見えるものにすることが好き。デザイン (特にUI) の設計やデータの可視化が好き。
 * 人間の生むものが好きで、システマティックなものが好き。社会・言語好きはそれ故か。
@@ -51,7 +52,7 @@ import { GoBackIconLink, OpenIconLink } from '../components/atoms';
 export default ({ children }) => (
     <Layout title='詳しい自己紹介 | hideo54.com'>
         <nav style={{ margin: '1em 0' }}>
-            <GoBackIconLink href='/'>トップページ</GoBackIconLink>
+            <IconNextLink href='/' LeftIcon={ChevronBack}>トップページ</IconNextLink>
         </nav>
         {children}
     </Layout>

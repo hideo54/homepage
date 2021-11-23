@@ -3,11 +3,11 @@ import type { InferGetStaticPropsType, NextPage } from 'next';
 import styled from 'styled-components';
 import { Github, Slack, Twitter } from '@styled-icons/fa-brands';
 import { Robot } from '@styled-icons/fa-solid';
-import { Construct, Globe, HardwareChip } from '@styled-icons/ionicons-outline';
+import { Construct, Globe, HardwareChip, Open, ChevronBack } from '@styled-icons/ionicons-outline';
+import { IconAnchor, IconNextLink, IconSpan } from '@hideo54/reactor';
 import dayjs from 'dayjs';
 import axios from 'axios';
 import Layout from '../components/Layout';
-import { GoBackIconLink, IconLink, OpenIconLink, IconText } from '../components/atoms';
 
 const GrassCoverDiv = styled.div<{ height: number; }>`
     position: relative;
@@ -61,7 +61,7 @@ const GitHubProfileBanner: React.FC<{ height: number; }> = ({ height }) => {
             <GrassCoverDiv height={height}>
                 <GrassImg ref={imgRef} height={height} />
                 <GitHubProfileP>
-                    <IconText Icon={Github} color='#CCCCCC' margin='0.2em'>hideo54</IconText>
+                    <IconSpan RightIcon={Github} color='#CCCCCC' margin='0.2em'>hideo54</IconSpan>
                 </GitHubProfileP>
             </GrassCoverDiv>
         </a>
@@ -196,10 +196,10 @@ const WorkDetail: React.FC<{ work: Work, untilTransformer: (s: string) => string
         }}>
             <div>
                 <div>
-                    <IconText margin='0.2em' color='#888888' Icon={getCategoryIcon(work.category)}>{work.category}</IconText>
+                    <IconSpan margin='0.2em' color='#888888' LeftIcon={getCategoryIcon(work.category)}>{work.category}</IconSpan>
                 </div>
                 <DescriptionP fontSize='1.2em' marginTop='0.5em'>
-                    <OpenIconLink href={work.url}>{work.title}</OpenIconLink>
+                    <IconAnchor href={work.url} RightIcon={Open}>{work.title}</IconAnchor>
                 </DescriptionP>
             </div>
             {work.imageUrl && <LogoImg src={work.imageUrl} />}
@@ -212,7 +212,7 @@ const WorkDetail: React.FC<{ work: Work, untilTransformer: (s: string) => string
         )}
         {work.repoUrl && (
             <DescriptionP>
-                <IconLink LeftIcon={Github} href={work.repoUrl} margin='0.1em'>オープンソースです。</IconLink>
+                <IconAnchor LeftIcon={Github} href={work.repoUrl} margin='0.1em'>オープンソースです。</IconAnchor>
             </DescriptionP>
         )}
     </WorkDiv>
@@ -291,7 +291,7 @@ const main: NextPage<StaticProps> = ({ contributions }) => {
     return (
         <Layout title='つくったもの | hideo54.com' description='hideo54が個人で制作したものの一部を紹介します。'>
             <nav style={{ margin: '1em 0' }}>
-                <GoBackIconLink href='/'>トップページ</GoBackIconLink>
+                <IconNextLink href='/' LeftIcon={ChevronBack}>トップページ</IconNextLink>
             </nav>
             <GitHubProfileBanner height={200} />
             <Section>
@@ -314,7 +314,7 @@ const main: NextPage<StaticProps> = ({ contributions }) => {
                 <ul>
                     {contributions.map(repo => (
                         <li key={repo.full_name}>
-                            <OpenIconLink href={repo.html_url}>{repo.full_name}</OpenIconLink>
+                            <IconAnchor href={repo.html_url} RightIcon={Open}>{repo.full_name}</IconAnchor>
                         </li>
                     ))}
                 </ul>
