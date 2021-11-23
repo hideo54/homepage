@@ -28,10 +28,11 @@ const GlobalStyle = createGlobalStyle`
         @media (prefers-color-scheme: dark) {
             color: #EEEEEE;
         }
+    }
 
-        a :not(&) {
-            color: #e26a6a;
-        }
+    a {
+        color: #e26a6a;
+        text-decoration: none;
     }
 
     li {
