@@ -36,11 +36,11 @@ const App = () => (
                         東京大学コンピュータ系サークル TSG
                     </IconAnchor>
                 </li>
-                <li>
+                {/* <li>
                     <IconAnchor RightIcon={Open} href='https://sunpro.io/'>
                         SunPro (趣味プログラマーサークル)
                     </IconAnchor>
-                </li>
+                </li> */}
             </ul>
             <p>私個人へは、上記の所属先は通さずに直接ご連絡ください。</p>
         </section>
