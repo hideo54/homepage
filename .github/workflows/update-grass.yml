@@ -22,7 +22,7 @@ jobs:
       run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
     - uses: 'google-github-actions/auth@v0'
       with:
-        credentials_json: ${{secrets.GCP_CREDENTIALS}}
+        credentials_json: ${{secrets.FIREBASE_SERVICE_ACCOUNT_HIDEO54}}
     - name: Upload SVG to Cloud Storage
       uses: google-github-actions/upload-cloud-storage@main
       with:
