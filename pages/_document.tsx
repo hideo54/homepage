@@ -42,7 +42,7 @@ export default class MyDocument extends Document {
                     <script
                         dangerouslySetInnerHTML={{
                             __html: minify(`
-                                if (window.location.hostname === "hideo54-172008.web.app" || window.location.hostname === "hideo54-172008.firebaseapp.com") {
+                                if (window.location.hostname === "hideo54.web.app" || window.location.hostname === "hideo54.firebaseapp.com") {
                                     window.location.href = 'https://hideo54.com';
                                 }
                                 window.dataLayer = window.dataLayer || [];
@@ -51,7 +51,7 @@ export default class MyDocument extends Document {
                                 gtag('config', '${GA_TRACKING_ID}');
                             `),
                         }}
-                        // Feels dangerous, but actually written on an official example: https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics/pages/_document.js
+                        // https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics/pages/_document.js
                     />
                 </Head>
                 <body>
