@@ -13,6 +13,14 @@ const css = `
         rect[data-level="2"] { fill: #40c463; }
         rect[data-level="3"] { fill: #30a14e; }
         rect[data-level="4"] { fill: #216e39; }
+
+        @media (prefers-color-scheme: dark) {
+            rect[data-level="0"] { fill: #161b22; }
+            rect[data-level="1"] { fill: #0e4429; }
+            rect[data-level="2"] { fill: #006d32; }
+            rect[data-level="3"] { fill: #26a641; }
+            rect[data-level="4"] { fill: #39d353; }
+        }
     </style>
 `;
 
