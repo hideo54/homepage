@@ -48,6 +48,10 @@ accounts:
           color: '#008000'
           link: https://atcoder.jp/users/hideo54
           username: hideo54
+        - name: Keybase
+          color: '#3663ea'
+          link: https://keybase.io/hideo54
+          username: hideo54
         - name: SlideShare
           color: '#0575B1'
           link: https://www.slideshare.net/the-hideo54
