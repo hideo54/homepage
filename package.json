@@ -24,7 +24,7 @@
     "@styled-icons/ionicons-outline": "^10.34.0",
     "@styled-icons/styled-icon": "^10.6.3",
     "dayjs": "^1.11.0",
-    "next": "^12.1.4",
+    "next": "^12.1.5",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-icons": "^4.3.1",
