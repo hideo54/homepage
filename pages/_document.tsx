@@ -4,6 +4,7 @@ import { GA_TRACKING_ID } from '../lib/gtag';
 
 const minify = (s: string) => s.replace(/(\s{4}|\n)/g, '');
 
+// @ts-expect-error return している styles の型が @types/react@v18 に怒られる。様子見。
 export default class MyDocument extends Document {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     static async getInitialProps(ctx: any) {
