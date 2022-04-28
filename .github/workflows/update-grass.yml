@@ -24,7 +24,7 @@ jobs:
       with:
         credentials_json: '${{secrets.FIREBASE_SERVICE_ACCOUNT_HIDEO54}}'
     - name: Upload SVG to Cloud Storage
-      uses: google-github-actions/upload-cloud-storage@v0
+      uses: google-github-actions/upload-cloud-storage@v0.9.0
       with:
         path: ${{steps.date.outputs.date}}.svg
         destination: img.hideo54.com/github-grass
