@@ -30,7 +30,11 @@ const App = () => (
         <section>
             <h2>現在の所属</h2>
             <ul>
-                <li>東京大学工学部システム創成学科 (PSI)</li>
+                <li>
+                    <IconAnchor RightIcon={Open} href='https://www.si.t.u-tokyo.ac.jp/course/psi/'>
+                        東京大学工学部システム創成学科 (PSI)
+                    </IconAnchor>
+                </li>
                 <li>
                     <IconAnchor RightIcon={Open} href='https://tsg.ne.jp/'>
                         東京大学コンピュータ系サークル TSG
