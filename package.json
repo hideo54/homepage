@@ -16,7 +16,7 @@
     "url": "git@github.com:hideo54/homepage.git"
   },
   "dependencies": {
-    "@hideo54/reactor": "^1.4.14",
+    "@hideo54/reactor": "^1.4.15",
     "@mdx-js/loader": "^2.1.1",
     "@next/mdx": "^12.1.6",
     "@styled-icons/fa-brands": "^10.38.0",
