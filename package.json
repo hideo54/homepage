@@ -21,7 +21,7 @@
     "@next/mdx": "^12.3.0",
     "@styled-icons/fa-brands": "^10.46.0",
     "@styled-icons/fa-solid": "^10.46.0",
-    "@styled-icons/ionicons-outline": "^10.34.0",
+    "@styled-icons/ionicons-outline": "^10.46.0",
     "@styled-icons/styled-icon": "^10.7.0",
     "dayjs": "^1.11.5",
     "next": "^12.3.0",
