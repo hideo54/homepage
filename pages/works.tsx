@@ -61,7 +61,7 @@ const GitHubProfileBanner: React.FC<{ height: number; }> = ({ height }) => {
             <GrassCoverDiv height={height}>
                 <GrassImg ref={imgRef} height={height} />
                 <GitHubProfileP>
-                    <IconSpan RightIcon={Github} color='#CCCCCC' margin='0.2em'>hideo54</IconSpan>
+                    <IconSpan LeftIcon={Github} color='#CCCCCC' margin='0.2em'>hideo54</IconSpan>
                 </GitHubProfileP>
             </GrassCoverDiv>
         </a>
