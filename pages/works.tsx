@@ -128,7 +128,7 @@ const works: Work[] = [
         title: '選挙ウォッチ',
         description: '衆院選・参院選に向けた各党の候補者擁立状況をまとめたウェブサイト。Candidates2021の後継サービス。',
         url: 'https://senkyo.watch',
-        imageUrl: 'https://senkyo.watch/assets/images/logo.svg',
+        imageUrl: 'https://senkyo.watch/assets/images/icon.svg',
     },
     {
         category: 'Web',
