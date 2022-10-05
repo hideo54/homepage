@@ -93,6 +93,7 @@ const works: Work[] = [
         description: 'とりとめのない誰得エッセイから、Google検索結果第1位の技術 tips まで。何でも載っける自由気ままなブログ。',
         url: 'https://blog.hideo54.com',
         imageUrl: 'https://img.hideo54.com/icons/main.png',
+        repoUrl: 'https://github.com/hideo54/blog',
     },
     {
         category: 'Web',
