@@ -62,6 +62,16 @@ const App = () => (
                 </li>
             </ul>
         </section>
+        <section>
+            <h2>いく (予定)</h2>
+            <ul>
+                <li>
+                    <IconAnchor RightIcon={Open} href='https://tmi.t.u-tokyo.ac.jp/'>
+                        東京大学大学院工学系研究科技術経営戦略学専攻 (TMI)
+                    </IconAnchor>
+                </li>
+            </ul>
+        </section>
         <h2>
             <IconNextLink href='/intro' RightIcon={ChevronForward}>
                 もう少し詳しい自己紹介
