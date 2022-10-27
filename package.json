@@ -35,7 +35,7 @@
     "@google-cloud/storage": "^6.6.0",
     "@hideo54/eslint-config": "^1.0.16",
     "@types/mdx-js__react": "^1.5.5",
-    "@types/node": "18.11.5",
+    "@types/node": "18.11.7",
     "@types/react": "^18.0.23",
     "@types/react-dom": "18.0.7",
     "@types/styled-components": "5.1.26",
