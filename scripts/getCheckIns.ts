@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import axios from 'axios';
+import * as turf from '@turf/turf';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: path.join(__dirname, '../.env.local') });
@@ -80,19 +81,31 @@ const main = async () => {
     }
     const allCoordinates = new Set(
         allCheckins.map(checkin => [
-            checkin.venue.location.lat,
             checkin.venue.location.lng,
+            checkin.venue.location.lat,
         ]).sort().filter((cur, i, arr) =>
             // Remove duplicates to reduce size (about 1/3)
             i === 0 || (cur[0] !== arr[i - 1][0] && cur[1] !== arr[i - 1][1])
         )
     );
-    const allVisitedStates = new Set(
-        allCheckins.map(checkin => checkin.venue.location.state).sort()
+    // const allVisitedStates = new Set(
+    //     allCheckins.map(checkin => checkin.venue.location.state).sort()
+    // );
+    // const allVisitedCountries = new Set(
+    //     allCheckins.map(checkin => checkin.venue.location.country).sort()
+    // );
+    const senkyokuGeoJson = JSON.parse(
+        await fs.readFile(__dirname + '/shu-district-2022.geojson', 'utf-8')
     );
-    const allVisitedCountries = new Set(
-        allCheckins.map(checkin => checkin.venue.location.country).sort()
-    );
+    const senkyokuVisitCounts = senkyokuGeoJson.features.map((senkyoku: any) => {
+        const senkyokuName = senkyoku.properties.NAME;
+        const senkyokuPolygon = turf.polygon(senkyoku.geometry.coordinates[0]);
+        const coordinatesInside = Array.from(allCoordinates).filter(coordinates =>
+            turf.booleanPointInPolygon(turf.point(coordinates), senkyokuPolygon)
+        );
+        return [senkyokuName, coordinatesInside.length];
+    }).sort((a: any, b: any) => - (a[1] - b[1]));
+    console.log(senkyokuVisitCounts);
 };
 
 main();

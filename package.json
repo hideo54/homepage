@@ -23,6 +23,7 @@
     "@styled-icons/fa-solid": "^10.47.0",
     "@styled-icons/ionicons-outline": "^10.46.0",
     "@styled-icons/styled-icon": "^10.7.0",
+    "@turf/turf": "^6.5.0",
     "dayjs": "^1.11.7",
     "next": "^12.3.4",
     "react": "^18.1.0",
