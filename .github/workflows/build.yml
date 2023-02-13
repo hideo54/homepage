@@ -16,3 +16,5 @@ jobs:
         node-version: 16
     - run: npm ci
     - run: npm run build
+      env:
+        FOURSQUARE_ACCESS_TOKEN: '${{ secrets.FOURSQUARE_ACCESS_TOKEN }}'
