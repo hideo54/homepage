@@ -40,7 +40,7 @@ const App: NextPage = () => {
     return (
         <Layout
             title='訪問歴 | hideo54.com'
-            description='hideo54が所持している各サービスのアカウントの一覧です。'
+            description='旅好き・hideo54がこれまでに訪れたことのある土地をまとめています。'
         >
             <h1>訪問歴</h1>
             <h2>訪れたことのある小選挙区</h2>
