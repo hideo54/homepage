@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import styled from 'styled-components';
-import { Open } from '@styled-icons/ionicons-outline';
+import { Open, Square } from '@styled-icons/ionicons-outline';
 import { IconAnchor } from '@hideo54/reactor';
 import axios from 'axios';
 import Layout from '../components/Layout';
@@ -23,12 +23,29 @@ const CountSection = styled.section`
         font-size: 2rem;
         font-weight: bold;
     }
+    svg path {
+        fill: inherit;
+        stroke-width: 24;
+    }
 `;
 
 const App: NextPage = () => {
     const [shuSvg, setShuSvg] = useState('');
     const [districtColors, setDistrictColors] = useState<{[key in string]: string}>({});
     const visitedSenkyokuCount = senkyokuVisitCountsJson.filter(([, count]) => count > 0).length;
+    const visitedSenkyokuColors = senkyokuVisitCountsJson
+        .filter(([, count]) => count > 0)
+        .map(([senkyokuId]) => [senkyokuId, districtColors[senkyokuId] || 'white'] as [string, string]);
+    const visitedSenkyokuColorSet = new Set(
+        visitedSenkyokuColors.map(e => e[1])
+    );
+    const visitedSenkyokuCountsByParty = Array.from(visitedSenkyokuColorSet)
+        .map(color => [
+            color,
+            visitedSenkyokuColors.filter(e => e[1] === color).length,
+            Object.entries(districtColors).filter(([, v]) => v === color).length,
+        ] as [string, number, number])
+        .sort((a, b) => - (a[1] - b[1]));
     useEffect(() => {
         (async () => {
             const svgRes = await axios.get('https://senkyo.watch/assets/maps/shu-2022-geo.svg');
@@ -45,14 +62,21 @@ const App: NextPage = () => {
             <h1>訪問歴</h1>
             <h2>訪れたことのある小選挙区</h2>
             <CountSection>
-                <span className='big'>{visitedSenkyokuCount}</span>
-                <span> / 289</span>
+                <p>
+                    <span className='big'>{visitedSenkyokuCount}</span>
+                    <span> / 289</span>
+                </p>
+                {visitedSenkyokuCountsByParty.map(([color, visitedCount, allCount]) =>
+                    <p key={color}>
+                        <Square size='1.6em' fill={color} />
+                        {visitedCount} / {allCount}
+                    </p>
+                )}
             </CountSection>
             <ShuMapWrapperDiv dangerouslySetInnerHTML={{ __html: shuSvg }} />
             <style dangerouslySetInnerHTML={{
-                __html: senkyokuVisitCountsJson
-                    .filter(([, count]) => count > 0)
-                    .map(([senkyokuId]) => `#${senkyokuId}{fill:${districtColors[senkyokuId] || 'white'};}`)
+                __html: visitedSenkyokuColors
+                    .map(([senkyokuId, color]) => `#${senkyokuId}{fill:${color};}`)
                     .join(''),
             }} />
             <p>
