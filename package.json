@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "develop": "next",
-    "build": "next build && next export",
+    "build": "ts-node getCheckins.ts && next build && next export",
     "start": "next start",
     "lint": "eslint pages/*.tsx components/*.tsx",
     "crawl": "ts-node crawl.ts"

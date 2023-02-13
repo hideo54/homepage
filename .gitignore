@@ -32,3 +32,6 @@ yarn-error.log*
 # For crawler
 key.json
 *.cache.json
+
+# For built files
+lib/senkyoku-visit-counts.json

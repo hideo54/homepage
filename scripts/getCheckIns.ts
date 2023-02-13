@@ -42,6 +42,56 @@ interface CheckinResponse {
     };
 }
 
+const prefIds = [
+    'hokkaido',
+    'aomori',
+    'iwate',
+    'miyagi',
+    'akita',
+    'yamagata',
+    'fukushima',
+    'ibaraki',
+    'tochigi',
+    'gunma',
+    'saitama',
+    'chiba',
+    'tokyo',
+    'kanagawa',
+    'niigata',
+    'toyama',
+    'ishikawa',
+    'fukui',
+    'yamanashi',
+    'nagano',
+    'gifu',
+    'shizuoka',
+    'aichi',
+    'mie',
+    'shiga',
+    'kyoto',
+    'osaka',
+    'hyogo',
+    'nara',
+    'wakayama',
+    'tottori',
+    'shimane',
+    'okayama',
+    'hiroshima',
+    'yamaguchi',
+    'tokushima',
+    'kagawa',
+    'ehime',
+    'kochi',
+    'fukuoka',
+    'saga',
+    'nagasaki',
+    'kumamoto',
+    'oita',
+    'miyazaki',
+    'kagoshima',
+    'okinawa',
+];
+
 const getCheckins = async ({ offset, limit }: {
     offset: number;
     limit: number;
@@ -95,17 +145,20 @@ const main = async () => {
     //     allCheckins.map(checkin => checkin.venue.location.country).sort()
     // );
     const senkyokuGeoJson = JSON.parse(
-        await fs.readFile(__dirname + '/shu-district-2022.geojson', 'utf-8')
+        await fs.readFile(__dirname + '/../lib/shu-district-2022.geojson', 'utf-8')
     );
     const senkyokuVisitCounts = senkyokuGeoJson.features.map((senkyoku: any) => {
-        const senkyokuName = senkyoku.properties.NAME;
+        const prefNum = senkyoku.properties.KEN;
+        const senkyokuNum = senkyoku.properties.SENKYOKU;
+        const prefId = prefIds[parseInt(prefNum) - 1];
+        const senkyokuId = `${prefId}-${senkyokuNum}`;
         const senkyokuPolygon = turf.polygon(senkyoku.geometry.coordinates[0]);
         const coordinatesInside = Array.from(allCoordinates).filter(coordinates =>
             turf.booleanPointInPolygon(turf.point(coordinates), senkyokuPolygon)
         );
-        return [senkyokuName, coordinatesInside.length];
+        return [senkyokuId, coordinatesInside.length];
     }).sort((a: any, b: any) => - (a[1] - b[1]));
-    console.log(senkyokuVisitCounts);
+    await fs.writeFile(__dirname + '/../lib/senkyoku-visit-counts.json', JSON.stringify(senkyokuVisitCounts));
 };
 
 main();
