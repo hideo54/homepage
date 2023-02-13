@@ -8,17 +8,19 @@ import Layout from '../components/Layout';
 import senkyokuVisitCountsJson from '../lib/senkyoku-visit-counts.json';
 
 const ShuMapWrapperDiv = styled.div`
+    fill: white;
+    stroke: black;
+    stroke-width: 0.2;
+    background-color: #a5c1fa;
     svg {
         width: 100%;
         max-height: 120vw;
     }
-    fill: white;
-    stroke: black;
-    stroke-width: 0.2;
 `;
 
 const CountSection = styled.section`
     position: absolute;
+    padding: 0.5rem;
     p.item {
         margin-bottom: 0.4rem;
     }
