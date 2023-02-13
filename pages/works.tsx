@@ -297,7 +297,7 @@ export const getStaticProps = async () => {
 
 type StaticProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-const main: NextPage<StaticProps> = ({ contributions }) => {
+const App: NextPage<StaticProps> = ({ contributions }) => {
     return (
         <Layout title='つくったもの | hideo54.com' description='hideo54が個人で制作したものの一部を紹介します。'>
             <GitHubProfileBanner height={200} />
@@ -342,4 +342,4 @@ const main: NextPage<StaticProps> = ({ contributions }) => {
     );
 };
 
-export default main;
+export default App;

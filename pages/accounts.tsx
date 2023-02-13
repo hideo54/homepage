@@ -75,7 +75,7 @@ export const getStaticProps = async () => {
 
 type StaticProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-const main: NextPage<StaticProps> = ({ data }) => (
+const App: NextPage<StaticProps> = ({ data }) => (
     <Layout title='アカウント一覧 | hideo54.com' description='hideo54が所持している各サービスのアカウントの一覧です。'>
         <h1>アカウント一覧</h1>
         {Object.keys(data.accounts).map(category => (
@@ -102,4 +102,4 @@ const main: NextPage<StaticProps> = ({ data }) => (
     </Layout>
 );
 
-export default main;
+export default App;
