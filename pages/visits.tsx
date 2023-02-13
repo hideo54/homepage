@@ -8,14 +8,27 @@ import Layout from '../components/Layout';
 import senkyokuVisitCountsJson from '../lib/senkyoku-visit-counts.json';
 
 const ShuMapWrapperDiv = styled.div`
+    svg {
+        width: 100%;
+        max-height: 100vw;
+    }
     fill: white;
     stroke: black;
     stroke-width: 0.2;
 `;
 
+const CountSection = styled.section`
+    position: absolute;
+    span.big {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+`;
+
 const App: NextPage = () => {
     const [shuSvg, setShuSvg] = useState('');
     const [districtColors, setDistrictColors] = useState<{[key in string]: string}>({});
+    const visitedSenkyokuCount = senkyokuVisitCountsJson.filter(([, count]) => count > 0).length;
     useEffect(() => {
         (async () => {
             const svgRes = await axios.get('https://senkyo.watch/assets/maps/shu-2022-geo.svg');
@@ -31,6 +44,10 @@ const App: NextPage = () => {
         >
             <h1>訪問歴</h1>
             <h2>訪れたことのある小選挙区</h2>
+            <CountSection>
+                <span className='big'>{visitedSenkyokuCount}</span>
+                <span> / 289</span>
+            </CountSection>
             <ShuMapWrapperDiv dangerouslySetInnerHTML={{ __html: shuSvg }} />
             <style dangerouslySetInnerHTML={{
                 __html: senkyokuVisitCountsJson
