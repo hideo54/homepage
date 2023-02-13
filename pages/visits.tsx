@@ -36,7 +36,7 @@ const App: NextPage = () => {
             const colorsRes = await axios.get('https://senkyo.watch/data/shu/district-colors.json');
             setDistrictColors(colorsRes.data);
         })();
-    });
+    }, []);
     return (
         <Layout
             title='訪問歴 | hideo54.com'
