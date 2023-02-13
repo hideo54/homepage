@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
     body, select {
         font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
         margin: 0;
+        background-color: #ffffff;
 
         @media (prefers-color-scheme: dark) {
             background-color: #000000;
