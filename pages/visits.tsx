@@ -45,7 +45,7 @@ const App: NextPage = () => {
             visitedSenkyokuColors.filter(e => e[1] === color).length,
             Object.entries(districtColors).filter(([, v]) => v === color).length,
         ] as [string, number, number])
-        .sort((a, b) => - (a[1] - b[1]));
+        .sort((a, b) => a[1] === b[1] ? - (a[2] - b[2]) : - (a[1] - b[1]));
     useEffect(() => {
         (async () => {
             const svgRes = await axios.get('https://senkyo.watch/assets/maps/shu-2022-geo.svg');
