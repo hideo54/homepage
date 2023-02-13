@@ -152,7 +152,7 @@ const main = async () => {
         const senkyokuNum = senkyoku.properties.SENKYOKU;
         const prefId = prefIds[parseInt(prefNum) - 1];
         const senkyokuId = `${prefId}-${senkyokuNum}`;
-        const senkyokuPolygon = turf.polygon(senkyoku.geometry.coordinates[0]);
+        const senkyokuPolygon = turf.multiPolygon(senkyoku.geometry.coordinates);
         const coordinatesInside = Array.from(allCoordinates).filter(coordinates =>
             turf.booleanPointInPolygon(turf.point(coordinates), senkyokuPolygon)
         );
