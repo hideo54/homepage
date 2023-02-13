@@ -10,7 +10,7 @@ import senkyokuVisitCountsJson from '../lib/senkyoku-visit-counts.json';
 const ShuMapWrapperDiv = styled.div`
     svg {
         width: 100%;
-        max-height: 100vw;
+        max-height: 120vw;
     }
     fill: white;
     stroke: black;
@@ -19,6 +19,9 @@ const ShuMapWrapperDiv = styled.div`
 
 const CountSection = styled.section`
     position: absolute;
+    p.item {
+        margin-bottom: 0.4rem;
+    }
     span.big {
         font-size: 2rem;
         font-weight: bold;
@@ -67,7 +70,7 @@ const App: NextPage = () => {
                     <span> / 289</span>
                 </p>
                 {visitedSenkyokuCountsByParty.map(([color, visitedCount, allCount]) =>
-                    <p key={color}>
+                    <p key={color} className='item'>
                         <Square size='1.6em' fill={color} />
                         {visitedCount} / {allCount}
                     </p>
@@ -87,7 +90,7 @@ const App: NextPage = () => {
                 </small>
             </p>
             <section>
-                <p><strong>Q. なぜ小選挙区で表すのか?</strong></p>
+                <h3>Q. なぜ小選挙区で表すのか?</h3>
                 <ul>
                     <li>hideo54は日本政治が好きです。</li>
                     <li>日本の小選挙区は、一票の格差を縮小するよう、なるべく小選挙区の有権者数 (≒人口) がなるべく等しくなるように設計されており、東京都は30個、和歌山県は2個といった具合で配分されています。旅も同様に、「東京都に行ったことがある」のと「和歌山県に行ったことがある」のとでは重みが違うはずです。前者は「東京都のどこに行ったことがあるの?」となるでしょう。この重みはその土地の密度によるものとして、人口密度をある程度反映した地区わけとして小選挙区を利用することに意義を見出しています。</li>
