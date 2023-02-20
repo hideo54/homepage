@@ -96,6 +96,14 @@ const getCheckins = async ({ offset, limit }: {
     offset: number;
     limit: number;
 }): Promise<CheckinResponse['response']> => {
+    if (!process.env.FOURSQUARE_ACCESS_TOKEN) {
+        return {
+            checkins: {
+                count: 0,
+                items: [],
+            },
+        };
+    }
     const res = await axios.get<CheckinResponse>('https://api.foursquare.com/v2/users/self/checkins', {
         params: {
             oauth_token: process.env.FOURSQUARE_ACCESS_TOKEN,
