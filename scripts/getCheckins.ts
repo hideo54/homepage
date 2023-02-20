@@ -145,11 +145,11 @@ const main = async () => {
     //     allCheckins.map(checkin => checkin.venue.location.country).sort()
     // );
     const senkyokuGeoJson = JSON.parse(
-        await fs.readFile(__dirname + '/../lib/shu-district-2022.geojson', 'utf-8')
+        await fs.readFile(__dirname + '/../lib/shu-2017.geojson', 'utf-8')
     );
     const senkyokuVisitCounts = senkyokuGeoJson.features.map((senkyoku: any) => {
-        const prefNum = senkyoku.properties.KEN;
-        const senkyokuNum = senkyoku.properties.SENKYOKU;
+        const prefNum = senkyoku.properties.ken;
+        const senkyokuNum = senkyoku.properties.ku;
         const prefId = prefIds[parseInt(prefNum) - 1];
         const senkyokuId = `${prefId}-${senkyokuNum}`;
         const senkyokuPolygon = turf.multiPolygon(senkyoku.geometry.coordinates);

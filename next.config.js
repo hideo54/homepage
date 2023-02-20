@@ -1,4 +1,25 @@
 const withMDX = require('@next/mdx')();
 module.exports = withMDX({
     pageExtensions: ['ts', 'tsx', 'mdx'],
+    webpack(config) {
+        config.module.rules.push({
+            test: /\.svg$/i,
+            issuer: /\.[jt]sx?$/,
+            use: [{
+                loader: '@svgr/webpack',
+                options: {
+                    ref: true,
+                    svgoConfig: {
+                        plugins: [
+                            {
+                                name: 'cleanupIDs',
+                                active: false,
+                            },
+                        ],
+                    },
+                },
+            }],
+        });
+        return config;
+    },
 });

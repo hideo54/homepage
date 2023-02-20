@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import styled from 'styled-components';
 import { Open, Square } from '@styled-icons/ionicons-outline';
 import { IconAnchor } from '@hideo54/reactor';
-import axios from 'axios';
 import Layout from '../components/Layout';
 import senkyokuVisitCountsJson from '../lib/senkyoku-visit-counts.json';
+import senkyokuResultColorJson from '../lib/shu-2021-senkyoku-result-color.json';
+import Shu2017GeoSvg from '../lib/shu-2017-geo.svg';
 
 const ShuMapWrapperDiv = styled.div`
     fill: white;
@@ -35,12 +35,13 @@ const CountSection = styled.section`
 `;
 
 const App: NextPage = () => {
-    const [shuSvg, setShuSvg] = useState('');
-    const [districtColors, setDistrictColors] = useState<{[key in string]: string}>({});
     const visitedSenkyokuCount = senkyokuVisitCountsJson.filter(([, count]) => count > 0).length;
     const visitedSenkyokuColors = senkyokuVisitCountsJson
         .filter(([, count]) => count > 0)
-        .map(([senkyokuId]) => [senkyokuId, districtColors[senkyokuId] || 'white'] as [string, string]);
+        .map(([senkyokuId]) => [
+            senkyokuId,
+            senkyokuResultColorJson[senkyokuId as keyof typeof senkyokuResultColorJson] || 'white',
+        ] as [string, string]);
     const visitedSenkyokuColorSet = new Set(
         visitedSenkyokuColors.map(e => e[1])
     );
@@ -48,24 +49,16 @@ const App: NextPage = () => {
         .map(color => [
             color,
             visitedSenkyokuColors.filter(e => e[1] === color).length,
-            Object.entries(districtColors).filter(([, v]) => v === color).length,
+            Object.entries(senkyokuResultColorJson).filter(([, v]) => v === color).length,
         ] as [string, number, number])
         .sort((a, b) => a[1] === b[1] ? - (a[2] - b[2]) : - (a[1] - b[1]));
-    useEffect(() => {
-        (async () => {
-            const svgRes = await axios.get('https://senkyo.watch/assets/maps/shu-2022-geo.svg');
-            setShuSvg(svgRes.data);
-            const colorsRes = await axios.get('https://senkyo.watch/data/shu/district-colors.json');
-            setDistrictColors(colorsRes.data);
-        })();
-    }, []);
     return (
         <Layout
             title='訪問歴 | hideo54.com'
             description='旅好き・hideo54がこれまでに訪れたことのある土地をまとめています。'
         >
             <h1>訪問歴</h1>
-            <h2>訪れたことのある小選挙区</h2>
+            <h2>訪れたことのある小選挙区 (2021)</h2>
             <CountSection>
                 <p>
                     <span className='big'>{visitedSenkyokuCount}</span>
@@ -78,7 +71,9 @@ const App: NextPage = () => {
                     </p>
                 )}
             </CountSection>
-            <ShuMapWrapperDiv dangerouslySetInnerHTML={{ __html: shuSvg }} />
+            <ShuMapWrapperDiv>
+                <Shu2017GeoSvg />
+            </ShuMapWrapperDiv>
             <style dangerouslySetInnerHTML={{
                 __html: visitedSenkyokuColors
                     .map(([senkyokuId, color]) => `#${senkyokuId}{fill:${color};}`)
