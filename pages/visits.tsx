@@ -58,7 +58,7 @@ const App: NextPage = () => {
             description='旅好き・hideo54がこれまでに訪れたことのある土地をまとめています。'
         >
             <h1>訪問歴</h1>
-            <h2>訪れたことのある小選挙区 (2021)</h2>
+            <h2>訪れたことのある小選挙区</h2>
             <CountSection>
                 <p>
                     <span className='big'>{visitedSenkyokuCount}</span>
