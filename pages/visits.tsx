@@ -22,15 +22,20 @@ const CountSection = styled.section`
     position: absolute;
     padding: 0.5rem;
     p.item {
-        margin-bottom: 0.4rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.45rem;
     }
     span.big {
         font-size: 2rem;
         font-weight: bold;
     }
-    svg path {
-        fill: inherit;
-        stroke-width: 24;
+    svg {
+        margin-right: 0.2rem;
+        vertical-align: -5px;
+        path {
+            fill: inherit;
+            stroke-width: 24;
+        }
     }
 `;
 
@@ -66,7 +71,7 @@ const App: NextPage = () => {
                 </p>
                 {visitedSenkyokuCountsByParty.map(([color, visitedCount, allCount]) =>
                     <p key={color} className='item'>
-                        <Square size='1.6em' fill={color} />
+                        <Square size='1.4em' fill={color} />
                         {visitedCount} / {allCount}
                     </p>
                 )}
