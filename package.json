@@ -18,7 +18,7 @@
   "dependencies": {
     "@hideo54/reactor": "^1.6.0",
     "@mdx-js/loader": "^2.3.0",
-    "@next/mdx": "^13.1.6",
+    "@next/mdx": "^13.2.1",
     "@styled-icons/fa-brands": "^10.47.0",
     "@styled-icons/fa-solid": "^10.47.0",
     "@styled-icons/ionicons-outline": "^10.46.0",
