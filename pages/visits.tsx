@@ -40,8 +40,15 @@ const CountSection = styled.section`
 `;
 
 const App: NextPage = () => {
-    const visitedSenkyokuCount = senkyokuVisitCountsJson.filter(([, count]) => count > 0).length;
-    const visitedSenkyokuColors = senkyokuVisitCountsJson
+    const senkyokuVisitCounts = Object.fromEntries(senkyokuVisitCountsJson);
+
+    // Manual edit:
+    senkyokuVisitCounts['wakayama-1'] += 1;
+
+    const visitedSenkyokuCount = Object.entries<number>(senkyokuVisitCounts).filter(
+        ([, count]) => count > 0
+    ).length;
+    const visitedSenkyokuColors = Object.entries<number>(senkyokuVisitCounts)
         .filter(([, count]) => count > 0)
         .map(([senkyokuId]) => [
             senkyokuId,
