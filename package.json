@@ -33,7 +33,7 @@
     "yaml": "^2.2.1"
   },
   "devDependencies": {
-    "@google-cloud/storage": "^6.9.3",
+    "@google-cloud/storage": "^6.9.4",
     "@hideo54/eslint-config": "^1.0.16",
     "@svgr/webpack": "^6.5.1",
     "@types/mdx-js__react": "^1.5.5",
