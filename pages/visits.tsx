@@ -43,8 +43,9 @@ const App: NextPage = () => {
     const senkyokuVisitCounts = Object.fromEntries(senkyokuVisitCountsJson);
 
     // Manual edit:
-    senkyokuVisitCounts['wakayama-1'] += 1;
-    senkyokuVisitCounts['wakayama-3'] += 1;
+    senkyokuVisitCounts['mie-4'] += 1; // 小学生のとき、伊勢、鳥羽など
+    senkyokuVisitCounts['wakayama-1'] += 1; // マリーナシティが地図の簡略化により抜けてしまっている
+    senkyokuVisitCounts['wakayama-3'] += 1; // 小学生の時、白浜
 
     const visitedSenkyokuCount = Object.entries<number>(senkyokuVisitCounts).filter(
         ([, count]) => count > 0
