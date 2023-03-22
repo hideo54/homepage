@@ -44,6 +44,7 @@ const App: NextPage = () => {
 
     // Manual edit:
     senkyokuVisitCounts['wakayama-1'] += 1;
+    senkyokuVisitCounts['wakayama-3'] += 1;
 
     const visitedSenkyokuCount = Object.entries<number>(senkyokuVisitCounts).filter(
         ([, count]) => count > 0
