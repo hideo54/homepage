@@ -7,7 +7,7 @@ import senkyokuVisitCountsJson from '../lib/senkyoku-visit-counts.json';
 import senkyokuResultColorJson from '../lib/shu-2021-senkyoku-result-color.json';
 import Shu2017GeoSvg from '../lib/shu-2017-geo.svg';
 
-const ShuMapWrapperDiv = styled.div`
+const MapWrapperDiv = styled.div`
     fill: white;
     stroke: black;
     stroke-width: 0.2;
@@ -85,9 +85,9 @@ const App: NextPage = () => {
                     </p>
                 )}
             </CountSection>
-            <ShuMapWrapperDiv>
+            <MapWrapperDiv>
                 <Shu2017GeoSvg />
-            </ShuMapWrapperDiv>
+            </MapWrapperDiv>
             <style dangerouslySetInnerHTML={{
                 __html: visitedSenkyokuColors
                     .map(([senkyokuId, color]) => `#${senkyokuId}{fill:${color};}`)
