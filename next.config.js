@@ -12,7 +12,7 @@ module.exports = withMDX({
                     svgoConfig: {
                         plugins: [
                             {
-                                name: 'cleanupIDs',
+                                name: 'cleanupIds',
                                 active: false,
                             },
                         ],
