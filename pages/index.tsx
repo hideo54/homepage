@@ -87,6 +87,11 @@ const App = () => (
                 活動
             </IconNextLink>
         </h2>
+        <h2>
+            <IconNextLink href='/visits' RightIcon={ChevronForward}>
+                訪問歴
+            </IconNextLink>
+        </h2>
         <section>
             <h2>連絡先</h2>
             <ul>
