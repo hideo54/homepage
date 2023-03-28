@@ -13,7 +13,9 @@ module.exports = withMDX({
                         plugins: [
                             {
                                 name: 'cleanupIds',
-                                active: false,
+                                params: {
+                                    remove: false,
+                                },
                             },
                         ],
                     },
