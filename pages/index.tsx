@@ -31,8 +31,8 @@ const App = () => (
             <h2>現在の所属</h2>
             <ul>
                 <li>
-                    <IconAnchor RightIcon={Open} href='https://www.si.t.u-tokyo.ac.jp/course/psi/'>
-                        東京大学工学部システム創成学科 (PSI)
+                    <IconAnchor RightIcon={Open} href='https://tmi.t.u-tokyo.ac.jp/'>
+                        東京大学大学院工学系研究科技術経営戦略学専攻 (TMI)
                     </IconAnchor>
                 </li>
                 <li>
@@ -51,23 +51,23 @@ const App = () => (
         <section>
             <h2>いた</h2>
             <ul>
-                <li>東京大学教養学部理科1類</li>
+                <li>
+                    <IconAnchor RightIcon={Open} href='https://www.c.u-tokyo.ac.jp/'>
+                        東京大学教養学部
+                    </IconAnchor>
+                    理科1類
+                </li>
+                <li>
+                    <IconAnchor RightIcon={Open} href='https://www.si.t.u-tokyo.ac.jp/course/psi/'>
+                        東京大学工学部システム創成学科 (PSI)
+                    </IconAnchor>
+                </li>
                 <li>灘校パソコン研究部 (NPCA)</li>
                 <li>セキュリティ・キャンプ (参加: 2016全国、チューター: 2018山梨、2019福岡、2019沖縄)</li>
                 <li>SECCON Final 2016, 2019</li>
                 <li>
                     <IconAnchor RightIcon={Open} href='https://twitter.com/hideo54/status/1204218275233558528'>
                         バーガーキングの壁
-                    </IconAnchor>
-                </li>
-            </ul>
-        </section>
-        <section>
-            <h2>いく (予定)</h2>
-            <ul>
-                <li>
-                    <IconAnchor RightIcon={Open} href='https://tmi.t.u-tokyo.ac.jp/'>
-                        東京大学大学院工学系研究科技術経営戦略学専攻 (TMI)
                     </IconAnchor>
                 </li>
             </ul>
