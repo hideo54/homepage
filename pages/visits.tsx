@@ -1,71 +1,10 @@
 import type { NextPage } from 'next';
-import styled from 'styled-components';
-import { Open, Square } from '@styled-icons/ionicons-outline';
+import { Open } from '@styled-icons/ionicons-outline';
 import { IconAnchor } from '@hideo54/reactor';
 import Layout from '../components/Layout';
-import senkyokuVisitCountsJson from '../lib/senkyoku-visit-counts.json';
-import senkyokuResultColorJson from '../lib/shu-2021-senkyoku-result-color.json';
-import Shu2017GeoSvg from '../lib/shu-2017-geo.svg';
-
-const MapWrapperDiv = styled.div`
-    fill: white;
-    stroke: black;
-    stroke-width: 0.2;
-    background-color: #a5c1fa;
-    svg {
-        width: 100%;
-        max-height: 120vw;
-    }
-`;
-
-const CountSection = styled.section`
-    position: absolute;
-    padding: 0.5rem;
-    p.item {
-        font-size: 0.9rem;
-        margin-bottom: 0.45rem;
-    }
-    span.big {
-        font-size: 2rem;
-        font-weight: bold;
-    }
-    svg {
-        margin-right: 0.2rem;
-        vertical-align: -5px;
-        path {
-            fill: inherit;
-            stroke-width: 24;
-        }
-    }
-`;
+import VisitedSenkyokuMap from '../components/VisitedSenkyokuMap';
 
 const App: NextPage = () => {
-    const senkyokuVisitCounts = Object.fromEntries(senkyokuVisitCountsJson);
-
-    // Manual edit:
-    senkyokuVisitCounts['mie-4'] += 1; // 小学生のとき、伊勢、鳥羽など
-    senkyokuVisitCounts['wakayama-1'] += 1; // マリーナシティが地図の簡略化により抜けてしまっている
-    senkyokuVisitCounts['wakayama-3'] += 1; // 小学生の時、白浜
-
-    const visitedSenkyokuCount = Object.entries<number>(senkyokuVisitCounts).filter(
-        ([, count]) => count > 0
-    ).length;
-    const visitedSenkyokuColors = Object.entries<number>(senkyokuVisitCounts)
-        .filter(([, count]) => count > 0)
-        .map(([senkyokuId]) => [
-            senkyokuId,
-            senkyokuResultColorJson[senkyokuId as keyof typeof senkyokuResultColorJson] || 'white',
-        ] as [string, string]);
-    const visitedSenkyokuColorSet = new Set(
-        visitedSenkyokuColors.map(e => e[1])
-    );
-    const visitedSenkyokuCountsByParty = Array.from(visitedSenkyokuColorSet)
-        .map(color => [
-            color,
-            visitedSenkyokuColors.filter(e => e[1] === color).length,
-            Object.entries(senkyokuResultColorJson).filter(([, v]) => v === color).length,
-        ] as [string, number, number])
-        .sort((a, b) => a[1] === b[1] ? - (a[2] - b[2]) : - (a[1] - b[1]));
     return (
         <Layout
             title='訪問歴 | hideo54.com'
@@ -73,26 +12,7 @@ const App: NextPage = () => {
         >
             <h1>訪問歴</h1>
             <h2>訪れたことのある小選挙区</h2>
-            <CountSection>
-                <p>
-                    <span className='big'>{visitedSenkyokuCount}</span>
-                    <span> / 289</span>
-                </p>
-                {visitedSenkyokuCountsByParty.map(([color, visitedCount, allCount]) =>
-                    <p key={color} className='item'>
-                        <Square size='1.4em' fill={color} />
-                        {visitedCount} / {allCount}
-                    </p>
-                )}
-            </CountSection>
-            <MapWrapperDiv>
-                <Shu2017GeoSvg />
-            </MapWrapperDiv>
-            <style dangerouslySetInnerHTML={{
-                __html: visitedSenkyokuColors
-                    .map(([senkyokuId, color]) => `#${senkyokuId}{fill:${color};}`)
-                    .join(''),
-            }} />
+            <VisitedSenkyokuMap />
             <p>
                 <small>
                     小選挙区マップ:{' '}
