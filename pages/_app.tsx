@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
     h1, h2, h3, h4, h5, h6, p, div {
         margin-top: 0;
         color: #333333;
+        line-height: 1.5;
 
         @media (prefers-color-scheme: dark) {
             color: #EEEEEE;
