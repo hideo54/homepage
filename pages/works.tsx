@@ -127,17 +127,9 @@ const works: Work[] = [
     {
         category: 'Web',
         title: '選挙ウォッチ',
-        description: '衆院選・参院選に向けた各党の候補者擁立状況をまとめたウェブサイト。Candidates2021の後継サービス。',
+        description: '衆院選・参院選に向けた各党の候補者擁立状況をまとめたウェブサイト。複雑な候補者調整・競合状況の最新の情報を地図でわかりやすく確認できるほか、議席数予想も可能。実は情報収集の多くが自動化されている点も特徴。',
         url: 'https://senkyo.watch',
         imageUrl: 'https://senkyo.watch/assets/images/icon.svg',
-    },
-    {
-        category: 'Web',
-        title: 'Candidates2021 - 衆院選情報サイト',
-        description: '2021年の衆議院選挙に向けた各党の候補者擁立状況をまとめたウェブサイト。複雑な候補者調整・競合状況の最新の情報を地図でわかりやすく確認できるほか、議席数予想もできます。実は情報収集の多くが自動化されている点も特徴。',
-        url: 'https://candidates2021.info',
-        imageUrl: 'https://candidates2021.info/logo.svg',
-        until: '2021年秋',
     },
     {
         category: 'Slack bot',
