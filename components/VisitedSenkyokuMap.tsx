@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Square } from '@styled-icons/ionicons-outline';
-import senkyokuVisitCountsJson from '../lib/senkyoku-visit-counts.json';
+import swarmDataJson from '../lib/swarm-data.json';
 import senkyokuResultColorJson from '../lib/shu-2021-senkyoku-result-color.json';
 import Shu2017GeoSvg from '../lib/shu-2017-geo.svg';
 
@@ -39,7 +39,7 @@ const CountSection = styled.section`
 `;
 
 const VisitedSenkyokuMap = () => {
-    const senkyokuVisitCounts = Object.fromEntries(senkyokuVisitCountsJson);
+    const senkyokuVisitCounts = Object.fromEntries(swarmDataJson.senkyokuVisitCounts);
 
     // Manual edit:
     senkyokuVisitCounts['mie-4'] += 1; // 小学生のとき、伊勢、鳥羽など

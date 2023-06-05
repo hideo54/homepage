@@ -146,12 +146,13 @@ const main = async () => {
             i === 0 || (cur[0] !== arr[i - 1][0] && cur[1] !== arr[i - 1][1])
         )
     );
-    // const allVisitedStates = new Set(
-    //     allCheckins.map(checkin => checkin.venue.location.state).sort()
-    // );
-    // const allVisitedCountries = new Set(
-    //     allCheckins.map(checkin => checkin.venue.location.country).sort()
-    // );
+    const allVisitedCountries = new Set(
+        allCheckins.map(checkin => checkin.venue.location.country).sort()
+    );
+    const allVisitedUSStates = new Set(
+        allCheckins.filter(checkin => checkin.venue.location.country === 'アメリカ合衆国')
+            .map(checkin => checkin.venue.location.state).sort()
+    );
     const senkyokuGeoJson = JSON.parse(
         await fs.readFile(__dirname + '/../lib/shu-2017.geojson', 'utf-8')
     );
@@ -166,7 +167,15 @@ const main = async () => {
         );
         return [senkyokuId, coordinatesInside.length];
     }).sort((a: any, b: any) => - (a[1] - b[1]));
-    await fs.writeFile(__dirname + '/../lib/senkyoku-visit-counts.json', JSON.stringify(senkyokuVisitCounts));
+    const checkinData = {
+        senkyokuVisitCounts,
+        allVisitedCountries,
+        allVisitedUSStates,
+    };
+    await fs.writeFile(
+        __dirname + '/../lib/swarm-data.json',
+        JSON.stringify(checkinData)
+    );
 };
 
 main();
