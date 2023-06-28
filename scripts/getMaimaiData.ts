@@ -3,6 +3,7 @@ import https from 'https';
 import path from 'path';
 import axios, { type AxiosError } from 'axios';
 import scrapeIt from 'scrape-it';
+import { getPrefectureId, prefectureNames } from 'jp-local-gov';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: path.join(__dirname, '../.env.local') });
@@ -81,7 +82,7 @@ const main = async () => {
     });
     const { prefectures } = scrapeIt.scrapeHTML<{
         prefectures: {
-            name: string;
+            name: typeof prefectureNames[number];
         }[];
     }>(angyaHtml, {
         prefectures: {
@@ -91,6 +92,7 @@ const main = async () => {
             },
         },
     });
+    const prefectureIds = prefectures.map(pref => getPrefectureId(pref.name));
 
     const masterRecordsUrl = 'https://maimaidx.jp/maimai-mobile/record/musicGenre/search/?genre=99&diff=2';
     const { data: masterRecordsHtml } = await axios.get(masterRecordsUrl, {
@@ -144,7 +146,7 @@ const main = async () => {
         );
 
     const maimaiData = {
-        prefectures,
+        prefectures: prefectureIds,
         masterRecords: availableMasterRecords,
     };
     await fs.writeFile(
