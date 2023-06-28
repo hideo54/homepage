@@ -94,14 +94,14 @@ const main = async () => {
     });
     const prefectureIds = prefectures.map(pref => getPrefectureId(pref.name));
 
-    const masterRecordsUrl = 'https://maimaidx.jp/maimai-mobile/record/musicGenre/search/?genre=99&diff=2';
-    const { data: masterRecordsHtml } = await axios.get(masterRecordsUrl, {
+    const expertRecordsUrl = 'https://maimaidx.jp/maimai-mobile/record/musicGenre/search/?genre=99&diff=2';
+    const { data: expertRecordsHtml } = await axios.get(expertRecordsUrl, {
         headers: {
             Cookie: `_t=${token}; userId=${userId}`,
         },
         httpsAgent,
     });
-    const { records: masterRecords } = scrapeIt.scrapeHTML<{
+    const { records: expertRecords } = scrapeIt.scrapeHTML<{
         records: {
             name: string;
             score: number | null;
@@ -109,7 +109,7 @@ const main = async () => {
             isStandardSelected: boolean | undefined;
             isStandardAlone: boolean | undefined;
         }[]
-    }>(masterRecordsHtml, {
+    }>(expertRecordsHtml, {
         records: {
             listItem: 'div.main_wrapper > div.w_450.m_15.p_r.f_0',
             data: {
@@ -133,7 +133,7 @@ const main = async () => {
             },
         },
     });
-    const availableMasterRecords = masterRecords.filter(record => record.score)
+    const availableExpertRecords = expertRecords.filter(record => record.score)
         .map(record => ({
             name: record.name,
             score: record.score,
@@ -147,7 +147,7 @@ const main = async () => {
 
     const maimaiData = {
         prefectures: prefectureIds,
-        masterRecords: availableMasterRecords,
+        expertRecords: availableExpertRecords,
     };
     await fs.writeFile(
         __dirname + '/../lib/maimai-data.json',
