@@ -10,7 +10,7 @@ accounts:
           username: '@hideo54'
         - name: Bluesky
           color: '#0070ff'
-          link: https://staging.bsky.app/profile/hideo54.com
+          link: https://bsky.app/profile/hideo54.com
           username: '@hideo54.com'
         # - name: Facebook
         #   color: '#3C5998'
