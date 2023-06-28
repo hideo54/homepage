@@ -18,3 +18,5 @@ jobs:
     - run: npm run build
       env:
         FOURSQUARE_ACCESS_TOKEN: '${{ secrets.FOURSQUARE_ACCESS_TOKEN }}'
+        SEGA_ID: '${{ secrets.SEGA_ID }}'
+        SEGA_PASSWORD: '${{ secrets.SEGA_PASSWORD }}'
