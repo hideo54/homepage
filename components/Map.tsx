@@ -16,11 +16,15 @@ const CountSection = styled.section`
     position: absolute;
     top: 0;
     padding: 0.5rem;
+    span {
+        color: #333333;
+    }
     span.big {
         font-size: 2rem;
         font-weight: bold;
     }
     p.item {
+        color: #333333;
         font-size: 0.9rem;
         margin-bottom: 0.45rem;
     }
