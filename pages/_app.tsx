@@ -56,6 +56,10 @@ const GlobalStyle = createGlobalStyle`
             background-color: #666666;
         }
     }
+
+    section {
+        margin-bottom: 4rem;
+    }
 `;
 
 const mdxComponents = {
