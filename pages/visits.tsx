@@ -60,7 +60,17 @@ const App: NextPage = () => {
             <section>
                 <h2>訪れたことのある国</h2>
                 <ul>
-                    {}
+                    {swarmDataJson.allVisitedCountries.map(country =>
+                        <li key={country}>{country}</li>
+                    )}
+                </ul>
+            </section>
+            <section>
+                <h2>訪れたことのあるアメリカ合衆国の州</h2>
+                <ul>
+                    {swarmDataJson.allVisitedUSStates.map(state =>
+                        <li key={state}>{state}</li>
+                    )}
                 </ul>
             </section>
         </Layout>
