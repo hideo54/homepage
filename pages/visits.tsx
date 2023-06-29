@@ -9,7 +9,7 @@ import swarmDataJson from '../lib/swarm-data.json';
 import senkyokuResultColorJson from '../lib/shu-2021-senkyoku-result-color.json';
 import usStateColorsJson from '../lib/us-state-colors.json';
 import PrefecturesMapSvg from '../public/prefectures-simplify-20.svg';
-import Shu2017GeoSvg from '../lib/shu-2017-geo.svg';
+import Shu2017GeoSvg from '../public/shu-2017-geo.svg';
 import USStatesMapSvg from '../public/us-states.svg';
 
 const App: NextPage = () => {
