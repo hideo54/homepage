@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import Layout from '../components/Layout';
+import Map from '../components/Map';
 import maimaiDataJson from '../lib/maimai-data.json';
-import PrefecturalMap from '../components/PrefecturalMap';
+import PrefecturesMapSvg from '../public/prefectures-simplify-20.svg';
 
 const RecordLi = styled.li`
     margin-bottom: 1rem;
@@ -64,11 +65,15 @@ const App = () => {
             </section>
             <section>
                 <h2>maimai をプレイしたことがある都道府県</h2>
-                <PrefecturalMap
+                <Map
+                    id='maimai'
+                    Svg={PrefecturesMapSvg}
+                    viewBox='137.0 20.0 591.0 740.0'
                     fill={Object.fromEntries(
                         maimaiDataJson.prefectures.map(prefId => [prefId, '#e89402'])
                     )}
                     count={maimaiDataJson.prefectures.length}
+                    maxCount={47}
                 />
             </section>
         </Layout>
