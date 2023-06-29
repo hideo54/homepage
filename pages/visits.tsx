@@ -6,6 +6,7 @@ import Map from '../components/Map';
 import maimaiDataJson from '../lib/maimai-data.json';
 import swarmDataJson from '../lib/swarm-data.json';
 import senkyokuResultColorJson from '../lib/shu-2021-senkyoku-result-color.json';
+import usStateColorsJson from '../lib/us-state-colors.json';
 import PrefecturesMapSvg from '../public/prefectures-simplify-20.svg';
 import Shu2017GeoSvg from '../lib/shu-2017-geo.svg';
 import USStatesMapSvg from '../public/us-states.svg';
@@ -58,7 +59,6 @@ const App: NextPage = () => {
                             </p>
                         )
                     }
-                    additionalCss='g.state{fill:white;}g.borders>path{stroke:black;stroke-width:0.2;}'
                 />
                 <p>
                     <small>
@@ -106,12 +106,20 @@ const App: NextPage = () => {
                     Svg={USStatesMapSvg}
                     viewBox='0 0 940 593'
                     fill={Object.fromEntries(
-                        swarmDataJson.allVisitedUSStates.map(stateId => [stateId.toLowerCase(), '#244999'])
+                        swarmDataJson.allVisitedUSStates.map(stateId => [
+                            stateId.toLowerCase(),
+                            // According to 2020 presidential election result
+                            usStateColorsJson[stateId as keyof typeof usStateColorsJson],
+                        ])
                     )}
                     idProvidedByClass
                     count={swarmDataJson.allVisitedUSStates.length}
-                    maxCount={50}
+                    maxCount={51}
+                    additionalCss='g.state{fill:white;}g.borders>path{stroke:black;stroke-width:0.5;}'
                 />
+                <div>
+                    <small>50 states + District of Columbia.</small>
+                </div>
                 <small>
                     マップ:{' '}
                     <IconAnchor

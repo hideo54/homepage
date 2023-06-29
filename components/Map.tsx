@@ -51,7 +51,7 @@ const USStateMap: React.FC<{
     <MapWrapperDiv>
         <props.Svg viewBox={props.viewBox} />
         <style dangerouslySetInnerHTML={{
-            __html: props.additionalCss + Object.entries(props.fill)
+            __html: (props.additionalCss || '') + Object.entries(props.fill)
                 .map(([prefId, color]) =>
                     `path${props.idProvidedByClass ? '.' : '#'}${prefId}{fill:${color};}`
                 ).join(''),
