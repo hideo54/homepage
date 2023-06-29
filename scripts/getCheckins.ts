@@ -146,12 +146,16 @@ const main = async () => {
             i === 0 || (cur[0] !== arr[i - 1][0] && cur[1] !== arr[i - 1][1])
         )
     );
-    const allVisitedCountries = new Set(
-        allCheckins.map(checkin => checkin.venue.location.country).sort()
+    const allVisitedCountries = Array.from(
+        new Set(
+            allCheckins.map(checkin => checkin.venue.location.country)
+        )
     );
-    const allVisitedUSStates = new Set(
-        allCheckins.filter(checkin => checkin.venue.location.country === 'アメリカ合衆国')
-            .map(checkin => checkin.venue.location.state).sort()
+    const allVisitedUSStates = Array.from(
+        new Set(
+            allCheckins.filter(checkin => checkin.venue.location.country === 'アメリカ合衆国')
+                .map(checkin => checkin.venue.location.state).sort()
+        )
     );
     const senkyokuGeoJson = JSON.parse(
         await fs.readFile(__dirname + '/../lib/shu-2017.geojson', 'utf-8')
