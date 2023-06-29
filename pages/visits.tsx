@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { Open, Square } from '@styled-icons/ionicons-outline';
 import { IconAnchor } from '@hideo54/reactor';
+import { countBy, sum } from 'lodash';
 import Layout from '../components/Layout';
 import Map from '../components/Map';
 import maimaiDataJson from '../lib/maimai-data.json';
@@ -36,6 +37,15 @@ const App: NextPage = () => {
             Object.entries(senkyokuResultColorJson).filter(([, v]) => v === color).length,
         ] as [string, number, number])
         .sort((a, b) => a[1] === b[1] ? - (a[2] - b[2]) : - (a[1] - b[1]));
+
+    const keikenchiToColor = (keikenchi: number) => {
+        if (keikenchi === 5) return '#e87afd';
+        if (keikenchi === 4) return '#f56d64';
+        if (keikenchi === 3) return '#faff79';
+        if (keikenchi === 2) return '#bbf59d';
+        if (keikenchi === 1) return '#b7ddfd';
+        return '#ffffff';
+    };
 
     return (
         <Layout
@@ -80,6 +90,32 @@ const App: NextPage = () => {
                         <li>その小選挙区で当選した候補者の<strong>現在の</strong>所属政党の色で塗っています。たとえば、その候補者が当時無所属で出馬し、その後自由民主党所属となった場合、自由民主党の色で塗っています。そのため、2021年の選挙結果とは微妙に異なった配色となっています。</li>
                     </ul>
                 </section>
+            </section>
+            <section>
+                <h2>経県値</h2>
+                <Map
+                    id='keikenchi'
+                    Svg={PrefecturesMapSvg}
+                    viewBox='137.0 20.0 591.0 740.0'
+                    fill={Object.fromEntries(
+                        Object.entries(swarmDataJson.keikenchi).map(([prefId, value]) => [
+                            prefId,
+                            keikenchiToColor(value),
+                        ])
+                    )}
+                    count={sum(Object.values(swarmDataJson.keikenchi))}
+                    maxCount={5 * 47}
+                    CountSectionChildren={
+                        Object.entries(countBy(swarmDataJson.keikenchi))
+                            .reverse()
+                            .map(([prefId, count], i) =>
+                                <p key={prefId} className='item'>
+                                    <Square size='1.4em' fill={keikenchiToColor(5 - i)} />
+                                    {count} / 47
+                                </p>
+                            )
+                    }
+                />
             </section>
             <section>
                 <h2>maimai をプレイしたことがある都道府県</h2>

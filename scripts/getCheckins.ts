@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import axios from 'axios';
 import * as turf from '@turf/turf';
-import { prefectureIds } from 'jp-local-gov';
+import { getPrefectureId, prefectureIds, prefectureNames } from 'jp-local-gov';
 import { countBy } from 'lodash';
 import dotenv from 'dotenv';
 
@@ -98,17 +98,6 @@ const main = async () => {
             i === 0 || (cur[0] !== arr[i - 1][0] && cur[1] !== arr[i - 1][1])
         )
     );
-    const allVisitedCountries = Object.entries(
-        countBy(
-            allCheckins.map(checkin => checkin.venue.location.country)
-        )
-    ).sort((a, b) => a[1] > b[1] ? -1 : 1).map(e => e[0]);
-    const allVisitedUSStates = Object.entries(
-        countBy(
-            allCheckins.filter(checkin => checkin.venue.location.country === 'アメリカ合衆国')
-                .map(checkin => checkin.venue.location.state)
-        )
-    ).sort((a, b) => a[1] > b[1] ? -1 : 1).map(e => e[0]);
     const senkyokuGeoJson = JSON.parse(
         await fs.readFile(__dirname + '/../lib/shu-2017.geojson', 'utf-8')
     );
@@ -124,8 +113,59 @@ const main = async () => {
         );
         return [senkyokuId, coordinatesInside.length] as [string, number];
     }).sort((a, b) => - (a[1] - b[1]));
+
+    const keikenchi = Object.fromEntries(
+        prefectureNames.map(prefName => {
+            const prefId = getPrefectureId(prefName);
+            const checkins = allCheckins.filter(checkin => checkin.venue.location.state === prefName);
+            const categories = new Set(
+                checkins.map(checkin =>
+                    checkin.venue.categories.map(category => category.name)
+                ).flat()
+            );
+            const value = (() => {
+                if (categories.has('ホテル') || categories.has('Bed and Breakfast') || categories.has('宿屋')) return 4;
+                if (categories.size === 1 && categories.has('鉄道駅')) return 2;
+                if (checkins.length > 0) return 3;
+                return 0;
+            })();
+            return [prefId, value];
+        })
+    );
+    keikenchi.kanagawa = 4; // 2015年8月、Mine の家
+    keikenchi.toyama = 1; // 2014年5月、中学校の野外活動で通過
+    keikenchi.fukui = 1; // 2014年5月、中学校の野外活動で通過
+    keikenchi.shiga = 4; // 小学生時代
+    keikenchi.nara = 4; // 小学生時代
+    keikenchi.wakayama = 4; // 小学生時代、家族旅行
+    keikenchi.hyogo = 4; // 中学1年生、部活動の合宿
+    keikenchi.hiroshima = 4; // 2019年3月、傷心旅行 (チェックイン忘れ)
+    keikenchi.ehime = 4; // 2019年3月、傷心旅行 (スーパー温泉に宿泊)
+    keikenchi.fukuoka = 4; // 2019年9月、ミニキャンプチューター (チェックイン忘れ)
+    keikenchi.nagasaki = 4; // 2014年1月、家族旅行 (チェックイン忘れ)
+
+    keikenchi.yamaguchi = 2; // ちょっと降りただけなので「訪問」はおこがましく「接地」が適切
+
+    keikenchi.osaka = 5; // 実家 (1999–2019)
+    keikenchi.tokyo = 5; // 一人暮らし (2019–)
+    keikenchi.saga = 5; // 2023年3月、免許合宿でホテルに12泊し、佐賀に親しみを覚えたので、実質居住
+    keikenchi.kumamoto = 5; // 2023年6月、人工知能学会でホテルに5泊し、熊本に親しみを覚えたので、実質居住
+
+    const allVisitedCountries = Object.entries(
+        countBy(
+            allCheckins.map(checkin => checkin.venue.location.country)
+        )
+    ).sort((a, b) => a[1] > b[1] ? -1 : 1).map(e => e[0]);
+    const allVisitedUSStates = Object.entries(
+        countBy(
+            allCheckins.filter(checkin => checkin.venue.location.country === 'アメリカ合衆国')
+                .map(checkin => checkin.venue.location.state)
+        )
+    ).sort((a, b) => a[1] > b[1] ? -1 : 1).map(e => e[0]);
+
     const checkinData = {
         senkyokuVisitCounts,
+        keikenchi,
         allVisitedCountries,
         allVisitedUSStates,
     };
