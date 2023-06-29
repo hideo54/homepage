@@ -46,6 +46,7 @@ const App: NextPage = () => {
             <section>
                 <h2>訪れたことのある小選挙区</h2>
                 <Map
+                    id='senkyoku'
                     Svg={Shu2017GeoSvg}
                     viewBox='100 15 433 540'
                     fill={Object.fromEntries(visitedSenkyokuColors)}
@@ -83,6 +84,7 @@ const App: NextPage = () => {
             <section>
                 <h2>maimai をプレイしたことがある都道府県</h2>
                 <Map
+                    id='maimai'
                     Svg={PrefecturesMapSvg}
                     viewBox='137.0 20.0 591.0 740.0'
                     fill={Object.fromEntries(
@@ -103,6 +105,7 @@ const App: NextPage = () => {
             <section>
                 <h2>訪れたことのあるアメリカ合衆国の州</h2>
                 <Map
+                    id='us'
                     Svg={USStatesMapSvg}
                     viewBox='0 0 940 593'
                     fill={Object.fromEntries(

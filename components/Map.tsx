@@ -39,21 +39,22 @@ const CountSection = styled.section`
 `;
 
 const USStateMap: React.FC<{
-    Svg: React.FC<{ viewBox?: string; }>;
+    Svg: React.FC<{ viewBox?: string; id: string; }>;
     viewBox: string;
     idProvidedByClass?: boolean;
     fill: {[keys: string]: string};
     count: number;
     maxCount: number;
     CountSectionChildren?: React.ReactNode;
+    id: string;
     additionalCss?: string;
 }> = props => (
     <MapWrapperDiv>
-        <props.Svg viewBox={props.viewBox} />
+        <props.Svg viewBox={props.viewBox} id={props.id} />
         <style dangerouslySetInnerHTML={{
             __html: (props.additionalCss || '') + Object.entries(props.fill)
                 .map(([prefId, color]) =>
-                    `path${props.idProvidedByClass ? '.' : '#'}${prefId}{fill:${color};}`
+                    `#${props.id} path${props.idProvidedByClass ? '.' : '#'}${prefId}{fill:${color};}`
                 ).join(''),
         }} />
         <CountSection>
