@@ -20,3 +20,4 @@ jobs:
         FOURSQUARE_ACCESS_TOKEN: '${{ secrets.FOURSQUARE_ACCESS_TOKEN }}'
         SEGA_ID: '${{ secrets.SEGA_ID }}'
         SEGA_PASSWORD: '${{ secrets.SEGA_PASSWORD }}'
+        NEXT_TELEMETRY_DISABLED: 1
