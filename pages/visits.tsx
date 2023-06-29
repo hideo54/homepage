@@ -1,12 +1,14 @@
 import type { NextPage } from 'next';
-import { Open } from '@styled-icons/ionicons-outline';
+import { Open, Square } from '@styled-icons/ionicons-outline';
 import { IconAnchor } from '@hideo54/reactor';
 import Layout from '../components/Layout';
-import PrefecturalMap from '../components/PrefecturalMap';
-import USStatesMap from '../components/USStatesMap';
-import VisitedSenkyokuMap from '../components/VisitedSenkyokuMap';
+import Map from '../components/Map';
 import maimaiDataJson from '../lib/maimai-data.json';
 import swarmDataJson from '../lib/swarm-data.json';
+import senkyokuResultColorJson from '../lib/shu-2021-senkyoku-result-color.json';
+import PrefecturesMapSvg from '../public/prefectures-simplify-20.svg';
+import Shu2017GeoSvg from '../lib/shu-2017-geo.svg';
+import USStatesMapSvg from '../public/us-states.svg';
 
 const App: NextPage = () => {
     const senkyokuVisitCounts: {[key: string]: number} = Object.fromEntries(swarmDataJson.senkyokuVisitCounts);
@@ -19,6 +21,20 @@ const App: NextPage = () => {
     const visitedSenkyoku = Object.entries(senkyokuVisitCounts)
         .filter(([, count]) => count > 0)
         .map(e => e[0]);
+    const visitedSenkyokuColors = visitedSenkyoku.map(senkyokuId => [
+        senkyokuId,
+        senkyokuResultColorJson[senkyokuId as keyof typeof senkyokuResultColorJson] || 'white',
+    ] as [string, string]);
+    const visitedSenkyokuColorSet = new Set(
+        visitedSenkyokuColors.map(e => e[1])
+    );
+    const visitedSenkyokuCountsByParty = Array.from(visitedSenkyokuColorSet)
+        .map(color => [
+            color,
+            visitedSenkyokuColors.filter(e => e[1] === color).length,
+            Object.entries(senkyokuResultColorJson).filter(([, v]) => v === color).length,
+        ] as [string, number, number])
+        .sort((a, b) => a[1] === b[1] ? - (a[2] - b[2]) : - (a[1] - b[1]));
 
     return (
         <Layout
@@ -28,7 +44,22 @@ const App: NextPage = () => {
             <h1>訪問歴</h1>
             <section>
                 <h2>訪れたことのある小選挙区</h2>
-                <VisitedSenkyokuMap visitedSenkyoku={visitedSenkyoku} />
+                <Map
+                    Svg={Shu2017GeoSvg}
+                    viewBox='100 15 433 540'
+                    fill={Object.fromEntries(visitedSenkyokuColors)}
+                    count={visitedSenkyoku.length}
+                    maxCount={289}
+                    CountSectionChildren={
+                        visitedSenkyokuCountsByParty.map(([color, visitedCount, allCount]) =>
+                            <p key={color} className='item'>
+                                <Square size='1.4em' fill={color} />
+                                {visitedCount} / {allCount}
+                            </p>
+                        )
+                    }
+                    additionalCss='g.state{fill:white;}g.borders>path{stroke:black;stroke-width:0.2;}'
+                />
                 <p>
                     <small>
                         小選挙区マップ:{' '}
@@ -51,11 +82,14 @@ const App: NextPage = () => {
             </section>
             <section>
                 <h2>maimai をプレイしたことがある都道府県</h2>
-                <PrefecturalMap
+                <Map
+                    Svg={PrefecturesMapSvg}
+                    viewBox='137.0 20.0 591.0 740.0'
                     fill={Object.fromEntries(
                         maimaiDataJson.prefectures.map(prefId => [prefId, '#e89402'])
                     )}
                     count={maimaiDataJson.prefectures.length}
+                    maxCount={47}
                 />
             </section>
             <section>
@@ -68,11 +102,15 @@ const App: NextPage = () => {
             </section>
             <section>
                 <h2>訪れたことのあるアメリカ合衆国の州</h2>
-                <USStatesMap
+                <Map
+                    Svg={USStatesMapSvg}
+                    viewBox='0 0 940 593'
                     fill={Object.fromEntries(
                         swarmDataJson.allVisitedUSStates.map(stateId => [stateId.toLowerCase(), '#244999'])
                     )}
+                    idProvidedByClass
                     count={swarmDataJson.allVisitedUSStates.length}
+                    maxCount={50}
                 />
                 <small>
                     マップ:{' '}
