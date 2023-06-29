@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Square } from '@styled-icons/ionicons-outline';
-import swarmDataJson from '../lib/swarm-data.json';
 import senkyokuResultColorJson from '../lib/shu-2021-senkyoku-result-color.json';
 import Shu2017GeoSvg from '../lib/shu-2017-geo.svg';
 
@@ -38,23 +37,14 @@ const CountSection = styled.section`
     }
 `;
 
-const VisitedSenkyokuMap = () => {
-    const senkyokuVisitCounts = Object.fromEntries(swarmDataJson.senkyokuVisitCounts);
-
-    // Manual edit:
-    senkyokuVisitCounts['mie-4'] += 1; // 小学生のとき、伊勢、鳥羽など
-    senkyokuVisitCounts['wakayama-1'] += 1; // マリーナシティが地図の簡略化により抜けてしまっている
-    senkyokuVisitCounts['wakayama-3'] += 1; // 小学生の時、白浜
-
-    const visitedSenkyokuCount = Object.entries<number>(senkyokuVisitCounts).filter(
-        ([, count]) => count > 0
-    ).length;
-    const visitedSenkyokuColors = Object.entries<number>(senkyokuVisitCounts)
-        .filter(([, count]) => count > 0)
-        .map(([senkyokuId]) => [
-            senkyokuId,
-            senkyokuResultColorJson[senkyokuId as keyof typeof senkyokuResultColorJson] || 'white',
-        ] as [string, string]);
+const VisitedSenkyokuMap: React.FC<{
+    visitedSenkyoku: string[];
+}> = ({ visitedSenkyoku }) => {
+    const visitedSenkyokuCount = visitedSenkyoku.length;
+    const visitedSenkyokuColors = visitedSenkyoku.map(senkyokuId => [
+        senkyokuId,
+        senkyokuResultColorJson[senkyokuId as keyof typeof senkyokuResultColorJson] || 'white',
+    ] as [string, string]);
     const visitedSenkyokuColorSet = new Set(
         visitedSenkyokuColors.map(e => e[1])
     );

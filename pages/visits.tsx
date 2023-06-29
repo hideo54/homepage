@@ -5,8 +5,20 @@ import Layout from '../components/Layout';
 import PrefecturalMap from '../components/PrefecturalMap';
 import VisitedSenkyokuMap from '../components/VisitedSenkyokuMap';
 import maimaiDataJson from '../lib/maimai-data.json';
+import swarmDataJson from '../lib/swarm-data.json';
 
 const App: NextPage = () => {
+    const senkyokuVisitCounts: {[key: string]: number} = Object.fromEntries(swarmDataJson.senkyokuVisitCounts);
+
+    // Manual edit:
+    senkyokuVisitCounts['mie-4'] += 1; // 小学生のとき、伊勢、鳥羽など
+    senkyokuVisitCounts['wakayama-1'] += 1; // マリーナシティが地図の簡略化により抜けてしまっている
+    senkyokuVisitCounts['wakayama-3'] += 1; // 小学生の時、白浜
+
+    const visitedSenkyoku = Object.entries(senkyokuVisitCounts)
+        .filter(([, count]) => count > 0)
+        .map(e => e[0]);
+
     return (
         <Layout
             title='訪問歴 | hideo54.com'
@@ -15,7 +27,7 @@ const App: NextPage = () => {
             <h1>訪問歴</h1>
             <section>
                 <h2>訪れたことのある小選挙区</h2>
-                <VisitedSenkyokuMap />
+                <VisitedSenkyokuMap visitedSenkyoku={visitedSenkyoku} />
                 <p>
                     <small>
                         小選挙区マップ:{' '}
@@ -44,6 +56,12 @@ const App: NextPage = () => {
                     )}
                     count={maimaiDataJson.prefectures.length}
                 />
+            </section>
+            <section>
+                <h2>訪れたことのある国</h2>
+                <ul>
+                    {}
+                </ul>
             </section>
         </Layout>
     );
