@@ -2,6 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import axios from 'axios';
 import * as turf from '@turf/turf';
+import { prefectureIds } from 'jp-local-gov';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: path.join(__dirname, '../.env.local') });
@@ -41,56 +42,6 @@ interface CheckinResponse {
         };
     };
 }
-
-const prefIds = [
-    'hokkaido',
-    'aomori',
-    'iwate',
-    'miyagi',
-    'akita',
-    'yamagata',
-    'fukushima',
-    'ibaraki',
-    'tochigi',
-    'gunma',
-    'saitama',
-    'chiba',
-    'tokyo',
-    'kanagawa',
-    'niigata',
-    'toyama',
-    'ishikawa',
-    'fukui',
-    'yamanashi',
-    'nagano',
-    'gifu',
-    'shizuoka',
-    'aichi',
-    'mie',
-    'shiga',
-    'kyoto',
-    'osaka',
-    'hyogo',
-    'nara',
-    'wakayama',
-    'tottori',
-    'shimane',
-    'okayama',
-    'hiroshima',
-    'yamaguchi',
-    'tokushima',
-    'kagawa',
-    'ehime',
-    'kochi',
-    'fukuoka',
-    'saga',
-    'nagasaki',
-    'kumamoto',
-    'oita',
-    'miyazaki',
-    'kagoshima',
-    'okinawa',
-];
 
 const getCheckins = async ({ offset, limit }: {
     offset: number;
@@ -163,7 +114,7 @@ const main = async () => {
     const senkyokuVisitCounts = senkyokuGeoJson.features.map((senkyoku: any) => {
         const prefNum = senkyoku.properties.ken;
         const senkyokuNum = senkyoku.properties.ku;
-        const prefId = prefIds[parseInt(prefNum) - 1];
+        const prefId = prefectureIds[parseInt(prefNum) - 1];
         const senkyokuId = `${prefId}-${senkyokuNum}`;
         const senkyokuPolygon = turf.multiPolygon(senkyoku.geometry.coordinates);
         const coordinatesInside = Array.from(allCoordinates).filter(coordinates =>
