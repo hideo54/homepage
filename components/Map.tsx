@@ -38,7 +38,7 @@ const CountSection = styled.section`
     }
 `;
 
-const USStateMap: React.FC<{
+const Map: React.FC<{
     Svg: React.FC<{ viewBox?: string; id: string; }>;
     viewBox: string;
     idProvidedByClass?: boolean;
@@ -67,4 +67,4 @@ const USStateMap: React.FC<{
     </MapWrapperDiv>
 );
 
-export default USStateMap;
+export default Map;
