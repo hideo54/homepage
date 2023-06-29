@@ -112,7 +112,8 @@ const main = async () => {
     const senkyokuGeoJson = JSON.parse(
         await fs.readFile(__dirname + '/../lib/shu-2017.geojson', 'utf-8')
     );
-    const senkyokuVisitCounts = senkyokuGeoJson.features.map((senkyoku: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const senkyokuVisitCounts = (senkyokuGeoJson.features as any[]).map(senkyoku => {
         const prefNum = senkyoku.properties.ken;
         const senkyokuNum = senkyoku.properties.ku;
         const prefId = prefectureIds[parseInt(prefNum) - 1];
@@ -121,8 +122,8 @@ const main = async () => {
         const coordinatesInside = Array.from(allCoordinates).filter(coordinates =>
             turf.booleanPointInPolygon(turf.point(coordinates), senkyokuPolygon)
         );
-        return [senkyokuId, coordinatesInside.length];
-    }).sort((a: any, b: any) => - (a[1] - b[1]));
+        return [senkyokuId, coordinatesInside.length] as [string, number];
+    }).sort((a, b) => - (a[1] - b[1]));
     const checkinData = {
         senkyokuVisitCounts,
         allVisitedCountries,
