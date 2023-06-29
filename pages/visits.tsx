@@ -3,6 +3,7 @@ import { Open } from '@styled-icons/ionicons-outline';
 import { IconAnchor } from '@hideo54/reactor';
 import Layout from '../components/Layout';
 import PrefecturalMap from '../components/PrefecturalMap';
+import USStatesMap from '../components/USStatesMap';
 import VisitedSenkyokuMap from '../components/VisitedSenkyokuMap';
 import maimaiDataJson from '../lib/maimai-data.json';
 import swarmDataJson from '../lib/swarm-data.json';
@@ -67,11 +68,21 @@ const App: NextPage = () => {
             </section>
             <section>
                 <h2>訪れたことのあるアメリカ合衆国の州</h2>
-                <ul>
-                    {swarmDataJson.allVisitedUSStates.map(state =>
-                        <li key={state}>{state}</li>
+                <USStatesMap
+                    fill={Object.fromEntries(
+                        swarmDataJson.allVisitedUSStates.map(stateId => [stateId.toLowerCase(), '#244999'])
                     )}
-                </ul>
+                    count={swarmDataJson.allVisitedUSStates.length}
+                />
+                <small>
+                    マップ:{' '}
+                    <IconAnchor
+                        href='https://commons.wikimedia.org/wiki/File:Blank_US_Map_(states_only).svg'
+                        RightIcon={Open}
+                    >
+                        File:Blank US Map (states only).svg by Heitordp, CC0, via Wikimedia Commons
+                    </IconAnchor>
+                </small>
             </section>
         </Layout>
     );
