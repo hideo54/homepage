@@ -58,7 +58,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     section {
-        margin-bottom: 4rem;
+        margin-bottom: 2rem;
     }
 `;
 
