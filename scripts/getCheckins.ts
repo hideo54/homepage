@@ -154,6 +154,7 @@ const main = async () => {
         new Set(
             allCheckins.map(checkin =>
                 checkin.venue.location.country
+                    .replace('英領ヴァージン諸島', 'イギリス')
             ).reverse() // 訪問順
         )
     );
