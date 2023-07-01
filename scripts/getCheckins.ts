@@ -3,7 +3,6 @@ import path from 'path';
 import axios from 'axios';
 import * as turf from '@turf/turf';
 import { getPrefectureId, prefectureIds, prefectureNames } from 'jp-local-gov';
-import { countBy } from 'lodash';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: path.join(__dirname, '../.env.local') });
@@ -151,17 +150,20 @@ const main = async () => {
     keikenchi.saga = 5; // 2023年3月、免許合宿でホテルに12泊し、佐賀に親しみを覚えたので、実質居住
     keikenchi.kumamoto = 5; // 2023年6月、人工知能学会でホテルに5泊し、熊本に親しみを覚えたので、実質居住
 
-    const allVisitedCountries = Object.entries(
-        countBy(
-            allCheckins.map(checkin => checkin.venue.location.country)
+    const allVisitedCountries = Array.from(
+        new Set(
+            allCheckins.map(checkin =>
+                checkin.venue.location.country
+            ).reverse() // 訪問順
         )
-    ).sort((a, b) => a[1] > b[1] ? -1 : 1).map(e => e[0]);
-    const allVisitedUSStates = Object.entries(
-        countBy(
-            allCheckins.filter(checkin => checkin.venue.location.country === 'アメリカ合衆国')
+    );
+    const allVisitedUSStates = Array.from(
+        new Set(
+            allCheckins.reverse() // 訪問順
+                .filter(checkin => checkin.venue.location.country === 'アメリカ合衆国')
                 .map(checkin => checkin.venue.location.state)
         )
-    ).sort((a, b) => a[1] > b[1] ? -1 : 1).map(e => e[0]);
+    );
 
     const checkinData = {
         senkyokuVisitCounts,
