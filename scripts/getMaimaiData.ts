@@ -70,7 +70,7 @@ const getUserId = async () => {
     };
 };
 
-const main = async () => {
+const getMaimaiData = async () => {
     const { token, userId } = await getUserId();
 
     const angyaUrl = 'https://maimaidx.jp/maimai-mobile/playerData/region/';
@@ -149,6 +149,14 @@ const main = async () => {
         prefectures: prefectureIds,
         expertRecords: availableExpertRecords,
     };
+    return maimaiData;
+};
+
+const main = async () => {
+    const maimaiData = segaId ? await getMaimaiData() : {
+        prefectures: [],
+        expertRecords: [],
+    }; // For CI without env values
     await fs.writeFile(
         __dirname + '/../lib/maimai-data.json',
         JSON.stringify(maimaiData)
