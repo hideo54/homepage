@@ -67,7 +67,7 @@ const getCheckins = async ({ offset, limit }: {
     return res.data.response;
 };
 
-const main = async () => {
+const getCheckinData = async () => {
     const cacheFilename = __dirname + '/checkins.cache.json';
     let allCheckins: CheckinResponse['response']['checkins']['items'] = [];
     try {
@@ -172,6 +172,22 @@ const main = async () => {
         allVisitedCountries,
         allVisitedUSStates,
     };
+    return checkinData;
+};
+
+const sampleData = {
+    senkyokuVisitCounts: [
+        ['tokyo-1', 282],
+    ],
+    keikenchi: {
+        hokkaido: 4,
+    },
+    allVisitedCountries: ['日本'],
+    allVisitedUSStates: ['NV'],
+};
+
+const main = async () => {
+    const checkinData = process.env.FOURSQUARE_ACCESS_TOKEN ? await getCheckinData() : sampleData;
     await fs.writeFile(
         __dirname + '/../lib/swarm-data.json',
         JSON.stringify(checkinData)
