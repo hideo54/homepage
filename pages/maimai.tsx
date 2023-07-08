@@ -29,11 +29,11 @@ const RecordLi = styled.li`
 const App = () => {
     return (
         <Layout
-            title='maimai でらっくす | hideo54.com'
-            description='hideo54がまあ嫌いなわけでもない音楽ゲーム「maimaiでらっくす」のプレイ情報です。'
+            title='maimai でらっくす プレイ状況 | hideo54.com'
+            description='ほとんどのゲームが苦手なhideo54がまあ嫌いなわけでもない音楽ゲーム「maimaiでらっくす」のプレイ情報です。'
         >
             <h1>maimai でらっくす</h1>
-            <p>hideo54がまあ嫌いなわけでもない音楽ゲーム「maimaiでらっくす」のプレイ情報です。</p>
+            <p>ほとんどのゲームが苦手なhideo54がまあ嫌いなわけでもない音楽ゲーム「maimaiでらっくす」のプレイ状況です。</p>
             <section>
                 <h2>スコア 100% 超えの Expert 楽曲</h2>
                 <ul>

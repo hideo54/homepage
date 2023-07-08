@@ -92,6 +92,11 @@ const App = () => (
                 訪問歴
             </IconNextLink>
         </h2>
+        <h2>
+            <IconNextLink href='/maimai' RightIcon={ChevronForward}>
+                maimai でらっくす プレイ状況
+            </IconNextLink>
+        </h2>
         <section>
             <h2>連絡先</h2>
             <ul>
