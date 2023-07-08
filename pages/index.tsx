@@ -15,9 +15,17 @@ const likes = [
 
 const App = () => (
     <Layout showGoTop={false}>
-        <div style={{ textAlign: 'center' }}>
-            <img src='https://img.hideo54.com/icons/main.png' alt='icon' width={200} height={200} style={{ borderRadius: 100, margin: '1em' }} />
-            <h1>hideo54</h1>
+        <div className='text-center'>
+            <img
+                src='https://img.hideo54.com/icons/main.png'
+                alt='icon'
+                width={200}
+                height={200}
+                className='rounded-full mx-auto my-4'
+            />
+            <h1 className='text-4xl font-bold my-4'>
+                hideo54
+            </h1>
             <p>1999年8月2日生まれ、{dayjs().diff('1999-08-02', 'years')}歳。</p>
             <p>コンピュータを使って遊ぶのが好き。</p>
         </div>
@@ -63,10 +71,15 @@ const App = () => (
                     </IconAnchor>
                 </li>
                 <li>灘校パソコン研究部 (NPCA)</li>
-                <li>セキュリティ・キャンプ (参加: 2016全国、チューター: 2018山梨、2019福岡、2019沖縄)</li>
+                <li>
+                    セキュリティ・キャンプ (参加: 2016全国、チューター: 2018山梨、2019福岡、2019沖縄)
+                </li>
                 <li>SECCON Final 2016, 2019</li>
                 <li>
-                    <IconAnchor RightIcon={Open} href='https://twitter.com/hideo54/status/1204218275233558528'>
+                    <IconAnchor
+                        RightIcon={Open}
+                        href='https://twitter.com/hideo54/status/1204218275233558528'
+                    >
                         バーガーキングの壁
                     </IconAnchor>
                 </li>
@@ -101,7 +114,10 @@ const App = () => (
             <h2>連絡先</h2>
             <ul>
                 <li>Twitter:{' '}
-                    <IconAnchor RightIcon={Open} href='https://twitter.com/hideo54'>
+                    <IconAnchor
+                        RightIcon={Open}
+                        href='https://twitter.com/hideo54'
+                    >
                         @hideo54
                     </IconAnchor>
                 </li>
@@ -114,23 +130,35 @@ const App = () => (
             </IconNextLink>
         </h2>
         <h2>
-            <IconAnchor RightIcon={Open} href='https://blog.hideo54.com'>
+            <IconAnchor
+                RightIcon={Open}
+                href='https://blog.hideo54.com'
+            >
                 hideo54のブログ
             </IconAnchor>
         </h2>
         <h2>
-            <IconAnchor RightIcon={Open} href='https://www.amazon.co.jp/registry/wishlist/3IQ53EU2L62AI'>
+            <IconAnchor
+                RightIcon={Open}
+                href='https://www.amazon.co.jp/registry/wishlist/3IQ53EU2L62AI'
+            >
                 Amazonほしいものリスト
             </IconAnchor>
         </h2>
-        <p style={{ marginTop: '2em' }}>
+        <p className='mt-4'>
             <small>
                 アイコンのキツネは、Webブラウザ “Firefox” のマスコットキャラクター「フォクすけ」です。
-                <IconAnchor RightIcon={Open} href='https://creativecommons.org/licenses/by-nc/4.0/deed.ja'>
+                <IconAnchor
+                    RightIcon={Open}
+                    href='https://creativecommons.org/licenses/by-nc/4.0/deed.ja'
+                >
                     CC BY-NC 4.0 ライセンス
                 </IconAnchor>
                 で提供された、Mozilla Japan による
-                <IconAnchor RightIcon={Open} href='http://foxkeh.jp/downloads/materials/'>
+                <IconAnchor
+                    RightIcon={Open}
+                    href='http://foxkeh.jp/downloads/materials/'
+                >
                     画像素材
                 </IconAnchor>
                 を使用しています。

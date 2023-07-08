@@ -49,7 +49,7 @@ const Map: React.FC<{
     id: string;
     additionalCss?: string;
 }> = props => (
-    <MapWrapperDiv>
+    <MapWrapperDiv className='not-prose'>
         <props.Svg viewBox={props.viewBox} id={props.id} />
         <style dangerouslySetInnerHTML={{
             __html: (props.additionalCss || '') + Object.entries(props.fill)
