@@ -12,6 +12,15 @@ import PrefecturesMapSvg from '../public/prefectures-simplify-20.svg';
 import Shu2017GeoSvg from '../public/shu-2017-geo.svg';
 import USStatesMapSvg from '../public/us-states.svg';
 
+const ColorSquare: React.FC<{ color: string; }> = ({ color }) => (
+    <Square
+        size='1.4em'
+        fill={color}
+        className='mr-1 [&>path]:fill-inherit'
+        style={{ fill: color, verticalAlign: '-6px' }}
+    />
+);
+
 const App: NextPage = () => {
     const senkyokuVisitCounts: {[key: string]: number} = Object.fromEntries(swarmDataJson.senkyokuVisitCounts);
 
@@ -64,8 +73,8 @@ const App: NextPage = () => {
                     maxCount={289}
                     CountSectionChildren={
                         visitedSenkyokuCountsByParty.map(([color, visitedCount, allCount]) =>
-                            <p key={color} className='item'>
-                                <Square size='1.4em' fill={color} />
+                            <p key={color} className='my-1'>
+                                <ColorSquare color={color} />
                                 {visitedCount} / {allCount}
                             </p>
                         )
@@ -109,8 +118,8 @@ const App: NextPage = () => {
                         Object.entries(countBy(swarmDataJson.keikenchi))
                             .reverse()
                             .map(([prefId, count], i) =>
-                                <p key={prefId} className='item'>
-                                    <Square size='1.4em' fill={keikenchiToColor(5 - i)} />
+                                <p key={prefId} className='my-1'>
+                                    <ColorSquare color={keikenchiToColor(5 - i)} />
                                     {count} / 47
                                 </p>
                             )

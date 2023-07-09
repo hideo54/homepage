@@ -21,4 +21,7 @@
     a {
         @apply text-hideo54-pink no-underline;
     }
+    code {
+        @apply before:content-none after:content-none;
+    }
 }
