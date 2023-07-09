@@ -13,6 +13,14 @@ module.exports = {
             colors: {
                 'hideo54-pink': '#e26a6a',
             },
+            fontFamily: {
+                sans: [
+                    'ui-sans-serif', 'system-ui',
+                    '-apple-system', 'BlinkMacSystemFont',
+                    'Hiragino Sans', 'var(--font-noto)',
+                    'sans-serif',
+                ],
+            },
             fontWeight: {
                 inherit: 'inherit',
             },

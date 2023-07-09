@@ -1,5 +1,6 @@
 import { useEffect, type ComponentPropsWithoutRef } from 'react';
 import type { AppProps } from 'next/app';
+import { Noto_Sans_JP } from 'next/font/google';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { IconAnchor, IconNextLink } from '@hideo54/reactor';
@@ -14,6 +15,12 @@ const mdxComponents = {
             ? <IconNextLink {...{ ...props, href: props.href } }/>
             : <IconAnchor RightIcon={Open} {...props} />,
 };
+
+const noto = Noto_Sans_JP({
+    subsets: ['latin'],
+    variable: '--font-noto',
+    weight: ['400', '600', '700', '900'],
+});
 
 const App = ({ Component, pageProps }: AppProps) => {
     const router = useRouter();
@@ -40,7 +47,11 @@ const App = ({ Component, pageProps }: AppProps) => {
                     `,
                 }} />
             </Head>
-            <Component {...pageProps} />
+            <div className={`${noto.variable} font-sans`}>
+                <Component
+                    {...pageProps}
+                />
+            </div>
         </MDXProvider>
     );
 };
