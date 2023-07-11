@@ -1,8 +1,8 @@
 import { useEffect, type ComponentPropsWithoutRef } from 'react';
 import type { AppProps } from 'next/app';
 import { Noto_Sans_JP } from 'next/font/google';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
+import Script from 'next/script';
 import { IconAnchor, IconNextLink } from '@hideo54/reactor';
 import { MDXProvider } from '@mdx-js/react';
 import { Open } from '@styled-icons/ionicons-outline';
@@ -35,18 +35,16 @@ const App = ({ Component, pageProps }: AppProps) => {
     }, [router.events]);
     return (
         <MDXProvider components={mdxComponents}>
-            <Head>
-                <script dangerouslySetInnerHTML={{
-                    __html: `
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', '${gtag.GA_TRACKING_ID}', {
-                        page_path: window.location.pathname,
-                        });
-                    `,
-                }} />
-            </Head>
+            <Script id='ga' dangerouslySetInnerHTML={{
+                __html: `
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${gtag.GA_TRACKING_ID}', {
+                    page_path: window.location.pathname,
+                    });
+                `,
+            }} />
             <div className={`${noto.variable} font-sans`}>
                 <Component
                     {...pageProps}
