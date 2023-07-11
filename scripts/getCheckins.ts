@@ -136,7 +136,6 @@ const getCheckinData = async () => {
     keikenchi.fukui = 1; // 2014年5月、中学校の野外活動で通過
     keikenchi.shiga = 4; // 小学生時代
     keikenchi.nara = 4; // 小学生時代
-    keikenchi.wakayama = 4; // 小学生時代、家族旅行
     keikenchi.hyogo = 4; // 中学1年生、部活動の合宿
     keikenchi.hiroshima = 4; // 2019年3月、傷心旅行 (チェックイン忘れ)
     keikenchi.ehime = 4; // 2019年3月、傷心旅行 (スーパー温泉に宿泊)
