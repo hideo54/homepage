@@ -49,7 +49,7 @@ const App = () => {
                 </ul>
             </section>
             <section>
-                <h2>maimai をプレイしたことがある都道府県</h2>
+                <h2>全国行脚 (プレイしたことがある都道府県)</h2>
                 <Map
                     id='maimai'
                     Svg={PrefecturesMapSvg}
