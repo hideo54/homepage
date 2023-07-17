@@ -67,7 +67,7 @@ const getCheckins = async ({ offset, limit }: {
     return res.data.response;
 };
 
-const main = async () => {
+const getCheckinData = async () => {
     const cacheFilename = __dirname + '/checkins.cache.json';
     let allCheckins: CheckinResponse['response']['checkins']['items'] = [];
     try {
@@ -136,7 +136,6 @@ const main = async () => {
     keikenchi.fukui = 1; // 2014年5月、中学校の野外活動で通過
     keikenchi.shiga = 4; // 小学生時代
     keikenchi.nara = 4; // 小学生時代
-    keikenchi.wakayama = 4; // 小学生時代、家族旅行
     keikenchi.hyogo = 4; // 中学1年生、部活動の合宿
     keikenchi.hiroshima = 4; // 2019年3月、傷心旅行 (チェックイン忘れ)
     keikenchi.ehime = 4; // 2019年3月、傷心旅行 (スーパー温泉に宿泊)
@@ -172,6 +171,22 @@ const main = async () => {
         allVisitedCountries,
         allVisitedUSStates,
     };
+    return checkinData;
+};
+
+const sampleData = {
+    senkyokuVisitCounts: [
+        ['tokyo-1', 282],
+    ],
+    keikenchi: {
+        hokkaido: 4,
+    },
+    allVisitedCountries: ['日本'],
+    allVisitedUSStates: ['NV'],
+};
+
+const main = async () => {
+    const checkinData = process.env.FOURSQUARE_ACCESS_TOKEN ? await getCheckinData() : sampleData;
     await fs.writeFile(
         __dirname + '/../lib/swarm-data.json',
         JSON.stringify(checkinData)

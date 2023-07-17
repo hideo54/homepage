@@ -1,6 +1,7 @@
 const withMDX = require('@next/mdx')();
 module.exports = withMDX({
     pageExtensions: ['ts', 'tsx', 'mdx'],
+    output: 'export',
     webpack(config) {
         config.module.rules.push({
             test: /\.svg$/i,

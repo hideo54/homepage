@@ -152,11 +152,20 @@ const getMaimaiData = async () => {
     return maimaiData;
 };
 
+const sampleData = {
+    prefectures: ['osaka'],
+    expertRecords: [
+        {
+            name: '君の知らない物語',
+            score: 1.004136,
+            level: '8',
+            isStandard: false,
+        },
+    ],
+}; // For CI without env values
+
 const main = async () => {
-    const maimaiData = segaId ? await getMaimaiData() : {
-        prefectures: [],
-        expertRecords: [],
-    }; // For CI without env values
+    const maimaiData = segaId ? await getMaimaiData() : sampleData;
     await fs.writeFile(
         __dirname + '/../lib/maimai-data.json',
         JSON.stringify(maimaiData)

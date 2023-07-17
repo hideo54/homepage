@@ -1,5 +1,4 @@
 import type { InferGetStaticPropsType, NextPage } from 'next';
-import styled from 'styled-components';
 import fs from 'fs/promises';
 import yaml from 'yaml';
 import Layout from '../components/Layout';
@@ -17,49 +16,25 @@ interface Data {
     };
 }
 
-const TagDiv = styled.div<{ color: string; hoverable?: boolean; }>`
-    display: flex;
-    align-items: center;
-    margin-right: 1em;
-    margin-bottom: 1em;
-    padding: 1em;
-    border: 2px solid ${props => props.color};
-    border-radius: 20px;
-    ${props => props.hoverable ? `
-        &:hover {
-            background-color: #EEEEEE;
-            @media (prefers-color-scheme: dark) {
-                background-color: #333333;
-            }
-            transform: scale(1.1);
-        }
-    ` : ''}
-    div.circle {
-        display: inline-block;
-        background-color: ${props => props.color};
-        width: 1em;
-        height: 1em;
-        margin-right: 1em;
-        border-radius: 50%;
-    }
-    div.username {
-        margin-top: 1em;
-    }
-`;
-
 const TagComponent: React.FC<Tag> = ({ color, name, username, link }) => {
+    const defaultClassName = 'flex items-center mb-4 mr-4 p-4 border-2 rounded-2xl';
+    const hoverableClassName = 'hover:scale-110';
+    const className = defaultClassName + (link ? (' ' + hoverableClassName) : '');
     const body = (
-        <TagDiv color={color} hoverable={Boolean(link)}>
-            <div className='circle' />
+        <div className={className} style={{ borderColor: color }}>
+            <div
+                className='inline-block w-4 h-4 mr-4 rounded-full'
+                style={{ backgroundColor: color }}
+            />
             <div>
                 <div>{name}</div>
-                <div className='username'>{username}</div>
+                <div>{username}</div>
             </div>
-        </TagDiv>
+        </div>
     );
     if (link) {
         return (
-            <a href={link} target='_blank' rel='noopener noreferrer' style={{ textDecoration: 'none' }}>{body}</a>
+            <a href={link} target='_blank' rel='noopener noreferrer'>{body}</a>
         );
     }
     return body;
@@ -82,11 +57,7 @@ const App: NextPage<StaticProps> = ({ data }) => (
             <section key={category}>
                 <h2>{category}</h2>
                 {category === 'Games' && <p>私が知っている人からの友達申請しか受け付けません。</p>}
-                <div style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    marginBottom: '2em',
-                }}>
+                <div className='flex flex-wrap mb-4'>
                     {data.accounts[category].map(tag => (
                         <TagComponent
                             key={tag.name}

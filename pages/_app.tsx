@@ -1,66 +1,13 @@
-import type { ComponentPropsWithoutRef } from 'react';
+import { useEffect, type ComponentPropsWithoutRef } from 'react';
 import type { AppProps } from 'next/app';
-import { createGlobalStyle } from 'styled-components';
+import { Noto_Sans_JP } from 'next/font/google';
+import { useRouter } from 'next/router';
+import Script from 'next/script';
 import { IconAnchor, IconNextLink } from '@hideo54/reactor';
 import { MDXProvider } from '@mdx-js/react';
 import { Open } from '@styled-icons/ionicons-outline';
-
-const GlobalStyle = createGlobalStyle`
-    body, select {
-        font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
-        margin: 0;
-        background-color: #ffffff;
-
-        @media (prefers-color-scheme: dark) {
-            background-color: #000000;
-        }
-    }
-
-    header, main, footer {
-        display: block; /* for IE */
-    }
-
-    main {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 0 1em;
-    }
-
-    h1, h2, h3, h4, h5, h6, p, div {
-        margin-top: 0;
-        color: #333333;
-        line-height: 1.5;
-
-        @media (prefers-color-scheme: dark) {
-            color: #EEEEEE;
-        }
-    }
-
-    a {
-        color: #e26a6a;
-        text-decoration: none;
-    }
-
-    li {
-        line-height: 1.8;
-    }
-
-    code {
-        font-family: Ricty, 'Ricty Diminished', 'Courier New', Courier, monospace;
-        font-size: 1.2em;
-        background-color: #EEEEEE;
-        padding: 0 0.2em;
-        border-radius: 0.2em;
-
-        @media (prefers-color-scheme: dark) {
-            background-color: #666666;
-        }
-    }
-
-    section {
-        margin-bottom: 2rem;
-    }
-`;
+import './globals.css';
+import * as gtag from '../lib/gtag';
 
 const mdxComponents = {
     a: (props: ComponentPropsWithoutRef<'a'>) =>
@@ -69,11 +16,40 @@ const mdxComponents = {
             : <IconAnchor RightIcon={Open} {...props} />,
 };
 
+const noto = Noto_Sans_JP({
+    subsets: ['latin'],
+    variable: '--font-noto',
+    weight: ['400', '600', '700', '900'],
+});
+
 const App = ({ Component, pageProps }: AppProps) => {
+    const router = useRouter();
+    useEffect(() => {
+        const handleRouteChange = (url: string) => {
+            gtag.pageview(url);
+        };
+        router.events.on('routeChangeComplete', handleRouteChange);
+        return () => {
+            router.events.off('routeChangeComplete', handleRouteChange);
+        };
+    }, [router.events]);
     return (
         <MDXProvider components={mdxComponents}>
-            <Component {...pageProps} />
-            <GlobalStyle />
+            <Script id='ga' dangerouslySetInnerHTML={{
+                __html: `
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${gtag.GA_TRACKING_ID}', {
+                    page_path: window.location.pathname,
+                    });
+                `,
+            }} />
+            <div className={`${noto.variable} font-sans`}>
+                <Component
+                    {...pageProps}
+                />
+            </div>
         </MDXProvider>
     );
 };

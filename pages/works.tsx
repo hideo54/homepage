@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react';
 import type { InferGetStaticPropsType, NextPage } from 'next';
-import styled from 'styled-components';
 import { Github, Slack, Twitter } from '@styled-icons/fa-brands';
 import { Robot } from '@styled-icons/fa-solid';
 import { Construct, Globe, HardwareChip, Open } from '@styled-icons/ionicons-outline';
@@ -9,45 +8,7 @@ import dayjs from 'dayjs';
 import axios from 'axios';
 import Layout from '../components/Layout';
 
-const GrassCoverDiv = styled.div<{ height: number; }>`
-    position: relative;
-    width: 100%;
-    height: ${props => props.height}px;
-    margin: 1em 0;
-    overflow: hidden;
-    img, p {
-        transition: transform 0.2s linear;
-    }
-    &:hover {
-        img, p {
-            transform: scale(1.1);
-        }
-    }
-`;
-
-const GrassImg = styled.img<{ height: number; }>`
-    width: 100%;
-    height: ${props => props.height}px;
-    object-fit: cover;
-    object-position: right;
-`;
-
-const GitHubProfileP = styled.p`
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: 0;
-    font-size: 2em;
-    text-align: center;
-    background-color: #333333AA;
-`;
-
-const GitHubProfileBanner: React.FC<{ height: number; }> = ({ height }) => {
+const GitHubProfileBanner = () => {
     const url = 'https://github.com/hideo54';
     const imgRef = useRef<HTMLImageElement>(null);
     useEffect(() => {
@@ -58,12 +19,18 @@ const GitHubProfileBanner: React.FC<{ height: number; }> = ({ height }) => {
     }, [imgRef]);
     return (
         <a href={url} target='_blank' rel='noopener noreferrer'>
-            <GrassCoverDiv height={height}>
-                <GrassImg ref={imgRef} height={height} />
-                <GitHubProfileP>
-                    <IconSpan LeftIcon={Github} color='#CCCCCC' margin='0.2em'>hideo54</IconSpan>
-                </GitHubProfileP>
-            </GrassCoverDiv>
+            <div className='not-prose relative w-full h-48 my-4 overflow-hidden rounded-lg'>
+                <img
+                    ref={imgRef}
+                    alt='GitHub Grass'
+                    className='w-full h-48 object-cover object-right duration-200 hover:scale-110'
+                />
+                <p className='absolute flex justify-center items-center inset-0 text-4xl text-center bg-neutral-800 bg-opacity-60 hover:scale-110 duration-200'>
+                    <IconSpan LeftIcon={Github} color='#CCCCCC' margin='0.2em'>
+                        hideo54
+                    </IconSpan>
+                </p>
+            </div>
         </a>
     );
 };
@@ -163,61 +130,48 @@ const articles: Work[] = [
     },
 ];
 
-const WorkDiv = styled.div`
-    margin: 2em 0;
-    padding: 1em;
-    border-radius: 24px;
-    box-shadow: 0px 5px 10px 0px #CCCCCC;
-    @media (prefers-color-scheme: dark) {
-        box-shadow: 0px 5px 10px 0px #333333;
-    }
-`;
-
-const LogoImg = styled.img`
-    width: 48px;
-    height: 48px;
-    margin-left: 1em;
-`;
-
-const DescriptionP = styled.p<{ marginTop?: string; fontSize?: string; color?: string; }>`
-    margin-top: ${props => props.marginTop || '1em'};
-    margin-bottom: 0;
-    ${props => props.fontSize && `
-        font-size: ${props.fontSize};
-    `}
-    ${props => props.color && `
-        color: ${props.color};
-    `}
-`;
-
-const WorkDetail: React.FC<{ work: Work, untilTransformer: (s: string) => string }> = ({ work, untilTransformer }) => (
-    <WorkDiv key={work.title}>
-        <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-        }}>
+const WorkDetail: React.FC<{
+    work: Work;
+    untilTransformer: (s: string) => string;
+}> = ({ work, untilTransformer }) => (
+    <div key={work.title} className='not-prose my-4 p-4 border-solid border-black shadow-lg rounded-2xl dark:border dark:border-neutral-600'>
+        <div className='flex justify-between'>
             <div>
                 <div>
-                    <IconSpan margin='0.2em' color='#888888' LeftIcon={getCategoryIcon(work.category)}>{work.category}</IconSpan>
+                    <IconSpan margin='0.2em' color='#888888' LeftIcon={getCategoryIcon(work.category)}>
+                        {work.category}
+                    </IconSpan>
                 </div>
-                <DescriptionP fontSize='1.2em' marginTop='0.5em'>
-                    <IconAnchor href={work.url} RightIcon={Open}>{work.title}</IconAnchor>
-                </DescriptionP>
+                <p className='text-xl font-semibold'>
+                    <IconAnchor href={work.url} RightIcon={Open}>
+                        {work.title}
+                    </IconAnchor>
+                </p>
             </div>
-            {work.imageUrl && <LogoImg src={work.imageUrl} />}
+            {work.imageUrl &&
+                <img
+                    src={work.imageUrl}
+                    alt='Service Icon'
+                    className='w-12 h-12 ml-4'
+                />
+            }
         </div>
-        <DescriptionP>{work.description}</DescriptionP>
+        <p className='my-4'>
+            {work.description}
+        </p>
         {work.until && (
-            <DescriptionP>
+            <p>
                 {untilTransformer(work.until)}
-            </DescriptionP>
+            </p>
         )}
         {work.repoUrl && (
-            <DescriptionP>
-                <IconAnchor LeftIcon={Github} href={work.repoUrl} margin='0.1em'>オープンソースです。</IconAnchor>
-            </DescriptionP>
+            <p>
+                <IconAnchor LeftIcon={Github} href={work.repoUrl} margin='0.1em'>
+                    オープンソースです。
+                </IconAnchor>
+            </p>
         )}
-    </WorkDiv>
+    </div>
 );
 
 const getCategoryIcon = (category: Work['category']) => {
@@ -229,10 +183,6 @@ const getCategoryIcon = (category: Work['category']) => {
     if (category === 'IoT') return HardwareChip;
     return Globe;
 };
-
-const Section = styled.section`
-    margin-bottom: 4em;
-`;
 
 export const getStaticProps = async () => {
     if (process.env.NODE_ENV === 'development') {
@@ -292,44 +242,46 @@ type StaticProps = InferGetStaticPropsType<typeof getStaticProps>;
 const App: NextPage<StaticProps> = ({ contributions }) => {
     return (
         <Layout title='つくったもの | hideo54.com' description='hideo54が個人で制作したものの一部を紹介します。'>
-            <GitHubProfileBanner height={200} />
-            <Section>
+            <GitHubProfileBanner />
+            <section>
                 <h1>つくったもの</h1>
                 <p>…のうち、hideo54が個人で制作したもので、公開されているもので、お気に入りのもの。</p>
                 {works.map(work =>
                     <WorkDetail key={work.title} work={work} untilTransformer={s => `(${s}に運営終了)`} />
                 )}
-            </Section>
-            <Section>
+            </section>
+            <section>
                 <h2>書いたもの</h2>
                 <p>…のうち、お気に入りのもの。</p>
                 {articles.map(article =>
                     <WorkDetail key={article.title} work={article} untilTransformer={s => `(${s}に執筆・公開)`} />
                 )}
-            </Section>
-            <Section>
+            </section>
+            <section>
                 <h2>Contributions</h2>
                 <p>hideo54 が出した pull request が merge されたことのある著名 OSS</p>
                 <ul>
                     {contributions.map(repo => (
                         <li key={repo.full_name}>
-                            <IconAnchor href={repo.html_url} RightIcon={Open}>{repo.full_name}</IconAnchor>
+                            <IconAnchor href={repo.html_url} RightIcon={Open}>
+                                {repo.full_name}
+                            </IconAnchor>
                         </li>
                     ))}
                 </ul>
-            </Section>
-            <Section>
+            </section>
+            <section className='mb-8'>
                 <h2>Sponsor me!</h2>
                 <iframe
                     src='https://github.com/sponsors/hideo54/button'
                     title='Sponsor hideo54'
-                    height='35'
                     width='116'
+                    height='35'
                     style={{
                         border: 0,
                     }}
                 />
-            </Section>
+            </section>
         </Layout>
     );
 };

@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply dark:bg-black prose prose-neutral prose-a:font-inherit dark:prose-invert m-auto px-4
+    }
+    h1 {
+        @apply text-2xl font-bold;
+    }
+    h2 {
+        @apply text-xl;
+    }
+    h3 {
+        @apply text-lg;
+    }
+    nav {
+        @apply my-4;
+    }
+    a {
+        @apply text-hideo54-pink no-underline;
+    }
+    code {
+        @apply before:content-none after:content-none;
+    }
+}

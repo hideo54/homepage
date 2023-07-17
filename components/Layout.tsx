@@ -38,8 +38,13 @@ const Layout = ({
         </Head>
         <main>
             {showGoTop &&
-                <nav style={{ margin: '1em 0' }}>
-                    <IconNextLink href='/' LeftIcon={ChevronBack}>トップページ</IconNextLink>
+                <nav>
+                    <IconNextLink
+                        href='/'
+                        LeftIcon={ChevronBack}
+                    >
+                        トップページ
+                    </IconNextLink>
                 </nav>
             }
             {children}

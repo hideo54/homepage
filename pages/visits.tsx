@@ -12,6 +12,29 @@ import PrefecturesMapSvg from '../public/prefectures-simplify-20.svg';
 import Shu2017GeoSvg from '../public/shu-2017-geo.svg';
 import USStatesMapSvg from '../public/us-states.svg';
 
+const ColorSquare: React.FC<{
+    color: string;
+    verticalAlign?: string;
+}> = ({ color, verticalAlign = '-6px' }) => (
+    <Square
+        size='1.4em'
+        fill={color}
+        className='mr-1 [&>path]:fill-inherit'
+        style={{ fill: color, verticalAlign }}
+    />
+);
+
+const partyColorToText: {[key: string]: string} = {
+    '#d7033a': '自',
+    '#004098': '立',
+    '#36c200': '維',
+    '#f55881': '公',
+    '#f8bc00': '国',
+    '#777777': '無',
+    '#7957da': '共',
+    '#01a8ec': '社',
+};
+
 const App: NextPage = () => {
     const senkyokuVisitCounts: {[key: string]: number} = Object.fromEntries(swarmDataJson.senkyokuVisitCounts);
 
@@ -64,9 +87,14 @@ const App: NextPage = () => {
                     maxCount={289}
                     CountSectionChildren={
                         visitedSenkyokuCountsByParty.map(([color, visitedCount, allCount]) =>
-                            <p key={color} className='item'>
-                                <Square size='1.4em' fill={color} />
-                                {visitedCount} / {allCount}
+                            <p key={color} className='my-1 text-sm'>
+                                <ColorSquare color={color} verticalAlign='-4.5px' />
+                                <span className='mr-1 font-bold'>
+                                    {partyColorToText[color]}
+                                </span>
+                                <span>
+                                    {visitedCount} / {allCount}
+                                </span>
                             </p>
                         )
                     }
@@ -109,8 +137,18 @@ const App: NextPage = () => {
                         Object.entries(countBy(swarmDataJson.keikenchi))
                             .reverse()
                             .map(([prefId, count], i) =>
-                                <p key={prefId} className='item'>
-                                    <Square size='1.4em' fill={keikenchiToColor(5 - i)} />
+                                <p key={prefId} className='my-1'>
+                                    <ColorSquare color={keikenchiToColor(5 - i)} />
+                                    <span className='mr-1 font-bold'>
+                                        {[
+                                            '居住',
+                                            '宿泊',
+                                            '訪問',
+                                            '接地',
+                                            '通過',
+                                            '未踏',
+                                        ][i]}
+                                    </span>
                                     {count} / 47
                                 </p>
                             )
@@ -118,7 +156,7 @@ const App: NextPage = () => {
                 />
             </section>
             <section>
-                <h2>maimai をプレイしたことがある都道府県</h2>
+                <h2>maimai 全国行脚 (プレイしたことがある都道府県)</h2>
                 <Map
                     id='maimai'
                     Svg={PrefecturesMapSvg}
