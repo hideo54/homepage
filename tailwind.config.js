@@ -15,7 +15,6 @@ module.exports = {
             },
             fontFamily: {
                 sans: [
-                    'ui-sans-serif', 'system-ui',
                     '-apple-system', 'BlinkMacSystemFont',
                     'Hiragino Sans', 'var(--font-noto)',
                     'sans-serif',
