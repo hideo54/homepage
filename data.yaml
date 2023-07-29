@@ -12,10 +12,10 @@ accounts:
           color: '#0070ff'
           link: https://bsky.app/profile/hideo54.com
           username: '@hideo54.com'
-        # - name: Facebook
-        #   color: '#3C5998'
-        #   link: https://www.facebook.com/hideo54
-        #   username: 安本英雄
+        - name: Facebook
+          color: '#3C5998'
+          link: https://www.facebook.com/hideo54
+          username: 安本英雄
         # - name: LinkedIn
         #   color: '#007BB6'
         #   link: https://www.linkedin.com/pub/hideo-yasumoto/a0/a02/24a
@@ -68,10 +68,10 @@ accounts:
           color: '#DDDDDD'
           link: https://ja.wikipedia.org/wiki/%E5%88%A9%E7%94%A8%E8%80%85:Hideo54
           username: Hideo54
-        # - name: ORCID
-        #   color: '#a6ce39'
-        #   link: https://orcid.org/0000-0001-6101-2409
-        #   username: Hideo Yasumoto
+        - name: ORCID
+          color: '#a6ce39'
+          link: https://orcid.org/0000-0001-6101-2409
+          username: Hideo Yasumoto
     Games:
         - name: スクフェス2
           color: '#E4007F'
@@ -83,3 +83,6 @@ accounts:
           color: '#EA602E'
           link: https://minhaya.com/link/KVoxuJEQ7t15FMmZ7
           username: KHVM9E
+        - name: Pokémon Sleep
+          color: '#24cbff'
+          username: 6170-4270-7528
