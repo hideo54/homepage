@@ -117,13 +117,26 @@ const getCheckinData = async () => {
         prefectureNames.map(prefName => {
             const prefId = getPrefectureId(prefName);
             const checkins = allCheckins.filter(checkin => checkin.venue.location.state === prefName);
+            for (const checkin of checkins) {
+                if (prefId === 'niigata') {
+                    console.log(checkin.venue.name, checkin.venue.categories.map(cat => cat.name))
+                }
+            }
             const categories = new Set(
                 checkins.map(checkin =>
                     checkin.venue.categories.map(category => category.name)
                 ).flat()
             );
             const value = (() => {
-                if (categories.has('ホテル') || categories.has('Bed and Breakfast') || categories.has('宿屋')) return 4;
+                for (const hotelCategory of [
+                    'ホテル',
+                    'Bed and Breakfast',
+                    'B&Bホテル',
+                    'モーテル',
+                    '宿屋',
+                ]) {
+                    if (categories.has(hotelCategory)) return 4;
+                }
                 if (categories.size === 1 && categories.has('鉄道駅')) return 2;
                 if (checkins.length > 0) return 3;
                 return 0;
