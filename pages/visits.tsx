@@ -169,6 +169,15 @@ const App: NextPage = () => {
                 />
             </section>
             <section>
+                <h2>訪れたことのある空港</h2>
+                <p>飛行機だいすきなので。</p>
+                <ul>
+                    {swarmDataJson.visitedAirports.map(airportName =>
+                        <li key={airportName}>{airportName}</li>
+                    )}
+                </ul>
+            </section>
+            <section>
                 <h2>訪れたことのある国</h2>
                 <ul>
                     {swarmDataJson.allVisitedCountries.map(country =>

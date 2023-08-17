@@ -157,6 +157,15 @@ const getCheckinData = async () => {
     keikenchi.saga = 5; // 2023年3月、免許合宿でホテルに12泊し、佐賀に親しみを覚えたので、実質居住
     keikenchi.kumamoto = 5; // 2023年6月、人工知能学会でホテルに5泊し、熊本に親しみを覚えたので、実質居住
 
+    const visitedAirports = Array.from(
+        new Set(
+            allCheckins.filter(checkin =>
+                checkin.venue.categories.map(cat => cat.name).includes('空港')
+                && !checkin.venue.name.includes('滑走路')
+            ).map(checkin => checkin.venue.name).reverse() // 訪問順
+        )
+    );
+
     const allVisitedCountries = Array.from(
         new Set(
             allCheckins.map(checkin =>
@@ -176,6 +185,7 @@ const getCheckinData = async () => {
     const checkinData = {
         senkyokuVisitCounts,
         keikenchi,
+        visitedAirports,
         allVisitedCountries,
         allVisitedUSStates,
     };
