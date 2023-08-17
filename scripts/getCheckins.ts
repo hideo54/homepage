@@ -160,8 +160,9 @@ const getCheckinData = async () => {
     const visitedAirports = Array.from(
         new Set(
             allCheckins.filter(checkin =>
-                checkin.venue.categories.map(cat => cat.name).includes('空港')
-                && !checkin.venue.name.includes('滑走路')
+                checkin.venue.categories.map(cat => cat.name).some(catName =>
+                    catName.match(/^(国際)?空港$/)
+                ) && !checkin.venue.name.includes('滑走路')
             ).map(checkin => checkin.venue.name).reverse() // 訪問順
         )
     );
