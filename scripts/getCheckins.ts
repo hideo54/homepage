@@ -200,6 +200,7 @@ const sampleData = {
     keikenchi: {
         hokkaido: 4,
     },
+    visitedAirports: ['東京国際空港 (羽田空港) (HND)'],
     allVisitedCountries: ['日本'],
     allVisitedUSStates: ['NV'],
 };
