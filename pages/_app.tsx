@@ -37,6 +37,9 @@ const App = ({ Component, pageProps }: AppProps) => {
         <MDXProvider components={mdxComponents}>
             <Script id='ga' dangerouslySetInnerHTML={{
                 __html: `
+                    if (window.location.hostname === "hideo54.web.app" || window.location.hostname === 'hideo54.firebaseapp.com') {
+                        window.location.href = 'https://hideo54.com';
+                    }
                     window.dataLayer = window.dataLayer || [];
                     function gtag(){dataLayer.push(arguments);}
                     gtag('js', new Date());
