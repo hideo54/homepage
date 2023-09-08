@@ -36,7 +36,7 @@
     "yaml": "^2.3.2"
   },
   "devDependencies": {
-    "@google-cloud/storage": "^7.0.1",
+    "@google-cloud/storage": "^7.1.0",
     "@hideo54/eslint-config": "^1.1.1",
     "@svgr/webpack": "^8.1.0",
     "@types/lodash": "^4.14.198",
