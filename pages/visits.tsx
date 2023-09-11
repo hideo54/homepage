@@ -36,14 +36,14 @@ const partyColorToText: {[key: string]: string} = {
 };
 
 const App: NextPage = () => {
-    const senkyokuVisitCounts: {[key: string]: number} = Object.fromEntries(swarmDataJson.senkyokuVisitCounts);
+    const senkyokuVisitCounts2017: {[key: string]: number} = Object.fromEntries(swarmDataJson.senkyokuVisitCounts2017);
 
     // Manual edit:
-    senkyokuVisitCounts['mie-4'] += 1; // 小学生のとき、伊勢、鳥羽など
-    senkyokuVisitCounts['wakayama-1'] += 1; // マリーナシティが地図の簡略化により抜けてしまっている
-    senkyokuVisitCounts['wakayama-3'] += 1; // 小学生の時、白浜
+    senkyokuVisitCounts2017['mie-4'] += 1; // 小学生のとき、伊勢、鳥羽など
+    senkyokuVisitCounts2017['wakayama-1'] += 1; // マリーナシティが地図の簡略化により抜けてしまっている
+    senkyokuVisitCounts2017['wakayama-3'] += 1; // 小学生の時、白浜
 
-    const visitedSenkyoku = Object.entries(senkyokuVisitCounts)
+    const visitedSenkyoku = Object.entries(senkyokuVisitCounts2017)
         .filter(([, count]) => count > 0)
         .map(e => e[0]);
     const visitedSenkyokuColors = visitedSenkyoku.map(senkyokuId => [
@@ -99,6 +99,11 @@ const App: NextPage = () => {
                         )
                     }
                 />
+                <p>
+                    ※ 新区割りでは {
+                        (swarmDataJson.senkyokuVisitCounts2022 as [string, number][]).filter(e => e[1] > 0).length
+                    } / 289 に。
+                </p>
                 <p>
                     <small>
                         小選挙区マップ:{' '}

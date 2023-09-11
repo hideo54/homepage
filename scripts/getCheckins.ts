@@ -67,6 +67,27 @@ const getCheckins = async ({ offset, limit }: {
     return res.data.response;
 };
 
+const calcSenkyokuVisitCounts = (geoJson: {
+    features: (turf.Feature & {
+        geometry: {
+            coordinates: turf.Position[][][];
+        };
+    })[];
+    coordinates: number[][][];
+}, allCoordinates: Set<number[]>) => (
+    geoJson.features.map(senkyoku => {
+        const prefNum = senkyoku.properties?.ken || senkyoku.properties?.KEN;
+        const senkyokuNum = senkyoku.properties?.ku || senkyoku.properties?.SENKYOKU;
+        const prefId = prefectureIds[parseInt(prefNum) - 1];
+        const senkyokuId = `${prefId}-${senkyokuNum}`;
+        const senkyokuPolygon = turf.multiPolygon(senkyoku.geometry.coordinates);
+        const coordinatesInside = Array.from(allCoordinates).filter(coordinates =>
+            turf.booleanPointInPolygon(turf.point(coordinates), senkyokuPolygon)
+        );
+        return [senkyokuId, coordinatesInside.length] as [string, number];
+    }).sort((a, b) => - (a[1] - b[1]))
+);
+
 const getCheckinData = async () => {
     const cacheFilename = __dirname + '/checkins.cache.json';
     let allCheckins: CheckinResponse['response']['checkins']['items'] = [];
@@ -97,21 +118,14 @@ const getCheckinData = async () => {
             i === 0 || (cur[0] !== arr[i - 1][0] && cur[1] !== arr[i - 1][1])
         )
     );
-    const senkyokuGeoJson = JSON.parse(
+    const senkyokuGeoJson2017 = JSON.parse(
         await fs.readFile(__dirname + '/../lib/shu-2017.geojson', 'utf-8')
     );
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const senkyokuVisitCounts = (senkyokuGeoJson.features as any[]).map(senkyoku => {
-        const prefNum = senkyoku.properties.ken;
-        const senkyokuNum = senkyoku.properties.ku;
-        const prefId = prefectureIds[parseInt(prefNum) - 1];
-        const senkyokuId = `${prefId}-${senkyokuNum}`;
-        const senkyokuPolygon = turf.multiPolygon(senkyoku.geometry.coordinates);
-        const coordinatesInside = Array.from(allCoordinates).filter(coordinates =>
-            turf.booleanPointInPolygon(turf.point(coordinates), senkyokuPolygon)
-        );
-        return [senkyokuId, coordinatesInside.length] as [string, number];
-    }).sort((a, b) => - (a[1] - b[1]));
+    const senkyokuGeoJson2022 = JSON.parse(
+        await fs.readFile(__dirname + '/../lib/shu-2022.geojson', 'utf-8')
+    );
+    const senkyokuVisitCounts2017 = calcSenkyokuVisitCounts(senkyokuGeoJson2017, allCoordinates);
+    const senkyokuVisitCounts2022 = calcSenkyokuVisitCounts(senkyokuGeoJson2022, allCoordinates);
 
     const keikenchi = Object.fromEntries(
         prefectureNames.map(prefName => {
@@ -184,7 +198,8 @@ const getCheckinData = async () => {
     );
 
     const checkinData = {
-        senkyokuVisitCounts,
+        senkyokuVisitCounts2017,
+        senkyokuVisitCounts2022,
         keikenchi,
         visitedAirports,
         allVisitedCountries,
@@ -194,7 +209,10 @@ const getCheckinData = async () => {
 };
 
 const sampleData = {
-    senkyokuVisitCounts: [
+    senkyokuVisitCounts2017: [
+        ['tokyo-1', 282],
+    ],
+    senkyokuVisitCounts2022: [
         ['tokyo-1', 282],
     ],
     keikenchi: {
