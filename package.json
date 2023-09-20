@@ -26,7 +26,7 @@
     "@styled-icons/styled-icon": "^10.7.0",
     "@tailwindcss/typography": "^0.5.10",
     "@turf/turf": "^6.5.0",
-    "dayjs": "^1.11.9",
+    "dayjs": "^1.11.10",
     "jp-local-gov": "^1.4.1",
     "next": "^13.4.19",
     "react": "^18.1.0",
