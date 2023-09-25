@@ -39,7 +39,7 @@
     "@google-cloud/storage": "^7.1.0",
     "@hideo54/eslint-config": "^1.1.1",
     "@svgr/webpack": "^8.1.0",
-    "@types/lodash": "^4.14.198",
+    "@types/lodash": "^4.14.199",
     "@types/mdx-js__react": "^1.5.5",
     "@types/node": "20.6.3",
     "@types/react": "^18.2.22",
