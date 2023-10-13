@@ -16,10 +16,10 @@ accounts:
           color: '#3C5998'
           link: https://www.facebook.com/hideo54
           username: 安本英雄
-        # - name: LinkedIn
-        #   color: '#007BB6'
-        #   link: https://www.linkedin.com/pub/hideo-yasumoto/a0/a02/24a
-        #   username: Hideo Yasumoto
+        - name: LinkedIn
+          color: '#007BB6'
+          link: https://www.linkedin.com/in/hideo54/
+          username: Hideo Yasumoto
         - name: Booklog
           color: '#66330A'
           link: https://booklog.jp/users/hideo54
@@ -83,6 +83,6 @@ accounts:
           color: '#EA602E'
           link: https://minhaya.com/link/KVoxuJEQ7t15FMmZ7
           username: KHVM9E
-        - name: Pokémon Sleep
-          color: '#24cbff'
-          username: 6170-4270-7528
+        # - name: Pokémon Sleep
+        #   color: '#24cbff'
+        #   username: 6170-4270-7528
