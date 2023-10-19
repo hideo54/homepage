@@ -43,6 +43,10 @@ accounts:
         - name: LINE
           color: '#00C300'
           username: hideo54
+        - name: BeReal
+          username: hideo54
+          color: '#000000'
+          link: https://bere.al/hideo54
     Tech and Study:
         - name: GitHub
           color: '#333333'
