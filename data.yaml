@@ -77,12 +77,15 @@ accounts:
           link: https://orcid.org/0000-0001-6101-2409
           username: Hideo Yasumoto
     Games:
-        - name: スクフェス2
-          color: '#E4007F'
-          username: 224132534083186
         - name: Nintendo Switch
           color: '#E60012'
           username: SW-7571-3727-1408
+        - name: スクフェス2
+          color: '#E4007F'
+          username: 224132534083186
+        - name: ブルーアーカイブ
+          color: '#00d7fb'
+          username: BTWKNINJ
         - name: みんなで早押しクイズ
           color: '#EA602E'
           link: https://minhaya.com/link/KVoxuJEQ7t15FMmZ7
