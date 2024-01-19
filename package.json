@@ -19,7 +19,7 @@
     "@hideo54/reactor": "^1.7.0",
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
-    "@next/mdx": "^14.0.3",
+    "@next/mdx": "^14.1.0",
     "@styled-icons/fa-brands": "^10.47.0",
     "@styled-icons/fa-solid": "^10.47.0",
     "@styled-icons/ionicons-outline": "^10.46.0",
