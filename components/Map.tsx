@@ -4,7 +4,7 @@ const Map: React.FC<{
     idProvidedByClass?: boolean;
     fill: {[keys: string]: string};
     count: number;
-    maxCount: number;
+    maxCount?: number;
     CountSectionChildren?: React.ReactNode;
     id: string;
     additionalCss?: string;
@@ -20,7 +20,9 @@ const Map: React.FC<{
         <section className='absolute top-0 p-2'>
             <p>
                 <span className='text-3xl font-bold'>{props.count}</span>
-                <span> / {props.maxCount}</span>
+                {props.maxCount &&
+                    <span> / {props.maxCount}</span>
+                }
             </p>
             {props.CountSectionChildren}
         </section>

@@ -3,6 +3,7 @@ import path from 'path';
 import axios from 'axios';
 import * as turf from '@turf/turf';
 import { getPrefectureId, prefectureIds, prefectureNames } from 'jp-local-gov';
+import isoCountries from 'i18n-iso-countries';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: path.join(__dirname, '../.env.local') });
@@ -185,7 +186,16 @@ const getCheckinData = async () => {
         new Set(
             allCheckins.map(checkin =>
                 checkin.venue.location.country
-                    .replace('英領ヴァージン諸島', 'イギリス')
+                    .replace('英領', 'イギリス領')
+            ).reverse() // 訪問順
+        )
+    );
+    const allVisitedCountryCodes = Array.from(
+        new Set(
+            allCheckins.map(checkin =>
+                isoCountries.alpha2ToAlpha3(
+                    checkin.venue.location.cc.toUpperCase()
+                )
             ).reverse() // 訪問順
         )
     );
@@ -203,6 +213,7 @@ const getCheckinData = async () => {
         keikenchi,
         visitedAirports,
         allVisitedCountries,
+        allVisitedCountryCodes,
         allVisitedUSStates,
     };
     return checkinData;
@@ -220,6 +231,7 @@ const sampleData = {
     },
     visitedAirports: ['東京国際空港 (羽田空港) (HND)'],
     allVisitedCountries: ['日本'],
+    allVisitedCountryCodes: ['JP'],
     allVisitedUSStates: ['NV'],
 };
 

@@ -10,6 +10,7 @@ import senkyokuResultColorJson from '../lib/shu-2021-senkyoku-result-color.json'
 import usStateColorsJson from '../lib/us-state-colors.json';
 import PrefecturesMapSvg from '../public/prefectures-simplify-20.svg';
 import Shu2017GeoSvg from '../public/shu-2017-geo.svg';
+import WorldMapSvg from '../public/intl_wintri.svg';
 import USStatesMapSvg from '../public/us-states.svg';
 
 const ColorSquare: React.FC<{
@@ -180,6 +181,29 @@ const App: NextPage = () => {
                         <li key={country}>{country}</li>
                     )}
                 </ul>
+                <Map
+                    id='intl_wintri1'
+                    Svg={WorldMapSvg}
+                    viewBox='0 140 800 200'
+                    fill={Object.fromEntries(
+                        swarmDataJson.allVisitedCountryCodes.map(cc => [
+                            'ADM0_A3-' + cc,
+                            '#22c55e',
+                        ])
+                    )}
+                    idProvidedByClass
+                    count={swarmDataJson.allVisitedCountryCodes.length}
+                    additionalCss='path[class^="ADM0_A3-"],path.land{fill:white;stroke:black;stroke-width:0.2;}'
+                />
+                <p>
+                    <small>
+                        世界地図:{' '}
+                        <IconAnchor href='https://github.com/wri/wri-bounds' RightIcon={Open}>
+                            wri/wri-bounds
+                        </IconAnchor>
+                        {' '}から
+                    </small>
+                </p>
             </section>
             <section>
                 <h2>訪れたことのあるアメリカ合衆国の州</h2>
