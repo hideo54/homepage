@@ -193,7 +193,7 @@ const App: NextPage = () => {
                     )}
                     idProvidedByClass
                     count={swarmDataJson.allVisitedCountryCodes.length}
-                    additionalCss='path[class^="ADM0_A3-"],path.land{fill:white;stroke:black;stroke-width:0.2;}'
+                    additionalCss='path[class^="ADM0_A3-"],path.land,path.boundary{stroke:black;stroke-width:0.2;}path[class^="ADM0_A3-"],path.land{fill:white;}'
                 />
                 <p>
                     <small>
