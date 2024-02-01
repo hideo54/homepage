@@ -43,7 +43,7 @@
     "@types/lodash": "^4.14.202",
     "@types/mdx-js__react": "^1.5.8",
     "@types/node": "20.11.15",
-    "@types/react": "^18.2.48",
+    "@types/react": "^18.2.51",
     "@types/react-dom": "18.2.18",
     "autoprefixer": "^10.4.17",
     "axios": "^1.6.7",
