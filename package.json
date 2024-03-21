@@ -54,7 +54,7 @@
     "postcss": "^8.4.37",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.3"
   },
   "license": "Apache-2.0"
 }
