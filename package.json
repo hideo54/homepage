@@ -27,7 +27,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "@turf/turf": "^6.5.0",
     "dayjs": "^1.11.10",
-    "i18n-iso-countries": "^7.10.1",
+    "i18n-iso-countries": "^7.11.0",
     "jp-local-gov": "^1.7.0",
     "next": "^14.1.4",
     "react": "^18.1.0",
