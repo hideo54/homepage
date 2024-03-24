@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { Open, Square } from '@styled-icons/ionicons-outline';
-import { IconAnchor } from '@hideo54/reactor';
+import { Airplane } from '@styled-icons/ionicons-solid';
+import { IconAnchor, IconSpan } from '@hideo54/reactor';
 import { countBy, sum } from 'lodash';
 import Layout from '../components/Layout';
 import Map from '../components/Map';
@@ -175,7 +176,7 @@ const App: NextPage = () => {
                 />
             </section>
             <section>
-                <h2>訪れたことのある国</h2>
+                <h2>訪れたことのある国と地域</h2>
                 <ul>
                     {swarmDataJson.allVisitedCountries.map(country =>
                         <li key={country}>{country}</li>
@@ -239,11 +240,18 @@ const App: NextPage = () => {
             <section>
                 <h2>訪れたことのある空港</h2>
                 <p>飛行機だいすきなので。</p>
-                <ul>
+                <div>
                     {swarmDataJson.visitedAirports.map(airportName =>
-                        <li key={airportName}>{airportName}</li>
+                        <div key={airportName} className='my-2'>
+                            <div className='text-2xl font-bold'>
+                                <IconSpan LeftIcon={Airplane}>
+                                    {airportName.match(/[A-Z]{3}/)}
+                                </IconSpan>
+                            </div>
+                            {airportName.replace(/\([A-Z]{3}\)/, '').trim()}
+                        </div>
                     )}
-                </ul>
+                </div>
             </section>
         </Layout>
     );
