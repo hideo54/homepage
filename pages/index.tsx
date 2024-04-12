@@ -4,7 +4,7 @@ import { IconAnchor, IconNextLink } from '@hideo54/reactor';
 import Layout from '../components/Layout';
 
 const likes = [
-    'プログラミング (主にweb)',
+    'プログラミング (主にウェブ)',
     'アニメ、マンガ',
     '政治、社会',
     '言語',
@@ -44,8 +44,18 @@ const App = () => (
                     </IconAnchor>
                 </li>
                 <li>
+                    <IconAnchor RightIcon={Open} href='https://www.sakatalab.t.u-tokyo.ac.jp/'>
+                        坂田・森・浅谷研究室
+                    </IconAnchor>
+                </li>
+                <li>
                     <IconAnchor RightIcon={Open} href='https://tsg.ne.jp/'>
                         東京大学コンピュータ系サークル TSG
+                    </IconAnchor>
+                </li>
+                <li>
+                    <IconAnchor RightIcon={Open} href='https://www.lavoce.jp/'>
+                        東京大学アカペラサークルLaVoce
                     </IconAnchor>
                 </li>
                 {/* <li>
