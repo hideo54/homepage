@@ -57,6 +57,20 @@ const App = () => (
             <p>私個人へは、上記の所属先は通さずに直接ご連絡ください。</p>
         </section>
         <section>
+            <h2>連絡先</h2>
+            <ul>
+                <li>Twitter:{' '}
+                    <IconAnchor
+                        RightIcon={Open}
+                        href='https://twitter.com/hideo54'
+                    >
+                        @hideo54
+                    </IconAnchor>
+                </li>
+                <li>E-mail: <code>contact@hideo54.com</code></li>
+            </ul>
+        </section>
+        <section>
             <h2>いた</h2>
             <ul>
                 <li>
@@ -110,20 +124,6 @@ const App = () => (
                 maimai でらっくす プレイ状況
             </IconNextLink>
         </h2>
-        <section>
-            <h2>連絡先</h2>
-            <ul>
-                <li>Twitter:{' '}
-                    <IconAnchor
-                        RightIcon={Open}
-                        href='https://twitter.com/hideo54'
-                    >
-                        @hideo54
-                    </IconAnchor>
-                </li>
-                <li>E-mail: <code>contact@hideo54.com</code></li>
-            </ul>
-        </section>
         <h2>
             <IconNextLink href='/accounts' RightIcon={ChevronForward}>
                 アカウント一覧
