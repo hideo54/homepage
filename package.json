@@ -35,7 +35,7 @@
     "react-dom": "^18.3.1",
     "react-icons": "^5.1.0",
     "scrape-it": "^6.1.2",
-    "yaml": "^2.4.1"
+    "yaml": "^2.4.2"
   },
   "devDependencies": {
     "@google-cloud/storage": "^7.10.1",
