@@ -43,7 +43,7 @@
     "@svgr/webpack": "^8.1.0",
     "@types/lodash": "^4.17.4",
     "@types/mdx-js__react": "^1.5.8",
-    "@types/node": "20.12.13",
+    "@types/node": "20.14.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "18.3.0",
     "autoprefixer": "^10.4.19",
