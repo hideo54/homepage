@@ -158,23 +158,26 @@ const getCheckinData = async () => {
             return [prefId, value];
         })
     );
-    keikenchi.kanagawa = 4; // 2015年8月、Mine の家
-    keikenchi.toyama = 1; // 2014年5月、中学校の野外活動で通過
-    keikenchi.fukui = 1; // 2014年5月、中学校の野外活動で通過
-    keikenchi.shiga = 4; // 小学生時代
-    keikenchi.nara = 4; // 小学生時代
-    keikenchi.hyogo = 4; // 中学1年生、部活動の合宿
-    keikenchi.hiroshima = 4; // 2019年3月、傷心旅行 (チェックイン忘れ)
-    keikenchi.ehime = 4; // 2019年3月、傷心旅行 (スーパー温泉に宿泊)
-    keikenchi.fukuoka = 4; // 2019年9月、ミニキャンプチューター (チェックイン忘れ)
-    keikenchi.nagasaki = 4; // 2014年1月、家族旅行 (チェックイン忘れ)
-
-    keikenchi.yamaguchi = 2; // ちょっと降りただけなので「訪問」はおこがましく「接地」が適切
-
-    keikenchi.osaka = 5; // 実家 (1999–2019)
-    keikenchi.tokyo = 5; // 一人暮らし (2019–)
-    keikenchi.saga = 5; // 2023年3月、免許合宿でホテルに12泊し、佐賀に親しみを覚えたので、実質居住
-    keikenchi.kumamoto = 5; // 2023年6月、人工知能学会でホテルに5泊し、熊本に親しみを覚えたので、実質居住
+    const manualKeikenchi = {
+        kanagawa: 4, // 2015年8月、Mine の家
+        toyama: 1, // 2014年5月、中学校の野外活動で通過
+        shiga: 4, // 小学生時代
+        nara: 4, // 小学生時代
+        hyogo: 4, // 中学1年生、部活動の合宿
+        hiroshima: 4, // 2019年3月、傷心旅行 (チェックイン忘れ)
+        ehime: 4, // 2019年3月、傷心旅行 (スーパー温泉に宿泊)
+        fukuoka: 4, // 2019年9月、ミニキャンプチューター (チェックイン忘れ)。あと2023年竹中ゼミ。
+        nagasaki: 4, // 2014年1月、家族旅行 (チェックイン忘れ)
+        osaka: 5, // 実家 (1999–2019)
+        tokyo: 5, // 一人暮らし (2019–)
+        saga: 5, // 2023年3月、免許合宿でホテルに12泊し、佐賀に親しみを覚えたので、実質居住
+        kumamoto: 5, // 2023年6月、人工知能学会でホテルに5泊し、熊本に親しみを覚えたので、実質居住
+    };
+    for (const [key, value] of Object.entries(manualKeikenchi)) {
+        if (keikenchi[key] < value) {
+            keikenchi[key] = value;
+        }
+    }
 
     const visitedAirports = Array.from(
         new Set(
