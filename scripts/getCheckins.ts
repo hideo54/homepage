@@ -19,6 +19,7 @@ interface CheckinResponse {
             count: number;
             items: {
                 id: string;
+                private?: boolean;
                 venue: {
                     id: string;
                     name: string;
@@ -131,7 +132,10 @@ const getCheckinData = async () => {
     const keikenchi = Object.fromEntries(
         prefectureNames.map(prefName => {
             const prefId = getPrefectureId(prefName);
-            const checkins = allCheckins.filter(checkin => checkin.venue.location.state === prefName);
+            const checkins = allCheckins.filter(checkin =>
+                !checkin.private
+                && checkin.venue.location.state === prefName
+            );
             const categories = new Set(
                 checkins.map(checkin =>
                     checkin.venue.categories.map(category => category.name)
