@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import { Open, Square } from '@styled-icons/ionicons-outline';
 import { Airplane } from '@styled-icons/ionicons-solid';
-import { IconAnchor, IconSpan } from '@hideo54/reactor';
 import { countBy, sum } from 'lodash';
+import { IconAnchor, IconSpan } from '../components/iconTools';
 import Layout from '../components/Layout';
 import Map from '../components/Map';
 import maimaiDataJson from '../lib/maimai-data.json';

@@ -3,9 +3,9 @@ import type { InferGetStaticPropsType, NextPage } from 'next';
 import { Github, Slack, Twitter } from '@styled-icons/fa-brands';
 import { Robot } from '@styled-icons/fa-solid';
 import { Construct, Globe, HardwareChip, Open } from '@styled-icons/ionicons-outline';
-import { IconAnchor, IconSpan } from '@hideo54/reactor';
 import dayjs from 'dayjs';
 import axios from 'axios';
+import { IconAnchor, IconSpan } from '../components/iconTools';
 import Layout from '../components/Layout';
 
 const GitHubProfileBanner = () => {

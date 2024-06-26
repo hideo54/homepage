@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import Head from 'next/head';
 import { ChevronBack } from '@styled-icons/ionicons-outline';
-import { IconNextLink } from '@hideo54/reactor';
+import { IconNextLink } from './iconTools';
 
 const Layout = ({
     children,

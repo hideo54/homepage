@@ -3,10 +3,10 @@ import type { AppProps } from 'next/app';
 import { Noto_Sans_JP } from 'next/font/google';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
-import { IconAnchor, IconNextLink } from '@hideo54/reactor';
 import { MDXProvider } from '@mdx-js/react';
 import { Open } from '@styled-icons/ionicons-outline';
 import './globals.css';
+import { IconAnchor, IconNextLink } from '../components/iconTools';
 import * as gtag from '../lib/gtag';
 
 const mdxComponents = {

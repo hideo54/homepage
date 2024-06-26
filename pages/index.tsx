@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { Open, ChevronForward } from '@styled-icons/ionicons-outline';
-import { IconAnchor, IconNextLink } from '@hideo54/reactor';
+import { IconAnchor, IconNextLink } from '../components/iconTools';
 import Layout from '../components/Layout';
 
 const likes = [
