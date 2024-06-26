@@ -191,7 +191,7 @@ type Score = {
     aiSensitivityGraphIndexSection24: string;
 };
 
-const getScores = async ({ cdmCardNo, cdmToken, cookies, page }: {
+const getScoresWithCredentials = async ({ cdmCardNo, cdmToken, cookies, page }: {
     cdmCardNo: string;
     cdmToken: string;
     cookies: string[];
@@ -219,7 +219,7 @@ const getScores = async ({ cdmCardNo, cdmToken, cookies, page }: {
     return scoresData;
 };
 
-const main = async () => {
+const getScores = async () => {
     const loginRes = await axios.post('https://www.clubdam.com/app/damtomo/auth/LoginXML.do', {
         procKbn: 1,
         loginId: process.env.DAM_ID,
@@ -252,9 +252,15 @@ const main = async () => {
 
     const scores = [];
     for (const i of naturalRange(3)) {
-        scores.push(...await getScores({ cdmCardNo, cdmToken, cookies, page: i }));
+        scores.push(
+            ...await getScoresWithCredentials({ cdmCardNo, cdmToken, cookies, page: i })
+        );
     }
-    console.log(scores);
+    return scores;
 };
 
+const main = async () => {
+    const scores = await getScores();
+    console.log(scores);
+};
 main();
