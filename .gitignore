@@ -36,3 +36,4 @@ key.json
 # For built files
 lib/swarm-data.json
 lib/maimai-data.json
+lib/dam-scores.json

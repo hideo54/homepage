@@ -1,8 +1,11 @@
+import fs from 'fs/promises';
 import path from 'path';
 
 import axios from 'axios';
 import dotenv from 'dotenv';
 import { XMLParser } from 'fast-xml-parser';
+import * as admin from 'firebase-admin';
+import { getFirestore } from 'firebase-admin/firestore';
 import { scrapeHTML } from 'scrape-it';
 
 dotenv.config({ path: path.join(__dirname, '../.env.local') });
@@ -191,7 +194,7 @@ type Score = {
     aiSensitivityGraphIndexSection24: string;
 };
 
-const getScoresWithCredentials = async ({ cdmCardNo, cdmToken, cookies, page }: {
+const getScores = async ({ cdmCardNo, cdmToken, cookies, page }: {
     cdmCardNo: string;
     cdmToken: string;
     cookies: string[];
@@ -219,7 +222,8 @@ const getScoresWithCredentials = async ({ cdmCardNo, cdmToken, cookies, page }: 
     return scoresData;
 };
 
-const getScores = async () => {
+const main = async () => {
+    admin.initializeApp();
     const loginRes = await axios.post('https://www.clubdam.com/app/damtomo/auth/LoginXML.do', {
         procKbn: 1,
         loginId: process.env.DAM_ID,
@@ -231,7 +235,6 @@ const getScores = async () => {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
     });
-    console.log(loginRes.data);
     const cookies = loginRes.headers['set-cookie'] || [];
     const cdmCardNo = cookies?.find(cookieStr => cookieStr.startsWith('scr_cdm='))?.split(';')[0].split('=')[1].trim() || '';
 
@@ -250,17 +253,30 @@ const getScores = async () => {
     });
     const cdmToken = myPageData.cdmToken;
 
-    const scores = [];
-    for (const i of naturalRange(3)) {
-        scores.push(
-            ...await getScoresWithCredentials({ cdmCardNo, cdmToken, cookies, page: i })
-        );
-    }
-    return scores;
-};
+    const db = getFirestore();
+    const scoresRef = db.collection('dam-scores');
+    const latestDocs = (await scoresRef.orderBy('scoringDateTime', 'desc').limit(1).get()).docs;
+    const latestDatetime = latestDocs.length > 0 ? latestDocs[0].get('scoringDateTime') as string : null;
 
-const main = async () => {
-    const scores = await getScores();
-    console.log(scores);
+    const newScores = [];
+    // 最新 200 件が保存される。1ページ5件なので、最大で 40 ページ分取得する。
+    for (const i of naturalRange(40)) {
+        const scores = await getScores({ cdmCardNo, cdmToken, cookies, page: i });
+        for (const score of scores) {
+            if (latestDatetime && score.scoringDateTime <= latestDatetime) break;
+            newScores.push(score);
+        }
+    }
+
+    newScores.reverse();
+    for (const score of newScores) {
+        console.log('.');
+        await db.collection('dam-scores').add(score);
+    }
+
+    await fs.writeFile(path.join(__dirname, './dam-scores.json'), JSON.stringify([
+        ...newScores,
+        (await scoresRef.get()).docs.map(doc => doc.data()),
+    ]));
 };
 main();
