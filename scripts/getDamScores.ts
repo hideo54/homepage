@@ -260,10 +260,10 @@ const main = async () => {
 
     const newScores = [];
     // 最新 200 件が保存される。1ページ5件なので、最大で 40 ページ分取得する。
-    for (const i of naturalRange(40)) {
+    pageIteration: for (const i of naturalRange(40)) {
         const scores = await getScores({ cdmCardNo, cdmToken, cookies, page: i });
         for (const score of scores) {
-            if (latestDatetime && score.scoringDateTime <= latestDatetime) break;
+            if (latestDatetime && score.scoringDateTime <= latestDatetime) break pageIteration;
             newScores.push(score);
         }
     }
