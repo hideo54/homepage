@@ -1,18 +1,32 @@
-import { useEffect, type ComponentPropsWithoutRef } from 'react';
+import React, { useEffect, type ComponentPropsWithoutRef } from 'react';
 import type { AppProps } from 'next/app';
 import { Noto_Sans_JP } from 'next/font/google';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
 import { MDXProvider } from '@mdx-js/react';
-import { Open } from '@styled-icons/ionicons-outline';
+import { ChevronForward, Open } from '@styled-icons/ionicons-outline';
 import './globals.css';
 import { IconAnchor, IconNextLink } from '../components/iconTools';
 import * as gtag from '../lib/gtag';
 
 const mdxComponents = {
-    a: (props: ComponentPropsWithoutRef<'a'>) =>
+    h2: (props: ComponentPropsWithoutRef<'h2'>) =>
+        // @ts-expect-error 許してくれ…
+        (props.children?.props && 'href' in props.children?.props) ? (
+            // h2 の children に hasH2Parent を追加する
+            <h2 {...props}>
+                {/* @ts-expect-error 許してくれ… */}
+                {React.cloneElement(props.children, { hasH2Parent: true })}
+            </h2>
+        ) : <h2 {...props} />,
+    a: (props: ComponentPropsWithoutRef<'a'> & {
+        hasH2Parent?: boolean;
+    }) =>
         (props.href && props.href.startsWith('/'))
-            ? <IconNextLink {...{ ...props, href: props.href } }/>
+            ? <IconNextLink
+                {...{ ...props, href: props.href } }
+                RightIcon={props.hasH2Parent ? ChevronForward : undefined}
+            />
             : <IconAnchor RightIcon={Open} {...props} />,
 };
 

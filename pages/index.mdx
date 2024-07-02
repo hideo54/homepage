@@ -1,0 +1,97 @@
+import dayjs from 'dayjs';
+import Layout from '../components/Layout';
+
+<div className='text-center'>
+    <img
+        src='https://img.hideo54.com/icons/main.png'
+        alt='icon'
+        width={200}
+        height={200}
+        className='rounded-full mx-auto my-4'
+    />
+    <h1 className='text-4xl font-bold my-4'>
+        hideo54
+    </h1>
+    <p>1999年8月2日生まれ、{dayjs().diff('1999-08-02', 'years')}歳。</p>
+    <p>コンピュータを使って遊ぶのが好き。</p>
+</div>
+
+## 好きなもの
+
+* プログラミング (主にウェブ)
+* アニメ、マンガ
+* 政治、社会
+* 言語
+* 美味しいもの
+* 温泉、サウナ
+* 一人旅
+
+## 現在の所属
+
+* [東京大学大学院工学系研究科技術経営戦略学専攻 (TMI)](https://tmi.t.u-tokyo.ac.jp/)
+* [坂田・森・浅谷研究室](https://www.sakatalab.t.u-tokyo.ac.jp/)
+* [東京大学コンピュータ系サークル TSG](https://tsg.ne.jp/)
+* [東京大学アカペラサークルLaVoce](https://www.lavoce.jp/)
+
+私個人へは、上記の所属先は通さずに直接ご連絡ください。
+
+## 連絡先
+
+* Twitter: [@hideo54](https://twitter.com/hideo54)
+* E-mail: `hideo54@hideo54.com`
+
+## いた
+
+* [東京大学教養学部](https://www.c.u-tokyo.ac.jp/) 理科1類
+* [東京大学工学部システム創成学科 Cコース (PSI)](https://www.si.t.u-tokyo.ac.jp/course/psi/)
+* 灘校パソコン研究部 (NPCA)
+* セキュリティ・キャンプ
+    * 2016 全国 参加
+    * 2018 山梨 チューター
+    * 2019 福岡 チューター
+    * 2019 沖縄 チューター
+    * 2023 新潟 チューター
+* SECCON Final 2016, 2019
+* [バーガーキングの壁](https://twitter.com/hideo54/status/1204218275233558528)
+
+## [もっと詳しい自己紹介](/intro)
+
+## [つくったもの](/works)
+
+## [活動](/activity)
+
+## [訪問歴](/visits)
+
+## [maimai でらっくす プレイ状況](/maimai)
+
+## [アカウント一覧](/accounts)
+
+## [hideo54のブログ](https://blog.hideo54.com)
+
+## [Amazonほしいものリスト](https://www.amazon.co.jp/registry/wishlist/3IQ53EU2L62AI)
+
+{/* <p className='mt-4'>
+    <small>
+        アイコンのキツネは、Webブラウザ “Firefox” のマスコットキャラクター「フォクすけ」です。
+        <IconAnchor
+            RightIcon={Open}
+            href='https://creativecommons.org/licenses/by-nc/4.0/deed.ja'
+        >
+            CC BY-NC 4.0 ライセンス
+        </IconAnchor>
+        で提供された、Mozilla Japan による
+        <IconAnchor
+            RightIcon={Open}
+            href='http://foxkeh.jp/downloads/materials/'
+        >
+            画像素材
+        </IconAnchor>
+        を使用しています。
+    </small>
+</p> */}
+
+export default ({ children }) => (
+    <Layout showGoTop={false}>
+        {children}
+    </Layout>
+);
