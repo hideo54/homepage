@@ -33,7 +33,7 @@ const ScoreWithAverage: React.FC<{
 const Score: React.FC<{
     scoreData: typeof damScoresDataJson[0];
 }> = ({ scoreData }) => (
-    <li className='block mb-8'>
+    <li className='inline-block mr-2 mb-8 p-0'>
         <div className='flex'>
             <div>
                 <MusicalNote size={48} className='mt-1' />
