@@ -12,7 +12,11 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 18
-      - run: npm ci && npm run build
+      - run: npm ci
+      - uses: google-github-actions/auth@v0
+        with:
+          credentials_json: '${{secrets.FIREBASE_SERVICE_ACCOUNT_HIDEO54}}'
+      - run: npm run build
         env:
           FOURSQUARE_ACCESS_TOKEN: '${{ secrets.FOURSQUARE_ACCESS_TOKEN }}'
           SEGA_ID: '${{ secrets.SEGA_ID }}'
