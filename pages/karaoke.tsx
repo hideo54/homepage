@@ -9,6 +9,13 @@ import { sortBy } from '../lib/utils';
 
 const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
 
+const midiNoteToPitch = (note: number) => {
+    const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+    const octave = Math.floor(note / 12) - 1;
+    const noteName = noteNames[note % 12];
+    return noteName + octave;
+};
+
 const ScoreWithAverage: React.FC<{
     myScore: number;
     averageScore: number;
@@ -60,6 +67,17 @@ const Score: React.FC<{
             </div>
         </div>
         <div className='ml-5 pl-3 border-l-2 border-solid border-neutral-400'>
+            <div>
+                <div className='text-sm font-bold'>
+                    音域
+                </div>
+                <span className='mr-2'>
+                    {midiNoteToPitch(Number(scoreData.vocalRangeLowest))} - {midiNoteToPitch(Number(scoreData.vocalRangeHighest))}
+                </span>
+                <span className='text-xs'>
+                    [{midiNoteToPitch(Number(scoreData.singingRangeLowest))} - {midiNoteToPitch(Number(scoreData.singingRangeHighest))}]
+                </span>
+            </div>
             <ScoreWithAverage
                 myScore={Number(scoreData.radarChartPitch)}
                 averageScore={Number(scoreData.nationalAveragePitch)}
