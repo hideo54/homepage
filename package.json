@@ -8,8 +8,7 @@
     "develop": "next",
     "build": "ts-node scripts/getCheckins.ts && ts-node scripts/getMaimaiData.ts && ts-node scripts/getDamScores.ts && next build",
     "start": "next start",
-    "lint": "eslint pages/*.tsx components/*.tsx",
-    "crawl": "ts-node crawl.ts"
+    "lint": "eslint pages/*.tsx components/*.tsx"
   },
   "repository": {
     "type": "git",
