@@ -1,10 +1,11 @@
 import fs from 'fs/promises';
 import path from 'path';
-import axios from 'axios';
 import * as turf from '@turf/turf';
-import { getPrefectureId, prefectureIds, prefectureNames } from 'jp-local-gov';
-import isoCountries from 'i18n-iso-countries';
+import axios from 'axios';
 import dotenv from 'dotenv';
+import type { Feature, Position } from 'geojson';
+import isoCountries from 'i18n-iso-countries';
+import { getPrefectureId, prefectureIds, prefectureNames } from 'jp-local-gov';
 
 dotenv.config({ path: path.join(__dirname, '../.env.local') });
 
@@ -70,9 +71,9 @@ const getCheckins = async ({ offset, limit }: {
 };
 
 const calcSenkyokuVisitCounts = (geoJson: {
-    features: (turf.Feature & {
+    features: (Feature & {
         geometry: {
-            coordinates: turf.Position[][][];
+            coordinates: Position[][][];
         };
     })[];
     coordinates: number[][][];
