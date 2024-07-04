@@ -16,6 +16,7 @@ jobs:
         node-version: 18
     - run: npm ci
     - uses: google-github-actions/auth@v2
+      if: github.actor != 'dependabot[bot]'
       with:
         credentials_json: '${{secrets.FIREBASE_SERVICE_ACCOUNT_HIDEO54}}'
     - run: npm run build
