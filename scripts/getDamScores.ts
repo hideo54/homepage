@@ -222,12 +222,15 @@ const getScores = async ({ cdmCardNo, cdmToken, cookies, page }: {
     return scoresData;
 };
 
+const loginId = process.env.DAM_ID;
+const password = process.env.DAM_PASSWORD;
+
 const main = async () => {
     admin.initializeApp();
     const loginRes = await axios.post('https://www.clubdam.com/app/damtomo/auth/LoginXML.do', {
         procKbn: 1,
-        loginId: process.env.DAM_ID,
-        password: process.env.DAM_PASSWORD,
+        loginId,
+        password,
         enc: 'sjis',
         UTCserial: getUnixTime(),
     }, {
@@ -279,4 +282,12 @@ const main = async () => {
         ...(await scoresRef.get()).docs.map(doc => doc.data()),
     ]));
 };
-main();
+
+(async () => {
+    if (loginId) {
+        await main();
+    } else {
+        const sampleDataStr = await fs.readFile(path.join(__dirname, './dam-scores.sample.json'), 'utf-8');
+        await fs.writeFile(path.join(__dirname, '../lib/dam-scores.json'), sampleDataStr);
+    }
+})();
