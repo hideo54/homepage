@@ -1,39 +1,10 @@
-import { useRef, useEffect } from 'react';
 import type { InferGetStaticPropsType, NextPage } from 'next';
 import { Github, Slack, Twitter } from '@styled-icons/fa-brands';
 import { Robot } from '@styled-icons/fa-solid';
 import { Construct, Globe, HardwareChip, Open } from '@styled-icons/ionicons-outline';
-import dayjs from 'dayjs';
 import axios from 'axios';
 import { IconAnchor, IconSpan } from '../components/iconTools';
 import Layout from '../components/Layout';
-
-const GitHubProfileBanner = () => {
-    const url = 'https://github.com/hideo54';
-    const imgRef = useRef<HTMLImageElement>(null);
-    useEffect(() => {
-        const date = dayjs().subtract(1, 'day').format('YYYY-MM-DD');
-        if (imgRef.current) {
-            imgRef.current.src = `https://img.hideo54.com/github-grass/${date}.svg`;
-        }
-    }, [imgRef]);
-    return (
-        <a href={url} target='_blank' rel='noopener noreferrer'>
-            <div className='not-prose relative w-full h-48 my-4 overflow-hidden rounded-lg'>
-                <img
-                    ref={imgRef}
-                    alt='GitHub Grass'
-                    className='w-full h-48 object-cover object-right duration-200 hover:scale-110'
-                />
-                <p className='absolute flex justify-center items-center inset-0 text-4xl text-center bg-neutral-800 bg-opacity-60 hover:scale-110 duration-200'>
-                    <IconSpan LeftIcon={Github} color='#CCCCCC' margin='0.2em'>
-                        hideo54
-                    </IconSpan>
-                </p>
-            </div>
-        </a>
-    );
-};
 
 interface Work {
     category: 'Web' | 'Machine Learning' | 'Slack bot' | 'Twitter bot' | 'Utility' | 'IoT';
@@ -242,7 +213,6 @@ type StaticProps = InferGetStaticPropsType<typeof getStaticProps>;
 const App: NextPage<StaticProps> = ({ contributions }) => {
     return (
         <Layout title='つくったもの | hideo54.com' description='hideo54が個人で制作したものの一部を紹介します。'>
-            <GitHubProfileBanner />
             <section>
                 <h1>つくったもの</h1>
                 <p>…のうち、hideo54が個人で制作したもので、公開されているもので、お気に入りのもの。</p>
