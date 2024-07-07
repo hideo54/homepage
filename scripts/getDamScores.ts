@@ -277,10 +277,9 @@ const main = async () => {
         await db.collection('dam-scores').add(score);
     }
 
-    await fs.writeFile(path.join(__dirname, '../lib/dam-scores.json'), JSON.stringify([
-        ...newScores,
-        ...(await scoresRef.get()).docs.map(doc => doc.data()),
-    ]));
+    await fs.writeFile(path.join(__dirname, '../lib/dam-scores.json'), JSON.stringify(
+        (await scoresRef.get()).docs.map(doc => doc.data())
+    ));
 };
 
 (async () => {
