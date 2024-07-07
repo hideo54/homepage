@@ -143,6 +143,7 @@ const App = () => {
                         xaxis: {
                             tickformat: '%Y-%m-%d',
                         },
+                        showlegend: false,
                     }}
                     config={{
                         staticPlot: true,
