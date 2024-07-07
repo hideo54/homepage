@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import dayjs from 'dayjs';
-import { groupBy } from 'lodash';
+import { groupBy, type Dictionary } from 'lodash';
 import clsx from 'clsx';
 import { MusicalNote } from '@styled-icons/ionicons-solid'
 import Layout from '../components/Layout';
@@ -107,6 +107,36 @@ const Score: React.FC<{
     </li>
 );
 
+const BoxPlotByDate: React.FC<{
+    scoreDataByDate: Dictionary<typeof damScoresDataJson>;
+}> = ({ scoreDataByDate }) => {
+    return (
+        <Plot
+            data={
+                Object.entries(scoreDataByDate).map(([date, scores]) => ({
+                    y: scores?.map(score => Number(score['#text']) / 1000),
+                    type: 'box',
+                    name: dayjs(date, 'YYYYMMDD').format('YYYY-MM-DD'),
+                }))
+            }
+            layout={{
+                autosize: true,
+                xaxis: {
+                    tickformat: '%Y-%m-%d',
+                },
+                showlegend: false,
+            }}
+            config={{
+                staticPlot: true,
+            }}
+            useResizeHandler
+            style={{
+                width: '100%',
+            }}
+        />
+    );
+};
+
 const App = () => {
     const scoreDataByDate = groupBy(damScoresDataJson, score => score.scoringDateTime.slice(0, 8));
     return (
@@ -130,29 +160,7 @@ const App = () => {
                 <h2>
                     日ごとの得点推移
                 </h2>
-                <Plot
-                    data={
-                        Object.entries(scoreDataByDate).map(([date, scores]) => ({
-                            y: scores?.map(score => Number(score['#text']) / 1000),
-                            type: 'box',
-                            name: dayjs(date, 'YYYYMMDD').format('YYYY-MM-DD'),
-                        }))
-                    }
-                    layout={{
-                        autosize: true,
-                        xaxis: {
-                            tickformat: '%Y-%m-%d',
-                        },
-                        showlegend: false,
-                    }}
-                    config={{
-                        staticPlot: true,
-                    }}
-                    useResizeHandler
-                    style={{
-                        width: '100%',
-                    }}
-                />
+                <BoxPlotByDate scoreDataByDate={scoreDataByDate} />
             </section>
         </Layout>
     );
