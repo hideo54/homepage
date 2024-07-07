@@ -127,6 +127,12 @@ const BoxPlotByDate: React.FC<{
                 }))
             }
             layout={{
+                margin: {
+                    t: 0,
+                    b: 20,
+                    l: 20,
+                    r: 20,
+                },
                 autosize: true,
                 xaxis: {
                     tickformat: '%Y-%m-%d',
@@ -175,7 +181,9 @@ const App = () => {
                 <h2>
                     日ごとの得点推移
                 </h2>
-                <BoxPlotByDate scoreDataByDate={scoreDataByDate} />
+                <div className='mb-8'>
+                    <BoxPlotByDate scoreDataByDate={scoreDataByDate} />
+                </div>
             </section>
         </Layout>
     );
