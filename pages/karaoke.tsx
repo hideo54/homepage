@@ -148,7 +148,6 @@ const App = () => {
                     config={{
                         staticPlot: true,
                     }}
-                    onHover={() => {}} // tooltip を無効化
                     useResizeHandler
                     style={{
                         width: '100%',
