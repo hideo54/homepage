@@ -4,7 +4,7 @@
 
 @layer base {
     body {
-        @apply dark:bg-black prose prose-neutral prose-a:font-inherit dark:prose-invert m-auto px-4
+        @apply bg-white dark:bg-black prose prose-neutral prose-a:font-inherit dark:prose-invert m-auto px-4
     }
     h1 {
         @apply text-2xl font-bold;

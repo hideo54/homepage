@@ -6,6 +6,7 @@ import { MusicalNote } from '@styled-icons/ionicons-solid'
 import Layout from '../components/Layout';
 import damScoresDataJson from '../lib/dam-scores.json';
 import { sortBy } from '../lib/utils';
+import { useState } from 'react';
 
 const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
 
@@ -110,6 +111,12 @@ const Score: React.FC<{
 const BoxPlotByDate: React.FC<{
     scoreDataByDate: Dictionary<typeof damScoresDataJson>;
 }> = ({ scoreDataByDate }) => {
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    if (window) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            setIsDarkMode(e.matches);
+        });
+    }
     return (
         <Plot
             data={
@@ -125,6 +132,14 @@ const BoxPlotByDate: React.FC<{
                     tickformat: '%Y-%m-%d',
                 },
                 showlegend: false,
+                font: {
+                    color: isDarkMode ? '#ffffff' : '#171717', // neutral-900
+                },
+                paper_bgcolor: isDarkMode ? '#000000' : '#ffffff',
+                plot_bgcolor: isDarkMode ? '#000000' : '#ffffff',
+                yaxis: {
+                    gridcolor: isDarkMode ? '#404040' : '#d4d4d4', // neutral-700, neutral-400
+                },
             }}
             config={{
                 staticPlot: true,
