@@ -6,7 +6,7 @@ import { MusicalNote } from '@styled-icons/ionicons-solid'
 import Layout from '../components/Layout';
 import damScoresDataJson from '../lib/dam-scores.json';
 import { sortBy } from '../lib/utils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
 
@@ -112,11 +112,17 @@ const BoxPlotByDate: React.FC<{
     scoreDataByDate: Dictionary<typeof damScoresDataJson>;
 }> = ({ scoreDataByDate }) => {
     const [isDarkMode, setIsDarkMode] = useState(false);
-    if (window) {
+    useEffect(() => {
+        if (!window) return;
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            if (!isDarkMode) {
+                setIsDarkMode(true);
+            }
+        }
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
             setIsDarkMode(e.matches);
         });
-    }
+    }, []);
     return (
         <Plot
             data={
@@ -181,7 +187,7 @@ const App = () => {
                 <h2>
                     日ごとの得点推移
                 </h2>
-                <div className='mb-8'>
+                <div className='mb-8 h-[450px]'>
                     <BoxPlotByDate scoreDataByDate={scoreDataByDate} />
                 </div>
             </section>
