@@ -38,6 +38,14 @@ const partyColorToText: {[key: string]: string} = {
     '#01a8ec': '社',
 };
 
+const regularizeAirportName = (airportName: string) => {
+    // 「日本語、なかったら英語 (現地語)」の形式になっているので、現地語を取り出す
+    if (airportName.includes('(')) {
+        return airportName.split('(')[1].replace(')', '').trim();
+    }
+    return airportName;
+};
+
 const App: NextPage = () => {
     const senkyokuVisitCounts2017: {[key: string]: number} = Object.fromEntries(swarmDataJson.senkyokuVisitCounts2017);
 
@@ -249,7 +257,7 @@ const App: NextPage = () => {
                                     {airportName.match(/[A-Z]{3}/)}
                                 </IconSpan>
                             </div>
-                            {airportName.replace(/\([A-Z]{3}\)/, '').trim()}
+                            {regularizeAirportName(airportName.replace(/\([A-Z]{3}\)/, ''))}
                         </div>
                     )}
                 </div>
