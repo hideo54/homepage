@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import dayjs from 'dayjs';
 import { groupBy, type Dictionary } from 'lodash';
@@ -6,7 +7,6 @@ import { MusicalNote } from '@styled-icons/ionicons-solid'
 import Layout from '../components/Layout';
 import damScoresDataJson from '../lib/dam-scores.json';
 import { sortBy } from '../lib/utils';
-import { useEffect, useState } from 'react';
 
 const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
 
