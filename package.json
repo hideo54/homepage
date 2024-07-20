@@ -26,7 +26,7 @@
     "@tailwindcss/typography": "^0.5.13",
     "@turf/turf": "^7.0.0",
     "clsx": "^2.1.1",
-    "dayjs": "^1.11.11",
+    "dayjs": "^1.11.12",
     "firebase-admin": "^12.2.0",
     "i18n-iso-countries": "^7.11.2",
     "jp-local-gov": "^1.8.0",
