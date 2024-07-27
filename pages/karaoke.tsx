@@ -137,7 +137,7 @@ const BoxPlotByDate: React.FC<{
                     t: 0,
                     b: 20,
                     l: 20,
-                    r: 20,
+                    r: 0,
                 },
                 autosize: true,
                 xaxis: {

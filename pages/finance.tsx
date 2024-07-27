@@ -41,7 +41,7 @@ const AllCountryGainPlot: React.FC<{
                     t: 0,
                     b: 60,
                     l: 60,
-                    r: 60,
+                    r: 0,
                 },
                 autosize: true,
                 xaxis: {
