@@ -1,0 +1,67 @@
+import dayjs from 'dayjs';
+import Layout from '../components/Layout';
+
+<div className='text-center'>
+    <img
+        src='https://img.hideo54.com/icons/main.png'
+        alt='icon'
+        width={200}
+        height={200}
+        className='rounded-full mx-auto my-4'
+    />
+    <h1 className='text-4xl font-bold my-4'>
+        hideo54
+    </h1>
+    <p>
+        {dayjs().diff('1999-08-02', 'years')} years old man, born in Augst 2, 1999.
+    </p>
+</div>
+
+## Loves
+
+* Software Programming (especially web)
+* Anime, Manga
+* Politics, Society
+* Language
+* Delicious foods
+* Hot springs, Sauna
+* Trip (often solo)
+
+## I'm in...
+
+* [Department of Technology and Inovation Management (TMI), Graduate School of Engineering, The University of Tokyo](https://tmi.t.u-tokyo.ac.jp/en/)
+* [Sakata-Mori-Asatani Lab](https://www.sakatalab.t.u-tokyo.ac.jp/)
+* TSG ([ja](https://tsg.ne.jp/)), a computer circle in the University of Tokyo
+* LaVoce ([ja](https://www.lavoce.jp/)), an acappella circle in the University of Tokyo
+
+## Contact
+
+* Twitter: [@hideo54](https://twitter.com/hideo54) (almost all in Japanese)
+* E-mail: `hideo54@hideo54.com` (English supported)
+
+## I was in...
+
+* [Natural Sciences I, College of Arts and Sciences, The University of Tokyo](https://www.c.u-tokyo.ac.jp/eng_site/)
+* [Course C (PSI), Systems Innovation, Faculty of Engineering, The University of Tokyo](https://www.si.t.u-tokyo.ac.jp/guide/en/)
+    * **Got a bachelor's degree in March 2023**
+* NPCA, a famous computer club in Nada junior/senior high school ([ja](https://www.npca.jp/))
+* Security Camp Committee, the largest industrial and governmental cybersecurity education project
+    * 2016 National, as a participant
+    * 2018 Yamanashi, as a tutor
+    * 2019 Fukuoka, as a tutor
+    * 2019 Okinawa, as a tutor
+    * 2023 Niigata, as a tutor
+* SECCON, the largest cybersecurity competition in Japan
+    * Final tournament in 2016
+    * Final tournament in 2019
+* Wall of Burger King Shimokitazawa ([ja](https://twitter.com/hideo54/status/1204218275233558528))
+
+<small>
+    The fox in my icon is "Foxkeh", the mascot character of the web browser "Firefox" created by its Japanese team. The image is provided by Mozilla Japan ([ja](http://foxkeh.jp/downloads/materials/)) under the [CC BY-NC 4.0 License](https://creativecommons.org/licenses/by-nc/4.0/deed.en).
+</small>
+
+export default ({ children }) => (
+    <Layout showGoTop={false}>
+        {children}
+    </Layout>
+);
