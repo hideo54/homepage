@@ -37,7 +37,7 @@
     "react-icons": "^5.2.1",
     "react-plotly.js": "^2.6.0",
     "scrape-it": "^6.1.2",
-    "yaml": "^2.4.5"
+    "yaml": "^2.5.0"
   },
   "devDependencies": {
     "@google-cloud/storage": "^7.12.0",
