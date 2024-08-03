@@ -17,7 +17,7 @@ const main = async () => {
     }>('https://direct.mattoco.jp/chartdata/chart_data_renewal_253425.js');
     const priceHistoryAfterHold = data.ROWS.filter(row => row.BASE_DATE >= hold_from);
     const priceWhenHold = priceHistoryAfterHold[0].BASE_PRICE;
-    const gainHistoryAfterHold = priceHistoryAfterHold.slice(1).map(row => ({
+    const gainHistoryAfterHold = priceHistoryAfterHold.map(row => ({
         date: dayjs(row.BASE_DATE, 'YYYYMMDD').format('YYYY-MM-DD'),
         gain: (row.BASE_PRICE - priceWhenHold) * n_hold / 10_000,
     }));
