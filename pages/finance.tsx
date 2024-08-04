@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import dayjs from 'dayjs';
-import { groupBy, type Dictionary } from 'lodash';
 import clsx from 'clsx';
 import Layout from '../components/Layout';
 import mattocoAllCountryGainHistory from '../lib/mattoco-all-country-gain-history.json';
@@ -93,6 +92,11 @@ const App = () => {
                 <div className='mb-8 h-[450px]'>
                     <AllCountryGainPlot lineColor={latestGain >= 0 ? '#16a34a' : '#dc2626'} />
                 </div>
+                {latestGain < 0 && (
+                    <p>
+                        人のことを「靴磨きの少年」と呼ぶのやめてください
+                    </p>
+                )}
             </section>
         </Layout>
     );
