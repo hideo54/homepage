@@ -177,6 +177,7 @@ const BoxPlotByDate: React.FC<{
                 autosize: true,
                 xaxis: {
                     tickformat: '%Y-%m-%d',
+                    // type: 'category', // 等間隔にしたい場合はこれ
                 },
                 showlegend: false,
                 font: {
