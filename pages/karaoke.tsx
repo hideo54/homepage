@@ -69,6 +69,9 @@ const Score: React.FC<{
         </div>
         <div className='ml-5 pl-3 border-l-2 border-solid border-neutral-400'>
             <div>
+                {dayjs(scoreData.scoringDateTime).format('YYYY/M/D')}
+            </div>
+            <div>
                 <div className='text-sm font-bold'>
                     音域
                 </div>
