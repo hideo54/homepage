@@ -29,6 +29,7 @@ const ScoreWithAverage: React.FC<{
         <span className={clsx([
             'mr-2',
             label ? 'text-xl font-bold' : 'text-2xl font-black',
+            myScore >= 90 && 'text-green-700',
         ])}>
             {myScore.toFixed(label ? 0 : 3 )}
         </span>
@@ -79,14 +80,22 @@ const Score: React.FC<{
                     音域
                 </div>
                 <span className='mr-2'>
-                    <span>
+                    <span
+                        className={clsx([
+                            scoreData.vocalRangeLowest === scoreData.singingRangeLowest && 'text-green-700',
+                        ])}
+                    >
                         {midiNoteToPitch(
                             Number(scoreData.vocalRangeLowest)
                             - (Number(scoreData.lastPerformKey) > 0 ? 12 : 0)
                         )}
                     </span>
                     {' - '}
-                    <span>
+                    <span
+                        className={clsx([
+                            scoreData.vocalRangeHighest === scoreData.singingRangeHighest && 'text-green-700',
+                        ])}
+                    >
                         {midiNoteToPitch(
                             Number(scoreData.vocalRangeHighest)
                             - (Number(scoreData.lastPerformKey) > 0 ? 12 : 0)
