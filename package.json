@@ -40,7 +40,7 @@
     "yaml": "^2.5.0"
   },
   "devDependencies": {
-    "@google-cloud/storage": "^7.12.0",
+    "@google-cloud/storage": "^7.12.1",
     "@hideo54/eslint-config": "^1.1.1",
     "@svgr/webpack": "^8.1.0",
     "@types/geojson": "^7946.0.14",
