@@ -52,7 +52,10 @@ const Score: React.FC<{
                 </span>
                 {scoreData.lastPerformKey !== '0' &&
                     <div className='inline-block mr-2 px-1 border border-solid border-neutral-600 rounded-lg'>
-                        {scoreData.lastPerformKey}
+                        {Number(scoreData.lastPerformKey) > 0
+                            ? Number(scoreData.lastPerformKey) - 12 // 音上げてたらそれは女声の上げの1オク下げだと思っていい
+                            : scoreData.lastPerformKey
+                        }
                     </div>
                 }
                 <div className='inline-block'>
@@ -76,10 +79,30 @@ const Score: React.FC<{
                     音域
                 </div>
                 <span className='mr-2'>
-                    {midiNoteToPitch(Number(scoreData.vocalRangeLowest))} - {midiNoteToPitch(Number(scoreData.vocalRangeHighest))}
+                    <span>
+                        {midiNoteToPitch(
+                            Number(scoreData.vocalRangeLowest)
+                            - (Number(scoreData.lastPerformKey) > 0 ? 12 : 0)
+                        )}
+                    </span>
+                    {' - '}
+                    <span>
+                        {midiNoteToPitch(
+                            Number(scoreData.vocalRangeHighest)
+                            - (Number(scoreData.lastPerformKey) > 0 ? 12 : 0)
+                        )}
+                    </span>
                 </span>
                 <span className='text-xs'>
-                    [{midiNoteToPitch(Number(scoreData.singingRangeLowest))} - {midiNoteToPitch(Number(scoreData.singingRangeHighest))}]
+                    {'['}
+                    <span>
+                        {midiNoteToPitch(Number(scoreData.singingRangeLowest))}
+                    </span>
+                    {' - '}
+                    <span>
+                        {midiNoteToPitch(Number(scoreData.singingRangeHighest))}
+                    </span>
+                    {']'}
                 </span>
             </div>
             <ScoreWithAverage
