@@ -78,9 +78,6 @@ const App = () => {
         >
             <h1>投資成功状況</h1>
             <section>
-                <h2>
-                    全世界株式
-                </h2>
                 <div className={clsx([
                     'text-4xl font-extrabold',
                     latestGain >= 0 ? 'text-green-600' : 'text-red-600',
