@@ -24,7 +24,7 @@
     "@styled-icons/ionicons-solid": "^10.46.0",
     "@styled-icons/styled-icon": "^10.7.1",
     "@tailwindcss/typography": "^0.5.14",
-    "@turf/turf": "^7.0.0",
+    "@turf/turf": "^7.1.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.12",
     "firebase-admin": "^12.3.1",
