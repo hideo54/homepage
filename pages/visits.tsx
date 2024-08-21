@@ -244,10 +244,12 @@ const App: NextPage = () => {
             </section>
             <section>
                 <h2>訪れたことのある空港</h2>
-                <p>飛行機だいすきなので。</p>
+                <p className='text-4xl font-bold mt-0 mb-4'>
+                    {swarmDataJson.visitedAirports.length}
+                </p>
                 <div className='flex flex-wrap'>
                     {swarmDataJson.visitedAirports.map(airportName =>
-                        <div key={airportName} className='my-2 mr-4 w-60'>
+                        <div key={airportName} className='my-2 mr-4 min-w-60 border-2 rounded p-2'>
                             <div className='text-2xl font-bold'>
                                 <IconSpan LeftIcon={Airplane}>
                                     {airportName.match(/[A-Z]{3}/)}
