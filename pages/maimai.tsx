@@ -52,7 +52,7 @@ const App = () => {
                 <h2>全国行脚 (プレイしたことがある都道府県)</h2>
                 <Map
                     id='maimai'
-                    Svg={PrefecturesMapSvg}
+                    path='/prefectures-simplify-20.svg'
                     viewBox='137.0 20.0 591.0 740.0'
                     fill={Object.fromEntries(
                         maimaiDataJson.prefectures.map(prefId => [prefId, '#e89402'])
