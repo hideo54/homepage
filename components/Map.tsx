@@ -49,7 +49,7 @@ const DynamicSvg: React.FC<{
         <div
             id={props.id}
             className={clsx([
-                'relative bg-[#a5c1fa] not-prose dark:not-prose',
+                'relative bg-[#a5c1fa] not-prose dark:prose',
                 props.wrapperDivClassName,
             ])}
             style={props.style}
