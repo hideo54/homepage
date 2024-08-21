@@ -41,11 +41,11 @@ const works: Work[] = [
         repoUrl: 'https://github.com/hideo54/lab',
     },
     {
-        category: 'IoT',
-        title: 'hideout',
-        description: '自作スマートホームシステム。時報、室内の気温や室温・二酸化炭素の情報、緊急速報などを音声で通知。部屋の照明を時刻に合わせて自動で調整。',
-        url: 'https://github.com/hideo54/hideout',
-        repoUrl: 'https://github.com/hideo54/hideout',
+        category: 'Web',
+        title: '選挙ウォッチ',
+        description: '衆院選・参院選に向けた各党の候補者擁立状況をまとめたウェブサイト。複雑な候補者調整・競合状況の最新の情報を地図でわかりやすく確認でき、議席数予想も可能な、日本最大の選挙オタク向けウェブサービス。',
+        url: 'https://senkyo.watch',
+        imageUrl: 'https://senkyo.watch/assets/images/icon.svg',
     },
     {
         category: 'Utility',
@@ -55,19 +55,20 @@ const works: Work[] = [
         repoUrl: 'https://github.com/hideo54/userscripts',
     },
     {
+        category: 'IoT',
+        title: 'hideout',
+        description: '自作スマートホームシステム。時報、室内の気温や室温・二酸化炭素の情報、緊急速報などを音声で通知。部屋の照明を時刻に合わせて自動で調整。',
+        url: 'https://github.com/hideo54/hideout',
+        repoUrl: 'https://github.com/hideo54/hideout',
+        until: '2020年',
+    },
+    {
         category: 'Slack bot',
         title: 'psi-slack',
         description: '2021年度進学・システム創成学科 PSI コース Slack のための Slack bot。「学科からのお知らせ」の更新通知など。',
         url: 'https://github.com/hideo54/psi-slack',
         imageUrl: 'https://pbs.twimg.com/profile_images/2224958669/PSIlogo_400x400.PNG',
         repoUrl: 'https://github.com/hideo54/psi-slack',
-    },
-    {
-        category: 'Web',
-        title: '選挙ウォッチ',
-        description: '衆院選・参院選に向けた各党の候補者擁立状況をまとめたウェブサイト。複雑な候補者調整・競合状況の最新の情報を地図でわかりやすく確認できるほか、議席数予想も可能。実は情報収集の多くが自動化されている点も特徴。',
-        url: 'https://senkyo.watch',
-        imageUrl: 'https://senkyo.watch/assets/images/icon.svg',
     },
     {
         category: 'Slack bot',
@@ -112,11 +113,16 @@ const WorkDetail: React.FC<{
                         {work.category}
                     </IconSpan>
                 </div>
-                <p className='text-xl font-semibold'>
+                <span className='text-xl font-semibold mr-4'>
                     <IconAnchor href={work.url} RightIcon={Open}>
                         {work.title}
                     </IconAnchor>
-                </p>
+                </span>
+                {work.until &&
+                    <span className='text-sm border-2 border-red-500 text-red-500 rounded-lg px-2 align-[2px]'>
+                        {untilTransformer(work.until)}
+                    </span>
+                }
             </div>
             {work.imageUrl &&
                 <img
@@ -129,11 +135,6 @@ const WorkDetail: React.FC<{
         <p className='my-4'>
             {work.description}
         </p>
-        {work.until && (
-            <p>
-                {untilTransformer(work.until)}
-            </p>
-        )}
         {work.repoUrl && (
             <p>
                 <IconAnchor LeftIcon={Github} href={work.repoUrl} margin='0.1em'>
@@ -216,14 +217,14 @@ const App: NextPage<StaticProps> = ({ contributions }) => {
                 <h1>つくったもの</h1>
                 <p>…のうち、hideo54が個人で制作したもので、公開されているもので、お気に入りのもの。</p>
                 {works.map(work =>
-                    <WorkDetail key={work.title} work={work} untilTransformer={s => `(${s}に運営終了)`} />
+                    <WorkDetail key={work.title} work={work} untilTransformer={s => `${s}に運営終了`} />
                 )}
             </section>
             <section>
                 <h2>書いたもの</h2>
                 <p>…のうち、お気に入りのもの。</p>
                 {articles.map(article =>
-                    <WorkDetail key={article.title} work={article} untilTransformer={s => `(${s}に執筆・公開)`} />
+                    <WorkDetail key={article.title} work={article} untilTransformer={s => `${s}に執筆・公開`} />
                 )}
             </section>
             <section>
