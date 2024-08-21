@@ -93,9 +93,8 @@ const articles: Work[] = [
     {
         category: 'Machine Learning',
         title: '機械学習でμ\'sの声を識別する',
-        description: 'アイドルグループ「μ\'s」のメンバーの声質を学習し、ソロ曲の音声を与えると誰の声かを当てるプログラムを作成し、それについてまとめた記事です。',
-        url: 'https://sunpro.io/c91/hideo54.html',
-        imageUrl: 'https://sunpro.io/c91/favicon.png',
+        description: 'アイドルグループ「μ\'s」のメンバーの声質を学習し、ソロ曲の音声を与えると誰の声かを当てるプログラムについての記事です。',
+        url: 'https://booth.pm/ja/items/396886',
         repoUrl: 'https://github.com/hideo54/ML-LoveLive-Voice',
         until: '2016年冬',
     },
