@@ -9,10 +9,6 @@ import maimaiDataJson from '../lib/maimai-data.json';
 import swarmDataJson from '../lib/swarm-data.json';
 import senkyokuResultColorJson from '../lib/shu-2021-senkyoku-result-color.json';
 import usStateColorsJson from '../lib/us-state-colors.json';
-import PrefecturesMapSvg from '../public/prefectures-simplify-20.svg';
-import Shu2017GeoSvg from '../public/shu-2017-geo.svg';
-import WorldMapSvg from '../public/intl_wintri.svg';
-import USStatesMapSvg from '../public/us-states.svg';
 
 const ColorSquare: React.FC<{
     color: string;
@@ -91,7 +87,7 @@ const App: NextPage = () => {
                 <h2>訪れたことのある小選挙区</h2>
                 <Map
                     id='senkyoku'
-                    Svg={Shu2017GeoSvg}
+                    path='/shu-2017-geo.svg'
                     viewBox='100 15 433 540'
                     fill={Object.fromEntries(visitedSenkyokuColors)}
                     count={visitedSenkyoku.length}
@@ -139,7 +135,7 @@ const App: NextPage = () => {
                 <h2>経県値</h2>
                 <Map
                     id='keikenchi'
-                    Svg={PrefecturesMapSvg}
+                    path='/prefectures-simplify-20.svg'
                     viewBox='137.0 20.0 591.0 740.0'
                     fill={Object.fromEntries(
                         Object.entries(swarmDataJson.keikenchi).map(([prefId, value]) => [
@@ -175,7 +171,7 @@ const App: NextPage = () => {
                 <h2>maimai 全国行脚 (プレイしたことがある都道府県)</h2>
                 <Map
                     id='maimai'
-                    Svg={PrefecturesMapSvg}
+                    path='/prefectures-simplify-20.svg'
                     viewBox='137.0 20.0 591.0 740.0'
                     fill={Object.fromEntries(
                         maimaiDataJson.prefectures.map(prefId => [prefId, '#e89402'])
@@ -193,8 +189,8 @@ const App: NextPage = () => {
                 </ul>
                 <Map
                     id='intl_wintri1'
-                    Svg={WorldMapSvg}
-                    viewBox='0 140 800 200'
+                    path='/intl_wintri.svg'
+                    viewBox='0 140 800 150'
                     fill={Object.fromEntries(
                         swarmDataJson.allVisitedCountryCodes.map(cc => [
                             'ADM0_A3-' + cc,
@@ -219,7 +215,7 @@ const App: NextPage = () => {
                 <h2>訪れたことのあるアメリカ合衆国の州</h2>
                 <Map
                     id='us'
-                    Svg={USStatesMapSvg}
+                    path='/us-states.svg'
                     viewBox='0 0 940 593'
                     fill={Object.fromEntries(
                         swarmDataJson.allVisitedUSStates.map(stateId => [

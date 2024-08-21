@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="959" height="593">
+  <g>
   <title>Blank map of the United States, territories not included</title>
 <defs>
 <style type="text/css">
@@ -292,5 +293,5 @@ Place this code in the empty space below. */
 <title>District of Columbia</title></circle>
 
 <path class="separator1" fill="none" d="m 215,493 v 55 l 36,45 m -251,-168 h 147 l 68,68 h 85 l 54,54 v 46"/>
-
+</g>
 </svg>

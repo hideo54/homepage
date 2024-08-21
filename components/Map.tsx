@@ -1,32 +1,94 @@
-const Map: React.FC<{
-    Svg: React.FC<{ viewBox?: string; id: string; className: string; }>;
+import React, { useState, useEffect } from 'react';
+import clsx from 'clsx';
+
+const DynamicSvg: React.FC<{
+    id: string;
+    path: string;
     viewBox: string;
     idProvidedByClass?: boolean;
+    className?: string;
+    style?: React.CSSProperties;
+    children?: React.ReactNode;
     fill: {[keys: string]: string};
     count: number;
     maxCount?: number;
     CountSectionChildren?: React.ReactNode;
-    id: string;
+    wrapperDivClassName?: string;
     additionalCss?: string;
-}> = props => (
-    <div className='not-prose dark:prose relative bg-[#a5c1fa]'>
-        <props.Svg viewBox={props.viewBox} id={props.id} className='w-full max-h-[120vw] fill-white stroke-black stroke-[0.2px]' />
-        <style dangerouslySetInnerHTML={{
-            __html: (props.additionalCss || '') + Object.entries(props.fill)
-                .map(([prefId, color]) =>
-                    `#${props.id} path${props.idProvidedByClass ? '.' : '#'}${prefId}{fill:${color};}`
-                ).join(''),
-        }} />
-        <section className='absolute top-0 p-2'>
-            <p>
-                <span className='text-3xl font-bold'>{props.count}</span>
-                {props.maxCount &&
-                    <span> / {props.maxCount}</span>
-                }
-            </p>
-            {props.CountSectionChildren}
-        </section>
-    </div>
-);
+}> = props => {
+    const [data, setData] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<Error | null>(null);
 
-export default Map;
+    useEffect(() => {
+        fetch(props.path)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(svgData => {
+                setData(svgData);
+                setLoading(false);
+            })
+            .catch(error => {
+                setError(error);
+                setLoading(false);
+            });
+    }, [props.path]);
+
+    if (loading) return <div className='skeleton h-[600px]' />;
+    if (error) return <p>Error: {error.message}</p>;
+    if (!data) return <p>No data</p>;
+
+    const loadedSvg = new DOMParser().parseFromString(data, 'image/svg+xml');
+    const svgElementChild = loadedSvg.getElementsByTagName('svg')[0]?.firstElementChild;
+
+    return (
+        <div
+            id={props.id}
+            className={clsx([
+                'relative bg-[#a5c1fa] not-prose dark:not-prose',
+                props.wrapperDivClassName,
+            ])}
+            style={props.style}
+        >
+            <svg
+                viewBox={props.viewBox}
+                className={clsx([
+                    'w-full min-h-[50vw] max-h-[600px] fill-white stroke-black stroke-[0.2px]',
+                    props.className,
+                ])}
+            >
+                <g
+                    id='loaded'
+                    // @ts-expect-error わからん
+                    ref={ref => svgElementChild && ref?.replaceWith(svgElementChild)}
+                >
+                    <div className='skeleton h-full' />
+                </g>
+                {props.children}
+            </svg>
+            <style dangerouslySetInnerHTML={{
+                __html: (props.additionalCss || '') + Object.entries(props.fill)
+                    .map(([prefId, color]) =>
+                        `#${props.id} path${props.idProvidedByClass ? '.' : '#'}${prefId}{fill:${color};}`
+                    ).join(''),
+            }} />
+            <section className='absolute top-0 p-2'>
+                <p className='m-0'>
+                    <span className='text-3xl font-bold'>
+                        {props.count}
+                    </span>
+                    {props.maxCount &&
+                        <span> / {props.maxCount}</span>
+                    }
+                </p>
+                {props.CountSectionChildren}
+            </section>
+        </div>
+    );
+};
+
+export default DynamicSvg;
