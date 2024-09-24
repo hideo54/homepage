@@ -229,6 +229,7 @@ const App: NextPage = () => {
                     count={swarmDataJson.allVisitedUSStates.length}
                     maxCount={51}
                     additionalCss='g.state{fill:white;}g.borders>path{stroke:black;stroke-width:0.5;}'
+                    svgPadding='0 2em'
                 />
                 <div>
                     <small>50 states + District of Columbia.</small>

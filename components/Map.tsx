@@ -15,6 +15,7 @@ const DynamicSvg: React.FC<{
     CountSectionChildren?: React.ReactNode;
     wrapperDivClassName?: string;
     additionalCss?: string;
+    svgPadding?: string;
 }> = props => {
     const [data, setData] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
@@ -60,6 +61,9 @@ const DynamicSvg: React.FC<{
                     'w-full max-h-[800px] fill-white stroke-black stroke-[0.2px]',
                     props.className,
                 ])}
+                style={{
+                    padding: props.svgPadding,
+                }}
             >
                 <g
                     id='loaded'
