@@ -201,13 +201,14 @@ const App: NextPage = () => {
                     count={swarmDataJson.allVisitedCountryCodes.length}
                     additionalCss='path[class^="ADM0_A3-"],path.land,path.boundary{stroke:black;stroke-width:0.2;}path[class^="ADM0_A3-"],path.land{fill:white;}'
                 />
-                <p>
+                <p className='leading-4'>
                     <small>
                         世界地図:{' '}
                         <IconAnchor href='https://github.com/wri/wri-bounds' RightIcon={Open}>
                             wri/wri-bounds
                         </IconAnchor>
-                        {' '}から
+                        {' '}から。
+                        なお北方領土は元素材でロシア領扱いだったものを日本領扱いに改変。
                     </small>
                 </p>
             </section>
