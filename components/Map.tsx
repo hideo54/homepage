@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 
-const DynamicSvg: React.FC<{
+const Map: React.FC<{
     id: string;
     path: string;
     viewBox: string;
@@ -95,4 +95,4 @@ const DynamicSvg: React.FC<{
     );
 };
 
-export default DynamicSvg;
+export default Map;
