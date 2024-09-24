@@ -57,7 +57,7 @@ const DynamicSvg: React.FC<{
             <svg
                 viewBox={props.viewBox}
                 className={clsx([
-                    'w-full min-h-[50vw] max-h-[600px] fill-white stroke-black stroke-[0.2px]',
+                    'w-full max-h-[800px] fill-white stroke-black stroke-[0.2px]',
                     props.className,
                 ])}
             >

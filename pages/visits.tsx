@@ -190,7 +190,7 @@ const App: NextPage = () => {
                 <Map
                     id='intl_wintri1'
                     path='/intl_wintri.svg'
-                    viewBox='0 140 800 150'
+                    viewBox='0 0 800 485'
                     fill={Object.fromEntries(
                         swarmDataJson.allVisitedCountryCodes.map(cc => [
                             'ADM0_A3-' + cc,
