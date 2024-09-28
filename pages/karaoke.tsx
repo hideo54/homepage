@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import { groupBy, type Dictionary } from 'lodash';
 import clsx from 'clsx';
 import { MusicalNote } from '@styled-icons/ionicons-solid'
+import chroma from 'chroma-js';
 import Layout from '../components/Layout';
 import damScoresDataJson from '../lib/dam-scores.json';
 import { sortBy } from '../lib/utils';
@@ -158,6 +159,18 @@ const BoxPlotByDate: React.FC<{
             setIsDarkMode(e.matches);
         });
     }, []);
+    const jetScale = chroma.scale([
+        // Jet style gradation by ChatGPT
+        '#00007F',
+        '#0000BF',
+        '#007FBF',
+        '#00BFBF',
+        '#7FBF7F',
+        '#BFBF00',
+        '#BF7F00',
+        '#BF0000',
+        '#7F0000'
+    ]).domain([75, 95]);
     return (
         <Plot
             data={
@@ -165,12 +178,21 @@ const BoxPlotByDate: React.FC<{
                     y: scores?.map(score => Number(score['#text']) / 1000),
                     type: 'box',
                     name: dayjs(date, 'YYYYMMDD').format('YYYY-MM-DD'),
+                    marker: {
+                        // その日の平均点を jet で色付け
+                        color: jetScale(
+                            Math.round(
+                                scores.map(score => Number(score['#text']) / 1000)
+                                .reduce((acc, cur) => acc + cur, 0) / scores.length
+                            )
+                        ).hex(),
+                    }
                 }))
             }
             layout={{
                 margin: {
                     t: 0,
-                    b: 20,
+                    b: 60,
                     l: 20,
                     r: 0,
                 },
