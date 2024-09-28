@@ -201,7 +201,12 @@ const BoxPlotByDate: React.FC<{
 };
 
 const App = () => {
-    const scoreDataByDate = groupBy(damScoresDataJson, score => score.scoringDateTime.slice(0, 8));
+    const applicableScores = damScoresDataJson.filter(score =>
+        // 途中で歌うのをやめたものは除外
+        Number(score.aiSensitivityGraphAddPointsSection24) > 0
+        || Number(score.aiSensitivityGraphDeductPointsSection24) > 0
+    );
+    const scoreDataByDate = groupBy(applicableScores, score => score.scoringDateTime.slice(0, 8));
     return (
         <Layout
             title='カラオケ得点状況 | hideo54.com'
