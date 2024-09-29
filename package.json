@@ -44,6 +44,7 @@
     "@google-cloud/storage": "^7.13.0",
     "@hideo54/eslint-config": "^1.1.1",
     "@svgr/webpack": "^8.1.0",
+    "@types/chroma-js": "^2.4.4",
     "@types/geojson": "^7946.0.14",
     "@types/lodash": "^4.17.9",
     "@types/mdx-js__react": "^1.5.8",
