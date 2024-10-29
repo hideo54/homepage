@@ -7,7 +7,8 @@ import Layout from '../components/Layout';
 import Map from '../components/Map';
 import maimaiDataJson from '../lib/maimai-data.json';
 import swarmDataJson from '../lib/swarm-data.json';
-import senkyokuResultColorJson from '../lib/shu-2021-senkyoku-result-color.json';
+import senkyokuResultColor2024Json from '../lib/shu-2024-senkyoku-result-color.json';
+import senkyokuResultColor2021Json from '../lib/shu-2021-senkyoku-result-color.json';
 import usStateColorsJson from '../lib/us-state-colors.json';
 
 const ColorSquare: React.FC<{
@@ -50,21 +51,31 @@ const App: NextPage = () => {
     senkyokuVisitCounts2017['wakayama-1'] += 1; // マリーナシティが地図の簡略化により抜けてしまっている
     senkyokuVisitCounts2017['wakayama-3'] += 1; // 小学生の時、白浜
 
-    const visitedSenkyoku = Object.entries(senkyokuVisitCounts2017)
+    const senkyokuVisitCounts2022: {[key: string]: number} = Object.fromEntries(swarmDataJson.senkyokuVisitCounts2022);
+
+    // Manual edit:
+    senkyokuVisitCounts2022['mie-4'] += 1; // 小学生のとき、伊勢、鳥羽など
+    senkyokuVisitCounts2022['wakayama-1'] += 1; // マリーナシティが地図の簡略化により抜けてしまっている
+    senkyokuVisitCounts2022['wakayama-3'] += 1; // 小学生の時、白浜
+
+    const visitedSenkyoku2017 = Object.entries(senkyokuVisitCounts2017)
         .filter(([, count]) => count > 0)
         .map(e => e[0]);
-    const visitedSenkyokuColors = visitedSenkyoku.map(senkyokuId => [
+    const visitedSenkyoku2022 = Object.entries(senkyokuVisitCounts2017)
+    .filter(([, count]) => count > 0)
+    .map(e => e[0]);
+    const visitedSenkyokuColors = visitedSenkyoku2022.map(senkyokuId => [
         senkyokuId,
-        senkyokuResultColorJson[senkyokuId as keyof typeof senkyokuResultColorJson] || 'white',
+        senkyokuResultColor2024Json[senkyokuId as keyof typeof senkyokuResultColor2024Json] || 'white',
     ] as [string, string]);
     const visitedSenkyokuColorSet = new Set(
-        visitedSenkyokuColors.map(e => e[1])
+        Object.values(senkyokuResultColor2024Json)
     );
     const visitedSenkyokuCountsByParty = Array.from(visitedSenkyokuColorSet)
         .map(color => [
             color,
             visitedSenkyokuColors.filter(e => e[1] === color).length,
-            Object.entries(senkyokuResultColorJson).filter(([, v]) => v === color).length,
+            Object.entries(senkyokuResultColor2024Json).filter(([, v]) => v === color).length,
         ] as [string, number, number])
         .sort((a, b) => a[1] === b[1] ? - (a[2] - b[2]) : - (a[1] - b[1]));
 
@@ -87,10 +98,10 @@ const App: NextPage = () => {
                 <h2>訪れたことのある小選挙区</h2>
                 <Map
                     id='senkyoku'
-                    path='/shu-2017-geo.svg'
-                    viewBox='100 15 433 540'
+                    path='/shu-2022-geo.svg'
+                    viewBox='137 20 591 740'
                     fill={Object.fromEntries(visitedSenkyokuColors)}
-                    count={visitedSenkyoku.length}
+                    count={visitedSenkyoku2022.length}
                     maxCount={289}
                     CountSectionChildren={
                         visitedSenkyokuCountsByParty.map(([color, visitedCount, allCount]) =>
@@ -106,11 +117,6 @@ const App: NextPage = () => {
                         )
                     }
                 />
-                <p>
-                    ※ 新区割りでは {
-                        (swarmDataJson.senkyokuVisitCounts2022 as [string, number][]).filter(e => e[1] > 0).length
-                    } / 289 に。
-                </p>
                 <p>
                     <small>
                         小選挙区マップ:{' '}
