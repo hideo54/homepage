@@ -152,24 +152,22 @@ const App: NextPage = () => {
                     count={sum(Object.values(swarmDataJson.keikenchi))}
                     maxCount={5 * 47}
                     CountSectionChildren={
-                        Object.entries(countBy(swarmDataJson.keikenchi))
-                            .reverse()
-                            .map(([prefId, count], i) =>
-                                <p key={prefId} className='my-1'>
-                                    <ColorSquare color={keikenchiToColor(5 - i)} />
-                                    <span className='mr-1 font-bold'>
-                                        {[
-                                            '居住',
-                                            '宿泊',
-                                            '訪問',
-                                            '接地',
-                                            '通過',
-                                            '未踏',
-                                        ][i]}
-                                    </span>
-                                    {count} / 47
-                                </p>
-                            )
+                        Array.from({ length: 6 }, (_, i) => (
+                            <p key={i} className='my-1'>
+                                <ColorSquare color={keikenchiToColor(5 - i)} />
+                                <span className='mr-1 font-bold'>
+                                    {[
+                                        '居住',
+                                        '宿泊',
+                                        '訪問',
+                                        '接地',
+                                        '通過',
+                                        '未踏',
+                                    ][i]}
+                                </span>
+                                {Object.values(swarmDataJson.keikenchi).filter(v => v === (5 - i)).length} / 47
+                            </p>
+                        ))
                     }
                 />
             </section>
