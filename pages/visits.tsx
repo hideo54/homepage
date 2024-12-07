@@ -48,14 +48,11 @@ const App: NextPage = () => {
 
     // Manual edit:
     senkyokuVisitCounts2017['mie-4'] += 1; // 小学生のとき、伊勢、鳥羽など
-    senkyokuVisitCounts2017['wakayama-1'] += 1; // マリーナシティが地図の簡略化により抜けてしまっている
-    senkyokuVisitCounts2017['wakayama-3'] += 1; // 小学生の時、白浜
 
     const senkyokuVisitCounts2022: {[key: string]: number} = Object.fromEntries(swarmDataJson.senkyokuVisitCounts2022);
 
     // Manual edit:
     senkyokuVisitCounts2022['mie-4'] += 1; // 小学生のとき、伊勢、鳥羽など
-    senkyokuVisitCounts2022['wakayama-1'] += 1; // マリーナシティが地図の簡略化により抜けてしまっている
 
     const visitedSenkyoku2017 = Object.entries(senkyokuVisitCounts2017)
         .filter(([, count]) => count > 0)
