@@ -56,14 +56,13 @@ const App: NextPage = () => {
     // Manual edit:
     senkyokuVisitCounts2022['mie-4'] += 1; // 小学生のとき、伊勢、鳥羽など
     senkyokuVisitCounts2022['wakayama-1'] += 1; // マリーナシティが地図の簡略化により抜けてしまっている
-    senkyokuVisitCounts2022['wakayama-3'] += 1; // 小学生の時、白浜
 
     const visitedSenkyoku2017 = Object.entries(senkyokuVisitCounts2017)
         .filter(([, count]) => count > 0)
         .map(e => e[0]);
-    const visitedSenkyoku2022 = Object.entries(senkyokuVisitCounts2017)
-    .filter(([, count]) => count > 0)
-    .map(e => e[0]);
+    const visitedSenkyoku2022 = Object.entries(senkyokuVisitCounts2022)
+        .filter(([, count]) => count > 0)
+        .map(e => e[0]);
     const visitedSenkyokuColors = visitedSenkyoku2022.map(senkyokuId => [
         senkyokuId,
         senkyokuResultColor2024Json[senkyokuId as keyof typeof senkyokuResultColor2024Json] || 'white',
