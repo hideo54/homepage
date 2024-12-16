@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "develop": "next",
-    "build": "ts-node scripts/getCheckins.ts; ts-node scripts/getDamScores.ts; ts-node scripts/getMaimaiData.ts; next build",
+    "build": "tsx scripts/getCheckins.ts; tsx scripts/getDamScores.ts; tsx scripts/getMaimaiData.ts; tsx scripts/getMattocoAllCountryGainHistory.ts; next build",
     "start": "next start",
     "lint": "eslint pages/*.tsx components/*.tsx"
   },
