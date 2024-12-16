@@ -84,9 +84,6 @@ const App: NextPage = () => {
             <h1>訪問歴</h1>
             <section>
                 <h2>訪れたことのある小選挙区</h2>
-                <div>
-                    その小選挙区で当選した候補者の所属政党の色で塗っています。
-                </div>
                 <Map
                     id='senkyoku'
                     path='/shu-2022-geo.svg'
@@ -108,14 +105,16 @@ const App: NextPage = () => {
                         )
                     }
                 />
-                <div>
+                <div className='my-4 leading-4'>
                     <small>
+                        その小選挙区で当選した候補者の所属政党の色で塗っています。
+                        <br />
                         小選挙区マップ:{' '}
                         <IconAnchor href='https://senkyo.watch' RightIcon={Open}>選挙ウォッチ</IconAnchor>
-                        から
+                        から。
                     </small>
                 </div>
-                <section>
+                <section className='text-sm'>
                     <h3>Q. なぜ小選挙区で表すのか?</h3>
                     <ul>
                         <li>hideo54は日本政治が好きです。</li>
@@ -195,7 +194,7 @@ const App: NextPage = () => {
                     count={swarmDataJson.allVisitedCountryCodes.length}
                     additionalCss='path[class^="ADM0_A3-"],path.land,path.boundary{stroke:black;stroke-width:0.2;}path[class^="ADM0_A3-"],path.land{fill:white;}'
                 />
-                <p className='leading-4'>
+                <div className='my-4 leading-4'>
                     <small>
                         世界地図:{' '}
                         <IconAnchor href='https://github.com/wri/wri-bounds' RightIcon={Open}>
@@ -204,7 +203,7 @@ const App: NextPage = () => {
                         {' '}から。
                         なお北方領土は元素材でロシア領扱いだったものを日本領扱いに改変。
                     </small>
-                </p>
+                </div>
             </section>
             <section>
                 <h2>訪れたことのあるアメリカ合衆国の州</h2>
@@ -225,27 +224,28 @@ const App: NextPage = () => {
                     additionalCss='g.state{fill:white;}g.borders>path{stroke:black;stroke-width:0.5;}'
                     svgPadding='0 2em'
                 />
-                <div>
+                <div className='my-4 leading-4'>
                     <small>50 states + District of Columbia.</small>
+                    <br />
+                    <small>
+                        マップ:{' '}
+                        <IconAnchor
+                            href='https://commons.wikimedia.org/wiki/File:Blank_US_Map_(states_only).svg'
+                            RightIcon={Open}
+                        >
+                            File:Blank US Map (states only).svg by Heitordp, CC0, via Wikimedia Commons
+                        </IconAnchor>
+                    </small>
                 </div>
-                <small>
-                    マップ:{' '}
-                    <IconAnchor
-                        href='https://commons.wikimedia.org/wiki/File:Blank_US_Map_(states_only).svg'
-                        RightIcon={Open}
-                    >
-                        File:Blank US Map (states only).svg by Heitordp, CC0, via Wikimedia Commons
-                    </IconAnchor>
-                </small>
             </section>
             <section>
                 <h2>訪れたことのある空港</h2>
                 <p className='text-4xl font-bold mt-0 mb-4'>
                     {swarmDataJson.visitedAirports.length}
                 </p>
-                <div className='flex flex-wrap'>
+                <div>
                     {swarmDataJson.visitedAirports.map(airportName =>
-                        <div key={airportName} className='my-2 mr-4 min-w-60 border-2 rounded p-2'>
+                        <div key={airportName} className='my-4'>
                             <div className='text-2xl font-bold'>
                                 <IconSpan LeftIcon={Airplane}>
                                     {airportName.match(/[A-Z]{3}/)}
