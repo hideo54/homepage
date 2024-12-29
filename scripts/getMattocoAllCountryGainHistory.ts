@@ -18,7 +18,7 @@ const main = async () => {
             BASE_DATE: string;
             BASE_PRICE: number;
         }[];
-    }>('https://emaxis.am.mufg.jp/fund_file/chart/chart_data_253425.js');
+    }>('https://img.hideo54.com/tmp/chart_data_253425.js');
     const holdFrom = Object.keys(holdHistory).sort()[0];
     const priceHistoryAfterHold = data.ROWS.filter(row => row.BASE_DATE >= holdFrom);
     const gainHistory = priceHistoryAfterHold.slice(1).reduce((acc, cur, i) => {
