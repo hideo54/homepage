@@ -215,6 +215,35 @@ const getCheckinData = async () => {
                 .map(checkin => checkin.venue.location.state)
         )
     );
+    const checkinsByCategory = allCheckins.reduce((acc, checkin) => {
+        checkin.venue.categories.forEach(category => {
+            if (!acc[category.name]) {
+                acc[category.name] = [];
+            }
+            acc[category.name].push(checkin);
+        });
+        return acc;
+    }, {} as Record<string, typeof allCheckins>);
+    const formatRestrauntName = (name: string) => name.split(' ').filter((word, i) =>
+        i == 0 || (!word.endsWith('店') && !word.endsWith('組'))
+    ).join(' ');
+    const allRamenRestaurantNames = Array.from(
+        new Set(
+            checkinsByCategory['ラーメン屋'].map(checkin =>
+                formatRestrauntName(checkin.venue.name)
+            )
+        )
+    );
+    const ramenRestaurantsCheckinCount = Object.fromEntries(
+        allRamenRestaurantNames.map(restaurantName =>
+            [
+                restaurantName,
+                checkinsByCategory['ラーメン屋'].filter(checkin =>
+                    formatRestrauntName(checkin.venue.name) === restaurantName
+                ).length,
+            ] as const
+        ).sort((a, b) => - (a[1] - b[1]))
+    );
 
     const checkinData = {
         senkyokuVisitCounts2017,
@@ -224,6 +253,7 @@ const getCheckinData = async () => {
         allVisitedCountries,
         allVisitedCountryCodes,
         allVisitedUSStates,
+        ramenRestaurantsCheckinCount,
     };
     return checkinData;
 };
@@ -242,6 +272,9 @@ const sampleData = {
     allVisitedCountries: ['日本'],
     allVisitedCountryCodes: ['JP'],
     allVisitedUSStates: ['NV'],
+    ramenRestaurantsCheckinCount: {
+        '東京油組総本店': 54,
+    },
 };
 
 const main = async () => {

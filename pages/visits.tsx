@@ -256,6 +256,28 @@ const App: NextPage = () => {
                     )}
                 </div>
             </section>
+            <section>
+                <h2>訪れたラーメン屋の総数</h2>
+                <p className='text-4xl font-bold mt-0 mb-4'>
+                    {Object.keys(swarmDataJson.ramenRestaurantsCheckinCount).length}
+                </p>
+                <p>うち、10回以上訪れている店舗</p>
+                <ul>
+                    {Object.entries(swarmDataJson.ramenRestaurantsCheckinCount)
+                        .filter(([, count]) => count >= 10)
+                        .map(([restaurantName, count]) =>
+                            <li key={restaurantName}>
+                                {restaurantName} ({count}回)
+                            </li>
+                        )
+                    }
+                </ul>
+                <div className='my-4 leading-4'>
+                    <small>
+                        同一ラーメンチェーンの「〇〇店」といった支店名は除去し、まとめて計上しています。
+                    </small>
+                </div>
+            </section>
         </Layout>
     );
 };
