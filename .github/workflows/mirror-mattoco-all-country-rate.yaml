@@ -1,0 +1,29 @@
+name: Mirror Mattoco All Country Rate
+
+on:
+  push:
+    branches:
+    - main
+  schedule:
+  - cron: '0 17 * * *' # daily deploy at 2 am JST
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Download file
+      run: curl -O https://emaxis.am.mufg.jp/fund_file/chart/chart_data_253425.js
+
+    - uses: google-github-actions/auth@v2
+      with:
+        credentials_json: '${{secrets.FIREBASE_SERVICE_ACCOUNT_HIDEO54}}'
+
+    - name: Upload to Google Cloud Storage
+      uses: google-github-actions/upload-cloud-storage@v2
+      with:
+        path: tmp/chart_data_253425.js
+        destination: img.hideo54.com
