@@ -17,11 +17,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Download file
-      run: |
-        if ! curl --fail -O https://emaxis.am.mufg.jp/fund_file/chart/chart_data_253425.js; then
-          echo "Download failed, exiting."
-          exit 0
-        fi
+      run: curl --fail -O https://emaxis.am.mufg.jp/fund_file/chart/chart_data_253425.js
 
     - uses: google-github-actions/auth@v2
       with:
