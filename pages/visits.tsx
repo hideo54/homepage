@@ -82,7 +82,7 @@ const App: NextPage = () => {
             description='旅好き・hideo54がこれまでに訪れたことのある土地をまとめています。'
         >
             <h1>訪問歴</h1>
-            <section>
+            <section id='senkyoku'>
                 <h2>訪れたことのある小選挙区</h2>
                 <Map
                     id='senkyoku'
@@ -126,7 +126,7 @@ const App: NextPage = () => {
                     </ul> */}
                 </section>
             </section>
-            <section>
+            <section id='keikenchi'>
                 <h2>経県値</h2>
                 <Map
                     id='keikenchi'
@@ -160,7 +160,7 @@ const App: NextPage = () => {
                     }
                 />
             </section>
-            <section>
+            <section id='maimai'>
                 <h2>maimai 全国行脚 (プレイしたことがある都道府県)</h2>
                 <Map
                     id='maimai'
@@ -173,7 +173,7 @@ const App: NextPage = () => {
                     maxCount={47}
                 />
             </section>
-            <section>
+            <section id='countries'>
                 <h2>訪れたことのある国と地域</h2>
                 <ul>
                     {swarmDataJson.allVisitedCountries.map(country =>
@@ -205,7 +205,7 @@ const App: NextPage = () => {
                     </small>
                 </div>
             </section>
-            <section>
+            <section id='us'>
                 <h2>訪れたことのあるアメリカ合衆国の州</h2>
                 <Map
                     id='us'
@@ -238,7 +238,7 @@ const App: NextPage = () => {
                     </small>
                 </div>
             </section>
-            <section>
+            <section id='airports'>
                 <h2>訪れたことのある空港</h2>
                 <p className='text-4xl font-bold mt-0 mb-4'>
                     {swarmDataJson.visitedAirports.length}
@@ -256,7 +256,7 @@ const App: NextPage = () => {
                     )}
                 </div>
             </section>
-            <section>
+            <section id='ramen'>
                 <h2>訪れたラーメン屋の総数</h2>
                 <p className='text-4xl font-bold mt-0 mb-4'>
                     {Object.keys(swarmDataJson.ramenRestaurantsCheckinCount).length}
