@@ -1,14 +1,13 @@
 import type { NextPage } from 'next';
 import { Open, Square } from '@styled-icons/ionicons-outline';
 import { Airplane } from '@styled-icons/ionicons-solid';
-import { countBy, sum } from 'lodash';
+import { sum } from 'lodash';
 import { IconAnchor, IconSpan } from '../components/iconTools';
 import Layout from '../components/Layout';
 import Map from '../components/Map';
 import maimaiDataJson from '../lib/maimai-data.json';
 import swarmDataJson from '../lib/swarm-data.json';
 import senkyokuResultColor2024Json from '../lib/shu-2024-senkyoku-result-color.json';
-import senkyokuResultColor2021Json from '../lib/shu-2021-senkyoku-result-color.json';
 import usStateColorsJson from '../lib/us-state-colors.json';
 
 const ColorSquare: React.FC<{
