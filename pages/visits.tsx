@@ -28,10 +28,10 @@ const partyColorToText: {[key: string]: string} = {
     '#36c200': '維',
     '#f55881': '公',
     '#f8bc00': '国',
-    '#053f9b': '教',
     '#777777': '無',
     '#7957da': '共',
     '#01a8ec': '社',
+    '#0a82dc': '保',
 };
 
 const regularizeAirportName = (airportName: string) => {
