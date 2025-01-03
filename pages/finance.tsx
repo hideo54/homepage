@@ -72,11 +72,15 @@ const AllCountryGainPlot: React.FC<{
 
 const App = () => {
     const latestGain = mattocoAllCountryGainHistory[mattocoAllCountryGainHistory.length - 1].gain;
+    const latestDate = dayjs(mattocoAllCountryGainHistory[mattocoAllCountryGainHistory.length - 1].date);
     return (
         <Layout
             title='投資成功状況 | hideo54.com'
         >
             <h1>投資成功状況</h1>
+            <p className='text-sm'>
+                最終更新: {latestDate.format('YYYY年M月D日')}
+            </p>
             <section>
                 <div className={clsx([
                     'text-4xl font-extrabold',
