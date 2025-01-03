@@ -1,8 +1,10 @@
 import type { NextPage } from 'next';
 import { Open, Square } from '@styled-icons/ionicons-outline';
 import { Airplane } from '@styled-icons/ionicons-solid';
+import clsx from 'clsx';
+import dayjs from 'dayjs';
 import { sum } from 'lodash';
-import { IconAnchor, IconSpan } from '../components/iconTools';
+import { IconAnchor } from '../components/iconTools';
 import Layout from '../components/Layout';
 import Map from '../components/Map';
 import maimaiDataJson from '../lib/maimai-data.json';
@@ -92,6 +94,14 @@ const App: NextPage = () => {
             description='旅好き・hideo54がこれまでに訪れたことのある土地をまとめています。'
         >
             <h1>訪問歴</h1>
+            <div className='text-sm'>
+                このページは自動生成されています。
+                <br />
+                使用データの範囲:{' '}
+                {dayjs(swarmDataJson.oldestCheckinDate).format('YYYY年M月D日')}
+                –
+                {dayjs(swarmDataJson.newestCheckinDate).format('YYYY年M月D日')}
+            </div>
             <section id='senkyoku'>
                 <h2>訪れたことのある小選挙区</h2>
                 <Map

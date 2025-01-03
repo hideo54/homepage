@@ -2,6 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import * as turf from '@turf/turf';
 import axios from 'axios';
+import dayjs from 'dayjs';
 import dotenv from 'dotenv';
 import type { Feature, Position } from 'geojson';
 import isoCountries from 'i18n-iso-countries';
@@ -20,6 +21,7 @@ interface CheckinResponse {
             count: number;
             items: {
                 id: string;
+                createdAt: number;
                 private?: boolean;
                 venue: {
                     id: string;
@@ -245,6 +247,9 @@ const getCheckinData = async () => {
         ).sort((a, b) => - (a[1] - b[1]))
     );
 
+    const oldestCheckinDate = dayjs(allCheckins[0].createdAt * 1000).format('YYYY-MM-DD');
+    const newestCheckinDate = dayjs(allCheckins[allCheckins.length - 1].createdAt * 1000).format('YYYY-MM-DD');
+
     const checkinData = {
         senkyokuVisitCounts2017,
         senkyokuVisitCounts2022,
@@ -254,6 +259,8 @@ const getCheckinData = async () => {
         allVisitedCountryCodes,
         allVisitedUSStates,
         ramenRestaurantsCheckinCount,
+        oldestCheckinDate,
+        newestCheckinDate,
     };
     return checkinData;
 };
