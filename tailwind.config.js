@@ -10,6 +10,22 @@ module.exports = {
     ],
     theme: {
         extend: {
+            animation: {
+                shine: 'shine 3s infinite',
+            },
+            backgroundImage: {
+              'kcz-gradient': 'linear-gradient(90deg, #be4df8 30%, #f760f8 50%, #be4df8 70%)',
+            },
+            keyframes: {
+                shine: {
+                    '0%': {
+                        backgroundPosition: '100% 50%',
+                    },
+                    '100%': {
+                        backgroundPosition: '0% 50%',
+                    },
+                },
+            },
             colors: {
                 'hideo54-pink': '#e26a6a',
             },

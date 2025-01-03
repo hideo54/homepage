@@ -256,12 +256,18 @@ const App: NextPage = () => {
                 <div>
                     {swarmDataJson.visitedAirports.map(airportName =>
                         <div key={airportName} className='my-4'>
-                            <div className='text-2xl font-bold'>
-                                <IconSpan LeftIcon={Airplane}>
+                            <div className='text-2xl font-bold mr-2'>
+                                <Airplane size='1.2em' style={{ verticalAlign: 'text-bottom' }} />
+                                <span className={clsx(
+                                    airportName.match(/[A-Z]{3}/)?.toString() === 'KCZ' &&
+                                    'text-transparent bg-kcz-gradient bg-[length:500%_100%] bg-clip-text animate-shine',
+                                )}>
                                     {airportName.match(/[A-Z]{3}/)}
-                                </IconSpan>
+                                </span>
                             </div>
-                            {regularizeAirportName(airportName.replace(/\([A-Z]{3}\)/, ''))}
+                            <span>
+                                {regularizeAirportName(airportName.replace(/\([A-Z]{3}\)/, ''))}
+                            </span>
                         </div>
                     )}
                 </div>
