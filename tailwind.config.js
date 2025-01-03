@@ -11,7 +11,7 @@ module.exports = {
     theme: {
         extend: {
             animation: {
-                shine: 'shine 3s infinite',
+                shine: 'shine 1s infinite',
             },
             backgroundImage: {
               'kcz-gradient': 'linear-gradient(90deg, #be4df8 30%, #f760f8 50%, #be4df8 70%)',

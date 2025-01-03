@@ -270,7 +270,7 @@ const App: NextPage = () => {
                                 <Airplane size='1.2em' style={{ verticalAlign: 'text-bottom' }} />
                                 <span className={clsx(
                                     airportName.match(/[A-Z]{3}/)?.toString() === 'KCZ' &&
-                                    'text-transparent bg-kcz-gradient bg-[length:500%_100%] bg-clip-text animate-shine',
+                                    'text-transparent bg-kcz-gradient bg-[length:250%_100%] bg-clip-text animate-shine ease-in-out',
                                 )}>
                                     {airportName.match(/[A-Z]{3}/)}
                                 </span>
