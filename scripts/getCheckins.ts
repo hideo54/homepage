@@ -282,6 +282,8 @@ const sampleData = {
     ramenRestaurantsCheckinCount: {
         '東京油組総本店': 54,
     },
+    oldestCheckinDate: '2012-09-17',
+    newestCheckinDate: '2025-01-11',
 };
 
 const main = async () => {
