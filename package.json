@@ -41,7 +41,7 @@
     "yaml": "^2.7.0"
   },
   "devDependencies": {
-    "@google-cloud/storage": "^7.15.0",
+    "@google-cloud/storage": "^7.15.1",
     "@hideo54/eslint-config": "^1.1.1",
     "@svgr/webpack": "^8.1.0",
     "@types/chroma-js": "^3.1.1",
