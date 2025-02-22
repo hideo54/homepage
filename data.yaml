@@ -9,6 +9,7 @@ accounts:
           link: https://twitter.com/hideo54
           username: '@hideo54'
         - name: Instagram
+          username: hideo54
           color: '#e1306c'
           link: https://www.instagram.com/hideo54/
         - name: BeReal
