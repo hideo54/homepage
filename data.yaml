@@ -66,6 +66,7 @@ accounts:
         #   username: the-hideo54
         - name: Wikipedia
           color: '#DDDDDD'
+          username: Hideo54
           link: https://ja.wikipedia.org/wiki/%E5%88%A9%E7%94%A8%E8%80%85:Hideo54
         - name: Keybase
           color: '#3663ea'
@@ -75,7 +76,6 @@ accounts:
           color: '#008000'
           link: https://atcoder.jp/users/hideo54
           username: hideo54
-          username: Hideo54
     Games:
         - name: ポケポケ
           color: '#fdd100'
