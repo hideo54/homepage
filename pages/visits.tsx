@@ -246,7 +246,7 @@ const App: NextPage = () => {
                 />
                 <div className='my-4 leading-4'>
                     <small>
-                        50 states + District of Columbia. Color represents the winner of the 2024 presidential election. For Maine and Nebraska, which have a split electoral vote system, the colors represents the majority of the votes.
+                        50 states + District of Columbia. Color represents the winner of the 2024 presidential election. For Maine and Nebraska, which have a split electoral vote system, the colors represent the majority of the votes.
                     </small>
                     <br />
                     <small>
