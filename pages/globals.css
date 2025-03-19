@@ -1,6 +1,52 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --animate-shine: shine 1s infinite;
+
+  --background-image-kcz-gradient: linear-gradient(
+    90deg,
+    #be4df8 30%,
+    #f760f8 50%,
+    #be4df8 70%
+  );
+
+  --color-hideo54-pink: #e26a6a;
+
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, Hiragino Sans, var(--font-noto),
+    sans-serif;
+
+  --font-weight-inherit: inherit;
+
+  @keyframes shine {
+    0% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 @layer base {
     body {

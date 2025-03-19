@@ -105,7 +105,7 @@ const WorkDetail: React.FC<{
     work: Work;
     untilTransformer: (s: string) => string;
 }> = ({ work, untilTransformer }) => (
-    <div key={work.title} className='not-prose my-4 p-4 border-solid border-black shadow rounded-2xl dark:border dark:border-neutral-600'>
+    <div key={work.title} className='not-prose my-4 p-4 border-solid border-black shadow-sm rounded-2xl dark:border dark:border-neutral-600'>
         <div className='flex justify-between'>
             <div>
                 <div>
