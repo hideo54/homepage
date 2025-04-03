@@ -37,7 +37,7 @@
     "react-dom": "^18.3.1",
     "react-icons": "^5.5.0",
     "react-plotly.js": "^2.6.0",
-    "scrape-it": "^6.1.4",
+    "scrape-it": "^6.1.5",
     "yaml": "^2.7.0"
   },
   "devDependencies": {
