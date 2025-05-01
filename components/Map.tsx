@@ -39,7 +39,7 @@ const Map: React.FC<{
             });
     }, [props.path]);
 
-    if (loading) return <div className='skeleton h-[600px]' />;
+    if (loading) return <div className='bg-neutral-100 dark:bg-neutral-800 animate-pulse h-[600px]' />;
     if (error) return <p>Error: {error.message}</p>;
     if (!data) return <p>No data</p>;
 
@@ -70,7 +70,7 @@ const Map: React.FC<{
                     // @ts-expect-error わからん
                     ref={ref => svgElementChild && ref?.replaceWith(svgElementChild)}
                 >
-                    <div className='skeleton h-full' />
+                    <div className='bg-neutral-100 dark:bg-neutral-800 animate-pulse h-full' />
                 </g>
                 {props.children}
             </svg>
