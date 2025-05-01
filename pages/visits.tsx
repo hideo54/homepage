@@ -270,10 +270,14 @@ const App: NextPage = () => {
                         <div key={airportName} className='my-4'>
                             <div className='text-2xl font-bold mr-2'>
                                 <Airplane size='1.2em' style={{ verticalAlign: 'text-bottom' }} />
-                                <span className={clsx(
-                                    airportName.match(/[A-Z]{3}/)?.toString() === 'KCZ' &&
-                                    'text-transparent bg-kcz-gradient bg-[length:250%_100%] bg-clip-text animate-shine ease-in-out',
-                                )}>
+                                <span
+                                    className={clsx(
+                                        airportName.match(/[A-Z]{3}/)?.toString() === 'KCZ' && (
+                                            'text-transparent bg-kcz-gradient bg-[length:250%_100%] bg-clip-text animate-shine ease-in-out'
+                                        ),
+                                    )}
+                                    id={airportName.match(/[A-Z]{3}/).toLowerCase()}
+                                >
                                     {airportName.match(/[A-Z]{3}/)}
                                 </span>
                             </div>
