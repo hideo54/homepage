@@ -276,7 +276,7 @@ const App: NextPage = () => {
                                             'text-transparent bg-kcz-gradient bg-[length:250%_100%] bg-clip-text animate-shine ease-in-out'
                                         ),
                                     )}
-                                    id={airportName.match(/[A-Z]{3}/).toLowerCase()}
+                                    id={airportName.match(/[A-Z]{3}/)?.toString().toLowerCase()}
                                 >
                                     {airportName.match(/[A-Z]{3}/)}
                                 </span>
