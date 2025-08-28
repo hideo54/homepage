@@ -1,7 +1,6 @@
 import Layout from '../components/Layout';
 import Map from '../components/Map';
 import maimaiDataJson from '../lib/maimai-data.json';
-import PrefecturesMapSvg from '../public/prefectures-simplify-20.svg';
 
 const App = () => {
     return (
