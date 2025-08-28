@@ -17,13 +17,23 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Download file
-      run: curl --fail -O https://emaxis.am.mufg.jp/fund_file/chart/chart_data_253425.js
-
+      id: download
+      run: |
+        if curl --fail -O https://emaxis.am.mufg.jp/fund_file/chart/chart_data_253425.js; then
+          echo "downloaded=true" >> $GITHUB_OUTPUT
+        else
+          echo "downloaded=false" >> $GITHUB_OUTPUT
+        fi
+    - name: Stop workflow if download failed
+      if: steps.download.outputs.downloaded == 'false'
+      run: exit 0
     - uses: google-github-actions/auth@v2
+      if: steps.download.outputs.downloaded == 'true'
       with:
         credentials_json: '${{secrets.FIREBASE_SERVICE_ACCOUNT_HIDEO54}}'
 
     - name: Upload to Google Cloud Storage
+      if: steps.download.outputs.downloaded == 'true'
       uses: google-github-actions/upload-cloud-storage@v2
       with:
         path: chart_data_253425.js
