@@ -2,6 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "hideo54-com",
   "compatibility_date": "2025-08-28",
+  "send_metrics": false,
   "assets": {
     "directory": "./out",
     "not_found_handling": "404-page"
