@@ -10,6 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: npm install
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: '${{secrets.FIREBASE_SERVICE_ACCOUNT_HIDEO54}}'
       - run: npm run build
         env:
           FOURSQUARE_ACCESS_TOKEN: '${{ secrets.FOURSQUARE_ACCESS_TOKEN }}'
