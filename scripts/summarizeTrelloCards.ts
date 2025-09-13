@@ -21,13 +21,18 @@ type Card = {
 };
 
 const main = async () => {
-    const { data: cards } = await axios.get<Card[]>(`https://api.trello.com/1/boards/${trelloBoardId}/cards`, {
-        params: {
-            key: trelloApiKey,
-            token: trelloApiToken,
+    const { data: cards } = await axios.get<Card[]>(
+        `https://api.trello.com/1/boards/${trelloBoardId}/cards`,
+        {
+            params: {
+                key: trelloApiKey,
+                token: trelloApiToken,
+            },
         },
-    });
-    const cardsOnTargetList = cards.filter(card => card.idList === trelloTargetListId);
+    );
+    const cardsOnTargetList = cards.filter(
+        card => card.idList === trelloTargetListId,
+    );
 };
 
 main();

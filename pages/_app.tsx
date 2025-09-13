@@ -1,33 +1,39 @@
-import React, { useEffect, type ComponentPropsWithoutRef } from 'react';
+import { MDXProvider } from '@mdx-js/react';
+import { ChevronForward, Open } from '@styled-icons/ionicons-outline';
 import type { AppProps } from 'next/app';
 import { Noto_Sans_JP } from 'next/font/google';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
-import { MDXProvider } from '@mdx-js/react';
-import { ChevronForward, Open } from '@styled-icons/ionicons-outline';
+import React, { type ComponentPropsWithoutRef, useEffect } from 'react';
 import './globals.css';
 import { IconAnchor, IconNextLink } from '../components/iconTools';
 import * as gtag from '../lib/gtag';
 
 const mdxComponents = {
+    a: (
+        props: ComponentPropsWithoutRef<'a'> & {
+            hasH2Parent?: boolean;
+        },
+    ) =>
+        props.href && props.href.startsWith('/') ? (
+            <IconNextLink
+                {...{ ...props, href: props.href }}
+                RightIcon={props.hasH2Parent ? ChevronForward : undefined}
+            />
+        ) : (
+            <IconAnchor RightIcon={Open} {...props} />
+        ),
     h2: (props: ComponentPropsWithoutRef<'h2'>) =>
         // @ts-expect-error 許してくれ…
-        (props.children?.props && 'href' in props.children?.props) ? (
+        props.children?.props && 'href' in props.children?.props ? (
             // h2 の children に hasH2Parent を追加する
             <h2 {...props}>
                 {/* @ts-expect-error 許してくれ… */}
                 {React.cloneElement(props.children, { hasH2Parent: true })}
             </h2>
-        ) : <h2 {...props} />,
-    a: (props: ComponentPropsWithoutRef<'a'> & {
-        hasH2Parent?: boolean;
-    }) =>
-        (props.href && props.href.startsWith('/'))
-            ? <IconNextLink
-                {...{ ...props, href: props.href } }
-                RightIcon={props.hasH2Parent ? ChevronForward : undefined}
-            />
-            : <IconAnchor RightIcon={Open} {...props} />,
+        ) : (
+            <h2 {...props} />
+        ),
 };
 
 const noto = Noto_Sans_JP({
@@ -49,8 +55,9 @@ const App = ({ Component, pageProps }: AppProps) => {
     }, [router.events]);
     return (
         <MDXProvider components={mdxComponents}>
-            <Script id='ga' dangerouslySetInnerHTML={{
-                __html: `
+            <Script
+                dangerouslySetInnerHTML={{
+                    __html: `
                     if (window.location.hostname === "hideo54.web.app" || window.location.hostname === 'hideo54.firebaseapp.com') {
                         window.location.href = 'https://hideo54.com';
                     }
@@ -61,11 +68,11 @@ const App = ({ Component, pageProps }: AppProps) => {
                     page_path: window.location.pathname,
                     });
                 `,
-            }} />
+                }}
+                id='ga'
+            />
             <div className={`${noto.variable} font-sans`}>
-                <Component
-                    {...pageProps}
-                />
+                <Component {...pageProps} />
             </div>
         </MDXProvider>
     );

@@ -1,6 +1,10 @@
-import React, { type MouseEventHandler, type ComponentProps, type ReactNode } from 'react';
-import Link, { type LinkProps } from 'next/link';
 import type { StyledIcon } from '@styled-icons/styled-icon';
+import Link, { type LinkProps } from 'next/link';
+import React, {
+    type ComponentProps,
+    type MouseEventHandler,
+    type ReactNode,
+} from 'react';
 
 export const IconSpan: React.FC<{
     LeftIcon?: StyledIcon;
@@ -23,46 +27,50 @@ export const IconSpan: React.FC<{
     children,
     onClick,
 }) => {
-    const contents = <>
-        {LeftIcon &&
-            <LeftIcon
-                size={size || '1.2em'}
-                style={{
-                    color,
-                    verticalAlign: verticalAlign,
-                    marginRight: '0.1em',
-                }}
-            />
-        }
-        {children}
-        {RightIcon &&
-            <RightIcon
-                size={size || '1.2em'}
-                style={{
-                    color,
-                    verticalAlign: verticalAlign,
-                    marginLeft: '0.1em',
-                }}
-            />
-        }
-    </>;
+    const contents = (
+        <>
+            {LeftIcon && (
+                <LeftIcon
+                    size={size || '1.2em'}
+                    style={{
+                        color,
+                        marginRight: '0.1em',
+                        verticalAlign: verticalAlign,
+                    }}
+                />
+            )}
+            {children}
+            {RightIcon && (
+                <RightIcon
+                    size={size || '1.2em'}
+                    style={{
+                        color,
+                        marginLeft: '0.1em',
+                        verticalAlign: verticalAlign,
+                    }}
+                />
+            )}
+        </>
+    );
     return (
         <span
+            onClick={onClick}
             style={{
                 color,
                 fontSize,
                 margin,
             }}
-            onClick={onClick}
         >
             {contents}
         </span>
     );
 };
 
-export const IconAnchor: React.FC<ComponentProps<typeof IconSpan> & {
-    href?: string;
-}> = props => (
+export const IconAnchor: React.FC<
+    ComponentProps<typeof IconSpan> & {
+        href?: string;
+    }
+> = props => (
     <a
         href={props.href}
         style={{
@@ -70,14 +78,12 @@ export const IconAnchor: React.FC<ComponentProps<typeof IconSpan> & {
             fontSize: props.fontSize,
             margin: props.margin,
         }}
-        {...!props.href?.startsWith('/') && {
-            target: '_blank',
+        {...(!props.href?.startsWith('/') && {
             rel: 'noreferrer noopener',
-        }}
+            target: '_blank',
+        })}
     >
-        <IconSpan {...props}>
-            {props.children}
-        </IconSpan>
+        <IconSpan {...props}>{props.children}</IconSpan>
     </a>
 );
 

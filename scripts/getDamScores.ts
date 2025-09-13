@@ -1,6 +1,5 @@
-import fs from 'fs/promises';
-import path from 'path';
-
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import axios from 'axios';
 import dotenv from 'dotenv';
 import { XMLParser } from 'fast-xml-parser';
@@ -194,31 +193,41 @@ type Score = {
     aiSensitivityGraphIndexSection24: string;
 };
 
-const getScores = async ({ cdmCardNo, cdmToken, cookies, page }: {
+const getScores = async ({
+    cdmCardNo,
+    cdmToken,
+    cookies,
+    page,
+}: {
     cdmCardNo: string;
     cdmToken: string;
     cookies: string[];
     page: number;
 }) => {
-    const scoresRes = await axios.get('https://www.clubdam.com/app/damtomo/scoring/GetScoringAiListXML.do', {
-        headers: {
-            Cookie: cookies?.join(';'),
+    const scoresRes = await axios.get(
+        'https://www.clubdam.com/app/damtomo/scoring/GetScoringAiListXML.do',
+        {
+            headers: {
+                Cookie: cookies?.join(';'),
+            },
+            params: {
+                cdmCardNo,
+                cdmToken,
+                detailFlg: 1,
+                enc: 'sjis',
+                pageNo: page,
+                UTCserial: getUnixTime(),
+            },
         },
-        params: {
-            cdmCardNo,
-            cdmToken,
-            enc: 'sjis',
-            pageNo: page,
-            detailFlg: 1,
-            UTCserial: getUnixTime(),
-        }
-    });
+    );
 
     const parser = new XMLParser({
         attributeNamePrefix: '',
         ignoreAttributes: false,
     });
-    const scoresData: Score[] = parser.parse(scoresRes.data).document.list.data.map((d: {scoring: Score}) => d.scoring);
+    const scoresData: Score[] = parser
+        .parse(scoresRes.data)
+        .document.list.data.map((d: { scoring: Score }) => d.scoring);
     return scoresData;
 };
 
@@ -227,46 +236,69 @@ const password = process.env.DAM_PASSWORD;
 
 const main = async () => {
     admin.initializeApp();
-    const loginRes = await axios.post('https://www.clubdam.com/app/damtomo/auth/LoginXML.do', {
-        procKbn: 1,
-        loginId,
-        password,
-        enc: 'sjis',
-        UTCserial: getUnixTime(),
-    }, {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+    const loginRes = await axios.post(
+        'https://www.clubdam.com/app/damtomo/auth/LoginXML.do',
+        {
+            enc: 'sjis',
+            loginId,
+            password,
+            procKbn: 1,
+            UTCserial: getUnixTime(),
         },
-    });
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        },
+    );
     const cookies = loginRes.headers['set-cookie'] || [];
-    const cdmCardNo = cookies?.find(cookieStr => cookieStr.startsWith('scr_cdm='))?.split(';')[0].split('=')[1].trim() || '';
+    const cdmCardNo =
+        cookies
+            ?.find(cookieStr => cookieStr.startsWith('scr_cdm='))
+            ?.split(';')[0]
+            .split('=')[1]
+            .trim() || '';
 
-    const myPageRes = await axios.get('https://www.clubdam.com/app/damtomo/MyPage.do', {
-        headers: {
-            Cookie: cookies?.join(';'),
+    const myPageRes = await axios.get(
+        'https://www.clubdam.com/app/damtomo/MyPage.do',
+        {
+            headers: {
+                Cookie: cookies?.join(';'),
+            },
         },
-    });
+    );
     const myPageData = scrapeHTML<{
         cdmToken: string;
     }>(myPageRes.data, {
         cdmToken: {
-            selector: 'input#cdmToken',
             attr: 'value',
+            selector: 'input#cdmToken',
         },
     });
     const cdmToken = myPageData.cdmToken;
 
     const db = getFirestore();
     const scoresRef = db.collection('dam-scores');
-    const latestDocs = (await scoresRef.orderBy('scoringDateTime', 'desc').limit(1).get()).docs;
-    const latestDatetime = latestDocs.length > 0 ? latestDocs[0].get('scoringDateTime') as string : null;
+    const latestDocs = (
+        await scoresRef.orderBy('scoringDateTime', 'desc').limit(1).get()
+    ).docs;
+    const latestDatetime =
+        latestDocs.length > 0
+            ? (latestDocs[0].get('scoringDateTime') as string)
+            : null;
 
     const newScores = [];
     // 最新 200 件が保存される。1ページ5件なので、最大で 40 ページ分取得する。
     pageIteration: for (const i of naturalRange(40)) {
-        const scores = await getScores({ cdmCardNo, cdmToken, cookies, page: i });
+        const scores = await getScores({
+            cdmCardNo,
+            cdmToken,
+            cookies,
+            page: i,
+        });
         for (const score of scores) {
-            if (latestDatetime && score.scoringDateTime <= latestDatetime) break pageIteration;
+            if (latestDatetime && score.scoringDateTime <= latestDatetime)
+                break pageIteration;
             newScores.push(score);
         }
     }
@@ -277,16 +309,23 @@ const main = async () => {
         await db.collection('dam-scores').add(score);
     }
 
-    await fs.writeFile(path.join(__dirname, '../lib/dam-scores.json'), JSON.stringify(
-        (await scoresRef.get()).docs.map(doc => doc.data())
-    ));
+    await fs.writeFile(
+        path.join(__dirname, '../lib/dam-scores.json'),
+        JSON.stringify((await scoresRef.get()).docs.map(doc => doc.data())),
+    );
 };
 
 (async () => {
     if (loginId) {
         await main();
     } else {
-        const sampleDataStr = await fs.readFile(path.join(__dirname, './dam-scores.sample.json'), 'utf-8');
-        await fs.writeFile(path.join(__dirname, '../lib/dam-scores.json'), sampleDataStr);
+        const sampleDataStr = await fs.readFile(
+            path.join(__dirname, './dam-scores.sample.json'),
+            'utf-8',
+        );
+        await fs.writeFile(
+            path.join(__dirname, '../lib/dam-scores.json'),
+            sampleDataStr,
+        );
     }
 })();

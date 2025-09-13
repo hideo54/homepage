@@ -73,9 +73,9 @@ interface HostMeta {
     'agent-revision': string;
     'agent-version': string;
     'agent-name': string;
-    block_device: {[key: string]: BlockDevice};
+    block_device: { [key: string]: BlockDevice };
     cpu: CPU[];
-    filesystem: {[key: string]: FileSystem};
+    filesystem: { [key: string]: FileSystem };
     kernel: Kernel;
     memory: Memory;
     cloud?: {
@@ -87,7 +87,7 @@ interface HostMeta {
             projectId: string;
             zone: string;
         };
-    }
+    };
 }
 
 interface Host {
@@ -101,7 +101,7 @@ interface Host {
     isRetired: boolean;
     id: string;
     createdAt: number;
-    roles: {[key: string]: string[]};
+    roles: { [key: string]: string[] };
     interfaces: {
         macAddress: string;
         name: string;

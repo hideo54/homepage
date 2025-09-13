@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 
 const Map: React.FC<{
     id: string;
@@ -9,7 +10,7 @@ const Map: React.FC<{
     className?: string;
     style?: React.CSSProperties;
     children?: React.ReactNode;
-    fill: {[keys: string]: string};
+    fill: { [keys: string]: string };
     count: number;
     maxCount?: number;
     CountSectionChildren?: React.ReactNode;
@@ -39,55 +40,63 @@ const Map: React.FC<{
             });
     }, [props.path]);
 
-    if (loading) return <div className='bg-neutral-100 dark:bg-neutral-800 animate-pulse h-[600px]' />;
+    if (loading)
+        return (
+            <div className='h-[600px] animate-pulse bg-neutral-100 dark:bg-neutral-800' />
+        );
     if (error) return <p>Error: {error.message}</p>;
     if (!data) return <p>No data</p>;
 
     const loadedSvg = new DOMParser().parseFromString(data, 'image/svg+xml');
-    const svgElementChild = loadedSvg.getElementsByTagName('svg')[0]?.firstElementChild;
+    const svgElementChild =
+        loadedSvg.getElementsByTagName('svg')[0]?.firstElementChild;
 
     return (
         <div
-            id={props.id}
             className={clsx([
-                'relative bg-[#a5c1fa] not-prose dark:prose',
+                'not-prose dark:prose relative bg-[#a5c1fa]',
                 props.wrapperDivClassName,
             ])}
+            id={props.id}
             style={props.style}
         >
             <svg
-                viewBox={props.viewBox}
                 className={clsx([
-                    'w-full max-h-[800px] fill-white stroke-black stroke-[0.2px]',
+                    'max-h-[800px] w-full fill-white stroke-[0.2px] stroke-black',
                     props.className,
                 ])}
                 style={{
                     padding: props.svgPadding,
                 }}
+                viewBox={props.viewBox}
             >
                 <g
                     id='loaded'
                     // @ts-expect-error わからん
-                    ref={ref => svgElementChild && ref?.replaceWith(svgElementChild)}
+                    ref={ref =>
+                        svgElementChild && ref?.replaceWith(svgElementChild)
+                    }
                 >
-                    <div className='bg-neutral-100 dark:bg-neutral-800 animate-pulse h-full' />
+                    <div className='h-full animate-pulse bg-neutral-100 dark:bg-neutral-800' />
                 </g>
                 {props.children}
             </svg>
-            <style dangerouslySetInnerHTML={{
-                __html: (props.additionalCss || '') + Object.entries(props.fill)
-                    .map(([prefId, color]) =>
-                        `#${props.id} path${props.idProvidedByClass ? '.' : '#'}${prefId}{fill:${color};}`
-                    ).join(''),
-            }} />
+            <style
+                dangerouslySetInnerHTML={{
+                    __html:
+                        (props.additionalCss || '') +
+                        Object.entries(props.fill)
+                            .map(
+                                ([prefId, color]) =>
+                                    `#${props.id} path${props.idProvidedByClass ? '.' : '#'}${prefId}{fill:${color};}`,
+                            )
+                            .join(''),
+                }}
+            />
             <section className='absolute top-0 p-2'>
                 <p className='m-0'>
-                    <span className='text-3xl font-bold'>
-                        {props.count}
-                    </span>
-                    {props.maxCount &&
-                        <span> / {props.maxCount}</span>
-                    }
+                    <span className='font-bold text-3xl'>{props.count}</span>
+                    {props.maxCount && <span> / {props.maxCount}</span>}
                 </p>
                 {props.CountSectionChildren}
             </section>
