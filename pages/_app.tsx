@@ -15,7 +15,7 @@ const mdxComponents = {
             hasH2Parent?: boolean;
         },
     ) =>
-        props.href && props.href.startsWith('/') ? (
+        props.href?.startsWith('/') ? (
             <IconNextLink
                 {...{ ...props, href: props.href }}
                 RightIcon={props.hasH2Parent ? ChevronForward : undefined}
@@ -25,7 +25,7 @@ const mdxComponents = {
         ),
     h2: (props: ComponentPropsWithoutRef<'h2'>) =>
         // @ts-expect-error 許してくれ…
-        props.children?.props && 'href' in props.children?.props ? (
+        props.children?.props && 'href' in props.children.props ? (
             // h2 の children に hasH2Parent を追加する
             <h2 {...props}>
                 {/* @ts-expect-error 許してくれ… */}
@@ -56,20 +56,20 @@ const App = ({ Component, pageProps }: AppProps) => {
     return (
         <MDXProvider components={mdxComponents}>
             <Script
+                // biome-ignore lint/security/noDangerouslySetInnerHtml: This is the official way to add gtag
                 dangerouslySetInnerHTML={{
                     __html: `
-                    if (window.location.hostname === "hideo54.web.app" || window.location.hostname === 'hideo54.firebaseapp.com') {
-                        window.location.href = 'https://hideo54.com';
-                    }
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', '${gtag.GA_TRACKING_ID}', {
-                    page_path: window.location.pathname,
-                    });
-                `,
+                        if (window.location.hostname === 'hideo54.web.app' || window.location.hostname === 'hideo54.firebaseapp.com') {
+                            window.location.href = 'https://hideo54.com';
+                        }
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', '${gtag.GA_TRACKING_ID}', {
+                            page_path: window.location.pathname,
+                        });
+                    `,
                 }}
-                id='ga'
             />
             <div className={`${noto.variable} font-sans`}>
                 <Component {...pageProps} />

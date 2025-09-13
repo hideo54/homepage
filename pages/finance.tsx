@@ -23,7 +23,7 @@ const AllCountryGainPlot: React.FC<{
             .addEventListener('change', e => {
                 setIsDarkMode(e.matches);
             });
-    }, []);
+    }, [isDarkMode]);
     return (
         <Plot
             config={{
