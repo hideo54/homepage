@@ -2,7 +2,7 @@
     "dependencies": {
         "@mdx-js/loader": "^3.1.0",
         "@mdx-js/react": "^3.1.0",
-        "@next/mdx": "^15.3.2",
+        "@next/mdx": "^15.5.6",
         "@styled-icons/fa-brands": "^10.47.0",
         "@styled-icons/fa-solid": "^10.47.0",
         "@styled-icons/ionicons-outline": "^10.46.0",
