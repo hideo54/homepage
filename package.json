@@ -59,7 +59,7 @@
         "url": "git@github.com:hideo54/homepage.git"
     },
     "scripts": {
-        "build": "tsx scripts/getCheckins.ts; tsx scripts/getDamScores.ts; tsx scripts/getMaimaiData.ts; tsx scripts/getMattocoAllCountryGainHistory.ts; next build",
+        "build": "tsx scripts/getCheckins.ts; tsx scripts/getDamScores.ts; tsx scripts/getMaimaiData.ts; next build",
         "develop": "next",
         "lint": "eslint pages/*.tsx components/*.tsx",
         "start": "next start"

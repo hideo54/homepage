@@ -36,5 +36,4 @@ key.json
 # For built files
 lib/dam-scores.json
 lib/maimai-data.json
-lib/mattoco-all-country-gain-history.json
 lib/swarm-data.json
