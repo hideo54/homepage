@@ -40,7 +40,7 @@
         "@types/react-dom": "18.3.0",
         "@types/react-plotly.js": "^2.6.3",
         "autoprefixer": "^10.4.20",
-        "axios": "^1.9.0",
+        "axios": "^1.13.2",
         "cheerio": "^1.0.0",
         "dotenv": "^17.2.3",
         "lodash": "^4.17.23",
