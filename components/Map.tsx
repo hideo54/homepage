@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import type React from 'react';
 import { useEffect, useState } from 'react';
 
-const Map: React.FC<{
+const GeoMap: React.FC<{
     id: string;
     path: string;
     viewBox: string;
@@ -104,4 +104,4 @@ const Map: React.FC<{
     );
 };
 
-export default Map;
+export default GeoMap;

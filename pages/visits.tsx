@@ -7,7 +7,7 @@ import type { NextPage } from 'next';
 import Flag from 'react-world-flags'
 import { IconAnchor } from '../components/iconTools';
 import Layout from '../components/Layout';
-import Map from '../components/Map';
+import GeoMap from '../components/Map';
 import maimaiDataJson from '../lib/maimai-data.json';
 import senkyokuResultColor2024Json from '../lib/shu-2024-senkyoku-result-color.json';
 import swarmDataJson from '../lib/swarm-data.json';
@@ -111,7 +111,7 @@ const App: NextPage = () => {
             </div>
             <section id='senkyoku'>
                 <h2>訪れたことのある小選挙区</h2>
-                <Map
+                <GeoMap
                     CountSectionChildren={visitedSenkyokuCountsByParty.map(
                         ([color, visitedCount, allCount]) => (
                             <p className='my-1 text-sm' key={color}>
@@ -167,7 +167,7 @@ const App: NextPage = () => {
             </section>
             <section id='keikenchi'>
                 <h2>経県値</h2>
-                <Map
+                <GeoMap
                     CountSectionChildren={Array.from({ length: 6 }, (_, i) => (
                         <p className='my-1' key={i}>
                             <ColorSquare color={keikenchiToColor(5 - i)} />
@@ -208,7 +208,7 @@ const App: NextPage = () => {
             </section>
             <section id='maimai'>
                 <h2>maimai 全国行脚 (プレイしたことがある都道府県)</h2>
-                <Map
+                <GeoMap
                     count={maimaiDataJson.prefectures.length}
                     fill={Object.fromEntries(
                         maimaiDataJson.prefectures.map(prefId => [
@@ -234,7 +234,7 @@ const App: NextPage = () => {
                         </li>
                     ))}
                 </ul>
-                <Map
+                <GeoMap
                     additionalCss='path[class^="ADM0_A3-"],path.land,path.boundary{stroke:black;stroke-width:0.2;}path[class^="ADM0_A3-"],path.land{fill:white;}'
                     count={swarmDataJson.allVisitedCountryCodes.length}
                     fill={Object.fromEntries(
@@ -264,7 +264,7 @@ const App: NextPage = () => {
             </section>
             <section id='us'>
                 <h2>訪れたことのあるアメリカ合衆国の州</h2>
-                <Map
+                <GeoMap
                     additionalCss='g.state{fill:white;}g.borders>path{stroke:black;stroke-width:0.5;}'
                     count={swarmDataJson.allVisitedUSStates.length}
                     fill={Object.fromEntries(

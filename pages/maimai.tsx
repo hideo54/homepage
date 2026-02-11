@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import Map from '../components/Map';
+import GeoMap from '../components/Map';
 import maimaiDataJson from '../lib/maimai-data.json';
 
 const App = () => {
@@ -48,7 +48,7 @@ const App = () => {
             </section>
             <section>
                 <h2>全国行脚 (プレイしたことがある都道府県)</h2>
-                <Map
+                <GeoMap
                     count={maimaiDataJson.prefectures.length}
                     fill={Object.fromEntries(
                         maimaiDataJson.prefectures.map(prefId => [
