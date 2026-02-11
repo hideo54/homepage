@@ -130,7 +130,7 @@ const App: NextPage = () => {
                     )}
                     count={visitedSenkyoku2022.length}
                     fill={Object.fromEntries(visitedSenkyokuColors)}
-                    id='senkyoku'
+                    mapId='senkyoku'
                     maxCount={289}
                     path='/shu-2022-geo.svg'
                     viewBox='137 20 591 740'
@@ -200,7 +200,7 @@ const App: NextPage = () => {
                             ],
                         ),
                     )}
-                    id='keikenchi'
+                    mapId='keikenchi'
                     maxCount={5 * 47}
                     path='/prefectures-simplify-20.svg'
                     viewBox='137.0 20.0 591.0 740.0'
@@ -216,7 +216,7 @@ const App: NextPage = () => {
                             '#e89402',
                         ]),
                     )}
-                    id='maimai'
+                    mapId='maimai'
                     maxCount={47}
                     path='/prefectures-simplify-20.svg'
                     viewBox='137.0 20.0 591.0 740.0'
@@ -243,7 +243,7 @@ const App: NextPage = () => {
                             '#22c55e',
                         ]),
                     )}
-                    id='intl_wintri1'
+                    mapId='intl_wintri1'
                     idProvidedByClass
                     path='/intl_wintri.svg'
                     viewBox='0 0 800 485'
@@ -276,7 +276,7 @@ const App: NextPage = () => {
                             ],
                         ]),
                     )}
-                    id='us'
+                    mapId='us'
                     idProvidedByClass
                     maxCount={51}
                     path='/us-states.svg'

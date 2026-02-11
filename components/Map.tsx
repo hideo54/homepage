@@ -3,7 +3,7 @@ import type React from 'react';
 import { useEffect, useState } from 'react';
 
 const GeoMap: React.FC<{
-    id: string;
+    mapId: string;
     path: string;
     viewBox: string;
     idProvidedByClass?: boolean;
@@ -57,7 +57,7 @@ const GeoMap: React.FC<{
                 'not-prose dark:prose relative bg-[#a5c1fa]',
                 props.wrapperDivClassName,
             ])}
-            id={props.id}
+            id={props.mapId}
             style={props.style}
         >
             <svg
@@ -88,7 +88,7 @@ const GeoMap: React.FC<{
                         Object.entries(props.fill)
                             .map(
                                 ([prefId, color]) =>
-                                    `#${props.id} path${props.idProvidedByClass ? '.' : '#'}${prefId}{fill:${color};}`,
+                                    `#${props.mapId} path${props.idProvidedByClass ? '.' : '#'}${prefId}{fill:${color};}`,
                             )
                             .join(''),
                 }}

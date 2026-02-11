@@ -56,7 +56,7 @@ const App = () => {
                             '#e89402',
                         ]),
                     )}
-                    id='maimai'
+                    mapId='maimai'
                     maxCount={47}
                     path='/prefectures-simplify-20.svg'
                     viewBox='137.0 20.0 591.0 740.0'
