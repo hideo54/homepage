@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { sum } from 'lodash';
 import type { NextPage } from 'next';
+import Flag from 'react-world-flags'
 import { IconAnchor } from '../components/iconTools';
 import Layout from '../components/Layout';
 import Map from '../components/Map';
@@ -223,9 +224,14 @@ const App: NextPage = () => {
             </section>
             <section id='countries'>
                 <h2>訪れたことのある国と地域</h2>
-                <ul>
-                    {swarmDataJson.allVisitedCountries.map(country => (
-                        <li key={country}>{country}</li>
+                <ul className='grid gap-4 p-0 grid-cols-2 min-[600px]:grid-cols-3'>
+                    {swarmDataJson.allVisitedCountryCodes.map((countryCode, i) => (
+                        <li className='m-0 flex flex-col items-start gap-y-2' key={countryCode}>
+                            <Flag className='m-0 h-8' code={countryCode} />
+                            <div className='text-balance text-sm leading-5'>
+                                {swarmDataJson.allVisitedCountries[i]}
+                            </div>
+                        </li>
                     ))}
                 </ul>
                 <Map
