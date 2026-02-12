@@ -224,16 +224,20 @@ const getCheckinData = async () => {
                         .some(catName => catName.match(/^(国際)?空港$/)) &&
                     !checkin.venue.name.includes('滑走路'),
             )
-            .map(checkin => ({ countryCode: checkin.venue.location.cc, name: checkin.venue.name }))
+            .map(checkin => ({
+                countryCode: checkin.venue.location.cc,
+                name: checkin.venue.name,
+            }))
             .reverse(), // 訪問順
-        'name'
+        'name',
     );
 
     const allVisitedCountries = Array.from(
         new Set(
             allCheckins
-                .map(checkin =>
-                    checkin.venue.location.country.replace( / \(.*\)/, '') // 括弧書を除去 (例: 「スロバキア (スロバキア共和国)」→「スロバキア」)
+                .map(
+                    checkin =>
+                        checkin.venue.location.country.replace(/ \(.*\)/, ''), // 括弧書を除去 (例: 「スロバキア (スロバキア共和国)」→「スロバキア」)
                 )
                 .reverse(), // 訪問順
         ),
@@ -339,7 +343,9 @@ const sampleData = {
     },
     senkyokuVisitCounts2017: [['tokyo-1', 282]],
     senkyokuVisitCounts2022: [['tokyo-1', 282]],
-    visitedAirports: [{countryCode: 'JP', name: '東京国際空港 (羽田空港) (HND)'}],
+    visitedAirports: [
+        { countryCode: 'JP', name: '東京国際空港 (羽田空港) (HND)' },
+    ],
 };
 
 const main = async () => {

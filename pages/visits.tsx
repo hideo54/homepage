@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { sum } from 'lodash';
 import type { NextPage } from 'next';
-import Flag from 'react-world-flags'
+import Flag from 'react-world-flags';
 import { IconAnchor } from '../components/iconTools';
 import Layout from '../components/Layout';
 import GeoMap from '../components/Map';
@@ -227,14 +227,22 @@ const App: NextPage = () => {
             <section id='countries'>
                 <h2>訪れたことのある国と地域</h2>
                 <ul className='grid grid-cols-2 gap-4 p-0 min-[600px]:grid-cols-3'>
-                    {swarmDataJson.allVisitedCountryCodes.map((countryCode, i) => (
-                        <li className='m-0 flex flex-col items-start gap-y-2' key={countryCode}>
-                            <Flag className='m-0 h-8 shadow' code={countryCode} />
-                            <div className='text-balance text-sm leading-5'>
-                                {swarmDataJson.allVisitedCountries[i]}
-                            </div>
-                        </li>
-                    ))}
+                    {swarmDataJson.allVisitedCountryCodes.map(
+                        (countryCode, i) => (
+                            <li
+                                className='m-0 flex flex-col items-start gap-y-2'
+                                key={countryCode}
+                            >
+                                <Flag
+                                    className='m-0 h-8 shadow'
+                                    code={countryCode}
+                                />
+                                <div className='text-balance text-sm leading-5'>
+                                    {swarmDataJson.allVisitedCountries[i]}
+                                </div>
+                            </li>
+                        ),
+                    )}
                 </ul>
                 <GeoMap
                     additionalCss='path[class^="ADM0_A3-"],path.land,path.boundary{stroke:black;stroke-width:0.2;}path[class^="ADM0_A3-"],path.land{fill:white;}'
@@ -320,21 +328,22 @@ const App: NextPage = () => {
                                 />
                                 <span
                                     className={clsx(
-                                        airport
-                                            .name
+                                        airport.name
                                             .match(/[A-Z]{3}/)
                                             ?.toString() === 'KCZ' &&
                                             'animate-shine bg-[length:250%_100%] bg-kcz-gradient bg-clip-text text-transparent ease-in-out',
                                     )}
-                                    id={airport
-                                        .name
+                                    id={airport.name
                                         .match(/[A-Z]{3}/)
                                         ?.toString()
                                         .toLowerCase()}
                                 >
                                     {airport.name.match(/[A-Z]{3}/)}
                                 </span>
-                                <Flag className='m-0 h-4 shadow' code={airport.countryCode} />
+                                <Flag
+                                    className='m-0 h-4 shadow'
+                                    code={airport.countryCode}
+                                />
                             </div>
                             <div>
                                 {regularizeAirportName(
@@ -363,9 +372,14 @@ const App: NextPage = () => {
                     {Object.entries(swarmDataJson.ramenRestaurantsCheckinCount)
                         .slice(0, 12)
                         .map(([restaurantName, count]) => (
-                            <li className='m-0 list-none p-0' key={restaurantName}>
+                            <li
+                                className='m-0 list-none p-0'
+                                key={restaurantName}
+                            >
                                 <div className='flex items-baseline gap-1'>
-                                    <span className='font-bold text-2xl'>{count}</span>
+                                    <span className='font-bold text-2xl'>
+                                        {count}
+                                    </span>
                                     <span className='text-xs'>回</span>
                                 </div>
                                 <div className='text-balance'>
