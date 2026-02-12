@@ -311,31 +311,34 @@ const App: NextPage = () => {
                     {swarmDataJson.visitedAirports.length}
                 </p>
                 <div className='grid grid-cols-2 gap-4 min-[680px]:grid-cols-3'>
-                    {swarmDataJson.visitedAirports.map(airportName => (
-                        <div key={airportName}>
-                            <div className='flex items-center gap-1 font-bold text-2xl'>
+                    {swarmDataJson.visitedAirports.map(airport => (
+                        <div key={airport.name}>
+                            <div className='flex items-center gap-2 font-bold text-2xl'>
                                 <Airplane
                                     size='1.2em'
                                     style={{ verticalAlign: 'text-bottom' }}
                                 />
                                 <span
                                     className={clsx(
-                                        airportName
+                                        airport
+                                            .name
                                             .match(/[A-Z]{3}/)
                                             ?.toString() === 'KCZ' &&
                                             'animate-shine bg-[length:250%_100%] bg-kcz-gradient bg-clip-text text-transparent ease-in-out',
                                     )}
-                                    id={airportName
+                                    id={airport
+                                        .name
                                         .match(/[A-Z]{3}/)
                                         ?.toString()
                                         .toLowerCase()}
                                 >
-                                    {airportName.match(/[A-Z]{3}/)}
+                                    {airport.name.match(/[A-Z]{3}/)}
                                 </span>
+                                <Flag className='m-0 h-4 shadow' code={airport.countryCode} />
                             </div>
                             <div>
                                 {regularizeAirportName(
-                                    airportName.replace(/\([A-Z]{3}\)/, ''),
+                                    airport.name.replace(/\([A-Z]{3}\)/, ''),
                                 )}
                             </div>
                         </div>
