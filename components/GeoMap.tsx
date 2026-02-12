@@ -74,7 +74,9 @@ const GeoMap: React.FC<{
                 <title>{props.alt}</title>
                 <g
                     ref={ref =>
-                        svgElementChild && ref?.replaceWith(svgElementChild)
+                        (svgElementChild &&
+                            ref?.replaceWith(svgElementChild)) ??
+                        null
                     }
                 >
                     <div className='h-full animate-pulse bg-neutral-100 dark:bg-neutral-800' />
