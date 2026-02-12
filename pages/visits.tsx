@@ -331,7 +331,7 @@ const App: NextPage = () => {
                                         airport.name
                                             .match(/[A-Z]{3}/)
                                             ?.toString() === 'KCZ' &&
-                                            'animate-shine bg-[length:250%_100%] bg-kcz-gradient bg-clip-text text-transparent ease-in-out',
+                                            'animate-shine bg-kcz-gradient bg-size-[250%_100%] bg-clip-text text-transparent ease-in-out',
                                     )}
                                     id={airport.name
                                         .match(/[A-Z]{3}/)
