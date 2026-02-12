@@ -95,7 +95,7 @@ const calcSenkyokuVisitCounts = (
                 senkyoku.properties?.ken || senkyoku.properties?.KEN;
             const senkyokuNum =
                 senkyoku.properties?.ku || senkyoku.properties?.SENKYOKU;
-            const prefId = prefectureIds[parseInt(prefNum) - 1];
+            const prefId = prefectureIds[parseInt(prefNum, 10) - 1];
             const senkyokuId = `${prefId}-${senkyokuNum}`;
             const senkyokuPolygon = turf.multiPolygon(
                 senkyoku.geometry.coordinates,
@@ -112,7 +112,7 @@ const calcSenkyokuVisitCounts = (
         .sort((a, b) => -(a[1] - b[1]));
 
 const getCheckinData = async () => {
-    const cacheFilename = __dirname + '/checkins.cache.json';
+    const cacheFilename = `${__dirname}/checkins.cache.json`;
     let allCheckins: CheckinResponse['response']['checkins']['items'] = [];
     try {
         const cacheFileString = await fs.readFile(cacheFilename, 'utf-8');
@@ -147,10 +147,10 @@ const getCheckinData = async () => {
             ),
     );
     const senkyokuGeoJson2017 = JSON.parse(
-        await fs.readFile(__dirname + '/../lib/shu-2017.geojson', 'utf-8'),
+        await fs.readFile(`${__dirname}/../lib/shu-2017.geojson`, 'utf-8'),
     );
     const senkyokuGeoJson2022 = JSON.parse(
-        await fs.readFile(__dirname + '/../lib/shu-2022.geojson', 'utf-8'),
+        await fs.readFile(`${__dirname}/../lib/shu-2022.geojson`, 'utf-8'),
     );
     const senkyokuVisitCounts2017 = calcSenkyokuVisitCounts(
         senkyokuGeoJson2017,
@@ -280,12 +280,12 @@ const getCheckinData = async () => {
             .split(' ')
             .filter(
                 (word, i) =>
-                    i == 0 || (!word.endsWith('店') && !word.endsWith('組')),
+                    i === 0 || (!word.endsWith('店') && !word.endsWith('組')),
             )
             .join(' ');
     const allRamenRestaurantNames = Array.from(
         new Set(
-            checkinsByCategory['ラーメン屋'].map(checkin =>
+            checkinsByCategory.ラーメン屋.map(checkin =>
                 formatRestrauntName(checkin.venue.name),
             ),
         ),
@@ -296,7 +296,7 @@ const getCheckinData = async () => {
                 restaurantName =>
                     [
                         restaurantName,
-                        checkinsByCategory['ラーメン屋'].filter(
+                        checkinsByCategory.ラーメン屋.filter(
                             checkin =>
                                 formatRestrauntName(checkin.venue.name) ===
                                 restaurantName,
@@ -350,7 +350,7 @@ const main = async () => {
         ? await getCheckinData()
         : sampleData;
     await fs.writeFile(
-        __dirname + '/../lib/swarm-data.json',
+        `${__dirname}/../lib/swarm-data.json`,
         JSON.stringify(checkinData),
     );
 };
