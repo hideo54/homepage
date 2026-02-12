@@ -233,10 +233,7 @@ const getCheckinData = async () => {
         new Set(
             allCheckins
                 .map(checkin =>
-                    checkin.venue.location.country.replace(
-                        '英領',
-                        'イギリス領',
-                    ),
+                    checkin.venue.location.country.replace( / \(.*\)/, '') // 括弧書を除去 (例: 「スロバキア (スロバキア共和国)」→「スロバキア」)
                 )
                 .reverse(), // 訪問順
         ),
