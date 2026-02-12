@@ -76,7 +76,7 @@ const GeoMap: React.FC<{
                     ref={ref =>
                         (svgElementChild &&
                             ref?.replaceWith(svgElementChild)) ??
-                        null
+                        undefined
                     }
                 >
                     <div className='h-full animate-pulse bg-neutral-100 dark:bg-neutral-800' />
