@@ -24,8 +24,9 @@ const App = () => {
                                         {record.name.normalize('NFKC')}
                                     </span>
                                     {!record.isStandard && (
+                                        // biome-ignore lint/performance/noImgElement: 仕方ない
                                         <img
-                                            alt='Delux'
+                                            alt='Deluxe'
                                             className='mb-2 ml-2 inline h-4'
                                             src='https://maimaidx.jp/maimai-mobile/img/music_dx.png'
                                         />
@@ -49,6 +50,7 @@ const App = () => {
             <section>
                 <h2>全国行脚 (プレイしたことがある都道府県)</h2>
                 <GeoMap
+                    alt='都道府県地図'
                     count={maimaiDataJson.prefectures.length}
                     fill={Object.fromEntries(
                         maimaiDataJson.prefectures.map(prefId => [

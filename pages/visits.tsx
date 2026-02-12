@@ -113,6 +113,7 @@ const App: NextPage = () => {
             <section id='senkyoku'>
                 <h2>訪れたことのある小選挙区</h2>
                 <GeoMap
+                    alt='小選挙区地図'
                     CountSectionChildren={visitedSenkyokuCountsByParty.map(
                         ([color, visitedCount, allCount]) => (
                             <p className='my-1 text-sm' key={color}>
@@ -169,6 +170,7 @@ const App: NextPage = () => {
             <section id='keikenchi'>
                 <h2>経県値</h2>
                 <GeoMap
+                    alt='都道府県地図'
                     CountSectionChildren={Array.from({ length: 6 }, (_, i) => (
                         // biome-ignore lint/suspicious/noArrayIndexKey: it can never be reordered
                         <p className='my-1' key={i}>
@@ -211,6 +213,7 @@ const App: NextPage = () => {
             <section id='maimai'>
                 <h2>maimai 全国行脚 (プレイしたことがある都道府県)</h2>
                 <GeoMap
+                    alt='都道府県地図'
                     count={maimaiDataJson.prefectures.length}
                     fill={Object.fromEntries(
                         maimaiDataJson.prefectures.map(prefId => [
@@ -246,6 +249,7 @@ const App: NextPage = () => {
                 </ul>
                 <GeoMap
                     additionalCss='path[class^="ADM0_A3-"],path.land,path.boundary{stroke:black;stroke-width:0.2;}path[class^="ADM0_A3-"],path.land{fill:white;}'
+                    alt='世界地図'
                     count={swarmDataJson.allVisitedCountryCodes.length}
                     fill={Object.fromEntries(
                         swarmDataJson.allVisitedCountryCodes.map(cc => [
@@ -276,6 +280,7 @@ const App: NextPage = () => {
                 <h2>訪れたことのあるアメリカ合衆国の州</h2>
                 <GeoMap
                     additionalCss='g.state{fill:white;}g.borders>path{stroke:black;stroke-width:0.5;}'
+                    alt='アメリカ合衆国の州の地図'
                     count={swarmDataJson.allVisitedUSStates.length}
                     fill={Object.fromEntries(
                         swarmDataJson.allVisitedUSStates.map(stateId => [

@@ -17,6 +17,7 @@ const GeoMap: React.FC<{
     wrapperDivClassName?: string;
     additionalCss?: string;
     svgPadding?: string;
+    alt: string;
 }> = props => {
     const [data, setData] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
@@ -42,7 +43,7 @@ const GeoMap: React.FC<{
 
     if (loading)
         return (
-            <div className='h-[600px] animate-pulse bg-neutral-100 dark:bg-neutral-800' />
+            <div className='h-150 animate-pulse bg-neutral-100 dark:bg-neutral-800' />
         );
     if (error) return <p>Error: {error.message}</p>;
     if (!data) return <p>No data</p>;
@@ -62,7 +63,7 @@ const GeoMap: React.FC<{
         >
             <svg
                 className={clsx([
-                    'max-h-[800px] w-full fill-white stroke-[0.2px] stroke-black',
+                    'max-h-200 w-full fill-white stroke-[0.2px] stroke-black',
                     props.className,
                 ])}
                 style={{
@@ -70,9 +71,8 @@ const GeoMap: React.FC<{
                 }}
                 viewBox={props.viewBox}
             >
+                <title>{props.alt}</title>
                 <g
-                    id='loaded'
-                    // @ts-expect-error わからん
                     ref={ref =>
                         svgElementChild && ref?.replaceWith(svgElementChild)
                     }
@@ -82,6 +82,7 @@ const GeoMap: React.FC<{
                 {props.children}
             </svg>
             <style
+                // biome-ignore lint/security/noDangerouslySetInnerHtml: 一旦仕方ない
                 dangerouslySetInnerHTML={{
                     __html:
                         (props.additionalCss || '') +
