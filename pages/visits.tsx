@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/correctness/useUniqueElementIds: ID は好きな文字列を置きたい */
 import { Open, Square } from '@styled-icons/ionicons-outline';
 import { Airplane } from '@styled-icons/ionicons-solid';
 import clsx from 'clsx';
