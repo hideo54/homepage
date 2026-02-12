@@ -229,7 +229,7 @@ const App: NextPage = () => {
                 <ul className='grid grid-cols-2 gap-4 p-0 min-[600px]:grid-cols-3'>
                     {swarmDataJson.allVisitedCountryCodes.map((countryCode, i) => (
                         <li className='m-0 flex flex-col items-start gap-y-2' key={countryCode}>
-                            <Flag className='m-0 h-8' code={countryCode} />
+                            <Flag className='m-0 h-8 shadow' code={countryCode} />
                             <div className='text-balance text-sm leading-5'>
                                 {swarmDataJson.allVisitedCountries[i]}
                             </div>
