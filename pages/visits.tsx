@@ -170,6 +170,7 @@ const App: NextPage = () => {
                 <h2>経県値</h2>
                 <GeoMap
                     CountSectionChildren={Array.from({ length: 6 }, (_, i) => (
+                        // biome-ignore lint/suspicious/noArrayIndexKey: it can never be reordered
                         <p className='my-1' key={i}>
                             <ColorSquare color={keikenchiToColor(5 - i)} />
                             <span className='mr-1 font-bold'>
@@ -225,7 +226,7 @@ const App: NextPage = () => {
             </section>
             <section id='countries'>
                 <h2>訪れたことのある国と地域</h2>
-                <ul className='grid gap-4 p-0 grid-cols-2 min-[600px]:grid-cols-3'>
+                <ul className='grid grid-cols-2 gap-4 p-0 min-[600px]:grid-cols-3'>
                     {swarmDataJson.allVisitedCountryCodes.map((countryCode, i) => (
                         <li className='m-0 flex flex-col items-start gap-y-2' key={countryCode}>
                             <Flag className='m-0 h-8' code={countryCode} />
@@ -240,12 +241,12 @@ const App: NextPage = () => {
                     count={swarmDataJson.allVisitedCountryCodes.length}
                     fill={Object.fromEntries(
                         swarmDataJson.allVisitedCountryCodes.map(cc => [
-                            'ADM0_A3-' + cc,
+                            `ADM0_A3-${cc}`,
                             '#22c55e',
                         ]),
                     )}
-                    mapId='intl_wintri1'
                     idProvidedByClass
+                    mapId='intl_wintri1'
                     path='/intl_wintri.svg'
                     viewBox='0 0 800 485'
                 />
@@ -277,8 +278,8 @@ const App: NextPage = () => {
                             ],
                         ]),
                     )}
-                    mapId='us'
                     idProvidedByClass
+                    mapId='us'
                     maxCount={51}
                     path='/us-states.svg'
                     svgPadding='0 2em'
