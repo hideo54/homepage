@@ -275,7 +275,7 @@ const getCheckinData = async () => {
         },
         {} as Record<string, typeof allCheckins>,
     );
-    const formatRestrauntName = (name: string) =>
+    const formatRestaurantName = (name: string) =>
         name
             .split(' ')
             .filter(
@@ -286,7 +286,7 @@ const getCheckinData = async () => {
     const allRamenRestaurantNames = Array.from(
         new Set(
             checkinsByCategory.ラーメン屋.map(checkin =>
-                formatRestrauntName(checkin.venue.name),
+                formatRestaurantName(checkin.venue.name),
             ),
         ),
     );
@@ -298,7 +298,7 @@ const getCheckinData = async () => {
                         restaurantName,
                         checkinsByCategory.ラーメン屋.filter(
                             checkin =>
-                                formatRestrauntName(checkin.venue.name) ===
+                                formatRestaurantName(checkin.venue.name) ===
                                 restaurantName,
                         ).length,
                     ] as const,
