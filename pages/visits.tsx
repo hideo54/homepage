@@ -310,10 +310,10 @@ const App: NextPage = () => {
                 <p className='mt-0 mb-4 font-bold text-4xl'>
                     {swarmDataJson.visitedAirports.length}
                 </p>
-                <div>
+                <div className='grid grid-cols-2 gap-4 min-[680px]:grid-cols-3'>
                     {swarmDataJson.visitedAirports.map(airportName => (
-                        <div className='my-4' key={airportName}>
-                            <div className='mr-2 font-bold text-2xl'>
+                        <div key={airportName}>
+                            <div className='flex items-center gap-1 font-bold text-2xl'>
                                 <Airplane
                                     size='1.2em'
                                     style={{ verticalAlign: 'text-bottom' }}
@@ -333,11 +333,11 @@ const App: NextPage = () => {
                                     {airportName.match(/[A-Z]{3}/)}
                                 </span>
                             </div>
-                            <span>
+                            <div>
                                 {regularizeAirportName(
                                     airportName.replace(/\([A-Z]{3}\)/, ''),
                                 )}
-                            </span>
+                            </div>
                         </div>
                     ))}
                 </div>
