@@ -50,7 +50,7 @@
         "tailwindcss": "^4.1.18",
         "tsx": "^4.21.0",
         "typescript": "^5.9.3",
-        "wrangler": "^4.59.1"
+        "wrangler": "^4.65.0"
     },
     "homepage": "https://hideo54.com",
     "license": "Apache-2.0",
