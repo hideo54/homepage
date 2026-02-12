@@ -353,21 +353,27 @@ const App: NextPage = () => {
                             .length
                     }
                 </p>
-                <p>うち、10回以上訪れている店舗</p>
-                <ul>
-                    {Object.entries(swarmDataJson.ramenRestaurantsCheckinCount)
-                        .filter(([, count]) => count >= 10)
-                        .map(([restaurantName, count]) => (
-                            <li key={restaurantName}>
-                                {restaurantName} ({count}回)
-                            </li>
-                        ))}
-                </ul>
-                <div className='my-4 leading-4'>
+                <h2>たくさん訪れたラーメン屋</h2>
+                <div className='leading-4'>
                     <small>
                         同一ラーメンチェーンの「〇〇店」といった支店名は除去し、まとめて計上しています。
                     </small>
                 </div>
+                <ul className='grid grid-cols-2 gap-4 p-0 min-[640px]:grid-cols-3'>
+                    {Object.entries(swarmDataJson.ramenRestaurantsCheckinCount)
+                        .slice(0, 12)
+                        .map(([restaurantName, count]) => (
+                            <li className='m-0 list-none p-0' key={restaurantName}>
+                                <div className='flex items-baseline gap-1'>
+                                    <span className='font-bold text-2xl'>{count}</span>
+                                    <span className='text-xs'>回</span>
+                                </div>
+                                <div className='text-balance'>
+                                    {restaurantName}
+                                </div>
+                            </li>
+                        ))}
+                </ul>
             </section>
         </Layout>
     );
