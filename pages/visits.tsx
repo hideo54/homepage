@@ -368,7 +368,7 @@ const App: NextPage = () => {
                                     code={airport.countryCode}
                                 />
                             </div>
-                            <div>
+                            <div className='leading-snug'>
                                 {regularizeAirportName(
                                     airport.name.replace(/\([A-Z]{3}\)/, ''),
                                 )}
