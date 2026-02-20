@@ -320,11 +320,11 @@ const App: NextPage = () => {
             </section>
             <section id='airports'>
                 <h2>訪れたことのある空港</h2>
-                <div className='my-4 flex items-baseline gap-x-8'>
+                <div className='my-4 flex items-end gap-x-8'>
                     <div className='font-bold text-4xl'>
                         {swarmDataJson.visitedAirports.length}
                     </div>
-                    <div className='flex grow items-center gap-x-4'>
+                    <div className='flex grow flex-wrap items-center gap-x-4'>
                         {swarmDataJson.visitedAirportsByCountry
                             .filter(({ count }) => count > 1)
                             .map(({ countryCode, count }) => (
