@@ -301,13 +301,8 @@ const App: NextPage = () => {
                 <div className='my-4 leading-4'>
                     <small>
                         50 states + District of Columbia. Color represents the
-                        winner of the 2024 presidential election. For Maine and
-                        Nebraska, which have a split electoral vote system, the
-                        colors represent the majority of the votes.
-                    </small>
-                    <br />
-                    <small>
-                        マップ:{' '}
+                        party with the majority of votes of the 2024
+                        presidential election. Map:{' '}
                         <IconAnchor
                             href='https://commons.wikimedia.org/wiki/File:Blank_US_Map_(states_only).svg'
                             RightIcon={Open}
