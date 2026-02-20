@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 import type { Feature, Position } from 'geojson';
 import isoCountries from 'i18n-iso-countries';
 import { getPrefectureId, prefectureIds, prefectureNames } from 'jp-local-gov';
-import { uniqBy } from 'lodash';
+import { countBy, uniqBy } from 'lodash';
 
 dotenv.config({ path: path.join(__dirname, '../.env.local') });
 
@@ -232,6 +232,12 @@ const getCheckinData = async () => {
         'name',
     );
 
+    const visitedAirportsByCountry = Object.entries(
+        countBy(visitedAirports, 'countryCode'),
+    )
+        .map(([countryCode, count]) => ({ count, countryCode }))
+        .sort((a, b) => -(a.count - b.count));
+
     const allVisitedCountries = Array.from(
         new Set(
             allCheckins
@@ -325,6 +331,7 @@ const getCheckinData = async () => {
         senkyokuVisitCounts2017,
         senkyokuVisitCounts2022,
         visitedAirports,
+        visitedAirportsByCountry,
     };
     return checkinData;
 };
@@ -346,6 +353,7 @@ const sampleData = {
     visitedAirports: [
         { countryCode: 'JP', name: '東京国際空港 (羽田空港) (HND)' },
     ],
+    visitedAirportsByCountry: [{ count: 1, countryCode: 'JP' }],
 };
 
 const main = async () => {
