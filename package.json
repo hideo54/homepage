@@ -24,7 +24,7 @@
         "react-plotly.js": "^2.6.0",
         "react-world-flags": "^1.6.0",
         "scrape-it": "^6.1.12",
-        "yaml": "^2.8.0"
+        "yaml": "^2.8.2"
     },
     "description": "hideo54's Homepage",
     "devDependencies": {
