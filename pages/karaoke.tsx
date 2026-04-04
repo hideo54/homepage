@@ -268,7 +268,7 @@ const App = () => {
             </section>
             <section>
                 <h2>日ごとの得点推移</h2>
-                <div className='mb-8 h-[450px]'>
+                <div className='mb-8 h-112.5'>
                     <BoxPlotByDate scoreDataByDate={scoreDataByDate} />
                 </div>
             </section>
