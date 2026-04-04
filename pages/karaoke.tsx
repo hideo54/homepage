@@ -59,7 +59,7 @@ const ScoreWithAverage: React.FC<{
 const Score: React.FC<{
     scoreData: (typeof damScoresDataJson)[0];
 }> = ({ scoreData }) => (
-    <li className='mr-2 mb-8 inline-block p-0'>
+    <li className='row-span-2 mb-4 grid grid-rows-subgrid'>
         <div className='flex'>
             <div>
                 <MusicalNote className='mt-1' size={48} />
@@ -69,7 +69,7 @@ const Score: React.FC<{
                     {scoreData.contentsName}
                 </span>
                 {scoreData.lastPerformKey !== '0' && (
-                    <div className='mr-2 inline-block rounded-lg border border-neutral-600 border-solid px-1'>
+                    <div className='mr-2 inline-block rounded-lg border border-neutral-400 border-solid px-1'>
                         {Number(scoreData.lastPerformKey) > 0
                             ? Number(scoreData.lastPerformKey) - 12 // 音上げてたらそれは女声の上げの1オク下げだと思っていい
                             : scoreData.lastPerformKey}
@@ -257,7 +257,7 @@ const App = () => {
         <Layout title='カラオケ得点状況 | hideo54.com'>
             <h1>カラオケ得点状況</h1>
             <section>
-                <ul className='p-0'>
+                <ul className='grid auto-rows-min grid-cols-1 gap-x-4 p-0 md:grid-cols-2'>
                     {sortBy(damScoresDataJson, score => -Number(score['#text']))
                         .filter(
                             score =>
