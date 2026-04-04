@@ -11,6 +11,8 @@ import { sortBy } from '../lib/utils';
 
 const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
 
+const displayScoreThreshold = 88;
+
 const midiNoteToPitch = (note: number) => {
     const noteNames = [
         'C',
@@ -257,7 +259,11 @@ const App = () => {
             <section>
                 <ul className='p-0'>
                     {sortBy(damScoresDataJson, score => -Number(score['#text']))
-                        .filter(score => Number(score['#text']) / 1000 >= 87.5)
+                        .filter(
+                            score =>
+                                Number(score['#text']) / 1000 >=
+                                displayScoreThreshold,
+                        )
                         .map(score => (
                             <Score
                                 key={score.scoringDateTime}
