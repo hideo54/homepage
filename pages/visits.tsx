@@ -10,7 +10,7 @@ import GeoMap from '../components/GeoMap';
 import { IconAnchor } from '../components/iconTools';
 import Layout from '../components/Layout';
 import maimaiDataJson from '../lib/maimai-data.json';
-import senkyokuResultColor2024Json from '../lib/shu-2024-senkyoku-result-color.json';
+import senkyokuResultColor2026Json from '../lib/shu-2026-senkyoku-result-color.json';
 import swarmDataJson from '../lib/swarm-data.json';
 import usStateColorsJson from '../lib/us-state-colors.json';
 
@@ -27,15 +27,12 @@ const ColorSquare: React.FC<{
 );
 
 const partyColorToText: { [key: string]: string } = {
-    '#0a82dc': '保',
-    '#01a8ec': '社',
-    '#36c200': '維',
-    '#7957da': '共',
-    '#004098': '立',
-    '#777777': '無',
     '#d7033a': '自',
+    '#36c200': '維',
     '#f8bc00': '国',
-    '#f55881': '公',
+    '#0074bc': '中',
+    '#777777': '無',
+    '#2f3b84': '減',
 };
 
 const regularizeAirportName = (airportName: string) => {
@@ -60,13 +57,13 @@ const App: NextPage = () => {
         senkyokuId =>
             [
                 senkyokuId,
-                senkyokuResultColor2024Json[
-                    senkyokuId as keyof typeof senkyokuResultColor2024Json
+                senkyokuResultColor2026Json[
+                    senkyokuId as keyof typeof senkyokuResultColor2026Json
                 ] || 'white',
             ] as [string, string],
     );
     const visitedSenkyokuColorSet = new Set(
-        Object.values(senkyokuResultColor2024Json),
+        Object.values(senkyokuResultColor2026Json),
     );
     const visitedSenkyokuCountsByParty = Array.from(visitedSenkyokuColorSet)
         .map(
@@ -74,7 +71,7 @@ const App: NextPage = () => {
                 [
                     color,
                     visitedSenkyokuColors.filter(e => e[1] === color).length,
-                    Object.entries(senkyokuResultColor2024Json).filter(
+                    Object.entries(senkyokuResultColor2026Json).filter(
                         ([, v]) => v === color,
                     ).length,
                 ] as [string, number, number],
