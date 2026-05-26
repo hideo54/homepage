@@ -12,7 +12,7 @@
         "@turf/turf": "^7.3.5",
         "chroma-js": "^3.2.0",
         "clsx": "^2.1.1",
-        "dayjs": "^1.11.20",
+        "dayjs": "^1.11.21",
         "firebase-admin": "^13.10.0",
         "i18n-iso-countries": "^7.13.0",
         "jp-local-gov": "^1.8.0",
