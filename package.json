@@ -15,7 +15,7 @@
         "dayjs": "^1.11.21",
         "firebase-admin": "^14.0.0",
         "i18n-iso-countries": "^7.13.0",
-        "jp-local-gov": "^1.8.0",
+        "jp-local-gov": "^2.0.1",
         "next": "^16.2.9",
         "plotly.js-dist-min": "^3.6.0",
         "react": "^18.3.1",
