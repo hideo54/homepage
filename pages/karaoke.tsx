@@ -47,7 +47,7 @@ const ScoreWithAverage: React.FC<{
             className={clsx([
                 'mr-2 font-bold',
                 label ? 'text-xl' : 'text-2xl',
-                myScore >= 90 && 'text-green-700',
+                myScore >= 90 && 'text-success',
             ])}
         >
             {myScore.toFixed(label ? 0 : 3)}
@@ -72,7 +72,7 @@ const Score: React.FC<{
                     {scoreData.contentsName}
                 </span>
                 {scoreData.lastPerformKey !== '0' && (
-                    <div className='mr-2 inline-block rounded-lg border border-neutral-400 border-solid px-1'>
+                    <div className='kbd kbd-sm mr-2'>
                         {Number(scoreData.lastPerformKey) > 0
                             ? Number(scoreData.lastPerformKey) - 12 // 音上げてたらそれは女声の上げの1オク下げだと思っていい
                             : scoreData.lastPerformKey}
@@ -90,7 +90,7 @@ const Score: React.FC<{
                 />
             </div>
         </div>
-        <div className='ml-5 border-neutral-400 border-l-2 border-solid pl-3'>
+        <div className='ml-5 border-base-300 border-l-2 border-solid pl-3'>
             <div>{dayjs(scoreData.scoringDateTime).format('YYYY/M/D')}</div>
             <div>
                 <div className='font-bold text-sm'>音域</div>
@@ -98,8 +98,7 @@ const Score: React.FC<{
                     <span
                         className={clsx([
                             scoreData.vocalRangeLowest ===
-                                scoreData.singingRangeLowest &&
-                                'text-green-700',
+                                scoreData.singingRangeLowest && 'text-success',
                         ])}
                     >
                         {midiNoteToPitch(
@@ -111,8 +110,7 @@ const Score: React.FC<{
                     <span
                         className={clsx([
                             scoreData.vocalRangeHighest ===
-                                scoreData.singingRangeHighest &&
-                                'text-green-700',
+                                scoreData.singingRangeHighest && 'text-success',
                         ])}
                     >
                         {midiNoteToPitch(
@@ -167,19 +165,30 @@ const Score: React.FC<{
 const BoxPlotByDate: React.FC<{
     scoreDataByDate: Dictionary<DamScore[]>;
 }> = ({ scoreDataByDate }) => {
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    // Plotly は CSS クラスを受け付けないので、daisyUI のテーマ変数を
+    // 実際の計算値として読み出して渡す。テーマが切り替われば追従する。
+    const [themeColors, setThemeColors] = useState({
+        base100: '#ffffff',
+        base300: '#d4d4d4',
+        baseContent: '#171717',
+    });
     useEffect(() => {
-        if (!window) return;
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            if (!isDarkMode) {
-                setIsDarkMode(true);
-            }
-        }
-        window
-            .matchMedia('(prefers-color-scheme: dark)')
-            .addEventListener('change', e => {
-                setIsDarkMode(e.matches);
+        const readTheme = () => {
+            const style = getComputedStyle(document.documentElement);
+            const read = (name: string, fallback: string) =>
+                style.getPropertyValue(name).trim() || fallback;
+            setThemeColors({
+                base100: read('--color-base-100', '#ffffff'),
+                base300: read('--color-base-300', '#d4d4d4'),
+                baseContent: read('--color-base-content', '#171717'),
             });
+        };
+        readTheme();
+        const query = window.matchMedia('(prefers-color-scheme: dark)');
+        query.addEventListener('change', readTheme);
+        return () => {
+            query.removeEventListener('change', readTheme);
+        };
     }, []);
     const jetScale = chroma
         .scale([
@@ -219,7 +228,7 @@ const BoxPlotByDate: React.FC<{
             layout={{
                 autosize: true,
                 font: {
-                    color: isDarkMode ? '#ffffff' : '#171717', // neutral-900
+                    color: themeColors.baseContent,
                 },
                 margin: {
                     b: 60,
@@ -227,15 +236,15 @@ const BoxPlotByDate: React.FC<{
                     r: 0,
                     t: 0,
                 },
-                paper_bgcolor: isDarkMode ? '#000000' : '#ffffff',
-                plot_bgcolor: isDarkMode ? '#000000' : '#ffffff',
+                paper_bgcolor: themeColors.base100,
+                plot_bgcolor: themeColors.base100,
                 showlegend: false,
                 xaxis: {
                     tickformat: '%Y-%m-%d',
                     // type: 'category', // 等間隔にしたい場合はこれ
                 },
                 yaxis: {
-                    gridcolor: isDarkMode ? '#404040' : '#d4d4d4', // neutral-700, neutral-400
+                    gridcolor: themeColors.base300,
                 },
             }}
             style={{

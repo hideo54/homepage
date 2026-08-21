@@ -321,7 +321,7 @@ const App: NextPage = () => {
             <section id='airports'>
                 <h2 className='typography-h2'>訪れたことのある空港</h2>
                 <div className='my-4 flex items-end gap-x-8'>
-                    <div className='font-bold text-4xl'>
+                    <div className='stat-value'>
                         {swarmData.visitedAirports.length}
                     </div>
                     <div className='flex grow flex-wrap items-center gap-x-4'>
@@ -379,7 +379,7 @@ const App: NextPage = () => {
             </section>
             <section id='ramen'>
                 <h2 className='typography-h2'>訪れたラーメン屋の総数</h2>
-                <p className='mt-0 mb-4 font-bold text-4xl'>
+                <p className='stat-value mt-0 mb-4'>
                     {Object.keys(swarmData.ramenRestaurantsCheckinCount).length}
                 </p>
                 <h2 className='typography-h2'>たくさん訪れたラーメン屋</h2>

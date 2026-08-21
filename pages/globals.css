@@ -1,9 +1,14 @@
 @import 'tailwindcss';
 
+/*
+ * 色は下記 2 テーマに集約し、コンポーネント側では dark: を書かない。
+ * 実際に使うコンポーネントだけを include して CSS 量を抑える。
+ * rootscrollgutter は modal 用の scrollbar-gutter 制御なので不要。
+ */
 @plugin "daisyui" {
     themes: false;
-    include: ;
-    exclude: rootscrollgutter, input;
+    include: card, badge, avatar, kbd, stat;
+    exclude: rootscrollgutter;
     logs: false;
 }
 
