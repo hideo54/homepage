@@ -1,6 +1,5 @@
 import fs from 'node:fs/promises';
 import * as turf from '@turf/turf';
-import axios from 'axios';
 import dayjs from 'dayjs';
 import type { Feature, Position } from 'geojson';
 import isoCountries from 'i18n-iso-countries';
@@ -62,19 +61,21 @@ const getCheckins = async ({
             },
         };
     }
-    const res = await axios.get<CheckinResponse>(
-        'https://api.foursquare.com/v2/users/self/checkins',
-        {
-            params: {
-                limit,
-                locale: 'ja',
-                oauth_token: process.env.FOURSQUARE_ACCESS_TOKEN,
-                offset,
-                v: '20230211',
-            },
-        },
+    const params = new URLSearchParams({
+        limit: String(limit),
+        locale: 'ja',
+        oauth_token: process.env.FOURSQUARE_ACCESS_TOKEN,
+        offset: String(offset),
+        v: '20230211',
+    });
+    const res = await fetch(
+        `https://api.foursquare.com/v2/users/self/checkins?${params}`,
     );
-    return res.data.response;
+    if (!res.ok) {
+        throw new Error(`${res.status} ${res.statusText}`);
+    }
+    const data = (await res.json()) as CheckinResponse;
+    return data.response;
 };
 
 const calcSenkyokuVisitCounts = (

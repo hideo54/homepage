@@ -1,6 +1,5 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
 import * as admin from 'firebase-admin';
 import { getFirestore } from 'firebase-admin/firestore';
@@ -23,19 +22,19 @@ const getScores = async ({
     cookies: string[];
     page: number;
 }) => {
-    const scoresRes = await axios.get(
-        'https://www.clubdam.com/app/damtomo/scoring/GetScoringAiListXML.do',
+    const params = new URLSearchParams({
+        cdmCardNo,
+        cdmToken,
+        detailFlg: '1',
+        enc: 'sjis',
+        pageNo: String(page),
+        UTCserial: String(getUnixTime()),
+    });
+    const scoresRes = await fetch(
+        `https://www.clubdam.com/app/damtomo/scoring/GetScoringAiListXML.do?${params}`,
         {
             headers: {
-                Cookie: cookies?.join(';'),
-            },
-            params: {
-                cdmCardNo,
-                cdmToken,
-                detailFlg: 1,
-                enc: 'sjis',
-                pageNo: page,
-                UTCserial: getUnixTime(),
+                Cookie: cookies.join(';'),
             },
         },
     );
@@ -45,7 +44,7 @@ const getScores = async ({
         ignoreAttributes: false,
     });
     const scoresData: DamScore[] = parser
-        .parse(scoresRes.data)
+        .parse(await scoresRes.text())
         .document.list.data.map((d: { scoring: DamScore }) => d.scoring);
     return scoresData;
 };
@@ -55,40 +54,38 @@ const password = process.env.DAM_PASSWORD;
 
 const main = async () => {
     admin.initializeApp();
-    const loginRes = await axios.post(
+    const loginRes = await fetch(
         'https://www.clubdam.com/app/damtomo/auth/LoginXML.do',
         {
-            enc: 'sjis',
-            loginId,
-            password,
-            procKbn: 1,
-            UTCserial: getUnixTime(),
-        },
-        {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
+            body: new URLSearchParams({
+                enc: 'sjis',
+                loginId: loginId ?? '',
+                password: password ?? '',
+                procKbn: '1',
+                UTCserial: String(getUnixTime()),
+            }),
+            method: 'POST',
         },
     );
-    const cookies = loginRes.headers['set-cookie'] || [];
+    const cookies = loginRes.headers.getSetCookie();
     const cdmCardNo =
         cookies
-            ?.find(cookieStr => cookieStr.startsWith('scr_cdm='))
+            .find(cookieStr => cookieStr.startsWith('scr_cdm='))
             ?.split(';')[0]
             .split('=')[1]
             .trim() || '';
 
-    const myPageRes = await axios.get(
+    const myPageRes = await fetch(
         'https://www.clubdam.com/app/damtomo/MyPage.do',
         {
             headers: {
-                Cookie: cookies?.join(';'),
+                Cookie: cookies.join(';'),
             },
         },
     );
     const myPageData = scrapeHTML<{
         cdmToken: string;
-    }>(myPageRes.data, {
+    }>(await myPageRes.text(), {
         cdmToken: {
             attr: 'value',
             selector: 'input#cdmToken',

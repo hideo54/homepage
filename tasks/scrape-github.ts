@@ -1,4 +1,3 @@
-import axios, { type AxiosError } from 'axios';
 import type { GitHubData } from '../data/schema/github';
 import { writeGenerated } from './io';
 
@@ -9,18 +8,24 @@ const headers = {
     authorization: `token ${githubPat}`,
 };
 
+const getJson = async <T>(url: string): Promise<T> => {
+    const res = await fetch(url, { headers });
+    if (!res.ok) {
+        throw new Error(`${res.status} ${res.statusText}`);
+    }
+    return res.json() as Promise<T>;
+};
+
 const getContributions = async () => {
-    const { data } = await axios.get<{
+    const searchParams = new URLSearchParams({
+        per_page: '100',
+        q: 'is:pr is:merged author:hideo54',
+    });
+    const data = await getJson<{
         items: {
             html_url: string;
         }[];
-    }>('https://api.github.com/search/issues', {
-        headers,
-        params: {
-            per_page: 100,
-            q: 'is:pr is:merged author:hideo54',
-        },
-    });
+    }>(`https://api.github.com/search/issues?${searchParams}`);
     const repoNames = new Set(
         data.items
             .map(
@@ -33,19 +38,14 @@ const getContributions = async () => {
     );
     const repos = await Promise.all(
         Array.from(repoNames).map(name =>
-            axios
-                .get<{
-                    full_name: string;
-                    html_url: string;
-                    stargazers_count: number;
-                }>(`https://api.github.com/repos/${name}`, { headers })
-                .then(res => res.data)
-                .catch((e: AxiosError) => {
-                    console.warn(
-                        `Skipped ${name}: ${e.response?.status ?? e.message}`,
-                    );
-                    return undefined;
-                }),
+            getJson<{
+                full_name: string;
+                html_url: string;
+                stargazers_count: number;
+            }>(`https://api.github.com/repos/${name}`).catch((e: Error) => {
+                console.warn(`Skipped ${name}: ${e.message}`);
+                return undefined;
+            }),
         ),
     );
     return repos
