@@ -10,16 +10,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v4
+    - uses: actions/setup-node@v4
       with:
         node-version: 22
-    - run: npm ci
+        cache: pnpm
+    - run: pnpm install --frozen-lockfile
     - uses: google-github-actions/auth@v2
       if: github.actor != 'dependabot[bot]'
       with:
         credentials_json: '${{secrets.FIREBASE_SERVICE_ACCOUNT_HIDEO54}}'
-    - run: npm run build
+    - run: pnpm run build
       env:
         FOURSQUARE_ACCESS_TOKEN: '${{ secrets.FOURSQUARE_ACCESS_TOKEN }}'
         SEGA_ID: '${{ secrets.SEGA_ID }}'
