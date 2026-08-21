@@ -130,7 +130,7 @@ const WorkDetail: React.FC<{
     untilTransformer: (s: string) => string;
 }> = ({ work, untilTransformer }) => (
     <div
-        className='my-4 rounded-2xl border-black border-solid p-4 shadow dark:border dark:border-neutral-600'
+        className='my-4 rounded-2xl border border-base-300 border-solid p-4 shadow'
         key={work.title}
     >
         <div className='flex justify-between'>

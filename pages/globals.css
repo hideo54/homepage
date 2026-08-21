@@ -1,5 +1,40 @@
 @import 'tailwindcss';
 
+@plugin "daisyui" {
+    themes: false;
+    include: ;
+    exclude: rootscrollgutter, input;
+    logs: false;
+}
+
+@plugin "daisyui/theme" {
+    name: 'light';
+    default: true;
+    color-scheme: light;
+
+    --color-base-100: #fff;
+    --color-base-200: oklch(97% 0 none);
+    --color-base-300: oklch(92.2% 0 none);
+    --color-base-content: oklch(26.9% 0 none);
+
+    --color-primary: #e26a6a;
+    --color-primary-content: #fff;
+}
+
+@plugin "daisyui/theme" {
+    name: 'dark';
+    prefersdark: true;
+    color-scheme: dark;
+
+    --color-base-100: #000;
+    --color-base-200: oklch(26.9% 0 none);
+    --color-base-300: oklch(37.1% 0 none);
+    --color-base-content: oklch(87% 0 none);
+
+    --color-primary: #e26a6a;
+    --color-primary-content: #fff;
+}
+
 /*
  * Hiragino Sans JP のカバー範囲
  * ("Hiragino Sans" と名付けると macOS で "Hiragino Sans" が優先されてしまうので、"Hiragino Sans JP" としている)
@@ -56,8 +91,6 @@
     #be4df8 70%
   );
 
-  --color-hideo54-pink: #e26a6a;
-
   --font-display:
     'Hiragino Sans JP', -apple-system, BlinkMacSystemFont, 'Local Noto Sans JP', 'Noto Sans JP', sans-serif;
 
@@ -68,24 +101,6 @@
     100% {
       background-position: 0% 50%;
     }
-  }
-}
-
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-neutral-200, currentcolor);
   }
 }
 
@@ -131,29 +146,29 @@
 }
 
 @utility typography-blockquote {
-    @apply my-4 border-neutral-300 border-l-4 pl-4 text-neutral-600 dark:border-neutral-600 dark:text-neutral-400;
+    @apply my-4 border-base-300 border-l-4 pl-4 text-base-content/70;
 }
 
 @utility typography-code {
-    @apply rounded bg-neutral-100 px-1 py-0.5 font-mono text-[0.9em] dark:bg-neutral-800;
+    @apply rounded bg-base-200 px-1 py-0.5 font-mono text-[0.9em];
 }
 
 @utility typography-pre {
-    @apply my-4 overflow-x-auto rounded-lg bg-neutral-100 p-4 text-sm dark:bg-neutral-800;
+    @apply my-4 overflow-x-auto rounded-lg bg-base-200 p-4 text-sm;
     & code {
         @apply bg-transparent p-0;
     }
 }
 
 @utility typography-hr {
-    @apply my-8 border-neutral-200 border-t dark:border-neutral-700;
+    @apply my-8 border-base-300 border-t;
 }
 
 @utility typography-table {
     @apply my-4 w-full border-collapse text-left text-sm;
     & th,
     & td {
-        @apply border-neutral-200 border-b px-2 py-2 dark:border-neutral-700;
+        @apply border-base-300 border-b px-2 py-2;
     }
     & th {
         @apply font-bold;
@@ -169,19 +184,12 @@
     }
     body {
         /* prose の最大幅 (65ch) を踏襲する */
-        @apply m-auto max-w-[65ch] bg-white px-4 text-neutral-800 leading-7 dark:bg-black dark:text-neutral-300;
+        @apply m-auto max-w-[65ch] px-4 leading-7;
     }
     nav {
         @apply my-4;
     }
     a {
-        @apply text-hideo54-pink no-underline;
-    }
-    /*
-     * preflight は bolder を当てるが、これは親基準の相対値なので
-     * 見出しの中の strong が意図せず重くなる。絶対値で固定する。
-     */
-    strong {
-        @apply font-bold;
+        @apply text-primary no-underline;
     }
 }

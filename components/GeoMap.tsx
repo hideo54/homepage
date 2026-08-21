@@ -43,7 +43,7 @@ const GeoMap: React.FC<{
 
     if (loading)
         return (
-            <div className='h-150 animate-pulse bg-neutral-100 dark:bg-neutral-800' />
+            <div className='h-150 animate-pulse bg-base-200' />
         );
     if (error) return <p className='typography-p'>Error: {error.message}</p>;
     if (!data) return <p className='typography-p'>No data</p>;
@@ -79,7 +79,7 @@ const GeoMap: React.FC<{
                         undefined
                     }
                 >
-                    <div className='h-full animate-pulse bg-neutral-100 dark:bg-neutral-800' />
+                    <div className='h-full animate-pulse bg-base-200' />
                 </g>
                 {props.children}
             </svg>
