@@ -19,7 +19,6 @@ interface Data {
 
 const TagComponent: React.FC<Tag> = ({ color, name, username, link }) => {
     const body = (
-        // border-2 の色はサービスごとに異なるので inline style で上書きする
         <div
             className={clsx(
                 'card card-border card-sm mr-4 mb-4 border-2',
