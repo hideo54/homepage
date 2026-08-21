@@ -44,6 +44,7 @@
         "@types/react-world-flags": "^1.6.0",
         "axios": "^1.19.0",
         "cheerio": "^1.2.0",
+        "concurrently": "^10.0.5",
         "dotenv": "^17.4.2",
         "fast-xml-parser": "^5.7.1",
         "lodash": "^4.18.1",
@@ -63,9 +64,14 @@
         "url": "git@github.com:hideo54/homepage.git"
     },
     "scripts": {
-        "build": "tsx scripts/getCheckins.ts; tsx scripts/getDamScores.ts; tsx scripts/getMaimaiData.ts; tsc --noEmit && next build",
+        "build": "pnpm scrape && pnpm typecheck && next build",
+        "check": "biome check --write .",
         "develop": "next",
-        "lint": "eslint pages/*.tsx components/*.tsx",
+        "lint": "biome check .",
+        "scrape": "concurrently -g -c blue,magenta,yellow 'pnpm:scrape:*'",
+        "scrape:dam": "tsx tasks/scrape-dam.ts",
+        "scrape:maimai": "tsx tasks/scrape-maimai.ts",
+        "scrape:swarm": "tsx tasks/scrape-swarm.ts",
         "start": "next start",
         "typecheck": "tsc --noEmit"
     },

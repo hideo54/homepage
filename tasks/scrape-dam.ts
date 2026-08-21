@@ -1,13 +1,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import axios from 'axios';
-import dotenv from 'dotenv';
 import { XMLParser } from 'fast-xml-parser';
 import * as admin from 'firebase-admin';
 import { getFirestore } from 'firebase-admin/firestore';
 import { scrapeHTML } from 'scrape-it';
-
-dotenv.config({ path: path.join(__dirname, '../.env.local') });
+import { writeGenerated } from './io';
 
 const getUnixTime = () => new Date().getTime();
 
@@ -309,9 +307,9 @@ const main = async () => {
         await db.collection('dam-scores').add(score);
     }
 
-    await fs.writeFile(
-        path.join(__dirname, '../lib/dam-scores.json'),
-        JSON.stringify((await scoresRef.get()).docs.map(doc => doc.data())),
+    await writeGenerated(
+        'dam-scores',
+        (await scoresRef.get()).docs.map(doc => doc.data()),
     );
 };
 
@@ -319,13 +317,12 @@ const main = async () => {
     if (loginId) {
         await main();
     } else {
-        const sampleDataStr = await fs.readFile(
-            path.join(__dirname, './dam-scores.sample.json'),
-            'utf-8',
+        const sampleData = JSON.parse(
+            await fs.readFile(
+                path.join(__dirname, 'fixtures/dam-scores.sample.json'),
+                'utf-8',
+            ),
         );
-        await fs.writeFile(
-            path.join(__dirname, '../lib/dam-scores.json'),
-            sampleDataStr,
-        );
+        await writeGenerated('dam-scores', sampleData);
     }
 })();

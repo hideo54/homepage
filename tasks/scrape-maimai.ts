@@ -1,17 +1,11 @@
-import fs from 'node:fs/promises';
 import https from 'node:https';
-import path from 'node:path';
 import axios, { type AxiosError } from 'axios';
-import dotenv from 'dotenv';
 import { getPrefectureId, type prefectureNames } from 'jp-local-gov';
 import scrapeIt from 'scrape-it';
+import { writeGenerated } from './io';
 
-dotenv.config({ path: path.join(__dirname, '../.env.local') });
-
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const segaId = process.env.SEGA_ID!;
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const password = process.env.SEGA_PASSWORD!;
+const segaId = process.env.SEGA_ID ?? '';
+const password = process.env.SEGA_PASSWORD ?? '';
 
 const httpsAgent = new https.Agent({
     rejectUnauthorized: false,
@@ -32,9 +26,7 @@ const getUserId = async () => {
         },
         httpsAgent,
     });
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const token = extractCookieValue(initialHeader['set-cookie'], '_t')!;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const userId = extractCookieValue(initialHeader['set-cookie'], 'userId')!;
 
     const loginUrl = 'https://maimaidx.jp/maimai-mobile/submit/';
@@ -160,10 +152,7 @@ const getMaimaiData = async () => {
             name: record.name,
             score: record.score,
         }))
-        .sort((a, b) =>
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            a.score! > b.score! ? -1 : 1,
-        );
+        .sort((a, b) => (a.score! > b.score! ? -1 : 1));
 
     const maimaiData = {
         expertRecords: availableExpertRecords,
@@ -186,10 +175,7 @@ const sampleData = {
 
 const main = async () => {
     const maimaiData = segaId ? await getMaimaiData() : sampleData;
-    await fs.writeFile(
-        __dirname + '/../lib/maimai-data.json',
-        JSON.stringify(maimaiData),
-    );
+    await writeGenerated('maimai', maimaiData);
 };
 
 main();

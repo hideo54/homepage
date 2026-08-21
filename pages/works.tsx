@@ -219,7 +219,6 @@ export const getStaticProps = async () => {
     const { items } = res.data;
     const repoNames = new Set(
         items.map(item => {
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             const [, name] = item.html_url.match(
                 /^https:\/\/github.com\/(.+)\/pull\/\d+$/,
             )!;

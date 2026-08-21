@@ -6,7 +6,7 @@ import { type Dictionary, groupBy } from 'lodash';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
-import damScoresDataJson from '../lib/dam-scores.json';
+import damScoresDataJson from '../data/generated/dam-scores.json';
 import { sortBy } from '../lib/utils';
 
 const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });

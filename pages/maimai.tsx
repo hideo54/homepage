@@ -1,6 +1,6 @@
 import GeoMap from '../components/GeoMap';
 import Layout from '../components/Layout';
-import maimaiDataJson from '../lib/maimai-data.json';
+import maimaiDataJson from '../data/generated/maimai.json';
 
 const App = () => {
     return (

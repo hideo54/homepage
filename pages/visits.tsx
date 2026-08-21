@@ -9,10 +9,13 @@ import Flag from 'react-world-flags';
 import GeoMap from '../components/GeoMap';
 import { IconAnchor } from '../components/iconTools';
 import Layout from '../components/Layout';
-import maimaiDataJson from '../lib/maimai-data.json';
-import senkyokuResultColor2026Json from '../lib/shu-2026-senkyoku-result-color.json';
-import swarmDataJson from '../lib/swarm-data.json';
-import usStateColorsJson from '../lib/us-state-colors.json';
+import maimaiDataJson from '../data/generated/maimai.json';
+import swarmDataJson from '../data/generated/swarm.json';
+import {
+    type SenkyokuId,
+    senkyokuResultColors,
+} from '../data/senkyoku-result-colors';
+import { type USStateCode, usStateColors } from '../data/us-state-colors';
 
 const ColorSquare: React.FC<{
     color: string;
@@ -27,12 +30,12 @@ const ColorSquare: React.FC<{
 );
 
 const partyColorToText: { [key: string]: string } = {
-    '#d7033a': '自',
+    '#2f3b84': '減',
     '#36c200': '維',
-    '#f8bc00': '国',
     '#0074bc': '中',
     '#777777': '無',
-    '#2f3b84': '減',
+    '#d7033a': '自',
+    '#f8bc00': '国',
 };
 
 const regularizeAirportName = (airportName: string) => {
@@ -57,13 +60,11 @@ const App: NextPage = () => {
         senkyokuId =>
             [
                 senkyokuId,
-                senkyokuResultColor2026Json[
-                    senkyokuId as keyof typeof senkyokuResultColor2026Json
-                ] || 'white',
+                senkyokuResultColors[senkyokuId as SenkyokuId] ?? 'white',
             ] as [string, string],
     );
     const visitedSenkyokuColorSet = new Set(
-        Object.values(senkyokuResultColor2026Json),
+        Object.values(senkyokuResultColors),
     );
     const visitedSenkyokuCountsByParty = Array.from(visitedSenkyokuColorSet)
         .map(
@@ -71,7 +72,7 @@ const App: NextPage = () => {
                 [
                     color,
                     visitedSenkyokuColors.filter(e => e[1] === color).length,
-                    Object.entries(senkyokuResultColor2026Json).filter(
+                    Object.entries(senkyokuResultColors).filter(
                         ([, v]) => v === color,
                     ).length,
                 ] as [string, number, number],
@@ -283,9 +284,7 @@ const App: NextPage = () => {
                         swarmDataJson.allVisitedUSStates.map(stateId => [
                             stateId.toLowerCase(),
                             // According to 2020 presidential election result
-                            usStateColorsJson[
-                                stateId as keyof typeof usStateColorsJson
-                            ],
+                            usStateColors[stateId as USStateCode],
                         ]),
                     )}
                     idProvidedByClass
