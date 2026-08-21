@@ -210,6 +210,7 @@ export const getStaticProps = async () => {
     }>('https://api.github.com/search/issues', {
         headers: {
             accept: 'application/vnd.github.v3+json',
+            authorization: `token ${process.env.GITHUB_PAT}`,
         },
         params: {
             per_page: 100,
