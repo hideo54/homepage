@@ -192,7 +192,7 @@ export const getStaticProps = async () => {
                 contributions: [
                     {
                         full_name:
-                            'hideo54/homepage (sample in developemnt environment!)',
+                            'hideo54/homepage (sample in development environment!)',
                         html_url: 'https://github.com/hideo54/homepage',
                         stargazers_count: 25252,
                     },
