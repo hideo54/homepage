@@ -25,7 +25,7 @@ const App = () => {
                         .map(record => (
                             <li key={record.name}>
                                 <div>
-                                    <span className='font-black text-lg'>
+                                    <span className='font-bold text-lg'>
                                         {record.name.normalize('NFKC')}
                                     </span>
                                     {!record.isStandard && (

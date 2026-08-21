@@ -83,10 +83,11 @@ const mdxComponents = {
     ),
 };
 
+// Hiragino Sans が使えない環境向けのフォールバックとして 400 / 700 のみ読み込む
 const noto = Noto_Sans_JP({
     subsets: ['latin'],
     variable: '--font-noto',
-    weight: ['400', '600', '700', '900'],
+    weight: ['400', '700'],
 });
 
 const App = ({ Component, pageProps }: AppProps) => {
@@ -118,7 +119,7 @@ const App = ({ Component, pageProps }: AppProps) => {
                     `,
                 }}
             />
-            <div className={`${noto.variable} font-sans`}>
+            <div className={`${noto.variable} font-display h-full`}>
                 <Component {...pageProps} />
             </div>
         </MDXProvider>

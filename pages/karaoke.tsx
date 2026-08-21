@@ -45,8 +45,8 @@ const ScoreWithAverage: React.FC<{
         <div className='-mb-1 font-bold text-sm'>{label}</div>
         <span
             className={clsx([
-                'mr-2',
-                label ? 'font-bold text-xl' : 'font-black text-2xl',
+                'mr-2 font-bold',
+                label ? 'text-xl' : 'text-2xl',
                 myScore >= 90 && 'text-green-700',
             ])}
         >
