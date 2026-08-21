@@ -3,7 +3,7 @@ import * as turf from '@turf/turf';
 import dayjs from 'dayjs';
 import type { Feature, Position } from 'geojson';
 import isoCountries from 'i18n-iso-countries';
-import { getPrefectureId, prefectureIds, prefectureNames } from 'jp-local-gov';
+import { prefectureIds, prefectureInfos } from 'jp-local-gov';
 import { countBy, uniqBy } from 'lodash';
 import type { Keikenchi, SwarmData } from '../data/schema/swarm';
 import { dataPath, withCache, writeGenerated } from './io';
@@ -159,12 +159,11 @@ const getCheckinData = async () => {
     );
 
     const keikenchi = Object.fromEntries(
-        prefectureNames.map(prefName => {
-            const prefId = getPrefectureId(prefName);
+        prefectureInfos.map(prefInfo => {
             const checkins = allCheckins.filter(
                 checkin =>
                     !checkin.private &&
-                    checkin.venue.location.state === prefName,
+                    checkin.venue.location.state === prefInfo.name,
             );
             const categories = new Set(
                 checkins.flatMap(checkin =>
@@ -185,7 +184,7 @@ const getCheckinData = async () => {
                 if (checkins.length > 0) return 3;
                 return 0;
             })();
-            return [prefId, value];
+            return [prefInfo.id, value];
         }),
     );
     const manualKeikenchi: Record<string, Keikenchi> = {

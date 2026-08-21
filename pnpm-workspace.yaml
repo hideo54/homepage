@@ -5,6 +5,8 @@ allowBuilds:
   protobufjs: true
   workerd: true
 minimumReleaseAge: 1440
+minimumReleaseAgeExclude:
+  - jp-local-gov
 trustPolicy: no-downgrade
 trustPolicyExclude:
   - semver@6.3.1 # False positive: 6.x backport published after 7.5.4 got provenance, so it looks like a downgrade.
