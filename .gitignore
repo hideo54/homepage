@@ -37,3 +37,5 @@ key.json
 lib/dam-scores.json
 lib/maimai-data.json
 lib/swarm-data.json
+
+tsconfig.tsbuildinfo
