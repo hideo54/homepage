@@ -45,6 +45,7 @@
         "axios": "^1.19.0",
         "cheerio": "^1.2.0",
         "dotenv": "^17.4.2",
+        "fast-xml-parser": "^5.7.1",
         "lodash": "^4.18.1",
         "postcss": "^8.5.26",
         "tailwindcss": "^4.3.2",
@@ -55,6 +56,7 @@
     "homepage": "https://hideo54.com",
     "license": "Apache-2.0",
     "name": "homepage",
+    "packageManager": "pnpm@11.18.0",
     "private": true,
     "repository": {
         "type": "git",
