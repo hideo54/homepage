@@ -1,4 +1,4 @@
-import { getPrefectureId, type prefectureNames } from 'jp-local-gov';
+import { getPrefectureInfoByName } from 'jp-local-gov';
 import scrapeIt from 'scrape-it';
 import { Agent, fetch } from 'undici';
 import type { MaimaiData } from '../data/schema/maimai';
@@ -79,7 +79,7 @@ const getMaimaiData = async () => {
     ).text();
     const { prefectures } = scrapeIt.scrapeHTML<{
         prefectures: {
-            name: (typeof prefectureNames)[number];
+            name: string;
         }[];
     }>(angyaHtml, {
         prefectures: {
@@ -89,7 +89,9 @@ const getMaimaiData = async () => {
             listItem: 'div.see_through_block',
         },
     });
-    const prefectureIds = prefectures.map(pref => getPrefectureId(pref.name));
+    const prefectureIds = prefectures.map(
+        pref => getPrefectureInfoByName(pref.name).id,
+    );
 
     const expertRecordsUrl =
         'https://maimaidx.jp/maimai-mobile/record/musicGenre/search/?genre=99&diff=2';
