@@ -258,7 +258,7 @@ const App = () => {
     );
     return (
         <Layout title='カラオケ得点状況 | hideo54.com'>
-            <h1>カラオケ得点状況</h1>
+            <h1 className='typography-h1'>カラオケ得点状況</h1>
             <section>
                 <ul className='grid auto-rows-min grid-cols-1 gap-x-4 p-0 md:grid-cols-2'>
                     {sortBy(damScoresData, score => -Number(score['#text']))
@@ -276,7 +276,7 @@ const App = () => {
                 </ul>
             </section>
             <section>
-                <h2>日ごとの得点推移</h2>
+                <h2 className='typography-h2'>日ごとの得点推移</h2>
                 <div className='mb-8 h-112.5'>
                     <BoxPlotByDate scoreDataByDate={scoreDataByDate} />
                 </div>

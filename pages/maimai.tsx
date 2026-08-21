@@ -11,17 +11,19 @@ const App = () => {
             description='ほとんどのゲームが苦手なhideo54がまあ嫌いなわけでもない音楽ゲーム「maimaiでらっくす」のプレイ情報です。'
             title='maimai でらっくす プレイ状況 | hideo54.com'
         >
-            <h1>maimai でらっくす</h1>
-            <p>
+            <h1 className='typography-h1'>maimai でらっくす</h1>
+            <p className='typography-p'>
                 ほとんどのゲームが苦手なhideo54がまあ嫌いなわけでもない音楽ゲーム「maimaiでらっくす」のプレイ状況です。
             </p>
             <section>
-                <h2>スコア 100% 超えの Expert 楽曲</h2>
-                <ul>
+                <h2 className='typography-h2'>
+                    スコア 100% 超えの Expert 楽曲
+                </h2>
+                <ul className='typography-list'>
                     {maimaiData.expertRecords
                         .filter(record => record.score > 1.0)
                         .map(record => (
-                            <li className='not-prose' key={record.name}>
+                            <li key={record.name}>
                                 <div>
                                     <span className='font-black text-lg'>
                                         {record.name.normalize('NFKC')}
@@ -51,7 +53,9 @@ const App = () => {
                 </ul>
             </section>
             <section>
-                <h2>全国行脚 (プレイしたことがある都道府県)</h2>
+                <h2 className='typography-h2'>
+                    全国行脚 (プレイしたことがある都道府県)
+                </h2>
                 <GeoMap
                     alt='都道府県地図'
                     count={maimaiData.prefectures.length}

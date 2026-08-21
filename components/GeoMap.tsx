@@ -45,8 +45,8 @@ const GeoMap: React.FC<{
         return (
             <div className='h-150 animate-pulse bg-neutral-100 dark:bg-neutral-800' />
         );
-    if (error) return <p>Error: {error.message}</p>;
-    if (!data) return <p>No data</p>;
+    if (error) return <p className='typography-p'>Error: {error.message}</p>;
+    if (!data) return <p className='typography-p'>No data</p>;
 
     const loadedSvg = new DOMParser().parseFromString(data, 'image/svg+xml');
     const svgElementChild =
@@ -55,7 +55,7 @@ const GeoMap: React.FC<{
     return (
         <div
             className={clsx([
-                'not-prose dark:prose relative bg-[#a5c1fa]',
+                'relative bg-[#a5c1fa] text-neutral-800',
                 props.wrapperDivClassName,
             ])}
             id={props.mapId}

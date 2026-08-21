@@ -105,7 +105,7 @@ const App: NextPage = () => {
             description='旅好き・hideo54がこれまでに訪れたことのある土地をまとめています。'
             title='訪問歴 | hideo54.com'
         >
-            <h1>訪問歴</h1>
+            <h1 className='typography-h1'>訪問歴</h1>
             <div className='text-sm'>
                 このページは自動生成されています。
                 <br />
@@ -114,7 +114,7 @@ const App: NextPage = () => {
                 {dayjs(swarmData.newestCheckinDate).format('YYYY年M月D日')}
             </div>
             <section id='senkyoku'>
-                <h2>訪れたことのある小選挙区</h2>
+                <h2 className='typography-h2'>訪れたことのある小選挙区</h2>
                 <GeoMap
                     alt='小選挙区地図'
                     CountSectionChildren={visitedSenkyokuCountsByParty.map(
@@ -155,8 +155,10 @@ const App: NextPage = () => {
                     </small>
                 </div>
                 <section className='text-sm'>
-                    <h3>Q. なぜ小選挙区で表すのか?</h3>
-                    <ul>
+                    <h3 className='typography-h3'>
+                        Q. なぜ小選挙区で表すのか?
+                    </h3>
+                    <ul className='typography-list'>
                         <li>hideo54は日本政治が好きです。</li>
                         <li>
                             日本の小選挙区は、一票の格差を縮小するよう、小選挙区の有権者数
@@ -171,7 +173,7 @@ const App: NextPage = () => {
                 </section>
             </section>
             <section id='keikenchi'>
-                <h2>経県値</h2>
+                <h2 className='typography-h2'>経県値</h2>
                 <GeoMap
                     alt='都道府県地図'
                     CountSectionChildren={Array.from({ length: 6 }, (_, i) => (
@@ -214,7 +216,9 @@ const App: NextPage = () => {
                 />
             </section>
             <section id='maimai'>
-                <h2>maimai 全国行脚 (プレイしたことがある都道府県)</h2>
+                <h2 className='typography-h2'>
+                    maimai 全国行脚 (プレイしたことがある都道府県)
+                </h2>
                 <GeoMap
                     alt='都道府県地図'
                     count={maimaiData.prefectures.length}
@@ -231,7 +235,7 @@ const App: NextPage = () => {
                 />
             </section>
             <section id='countries'>
-                <h2>訪れたことのある国と地域</h2>
+                <h2 className='typography-h2'>訪れたことのある国と地域</h2>
                 <ul className='grid grid-cols-2 gap-4 p-0 min-[600px]:grid-cols-3'>
                     {swarmData.allVisitedCountryCodes.map((countryCode, i) => (
                         <li
@@ -278,7 +282,9 @@ const App: NextPage = () => {
                 </div>
             </section>
             <section id='us'>
-                <h2>訪れたことのあるアメリカ合衆国の州</h2>
+                <h2 className='typography-h2'>
+                    訪れたことのあるアメリカ合衆国の州
+                </h2>
                 <GeoMap
                     additionalCss='g.state{fill:white;}g.borders>path{stroke:black;stroke-width:0.5;}'
                     alt='アメリカ合衆国の州の地図'
@@ -313,7 +319,7 @@ const App: NextPage = () => {
                 </div>
             </section>
             <section id='airports'>
-                <h2>訪れたことのある空港</h2>
+                <h2 className='typography-h2'>訪れたことのある空港</h2>
                 <div className='my-4 flex items-end gap-x-8'>
                     <div className='font-bold text-4xl'>
                         {swarmData.visitedAirports.length}
@@ -372,11 +378,11 @@ const App: NextPage = () => {
                 </div>
             </section>
             <section id='ramen'>
-                <h2>訪れたラーメン屋の総数</h2>
+                <h2 className='typography-h2'>訪れたラーメン屋の総数</h2>
                 <p className='mt-0 mb-4 font-bold text-4xl'>
                     {Object.keys(swarmData.ramenRestaurantsCheckinCount).length}
                 </p>
-                <h2>たくさん訪れたラーメン屋</h2>
+                <h2 className='typography-h2'>たくさん訪れたラーメン屋</h2>
                 <div className='leading-4'>
                     <small>
                         同一ラーメンチェーンの「〇〇店」といった支店名は除去し、まとめて計上しています。
