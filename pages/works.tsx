@@ -6,10 +6,13 @@ import {
     HardwareChip,
     Open,
 } from '@styled-icons/ionicons-outline';
-import axios from 'axios';
-import type { InferGetStaticPropsType, NextPage } from 'next';
+import type { NextPage } from 'next';
 import { IconAnchor, IconSpan } from '../components/iconTools';
 import Layout from '../components/Layout';
+import githubDataJson from '../data/generated/github.json';
+import type { GitHubData } from '../data/schema/github';
+
+const contributions = githubDataJson as unknown as GitHubData;
 
 interface Work {
     category:
@@ -185,72 +188,7 @@ const getCategoryIcon = (category: Work['category']) => {
     return Globe;
 };
 
-export const getStaticProps = async () => {
-    if (process.env.NODE_ENV === 'development') {
-        return {
-            props: {
-                contributions: [
-                    {
-                        full_name:
-                            'hideo54/homepage (sample in development environment!)',
-                        html_url: 'https://github.com/hideo54/homepage',
-                        stargazers_count: 25252,
-                    },
-                ],
-            },
-        };
-    }
-    const res = await axios.get<{
-        total_count: number;
-        incomplete_results: boolean;
-        items: {
-            html_url: string;
-            title: string;
-        }[];
-    }>('https://api.github.com/search/issues', {
-        headers: {
-            accept: 'application/vnd.github.v3+json',
-            authorization: `token ${process.env.GITHUB_PAT}`,
-        },
-        params: {
-            per_page: 100,
-            q: 'is:pr is:merged author:hideo54',
-        },
-    });
-    const { items } = res.data;
-    const repoNames = new Set(
-        items.map(item => {
-            const [, name] = item.html_url.match(
-                /^https:\/\/github.com\/(.+)\/pull\/\d+$/,
-            )!;
-            return name;
-        }),
-    );
-    const itemDetailRequests = Array.from(repoNames).map(name =>
-        axios.get<{
-            full_name: string;
-            stargazers_count: number;
-            html_url: string;
-        }>(`https://api.github.com/repos/${name}`, {
-            headers: {
-                accept: 'application/vnd.github.v3+json',
-            },
-        }),
-    );
-    const targetRepos = (await Promise.all(itemDetailRequests))
-        .map(res => res.data)
-        .filter(repo => repo.stargazers_count > 10)
-        .sort((repoA, repoB) =>
-            repoA.stargazers_count < repoB.stargazers_count ? 1 : -1,
-        );
-    return {
-        props: { contributions: targetRepos },
-    };
-};
-
-type StaticProps = InferGetStaticPropsType<typeof getStaticProps>;
-
-const App: NextPage<StaticProps> = ({ contributions }) => {
+const App: NextPage = () => {
     return (
         <Layout
             description='hideo54が個人で制作したものの一部を紹介します。'
@@ -288,9 +226,9 @@ const App: NextPage<StaticProps> = ({ contributions }) => {
                 </p>
                 <ul>
                     {contributions.map(repo => (
-                        <li key={repo.full_name}>
-                            <IconAnchor href={repo.html_url} RightIcon={Open}>
-                                {repo.full_name}
+                        <li key={repo.fullName}>
+                            <IconAnchor href={repo.htmlUrl} RightIcon={Open}>
+                                {repo.fullName}
                             </IconAnchor>
                         </li>
                     ))}
