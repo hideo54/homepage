@@ -7,7 +7,10 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import damScoresDataJson from '../data/generated/dam-scores.json';
+import type { DamScore } from '../data/schema/dam';
 import { sortBy } from '../lib/utils';
+
+const damScoresData = damScoresDataJson as unknown as DamScore[];
 
 const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
 
@@ -57,7 +60,7 @@ const ScoreWithAverage: React.FC<{
 );
 
 const Score: React.FC<{
-    scoreData: (typeof damScoresDataJson)[0];
+    scoreData: DamScore;
 }> = ({ scoreData }) => (
     <li className='row-span-2 mb-4 grid grid-rows-subgrid'>
         <div className='flex'>
@@ -162,7 +165,7 @@ const Score: React.FC<{
 );
 
 const BoxPlotByDate: React.FC<{
-    scoreDataByDate: Dictionary<typeof damScoresDataJson>;
+    scoreDataByDate: Dictionary<DamScore[]>;
 }> = ({ scoreDataByDate }) => {
     const [isDarkMode, setIsDarkMode] = useState(false);
     useEffect(() => {
@@ -244,7 +247,7 @@ const BoxPlotByDate: React.FC<{
 };
 
 const App = () => {
-    const applicableScores = damScoresDataJson.filter(
+    const applicableScores = damScoresData.filter(
         score =>
             // 途中で歌うのをやめたものは除外
             Number(score.aiSensitivityGraphAddPointsSection24) > 0 ||
@@ -258,7 +261,7 @@ const App = () => {
             <h1>カラオケ得点状況</h1>
             <section>
                 <ul className='grid auto-rows-min grid-cols-1 gap-x-4 p-0 md:grid-cols-2'>
-                    {sortBy(damScoresDataJson, score => -Number(score['#text']))
+                    {sortBy(damScoresData, score => -Number(score['#text']))
                         .filter(
                             score =>
                                 Number(score['#text']) / 1000 >=

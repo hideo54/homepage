@@ -2,6 +2,7 @@ import https from 'node:https';
 import axios, { type AxiosError } from 'axios';
 import { getPrefectureId, type prefectureNames } from 'jp-local-gov';
 import scrapeIt from 'scrape-it';
+import type { MaimaiData } from '../data/schema/maimai';
 import { writeGenerated } from './io';
 
 const segaId = process.env.SEGA_ID ?? '';
@@ -142,7 +143,10 @@ const getMaimaiData = async () => {
         },
     });
     const availableExpertRecords = expertRecords
-        .filter(record => record.score)
+        // スコア未取得 (未プレイ) の曲を除く。型述語で null を落とす。
+        .filter((record): record is typeof record & { score: number } =>
+            Boolean(record.score),
+        )
         .map(record => ({
             isStandard:
                 typeof record.isStandardSelected === 'boolean'
@@ -152,13 +156,12 @@ const getMaimaiData = async () => {
             name: record.name,
             score: record.score,
         }))
-        .sort((a, b) => (a.score! > b.score! ? -1 : 1));
+        .sort((a, b) => (a.score > b.score ? -1 : 1));
 
-    const maimaiData = {
+    return {
         expertRecords: availableExpertRecords,
         prefectures: prefectureIds,
-    };
-    return maimaiData;
+    } satisfies MaimaiData;
 };
 
 const sampleData = {
@@ -171,7 +174,7 @@ const sampleData = {
         },
     ],
     prefectures: ['osaka'],
-}; // For CI without env values
+} satisfies MaimaiData; // For CI without env values
 
 const main = async () => {
     const maimaiData = segaId ? await getMaimaiData() : sampleData;

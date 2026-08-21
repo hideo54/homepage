@@ -6,6 +6,7 @@ import type { Feature, Position } from 'geojson';
 import isoCountries from 'i18n-iso-countries';
 import { getPrefectureId, prefectureIds, prefectureNames } from 'jp-local-gov';
 import { countBy, uniqBy } from 'lodash';
+import type { Keikenchi, SwarmData } from '../data/schema/swarm';
 import { dataPath, withCache, writeGenerated } from './io';
 
 interface CheckinResponse {
@@ -169,7 +170,7 @@ const getCheckinData = async () => {
                     checkin.venue.categories.map(category => category.name),
                 ),
             );
-            const value = (() => {
+            const value = ((): Keikenchi => {
                 for (const hotelCategory of [
                     'ホテル',
                     'Bed and Breakfast',
@@ -186,7 +187,7 @@ const getCheckinData = async () => {
             return [prefId, value];
         }),
     );
-    const manualKeikenchi = {
+    const manualKeikenchi: Record<string, Keikenchi> = {
         ehime: 4, // 2019年3月、傷心旅行 (スーパー温泉に宿泊)
         fukuoka: 4, // 2019年9月、ミニキャンプチューター (チェックイン忘れ)。あと2023年竹中ゼミ。
         hiroshima: 4, // 2019年3月、傷心旅行 (チェックイン忘れ)
@@ -252,7 +253,8 @@ const getCheckinData = async () => {
                 )
                 .reverse(), // 訪問順
         ),
-    );
+        // 未知の国コードは alpha2ToAlpha3 が undefined を返すので除く
+    ).filter(code => code !== undefined);
     const allVisitedUSStates = Array.from(
         new Set(
             allCheckins
@@ -314,7 +316,7 @@ const getCheckinData = async () => {
         allCheckins[allCheckins.length - 1].createdAt * 1000,
     ).format('YYYY-MM-DD');
 
-    const checkinData = {
+    return {
         allVisitedCountries,
         allVisitedCountryCodes,
         allVisitedUSStates,
@@ -326,13 +328,13 @@ const getCheckinData = async () => {
         senkyokuVisitCounts2022,
         visitedAirports,
         visitedAirportsByCountry,
-    };
-    return checkinData;
+    } satisfies SwarmData;
 };
 
 const sampleData = {
     allVisitedCountries: ['日本'],
-    allVisitedCountryCodes: ['JP'],
+    // 実データは alpha-3 (isoCountries.alpha2ToAlpha3) なので揃える
+    allVisitedCountryCodes: ['JPN'],
     allVisitedUSStates: ['NV'],
     keikenchi: {
         hokkaido: 4,
@@ -348,7 +350,7 @@ const sampleData = {
         { countryCode: 'JP', name: '東京国際空港 (羽田空港) (HND)' },
     ],
     visitedAirportsByCountry: [{ count: 1, countryCode: 'JP' }],
-};
+} satisfies SwarmData;
 
 const main = async () => {
     const checkinData = process.env.FOURSQUARE_ACCESS_TOKEN
