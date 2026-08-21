@@ -130,7 +130,7 @@ const WorkDetail: React.FC<{
     untilTransformer: (s: string) => string;
 }> = ({ work, untilTransformer }) => (
     <div
-        className='not-prose my-4 rounded-2xl border-black border-solid p-4 shadow dark:border dark:border-neutral-600'
+        className='my-4 rounded-2xl border-black border-solid p-4 shadow dark:border dark:border-neutral-600'
         key={work.title}
     >
         <div className='flex justify-between'>
@@ -165,7 +165,7 @@ const WorkDetail: React.FC<{
         </div>
         <p className='my-4'>{work.description}</p>
         {work.repoUrl && (
-            <p>
+            <p className='typography-p'>
                 <IconAnchor
                     href={work.repoUrl}
                     LeftIcon={Github}
@@ -195,8 +195,8 @@ const App: NextPage = () => {
             title='つくったもの | hideo54.com'
         >
             <section>
-                <h1>つくったもの</h1>
-                <p>
+                <h1 className='typography-h1'>つくったもの</h1>
+                <p className='typography-p'>
                     …のうち、hideo54が個人で制作したもので、公開されているもので、お気に入りのもの。
                 </p>
                 {works.map(work => (
@@ -208,8 +208,8 @@ const App: NextPage = () => {
                 ))}
             </section>
             <section>
-                <h2>書いたもの</h2>
-                <p>…のうち、お気に入りのもの。</p>
+                <h2 className='typography-h2'>書いたもの</h2>
+                <p className='typography-p'>…のうち、お気に入りのもの。</p>
                 {articles.map(article => (
                     <WorkDetail
                         key={article.title}
@@ -219,12 +219,12 @@ const App: NextPage = () => {
                 ))}
             </section>
             <section>
-                <h2>Contributions</h2>
-                <p>
+                <h2 className='typography-h2'>Contributions</h2>
+                <p className='typography-p'>
                     hideo54 が出した pull request が merge されたことのある著名
                     OSS
                 </p>
-                <ul>
+                <ul className='typography-list'>
                     {contributions.map(repo => (
                         <li key={repo.fullName}>
                             <IconAnchor href={repo.htmlUrl} RightIcon={Open}>
@@ -235,7 +235,7 @@ const App: NextPage = () => {
                 </ul>
             </section>
             <section className='mb-8'>
-                <h2>Sponsor me!</h2>
+                <h2 className='typography-h2'>Sponsor me!</h2>
                 <iframe
                     height='35'
                     src='https://github.com/sponsors/hideo54/button'

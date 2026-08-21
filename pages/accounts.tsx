@@ -58,12 +58,14 @@ const App: NextPage<StaticProps> = ({ data }) => (
         description='hideo54が所持している各サービスのアカウントの一覧です。'
         title='アカウント一覧 | hideo54.com'
     >
-        <h1>アカウント一覧</h1>
+        <h1 className='typography-h1'>アカウント一覧</h1>
         {Object.keys(data.accounts).map(category => (
             <section key={category}>
-                <h2>{category}</h2>
+                <h2 className='typography-h2'>{category}</h2>
                 {category === 'Games' && (
-                    <p>私が知っている人からの友達申請しか受け付けません。</p>
+                    <p className='typography-p'>
+                        私が知っている人からの友達申請しか受け付けません。
+                    </p>
                 )}
                 <div className='mb-4 flex flex-wrap'>
                     {data.accounts[category].map(tag => (
