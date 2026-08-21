@@ -144,7 +144,7 @@ const WorkDetail: React.FC<{
                         {work.category}
                     </IconSpan>
                 </div>
-                <span className='mr-4 font-semibold text-xl'>
+                <span className='mr-4 font-bold text-xl'>
                     <IconAnchor href={work.url} RightIcon={Open}>
                         {work.title}
                     </IconAnchor>
