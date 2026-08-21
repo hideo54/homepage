@@ -1,10 +1,7 @@
 import type { StyledIcon } from '@styled-icons/styled-icon';
 import Link, { type LinkProps } from 'next/link';
-import React, {
-    type ComponentProps,
-    type MouseEventHandler,
-    type ReactNode,
-} from 'react';
+import type React from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
 export const IconSpan: React.FC<{
     LeftIcon?: StyledIcon;
@@ -15,7 +12,6 @@ export const IconSpan: React.FC<{
     margin?: string;
     verticalAlign?: string;
     children?: ReactNode;
-    onClick?: MouseEventHandler<HTMLAnchorElement>;
 }> = ({
     LeftIcon,
     RightIcon,
@@ -25,7 +21,6 @@ export const IconSpan: React.FC<{
     margin,
     verticalAlign = 'text-bottom',
     children,
-    onClick,
 }) => {
     const contents = (
         <>
@@ -54,7 +49,6 @@ export const IconSpan: React.FC<{
     );
     return (
         <span
-            onClick={onClick}
             style={{
                 color,
                 fontSize,
