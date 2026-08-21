@@ -1,80 +1,67 @@
-import fs from 'node:fs/promises';
-import https from 'node:https';
-import path from 'node:path';
-import axios, { type AxiosError } from 'axios';
-import dotenv from 'dotenv';
 import { getPrefectureId, type prefectureNames } from 'jp-local-gov';
 import scrapeIt from 'scrape-it';
+import { Agent, fetch } from 'undici';
+import type { MaimaiData } from '../data/schema/maimai';
+import { writeGenerated } from './io';
 
-dotenv.config({ path: path.join(__dirname, '../.env.local') });
+const segaId = process.env.SEGA_ID ?? '';
+const password = process.env.SEGA_PASSWORD ?? '';
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const segaId = process.env.SEGA_ID!;
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const password = process.env.SEGA_PASSWORD!;
-
-const httpsAgent = new https.Agent({
-    rejectUnauthorized: false,
+// maimaidx.jp は中間証明書を配信しないため、このホストに限り検証を緩める
+const dispatcher = new Agent({
+    connect: { rejectUnauthorized: false },
 });
 
-const extractCookieValue = (cookieStr: string[] | undefined, key: string) =>
-    cookieStr
-        ?.join(';')
+const extractCookieValue = (cookies: string[], key: string) =>
+    cookies
+        .join(';')
         .split(';')
         .filter(str => str.includes(key))[0]
-        .replace(`${key}=`, '');
+        ?.replace(`${key}=`, '');
 
 const getUserId = async () => {
     const formUrl = 'https://maimaidx.jp/maimai-mobile/';
-    const { headers: initialHeader } = await axios.get(formUrl, {
+    const initialRes = await fetch(formUrl, {
+        dispatcher,
         headers: {
             Cookie: `segaId=${segaId}`,
         },
-        httpsAgent,
     });
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const token = extractCookieValue(initialHeader['set-cookie'], '_t')!;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const userId = extractCookieValue(initialHeader['set-cookie'], 'userId')!;
+    const initialCookies = initialRes.headers.getSetCookie();
+    const token = extractCookieValue(initialCookies, '_t');
+    const userId = extractCookieValue(initialCookies, 'userId');
 
     const loginUrl = 'https://maimaidx.jp/maimai-mobile/submit/';
-    await axios.post(
-        loginUrl,
-        new URLSearchParams({
+    await fetch(loginUrl, {
+        body: new URLSearchParams({
             password,
             save_cookie: 'on',
             segaId,
             token,
         }),
-        {
-            headers: {
-                Cookie: `_t=${token}; userId=${userId}`,
-            },
-            httpsAgent,
+        dispatcher,
+        headers: {
+            Cookie: `_t=${token}; userId=${userId}`,
         },
-    );
+        method: 'POST',
+    });
 
     const aimeSelectUrl =
         'https://maimaidx.jp/maimai-mobile/aimeList/submit/?idx=0';
-    const numericalUserId = await axios
-        .get(aimeSelectUrl, {
-            headers: {
-                Cookie: `_t=${token}; userId=${userId}; segaId=${segaId}`,
-                Referer: 'https://maimaidx.jp/maimai-mobile/aimeList/',
-            },
-            httpsAgent,
-            maxRedirects: 0,
-        })
-        .catch((e: AxiosError) => {
-            const numericalUserId = extractCookieValue(
-                e.response?.headers['set-cookie'],
-                'userId',
-            );
-            return numericalUserId;
-        });
+    const aimeSelectRes = await fetch(aimeSelectUrl, {
+        dispatcher,
+        headers: {
+            Cookie: `_t=${token}; userId=${userId}; segaId=${segaId}`,
+            Referer: 'https://maimaidx.jp/maimai-mobile/aimeList/',
+        },
+        redirect: 'manual',
+    });
     return {
         token,
-        userId: numericalUserId,
+        userId: extractCookieValue(
+            aimeSelectRes.headers.getSetCookie(),
+            'userId',
+        ),
     };
 };
 
@@ -82,12 +69,14 @@ const getMaimaiData = async () => {
     const { token, userId } = await getUserId();
 
     const angyaUrl = 'https://maimaidx.jp/maimai-mobile/playerData/region/';
-    const { data: angyaHtml } = await axios.get(angyaUrl, {
-        headers: {
-            Cookie: `_t=${token}; userId=${userId}`,
-        },
-        httpsAgent,
-    });
+    const angyaHtml = await (
+        await fetch(angyaUrl, {
+            dispatcher,
+            headers: {
+                Cookie: `_t=${token}; userId=${userId}`,
+            },
+        })
+    ).text();
     const { prefectures } = scrapeIt.scrapeHTML<{
         prefectures: {
             name: (typeof prefectureNames)[number];
@@ -104,12 +93,14 @@ const getMaimaiData = async () => {
 
     const expertRecordsUrl =
         'https://maimaidx.jp/maimai-mobile/record/musicGenre/search/?genre=99&diff=2';
-    const { data: expertRecordsHtml } = await axios.get(expertRecordsUrl, {
-        headers: {
-            Cookie: `_t=${token}; userId=${userId}`,
-        },
-        httpsAgent,
-    });
+    const expertRecordsHtml = await (
+        await fetch(expertRecordsUrl, {
+            dispatcher,
+            headers: {
+                Cookie: `_t=${token}; userId=${userId}`,
+            },
+        })
+    ).text();
     const { records: expertRecords } = scrapeIt.scrapeHTML<{
         records: {
             name: string;
@@ -150,7 +141,10 @@ const getMaimaiData = async () => {
         },
     });
     const availableExpertRecords = expertRecords
-        .filter(record => record.score)
+        // スコア未取得 (未プレイ) の曲を除く。型述語で null を落とす。
+        .filter((record): record is typeof record & { score: number } =>
+            Boolean(record.score),
+        )
         .map(record => ({
             isStandard:
                 typeof record.isStandardSelected === 'boolean'
@@ -160,16 +154,12 @@ const getMaimaiData = async () => {
             name: record.name,
             score: record.score,
         }))
-        .sort((a, b) =>
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            a.score! > b.score! ? -1 : 1,
-        );
+        .sort((a, b) => (a.score > b.score ? -1 : 1));
 
-    const maimaiData = {
+    return {
         expertRecords: availableExpertRecords,
         prefectures: prefectureIds,
-    };
-    return maimaiData;
+    } satisfies MaimaiData;
 };
 
 const sampleData = {
@@ -182,14 +172,11 @@ const sampleData = {
         },
     ],
     prefectures: ['osaka'],
-}; // For CI without env values
+} satisfies MaimaiData; // For CI without env values
 
 const main = async () => {
     const maimaiData = segaId ? await getMaimaiData() : sampleData;
-    await fs.writeFile(
-        __dirname + '/../lib/maimai-data.json',
-        JSON.stringify(maimaiData),
-    );
+    await writeGenerated('maimai', maimaiData);
 };
 
 main();

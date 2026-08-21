@@ -1,6 +1,9 @@
 import GeoMap from '../components/GeoMap';
 import Layout from '../components/Layout';
-import maimaiDataJson from '../lib/maimai-data.json';
+import maimaiDataJson from '../data/generated/maimai.json';
+import type { MaimaiData } from '../data/schema/maimai';
+
+const maimaiData = maimaiDataJson as unknown as MaimaiData;
 
 const App = () => {
     return (
@@ -15,7 +18,7 @@ const App = () => {
             <section>
                 <h2>スコア 100% 超えの Expert 楽曲</h2>
                 <ul>
-                    {maimaiDataJson.expertRecords
+                    {maimaiData.expertRecords
                         .filter(record => record.score > 1.0)
                         .map(record => (
                             <li className='not-prose' key={record.name}>
@@ -51,9 +54,9 @@ const App = () => {
                 <h2>全国行脚 (プレイしたことがある都道府県)</h2>
                 <GeoMap
                     alt='都道府県地図'
-                    count={maimaiDataJson.prefectures.length}
+                    count={maimaiData.prefectures.length}
                     fill={Object.fromEntries(
-                        maimaiDataJson.prefectures.map(prefId => [
+                        maimaiData.prefectures.map(prefId => [
                             prefId,
                             '#e89402',
                         ]),

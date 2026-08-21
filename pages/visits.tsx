@@ -9,10 +9,15 @@ import Flag from 'react-world-flags';
 import GeoMap from '../components/GeoMap';
 import { IconAnchor } from '../components/iconTools';
 import Layout from '../components/Layout';
-import maimaiDataJson from '../lib/maimai-data.json';
-import senkyokuResultColor2026Json from '../lib/shu-2026-senkyoku-result-color.json';
-import swarmDataJson from '../lib/swarm-data.json';
-import usStateColorsJson from '../lib/us-state-colors.json';
+import maimaiDataJson from '../data/generated/maimai.json';
+import swarmDataJson from '../data/generated/swarm.json';
+import type { MaimaiData } from '../data/schema/maimai';
+import type { SwarmData } from '../data/schema/swarm';
+import {
+    type SenkyokuId,
+    senkyokuResultColors,
+} from '../data/senkyoku-result-colors';
+import { type USStateCode, usStateColors } from '../data/us-state-colors';
 
 const ColorSquare: React.FC<{
     color: string;
@@ -27,12 +32,12 @@ const ColorSquare: React.FC<{
 );
 
 const partyColorToText: { [key: string]: string } = {
-    '#d7033a': '自',
+    '#2f3b84': '減',
     '#36c200': '維',
-    '#f8bc00': '国',
     '#0074bc': '中',
     '#777777': '無',
-    '#2f3b84': '減',
+    '#d7033a': '自',
+    '#f8bc00': '国',
 };
 
 const regularizeAirportName = (airportName: string) => {
@@ -43,9 +48,12 @@ const regularizeAirportName = (airportName: string) => {
     return airportName;
 };
 
+const swarmData = swarmDataJson as unknown as SwarmData;
+const maimaiData = maimaiDataJson as unknown as MaimaiData;
+
 const App: NextPage = () => {
     const senkyokuVisitCounts2022: { [key: string]: number } =
-        Object.fromEntries(swarmDataJson.senkyokuVisitCounts2022);
+        Object.fromEntries(swarmData.senkyokuVisitCounts2022);
 
     // Manual edit:
     senkyokuVisitCounts2022['mie-4'] += 1; // 小学生のとき、伊勢、鳥羽など
@@ -57,13 +65,11 @@ const App: NextPage = () => {
         senkyokuId =>
             [
                 senkyokuId,
-                senkyokuResultColor2026Json[
-                    senkyokuId as keyof typeof senkyokuResultColor2026Json
-                ] || 'white',
+                senkyokuResultColors[senkyokuId as SenkyokuId] ?? 'white',
             ] as [string, string],
     );
     const visitedSenkyokuColorSet = new Set(
-        Object.values(senkyokuResultColor2026Json),
+        Object.values(senkyokuResultColors),
     );
     const visitedSenkyokuCountsByParty = Array.from(visitedSenkyokuColorSet)
         .map(
@@ -71,7 +77,7 @@ const App: NextPage = () => {
                 [
                     color,
                     visitedSenkyokuColors.filter(e => e[1] === color).length,
-                    Object.entries(senkyokuResultColor2026Json).filter(
+                    Object.entries(senkyokuResultColors).filter(
                         ([, v]) => v === color,
                     ).length,
                 ] as [string, number, number],
@@ -104,8 +110,8 @@ const App: NextPage = () => {
                 このページは自動生成されています。
                 <br />
                 使用データの範囲:{' '}
-                {dayjs(swarmDataJson.oldestCheckinDate).format('YYYY年M月D日')}–
-                {dayjs(swarmDataJson.newestCheckinDate).format('YYYY年M月D日')}
+                {dayjs(swarmData.oldestCheckinDate).format('YYYY年M月D日')}–
+                {dayjs(swarmData.newestCheckinDate).format('YYYY年M月D日')}
             </div>
             <section id='senkyoku'>
                 <h2>訪れたことのある小選挙区</h2>
@@ -185,16 +191,16 @@ const App: NextPage = () => {
                                 }
                             </span>
                             {
-                                Object.values(swarmDataJson.keikenchi).filter(
+                                Object.values(swarmData.keikenchi).filter(
                                     v => v === 5 - i,
                                 ).length
                             }{' '}
                             / 47
                         </p>
                     ))}
-                    count={sum(Object.values(swarmDataJson.keikenchi))}
+                    count={sum(Object.values(swarmData.keikenchi))}
                     fill={Object.fromEntries(
-                        Object.entries(swarmDataJson.keikenchi).map(
+                        Object.entries(swarmData.keikenchi).map(
                             ([prefId, value]) => [
                                 prefId,
                                 keikenchiToColor(value),
@@ -211,9 +217,9 @@ const App: NextPage = () => {
                 <h2>maimai 全国行脚 (プレイしたことがある都道府県)</h2>
                 <GeoMap
                     alt='都道府県地図'
-                    count={maimaiDataJson.prefectures.length}
+                    count={maimaiData.prefectures.length}
                     fill={Object.fromEntries(
-                        maimaiDataJson.prefectures.map(prefId => [
+                        maimaiData.prefectures.map(prefId => [
                             prefId,
                             '#e89402',
                         ]),
@@ -227,29 +233,27 @@ const App: NextPage = () => {
             <section id='countries'>
                 <h2>訪れたことのある国と地域</h2>
                 <ul className='grid grid-cols-2 gap-4 p-0 min-[600px]:grid-cols-3'>
-                    {swarmDataJson.allVisitedCountryCodes.map(
-                        (countryCode, i) => (
-                            <li
-                                className='m-0 flex flex-col items-start gap-y-2'
-                                key={countryCode}
-                            >
-                                <Flag
-                                    className='m-0 h-8 shadow'
-                                    code={countryCode}
-                                />
-                                <div className='text-balance text-sm leading-5'>
-                                    {swarmDataJson.allVisitedCountries[i]}
-                                </div>
-                            </li>
-                        ),
-                    )}
+                    {swarmData.allVisitedCountryCodes.map((countryCode, i) => (
+                        <li
+                            className='m-0 flex flex-col items-start gap-y-2'
+                            key={countryCode}
+                        >
+                            <Flag
+                                className='m-0 h-8 shadow'
+                                code={countryCode}
+                            />
+                            <div className='text-balance text-sm leading-5'>
+                                {swarmData.allVisitedCountries[i]}
+                            </div>
+                        </li>
+                    ))}
                 </ul>
                 <GeoMap
                     additionalCss='path[class^="ADM0_A3-"],path.land,path.boundary{stroke:black;stroke-width:0.2;}path[class^="ADM0_A3-"],path.land{fill:white;}'
                     alt='世界地図'
-                    count={swarmDataJson.allVisitedCountryCodes.length}
+                    count={swarmData.allVisitedCountryCodes.length}
                     fill={Object.fromEntries(
-                        swarmDataJson.allVisitedCountryCodes.map(cc => [
+                        swarmData.allVisitedCountryCodes.map(cc => [
                             `ADM0_A3-${cc}`,
                             '#22c55e',
                         ]),
@@ -278,14 +282,12 @@ const App: NextPage = () => {
                 <GeoMap
                     additionalCss='g.state{fill:white;}g.borders>path{stroke:black;stroke-width:0.5;}'
                     alt='アメリカ合衆国の州の地図'
-                    count={swarmDataJson.allVisitedUSStates.length}
+                    count={swarmData.allVisitedUSStates.length}
                     fill={Object.fromEntries(
-                        swarmDataJson.allVisitedUSStates.map(stateId => [
+                        swarmData.allVisitedUSStates.map(stateId => [
                             stateId.toLowerCase(),
                             // According to 2020 presidential election result
-                            usStateColorsJson[
-                                stateId as keyof typeof usStateColorsJson
-                            ],
+                            usStateColors[stateId as USStateCode],
                         ]),
                     )}
                     idProvidedByClass
@@ -314,10 +316,10 @@ const App: NextPage = () => {
                 <h2>訪れたことのある空港</h2>
                 <div className='my-4 flex items-end gap-x-8'>
                     <div className='font-bold text-4xl'>
-                        {swarmDataJson.visitedAirports.length}
+                        {swarmData.visitedAirports.length}
                     </div>
                     <div className='flex grow flex-wrap items-center gap-x-4'>
-                        {swarmDataJson.visitedAirportsByCountry
+                        {swarmData.visitedAirportsByCountry
                             .filter(({ count }) => count > 1)
                             .map(({ countryCode, count }) => (
                                 <div
@@ -334,7 +336,7 @@ const App: NextPage = () => {
                     </div>
                 </div>
                 <div className='grid grid-cols-2 gap-4 min-[680px]:grid-cols-3'>
-                    {swarmDataJson.visitedAirports.map(airport => (
+                    {swarmData.visitedAirports.map(airport => (
                         <div key={airport.name}>
                             <div className='flex items-center gap-2 font-bold text-2xl'>
                                 <Airplane
@@ -372,10 +374,7 @@ const App: NextPage = () => {
             <section id='ramen'>
                 <h2>訪れたラーメン屋の総数</h2>
                 <p className='mt-0 mb-4 font-bold text-4xl'>
-                    {
-                        Object.keys(swarmDataJson.ramenRestaurantsCheckinCount)
-                            .length
-                    }
+                    {Object.keys(swarmData.ramenRestaurantsCheckinCount).length}
                 </p>
                 <h2>たくさん訪れたラーメン屋</h2>
                 <div className='leading-4'>
@@ -384,7 +383,7 @@ const App: NextPage = () => {
                     </small>
                 </div>
                 <ul className='grid grid-cols-2 gap-4 p-0 min-[640px]:grid-cols-3'>
-                    {Object.entries(swarmDataJson.ramenRestaurantsCheckinCount)
+                    {Object.entries(swarmData.ramenRestaurantsCheckinCount)
                         .slice(0, 12)
                         .map(([restaurantName, count]) => (
                             <li

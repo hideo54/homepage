@@ -1,15 +1,12 @@
 import fs from 'node:fs/promises';
-import path from 'node:path';
 import * as turf from '@turf/turf';
-import axios from 'axios';
 import dayjs from 'dayjs';
-import dotenv from 'dotenv';
 import type { Feature, Position } from 'geojson';
 import isoCountries from 'i18n-iso-countries';
 import { getPrefectureId, prefectureIds, prefectureNames } from 'jp-local-gov';
 import { countBy, uniqBy } from 'lodash';
-
-dotenv.config({ path: path.join(__dirname, '../.env.local') });
+import type { Keikenchi, SwarmData } from '../data/schema/swarm';
+import { dataPath, withCache, writeGenerated } from './io';
 
 interface CheckinResponse {
     meta: {
@@ -64,19 +61,21 @@ const getCheckins = async ({
             },
         };
     }
-    const res = await axios.get<CheckinResponse>(
-        'https://api.foursquare.com/v2/users/self/checkins',
-        {
-            params: {
-                limit,
-                locale: 'ja',
-                oauth_token: process.env.FOURSQUARE_ACCESS_TOKEN,
-                offset,
-                v: '20230211',
-            },
-        },
+    const params = new URLSearchParams({
+        limit: String(limit),
+        locale: 'ja',
+        oauth_token: process.env.FOURSQUARE_ACCESS_TOKEN,
+        offset: String(offset),
+        v: '20230211',
+    });
+    const res = await fetch(
+        `https://api.foursquare.com/v2/users/self/checkins?${params}`,
     );
-    return res.data.response;
+    if (!res.ok) {
+        throw new Error(`${res.status} ${res.statusText}`);
+    }
+    const data = (await res.json()) as CheckinResponse;
+    return data.response;
 };
 
 const calcSenkyokuVisitCounts = (
@@ -112,27 +111,24 @@ const calcSenkyokuVisitCounts = (
         })
         .sort((a, b) => -(a[1] - b[1]));
 
-const getCheckinData = async () => {
-    const cacheFilename = `${__dirname}/checkins.cache.json`;
-    let allCheckins: CheckinResponse['response']['checkins']['items'] = [];
-    try {
-        const cacheFileString = await fs.readFile(cacheFilename, 'utf-8');
-        allCheckins = JSON.parse(cacheFileString);
-        console.log('Cache found. Fetch skipped.');
-    } catch {
-        console.log('No cache found. Fetching all checkins...');
-        let numberOfCheckins = 5000;
-        while (allCheckins.length < numberOfCheckins) {
-            const res = (await getCheckins({
-                limit: 500,
-                offset: allCheckins.length,
-            })) as CheckinResponse['response'];
-            allCheckins.push(...res.checkins.items);
-            numberOfCheckins = res.checkins.count;
-            console.log(`Fetched ${allCheckins.length} / ${numberOfCheckins}.`);
-        }
-        await fs.writeFile(cacheFilename, JSON.stringify(allCheckins), 'utf-8');
+const fetchAllCheckins = async () => {
+    console.log('No cache found. Fetching all checkins...');
+    const allCheckins: CheckinResponse['response']['checkins']['items'] = [];
+    let numberOfCheckins = 5000;
+    while (allCheckins.length < numberOfCheckins) {
+        const res = await getCheckins({
+            limit: 500,
+            offset: allCheckins.length,
+        });
+        allCheckins.push(...res.checkins.items);
+        numberOfCheckins = res.checkins.count;
+        console.log(`Fetched ${allCheckins.length} / ${numberOfCheckins}.`);
     }
+    return allCheckins;
+};
+
+const getCheckinData = async () => {
+    const allCheckins = await withCache('checkins', fetchAllCheckins);
     const allCoordinates = new Set(
         allCheckins
             .map(checkin => [
@@ -148,10 +144,10 @@ const getCheckinData = async () => {
             ),
     );
     const senkyokuGeoJson2017 = JSON.parse(
-        await fs.readFile(`${__dirname}/../lib/shu-2017.geojson`, 'utf-8'),
+        await fs.readFile(dataPath('geo/shu-2017.geojson'), 'utf-8'),
     );
     const senkyokuGeoJson2022 = JSON.parse(
-        await fs.readFile(`${__dirname}/../lib/shu-2022.geojson`, 'utf-8'),
+        await fs.readFile(dataPath('geo/shu-2022.geojson'), 'utf-8'),
     );
     const senkyokuVisitCounts2017 = calcSenkyokuVisitCounts(
         senkyokuGeoJson2017,
@@ -175,7 +171,7 @@ const getCheckinData = async () => {
                     checkin.venue.categories.map(category => category.name),
                 ),
             );
-            const value = (() => {
+            const value = ((): Keikenchi => {
                 for (const hotelCategory of [
                     'ホテル',
                     'Bed and Breakfast',
@@ -192,7 +188,7 @@ const getCheckinData = async () => {
             return [prefId, value];
         }),
     );
-    const manualKeikenchi = {
+    const manualKeikenchi: Record<string, Keikenchi> = {
         ehime: 4, // 2019年3月、傷心旅行 (スーパー温泉に宿泊)
         fukuoka: 4, // 2019年9月、ミニキャンプチューター (チェックイン忘れ)。あと2023年竹中ゼミ。
         hiroshima: 4, // 2019年3月、傷心旅行 (チェックイン忘れ)
@@ -258,7 +254,8 @@ const getCheckinData = async () => {
                 )
                 .reverse(), // 訪問順
         ),
-    );
+        // 未知の国コードは alpha2ToAlpha3 が undefined を返すので除く
+    ).filter(code => code !== undefined);
     const allVisitedUSStates = Array.from(
         new Set(
             allCheckins
@@ -320,7 +317,7 @@ const getCheckinData = async () => {
         allCheckins[allCheckins.length - 1].createdAt * 1000,
     ).format('YYYY-MM-DD');
 
-    const checkinData = {
+    return {
         allVisitedCountries,
         allVisitedCountryCodes,
         allVisitedUSStates,
@@ -332,13 +329,13 @@ const getCheckinData = async () => {
         senkyokuVisitCounts2022,
         visitedAirports,
         visitedAirportsByCountry,
-    };
-    return checkinData;
+    } satisfies SwarmData;
 };
 
 const sampleData = {
     allVisitedCountries: ['日本'],
-    allVisitedCountryCodes: ['JP'],
+    // 実データは alpha-3 (isoCountries.alpha2ToAlpha3) なので揃える
+    allVisitedCountryCodes: ['JPN'],
     allVisitedUSStates: ['NV'],
     keikenchi: {
         hokkaido: 4,
@@ -354,16 +351,13 @@ const sampleData = {
         { countryCode: 'JP', name: '東京国際空港 (羽田空港) (HND)' },
     ],
     visitedAirportsByCountry: [{ count: 1, countryCode: 'JP' }],
-};
+} satisfies SwarmData;
 
 const main = async () => {
     const checkinData = process.env.FOURSQUARE_ACCESS_TOKEN
         ? await getCheckinData()
         : sampleData;
-    await fs.writeFile(
-        `${__dirname}/../lib/swarm-data.json`,
-        JSON.stringify(checkinData),
-    );
+    await writeGenerated('swarm', checkinData);
 };
 
 main();

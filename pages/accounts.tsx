@@ -44,7 +44,7 @@ const TagComponent: React.FC<Tag> = ({ color, name, username, link }) => {
 };
 
 export const getStaticProps = async () => {
-    const yamlStr = await fs.readFile('data.yaml', 'utf-8');
+    const yamlStr = await fs.readFile('data/accounts.yaml', 'utf-8');
     const data = yaml.parse(yamlStr) as Data;
     return {
         props: { data },
