@@ -129,52 +129,51 @@ const WorkDetail: React.FC<{
     work: Work;
     untilTransformer: (s: string) => string;
 }> = ({ work, untilTransformer }) => (
-    <div
-        className='my-4 rounded-2xl border-black border-solid p-4 shadow dark:border dark:border-neutral-600'
-        key={work.title}
-    >
-        <div className='flex justify-between'>
-            <div>
+    <div className='card card-border card-sm my-4 shadow' key={work.title}>
+        <div className='card-body text-base'>
+            <div className='flex justify-between'>
                 <div>
-                    <IconSpan
-                        color='#888888'
-                        LeftIcon={getCategoryIcon(work.category)}
-                        margin='0.2em'
-                    >
-                        {work.category}
-                    </IconSpan>
-                </div>
-                <span className='mr-4 font-bold text-xl'>
-                    <IconAnchor href={work.url} RightIcon={Open}>
-                        {work.title}
-                    </IconAnchor>
-                </span>
-                {work.until && (
-                    <span className='rounded-lg border-2 border-red-500 px-2 align-[2px] text-red-500 text-sm'>
-                        {untilTransformer(work.until)}
+                    <div>
+                        <IconSpan
+                            color='#888888'
+                            LeftIcon={getCategoryIcon(work.category)}
+                            margin='0.2em'
+                        >
+                            {work.category}
+                        </IconSpan>
+                    </div>
+                    <span className='mr-4 font-bold text-xl'>
+                        <IconAnchor href={work.url} RightIcon={Open}>
+                            {work.title}
+                        </IconAnchor>
                     </span>
+                    {work.until && (
+                        <span className='badge badge-outline badge-error badge-sm align-[2px]'>
+                            {untilTransformer(work.until)}
+                        </span>
+                    )}
+                </div>
+                {work.imageUrl && (
+                    <div className='avatar'>
+                        <div className='ml-4 h-12 w-12'>
+                            <img alt='Service Icon' src={work.imageUrl} />
+                        </div>
+                    </div>
                 )}
             </div>
-            {work.imageUrl && (
-                <img
-                    alt='Service Icon'
-                    className='ml-4 h-12 w-12'
-                    src={work.imageUrl}
-                />
+            <p className='my-4'>{work.description}</p>
+            {work.repoUrl && (
+                <p className='typography-p'>
+                    <IconAnchor
+                        href={work.repoUrl}
+                        LeftIcon={Github}
+                        margin='0.1em'
+                    >
+                        オープンソースです。
+                    </IconAnchor>
+                </p>
             )}
         </div>
-        <p className='my-4'>{work.description}</p>
-        {work.repoUrl && (
-            <p className='typography-p'>
-                <IconAnchor
-                    href={work.repoUrl}
-                    LeftIcon={Github}
-                    margin='0.1em'
-                >
-                    オープンソースです。
-                </IconAnchor>
-            </p>
-        )}
     </div>
 );
 

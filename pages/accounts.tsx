@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import clsx from 'clsx';
 import type { InferGetStaticPropsType, NextPage } from 'next';
 import yaml from 'yaml';
 import Layout from '../components/Layout';
@@ -17,19 +18,23 @@ interface Data {
 }
 
 const TagComponent: React.FC<Tag> = ({ color, name, username, link }) => {
-    const defaultClassName =
-        'flex items-center mb-4 mr-4 p-4 border-2 rounded-2xl';
-    const hoverableClassName = 'hover:scale-110';
-    const className = defaultClassName + (link ? ' ' + hoverableClassName : '');
     const body = (
-        <div className={className} style={{ borderColor: color }}>
-            <div
-                className='mr-4 inline-block h-4 w-4 rounded-full'
-                style={{ backgroundColor: color }}
-            />
-            <div>
-                <div>{name}</div>
-                <div>{username}</div>
+        <div
+            className={clsx(
+                'card card-border card-sm mr-4 mb-4 border-2',
+                link && 'hover:scale-110',
+            )}
+            style={{ borderColor: color }}
+        >
+            <div className='card-body flex-row items-center text-base'>
+                <div
+                    className='size-4 shrink-0 rounded-full'
+                    style={{ backgroundColor: color }}
+                />
+                <div>
+                    <div>{name}</div>
+                    <div>{username}</div>
+                </div>
             </div>
         </div>
     );

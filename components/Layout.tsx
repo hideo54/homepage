@@ -1,7 +1,6 @@
-import { ChevronBack } from '@styled-icons/ionicons-outline';
 import Head from 'next/head';
 import type { ReactNode } from 'react';
-import { IconNextLink } from './iconTools';
+import Navbar from './Navbar';
 
 const Layout = ({
     children,
@@ -9,7 +8,7 @@ const Layout = ({
     description = 'hideo54のホームページ',
     imageUrl = 'https://img.hideo54.com/icons/main.png',
     twitterCardType = 'summary',
-    showGoTop = true,
+    showNavbar = true,
 }: {
     children?: ReactNode;
     title?: string;
@@ -17,7 +16,7 @@ const Layout = ({
     imageUrl?: string;
     twitterCardType?: 'summary' | 'summary_large_image' | 'app' | 'player';
     Header?: JSX.Element;
-    showGoTop?: boolean;
+    showNavbar?: boolean;
 }) => (
     <>
         <Head>
@@ -56,16 +55,8 @@ const Layout = ({
                 rel='apple-touch-icon'
             />
         </Head>
-        <main>
-            {showGoTop && (
-                <nav>
-                    <IconNextLink href='/' LeftIcon={ChevronBack}>
-                        トップページ
-                    </IconNextLink>
-                </nav>
-            )}
-            {children}
-        </main>
+        {showNavbar && <Navbar />}
+        <main>{children}</main>
     </>
 );
 
