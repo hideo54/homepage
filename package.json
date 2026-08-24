@@ -52,7 +52,7 @@
         "tsx": "^4.23.12",
         "typescript": "7.0.2",
         "undici": "^8.10.0",
-        "wrangler": "^4.123.0"
+        "wrangler": "^4.125.0"
     },
     "homepage": "https://hideo54.com",
     "license": "Apache-2.0",
