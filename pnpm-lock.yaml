@@ -15,8 +15,8 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1(@types/react@18.3.20)(react@18.3.1)
       '@next/mdx':
-        specifier: ^16.3.1
-        version: 16.3.1(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))
+        specifier: ^16.3.2
+        version: 16.3.2(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))
       '@styled-icons/fa-brands':
         specifier: ^10.47.0
         version: 10.47.0(react@18.3.1)(styled-components@6.1.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
@@ -1471,8 +1471,8 @@ packages:
   '@next/env@16.3.1':
     resolution: {integrity: sha512-35G3xwkQUb2oETSDjFXGrVugknoayLFBh7vSE+yAcl9IP2zT9wyGwq7297AYHR11kJld807t5f8AJBs6WBzXsQ==}
 
-  '@next/mdx@16.3.1':
-    resolution: {integrity: sha512-H0oFxC5i9MH2I20eedDvHlJ61UuQ6BizOmD6QGWxtb6g27TDg1Vf4F/XegkNCnuSPfyX9U4KOHn7UQc2oYYFWQ==}
+  '@next/mdx@16.3.2':
+    resolution: {integrity: sha512-3Ch2ayTuBW9rBaOO9KLlRBUdsZpAm2rpuUxWrDjS9+2lcRzyWKlQoss3A66Nql3BnCBnsLE7j7+M3fR7Gssqdw==}
     peerDependencies:
       '@mdx-js/loader': '>=0.15.0'
       '@mdx-js/react': '>=0.15.0'
@@ -4441,6 +4441,10 @@ packages:
     resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
     engines: {node: '>= 8'}
 
+  source-map@0.7.6:
+    resolution: {integrity: sha512-i5uvt8C3ikiWeNZSVZNWcfZPItFQOsYTUAOkcUPGd8DqDy1uOUikjt5dG+uRlwyvR108Fb9DOd4GvXfT0N2/uQ==}
+    engines: {node: '>= 12'}
+
   space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
 
@@ -6220,9 +6224,9 @@ snapshots:
 
   '@next/env@16.3.1': {}
 
-  '@next/mdx@16.3.1(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))':
+  '@next/mdx@16.3.2(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))':
     dependencies:
-      source-map: 0.7.4
+      source-map: 0.7.6
     optionalDependencies:
       '@mdx-js/loader': 3.1.1(acorn@8.15.0)(supports-color@10.2.2)
       '@mdx-js/react': 3.1.1(@types/react@18.3.20)(react@18.3.1)
@@ -10576,6 +10580,8 @@ snapshots:
     optional: true
 
   source-map@0.7.4: {}
+
+  source-map@0.7.6: {}
 
   space-separated-tokens@2.0.2: {}
 
