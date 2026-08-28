@@ -27,7 +27,7 @@
     },
     "description": "hideo54's Homepage",
     "devDependencies": {
-        "@biomejs/biome": "2.5.8",
+        "@biomejs/biome": "2.5.10",
         "@google-cloud/storage": "^8.0.1",
         "@svgr/webpack": "^8.1.0",
         "@tailwindcss/postcss": "^4.3.3",
