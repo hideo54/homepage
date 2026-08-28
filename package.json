@@ -45,7 +45,7 @@
         "concurrently": "^10.0.5",
         "daisyui": "^5.7.20",
         "dotenv": "^17.4.2",
-        "fast-xml-parser": "^5.7.1",
+        "fast-xml-parser": "^5.11.0",
         "lodash": "^4.18.1",
         "postcss": "^8.5.26",
         "tailwindcss": "^4.3.2",
