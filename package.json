@@ -12,7 +12,7 @@
         "chroma-js": "^3.2.0",
         "clsx": "^2.1.1",
         "dayjs": "^1.11.23",
-        "firebase-admin": "^14.2.0",
+        "firebase-admin": "^14.3.0",
         "i18n-iso-countries": "^7.13.0",
         "jp-local-gov": "^2.2.3",
         "next": "^16.3.2",
