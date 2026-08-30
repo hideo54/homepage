@@ -51,8 +51,8 @@ importers:
         specifier: ^7.13.0
         version: 7.14.0
       jp-local-gov:
-        specifier: ^2.2.3
-        version: 2.2.3
+        specifier: ^2.4.0
+        version: 2.4.0
       next:
         specifier: ^16.3.2
         version: 16.3.2(@babel/core@7.26.10(supports-color@10.2.2))(@opentelemetry/api@1.9.1)(@types/node@26.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -3569,8 +3569,8 @@ packages:
   jose@6.2.10:
     resolution: {integrity: sha512-iiW7J9qRFlGxvCOIBDBDxFePQSn7ZMAnrYGhrrOo6siO/MIqwfyilLR27pkfDgUk+raLuzADS8A3S/KLBisc0g==}
 
-  jp-local-gov@2.2.3:
-    resolution: {integrity: sha512-430VLNxcL4YoUNBF7jq7eVFA0RhXPu1STHe4JwTIVpWcNpYpWEyIIzwA/EA2pR0SL6+aqJ7Ysn79/ijCVYxAmQ==}
+  jp-local-gov@2.4.0:
+    resolution: {integrity: sha512-GMTy6YZt/CGU3tybS9feU3Sjl7clvmOBHuVQUAFUzHmwHdhXSdYqbFBc+I9ouEny/g+G8UbvVbbGH6YiI8RBAw==}
     engines: {node: '>=22.12'}
 
   js-tokens@4.0.0:
@@ -9324,7 +9324,7 @@ snapshots:
 
   jose@6.2.10: {}
 
-  jp-local-gov@2.2.3: {}
+  jp-local-gov@2.4.0: {}
 
   js-tokens@4.0.0: {}
 
