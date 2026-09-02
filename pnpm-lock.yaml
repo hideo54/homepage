@@ -57,8 +57,8 @@ importers:
         specifier: ^16.3.3
         version: 16.3.3(@babel/core@7.26.10(supports-color@10.2.2))(@opentelemetry/api@1.9.1)(@types/node@26.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       plotly.js-dist-min:
-        specifier: ^3.7.0
-        version: 3.7.0
+        specifier: ^4.0.0
+        version: 4.0.0
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -4305,8 +4305,8 @@ packages:
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
-  plotly.js-dist-min@3.7.0:
-    resolution: {integrity: sha512-IRWNnBJZmKss3URDnicBK2nvt/VTSi/MD1GnUscAYFjwSuN6g/CTde5R1UC0RYtblehj8rkT4BL8r05e/c8j5Q==}
+  plotly.js-dist-min@4.0.0:
+    resolution: {integrity: sha512-Dm6Sr5aHaxDZ7HN6eLRBotMZ9zRYEd+eoimm27B8d2XOFiNpv0oO7QIE0WFwFAfPN16JHM/6do6kDbasB+ftbQ==}
 
   plotly.js@3.3.1:
     resolution: {integrity: sha512-SrGSZ02HvCWQIYsbQX4sgjgGo7k4T+Oz8a+RQwE5Caz+yu1vputBM1UThmiOPY51B5HzO9ajym8Rl4pmLj+i9Q==}
@@ -10369,7 +10369,7 @@ snapshots:
 
   picocolors@1.1.1: {}
 
-  plotly.js-dist-min@3.7.0: {}
+  plotly.js-dist-min@4.0.0: {}
 
   plotly.js@3.3.1(mapbox-gl@1.13.3)(supports-color@10.2.2):
     dependencies:
