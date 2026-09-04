@@ -15,8 +15,8 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1(@types/react@18.3.20)(react@18.3.1)
       '@next/mdx':
-        specifier: ^16.3.2
-        version: 16.3.2(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))
+        specifier: ^16.3.4
+        version: 16.3.4(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))
       '@styled-icons/fa-brands':
         specifier: ^10.47.0
         version: 10.47.0(react@18.3.1)(styled-components@6.1.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
@@ -1650,8 +1650,8 @@ packages:
   '@next/env@16.3.3':
     resolution: {integrity: sha512-U2eYQRwXj+dsqxV79zFqExDdatnNY/ZWc2nsJU1p/OgT7fd3dXwlF6OjYaFQCfMoeTA19PWq+wVmYgimVA+V+g==}
 
-  '@next/mdx@16.3.2':
-    resolution: {integrity: sha512-3Ch2ayTuBW9rBaOO9KLlRBUdsZpAm2rpuUxWrDjS9+2lcRzyWKlQoss3A66Nql3BnCBnsLE7j7+M3fR7Gssqdw==}
+  '@next/mdx@16.3.4':
+    resolution: {integrity: sha512-XEmW3ccWWNybofVOmgIEVhXtmNXM0u423iqkVXwPf29fht/tdpUiMDuMHQ4hMerE1477nOJrv5kM/F6qMcEMwA==}
     peerDependencies:
       '@mdx-js/loader': '>=0.15.0'
       '@mdx-js/react': '>=0.15.0'
@@ -6494,7 +6494,7 @@ snapshots:
       remark-mdx: 3.1.0(supports-color@10.2.2)
       remark-parse: 11.0.0(supports-color@10.2.2)
       remark-rehype: 11.1.1
-      source-map: 0.7.4
+      source-map: 0.7.6
       unified: 11.0.5
       unist-util-position-from-estree: 2.0.0
       unist-util-stringify-position: 4.0.0
@@ -6512,7 +6512,7 @@ snapshots:
 
   '@next/env@16.3.3': {}
 
-  '@next/mdx@16.3.2(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))':
+  '@next/mdx@16.3.4(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))':
     dependencies:
       source-map: 0.7.6
     optionalDependencies:
@@ -8945,7 +8945,7 @@ snapshots:
     dependencies:
       '@types/estree-jsx': 1.0.5
       astring: 1.9.0
-      source-map: 0.7.4
+      source-map: 0.7.6
 
   estree-util-visit@2.0.0:
     dependencies:
