@@ -130,8 +130,8 @@ importers:
         specifier: ^10.0.5
         version: 10.0.5
       daisyui:
-        specifier: ^5.7.24
-        version: 5.7.24
+        specifier: ^5.7.28
+        version: 5.7.28
       dotenv:
         specifier: ^17.4.2
         version: 17.4.2
@@ -3011,8 +3011,8 @@ packages:
     resolution: {integrity: sha512-MOqHvMWF9/9MX6nza0KgvFH4HpMU0EF5uUDXqX/BtxtU8NfB0QzRtJ8Oe/6SuS4kbhyzVJwjd97EA4PKrzJ8bw==}
     engines: {node: '>=0.12'}
 
-  daisyui@5.7.24:
-    resolution: {integrity: sha512-NFmc4EGeVWHSwHjVLeyKMsnn2iJ+9JHod9ZX9EMpAe6JxcQgzWN9mflHSLCkUrmD4w8W6s/CUjXf3wD2jOQeBA==}
+  daisyui@5.7.28:
+    resolution: {integrity: sha512-BxQap2QOj7NQy5nEsjTHRmybmUZP3t+O5G6vfdidZuptBsh/QyKN9wbdrGDZk198fMI3UyYnA/rCWlggZIhGnw==}
 
   data-uri-to-buffer@4.0.1:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
@@ -8627,7 +8627,7 @@ snapshots:
       es5-ext: 0.10.64
       type: 2.7.3
 
-  daisyui@5.7.24: {}
+  daisyui@5.7.28: {}
 
   data-uri-to-buffer@4.0.1: {}
 
