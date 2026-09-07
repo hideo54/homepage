@@ -51,7 +51,7 @@
         "tailwindcss": "^4.3.2",
         "tsx": "^4.23.13",
         "typescript": "7.0.2",
-        "undici": "^8.10.0",
+        "undici": "^8.10.1",
         "wrangler": "^4.127.1"
     },
     "homepage": "https://hideo54.com",
