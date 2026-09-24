@@ -75,8 +75,8 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0(react@18.3.1)
       scrape-it:
-        specifier: ^6.1.14
-        version: 6.1.14(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
+        specifier: ^6.1.15
+        version: 6.1.15(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       yaml:
         specifier: ^2.9.0
         version: 2.9.0
@@ -2470,8 +2470,8 @@ packages:
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
 
-  axios@1.19.0:
-    resolution: {integrity: sha512-ht/iuYZXEjFxLH/Hkezgd7m6JKlHHXEUSneaDz8uZe1Gj5QZtCnpyDsckvAiEnT89OEbCLmnte4R4sn7P0EKFw==}
+  axios@1.20.0:
+    resolution: {integrity: sha512-r8aOh8j9cGKpgQAqpzrUHnSIc6a59Y3Xf/cv8sy1DrHCkZHzQGEuoq1tARk6qSyDdtQGSDgpb9kFlruzPvrgwg==}
 
   babel-plugin-polyfill-corejs2@0.4.13:
     resolution: {integrity: sha512-3sX/eOms8kd3q2KZ6DAhKPc0dgm525Gqq5NtWKZ7QYYZEv57OQ54KtblzJzH1lQF/eQxO8KjWGIK9IPUJNus5g==}
@@ -2503,11 +2503,6 @@ packages:
 
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
-
-  baseline-browser-mapping@2.11.20:
-    resolution: {integrity: sha512-H0ulySigv6icDJ1F7SjtdCD6PrhTpdYCmP0CactWy1+ekh0AFd0o1Wn5T8b+hnTmdBx19u9yhL6wvCylXMY7zw==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
 
   baseline-browser-mapping@2.11.25:
     resolution: {integrity: sha512-gMmEShwwq7FJqMwvfRwvCl00v4kN+KOfJqXn+f4nrufak5gNHJOksd/60Dvjuz7sI8Y5WiSFBa8FEYr+zoyqCw==}
@@ -3007,8 +3002,8 @@ packages:
     resolution: {integrity: sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==}
     engines: {node: '>= 0.4'}
 
-  es-object-atoms@1.1.1:
-    resolution: {integrity: sha512-FGgH2h8zKNim9ljj7dankFPcICIK9Cp5bm+c2gQSYePhpaG5+esrLODihIorn+Pe6FGJzWhXQotPv73jTaldXA==}
+  es-object-atoms@1.1.2:
+    resolution: {integrity: sha512-HWcBoN6NileqtSydK2FqHbS/LoDd2pqrnQHLyJzBj4kOp/ky2MWMN694xOfkK8/SnUsW2DH7EfyVlydKCsm1Zw==}
     engines: {node: '>= 0.4'}
 
   es-set-tostringtag@2.1.0:
@@ -4388,8 +4383,8 @@ packages:
   scrape-it-core@1.0.2:
     resolution: {integrity: sha512-gXtUSsL/ikNMTz1678Bge++kfuV0o2fGtkMB+tRO2+J9fyZBkjvFJqjbAFYjb9SHsgb0hT0v0nWa3MVk0rvhsA==}
 
-  scrape-it@6.1.14:
-    resolution: {integrity: sha512-AgeezWpoiT/c7hv5ee9tkXazdjPOHEijF8mfyrlrzzEiyybbTI9w7YcB2UvNNSt3sHW29FacWCxFSWwpgDGmhw==}
+  scrape-it@6.1.15:
+    resolution: {integrity: sha512-WjDQrUnXeL+npxfmt5eeNtAeuIc2yBI+ighE/q45bidkAJUz2CLmzmUREZDYl9DGmajVLWpi+WCzbZ+k5uI2yQ==}
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
@@ -7899,7 +7894,7 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  axios@1.19.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
+  axios@1.20.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
     dependencies:
       follow-redirects: 1.16.0(debug@4.4.3(supports-color@10.2.2))
       form-data: 4.0.6
@@ -7948,8 +7943,6 @@ snapshots:
 
   base64-js@1.5.1: {}
 
-  baseline-browser-mapping@2.11.20: {}
-
   baseline-browser-mapping@2.11.25: {}
 
   bignumber.js@9.1.2: {}
@@ -7978,7 +7971,7 @@ snapshots:
 
   browserslist@4.28.1:
     dependencies:
-      baseline-browser-mapping: 2.11.20
+      baseline-browser-mapping: 2.11.25
       caniuse-lite: 1.0.30001810
       electron-to-chromium: 1.5.286
       node-releases: 2.0.27
@@ -8019,7 +8012,7 @@ snapshots:
 
   cheerio-req@2.0.1(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
     dependencies:
-      axios: 1.19.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
+      axios: 1.20.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       cheerio: 1.2.0
     transitivePeerDependencies:
       - debug
@@ -8465,7 +8458,7 @@ snapshots:
 
   es-errors@1.3.0: {}
 
-  es-object-atoms@1.1.1:
+  es-object-atoms@1.1.2:
     dependencies:
       es-errors: 1.3.0
 
@@ -8836,7 +8829,7 @@ snapshots:
       call-bind-apply-helpers: 1.0.2
       es-define-property: 1.0.1
       es-errors: 1.3.0
-      es-object-atoms: 1.1.1
+      es-object-atoms: 1.1.2
       function-bind: 1.1.2
       get-proto: 1.0.1
       gopd: 1.2.0
@@ -8847,7 +8840,7 @@ snapshots:
   get-proto@1.0.1:
     dependencies:
       dunder-proto: 1.0.1
-      es-object-atoms: 1.1.1
+      es-object-atoms: 1.1.2
 
   get-stream@6.0.1: {}
 
@@ -10484,7 +10477,7 @@ snapshots:
       obj-def: 1.0.10
       typpy: 2.4.0
 
-  scrape-it@6.1.14(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
+  scrape-it@6.1.15(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
     dependencies:
       assured: 1.0.16
       cheerio: 1.2.0
