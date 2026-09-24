@@ -49,7 +49,7 @@
         "lodash": "^4.18.1",
         "postcss": "^8.5.28",
         "tailwindcss": "^4.3.2",
-        "tsx": "^4.23.13",
+        "tsx": "^4.23.15",
         "typescript": "7.0.2",
         "undici": "^8.10.2",
         "wrangler": "^4.131.1"
