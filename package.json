@@ -44,7 +44,7 @@
         "cheerio": "^1.2.0",
         "concurrently": "^10.0.5",
         "daisyui": "^5.7.37",
-        "dotenv": "^17.4.2",
+        "dotenv": "^18.0.1",
         "fast-xml-parser": "^5.11.1",
         "lodash": "^4.18.1",
         "postcss": "^8.5.28",
