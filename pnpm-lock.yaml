@@ -57,8 +57,8 @@ importers:
         specifier: ^16.3.5
         version: 16.3.5(@babel/core@7.26.10(supports-color@10.2.2))(@opentelemetry/api@1.9.1)(@types/node@26.6.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       plotly.js-dist-min:
-        specifier: ^4.1.0
-        version: 4.1.0
+        specifier: ^4.1.1
+        version: 4.1.1
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -2504,11 +2504,6 @@ packages:
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
-  baseline-browser-mapping@2.11.20:
-    resolution: {integrity: sha512-H0ulySigv6icDJ1F7SjtdCD6PrhTpdYCmP0CactWy1+ekh0AFd0o1Wn5T8b+hnTmdBx19u9yhL6wvCylXMY7zw==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
-
   baseline-browser-mapping@2.11.25:
     resolution: {integrity: sha512-gMmEShwwq7FJqMwvfRwvCl00v4kN+KOfJqXn+f4nrufak5gNHJOksd/60Dvjuz7sI8Y5WiSFBa8FEYr+zoyqCw==}
     engines: {node: '>=6.0.0'}
@@ -4131,8 +4126,8 @@ packages:
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
-  plotly.js-dist-min@4.1.0:
-    resolution: {integrity: sha512-OUeeE0z2csk0pYwKtT8zqBLZoCVQOcxxnbM2+V1SwLNVu7cSFNelWaGVhdhag2js6KvlcHDTrLAwrCG8odSUqA==}
+  plotly.js-dist-min@4.1.1:
+    resolution: {integrity: sha512-4Jg6n9FKcn5WBuqHESZmueEBYOLjGlsz8ivzMCl03WCX+GAAOgIALvdONwIi54JDMq0tkxbu+vs5Yj7QSPQtgg==}
 
   plotly.js@3.3.1:
     resolution: {integrity: sha512-SrGSZ02HvCWQIYsbQX4sgjgGo7k4T+Oz8a+RQwE5Caz+yu1vputBM1UThmiOPY51B5HzO9ajym8Rl4pmLj+i9Q==}
@@ -7948,8 +7943,6 @@ snapshots:
 
   base64-js@1.5.1: {}
 
-  baseline-browser-mapping@2.11.20: {}
-
   baseline-browser-mapping@2.11.25: {}
 
   bignumber.js@9.1.2: {}
@@ -7978,7 +7971,7 @@ snapshots:
 
   browserslist@4.28.1:
     dependencies:
-      baseline-browser-mapping: 2.11.20
+      baseline-browser-mapping: 2.11.25
       caniuse-lite: 1.0.30001810
       electron-to-chromium: 1.5.286
       node-releases: 2.0.27
@@ -10063,7 +10056,7 @@ snapshots:
 
   picocolors@1.1.1: {}
 
-  plotly.js-dist-min@4.1.0: {}
+  plotly.js-dist-min@4.1.1: {}
 
   plotly.js@3.3.1(mapbox-gl@1.13.3)(supports-color@10.2.2):
     dependencies:
