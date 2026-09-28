@@ -15,8 +15,8 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1(@types/react@18.3.20)(react@18.3.1)
       '@next/mdx':
-        specifier: ^16.3.4
-        version: 16.3.4(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))
+        specifier: ^16.3.5
+        version: 16.3.5(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))
       '@styled-icons/fa-brands':
         specifier: ^10.47.0
         version: 10.47.0(react@18.3.1)(styled-components@6.1.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
@@ -1480,8 +1480,8 @@ packages:
   '@next/env@16.3.5':
     resolution: {integrity: sha512-NWEXVDMqoEo0ktmU6u0sE2Vg0LOcsD7NnOTJNo3/fEaTfsg+F1bMIxuDmQbda4e3yTIQwVdUREF2yIuMOusKtg==}
 
-  '@next/mdx@16.3.4':
-    resolution: {integrity: sha512-XEmW3ccWWNybofVOmgIEVhXtmNXM0u423iqkVXwPf29fht/tdpUiMDuMHQ4hMerE1477nOJrv5kM/F6qMcEMwA==}
+  '@next/mdx@16.3.5':
+    resolution: {integrity: sha512-fBRelmCwqZR7TMeAIEI2mb6P1H88D9A4poIZOOhlcuiEbiF7jOTJTKQWfd7pCPW4CeZ9UG/6AgoHRREqqInlqQ==}
     peerDependencies:
       '@mdx-js/loader': '>=0.15.0'
       '@mdx-js/react': '>=0.15.0'
@@ -2503,11 +2503,6 @@ packages:
 
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
-
-  baseline-browser-mapping@2.11.20:
-    resolution: {integrity: sha512-H0ulySigv6icDJ1F7SjtdCD6PrhTpdYCmP0CactWy1+ekh0AFd0o1Wn5T8b+hnTmdBx19u9yhL6wvCylXMY7zw==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
 
   baseline-browser-mapping@2.11.25:
     resolution: {integrity: sha512-gMmEShwwq7FJqMwvfRwvCl00v4kN+KOfJqXn+f4nrufak5gNHJOksd/60Dvjuz7sI8Y5WiSFBa8FEYr+zoyqCw==}
@@ -6201,7 +6196,7 @@ snapshots:
 
   '@next/env@16.3.5': {}
 
-  '@next/mdx@16.3.4(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))':
+  '@next/mdx@16.3.5(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))':
     dependencies:
       source-map: 0.7.6
     optionalDependencies:
@@ -7948,8 +7943,6 @@ snapshots:
 
   base64-js@1.5.1: {}
 
-  baseline-browser-mapping@2.11.20: {}
-
   baseline-browser-mapping@2.11.25: {}
 
   bignumber.js@9.1.2: {}
@@ -7978,7 +7971,7 @@ snapshots:
 
   browserslist@4.28.1:
     dependencies:
-      baseline-browser-mapping: 2.11.20
+      baseline-browser-mapping: 2.11.25
       caniuse-lite: 1.0.30001810
       electron-to-chromium: 1.5.286
       node-releases: 2.0.27
