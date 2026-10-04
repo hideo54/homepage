@@ -354,7 +354,22 @@ const sampleData = {
 
 const main = async () => {
     const checkinData = process.env.FOURSQUARE_ACCESS_TOKEN
-        ? await getCheckinData()
+        ? await getCheckinData().catch((): SwarmData => {
+              console.warn('Failed to fetch Swarm checkins. Using empty data.');
+              return {
+                  allVisitedCountries: [],
+                  allVisitedCountryCodes: [],
+                  allVisitedUSStates: [],
+                  keikenchi: {},
+                  newestCheckinDate: '',
+                  oldestCheckinDate: '',
+                  ramenRestaurantsCheckinCount: {},
+                  senkyokuVisitCounts2017: [],
+                  senkyokuVisitCounts2022: [],
+                  visitedAirports: [],
+                  visitedAirportsByCountry: [],
+              };
+          })
         : sampleData;
     await writeGenerated('swarm', checkinData);
 };

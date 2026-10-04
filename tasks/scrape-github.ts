@@ -68,7 +68,14 @@ const sampleData = [
 ] satisfies GitHubData;
 
 const main = async () => {
-    const contributions = githubPat ? await getContributions() : sampleData;
+    const contributions = githubPat
+        ? await getContributions().catch((): GitHubData => {
+              console.warn(
+                  'Failed to fetch GitHub contributions. Using empty data.',
+              );
+              return [];
+          })
+        : sampleData;
     await writeGenerated('github', contributions);
 };
 

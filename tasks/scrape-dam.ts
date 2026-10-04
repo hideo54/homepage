@@ -111,7 +111,11 @@ const main = async () => {
             cdmToken,
             cookies,
             page: i,
+        }).catch((): DamScore[] => {
+            console.warn('Failed to fetch DAM scores. Skipping new scores.');
+            return [];
         });
+        if (scores.length === 0) break;
         for (const score of scores) {
             if (latestDatetime && score.scoringDateTime <= latestDatetime)
                 break pageIteration;
@@ -133,7 +137,10 @@ const main = async () => {
 
 (async () => {
     if (loginId) {
-        await main();
+        await main().catch(async () => {
+            console.warn('Failed to scrape DAM. Using empty scores.');
+            await writeGenerated('dam-scores', []);
+        });
     } else {
         const sampleData = JSON.parse(
             await fs.readFile(
