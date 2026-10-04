@@ -177,7 +177,12 @@ const sampleData = {
 } satisfies MaimaiData; // For CI without env values
 
 const main = async () => {
-    const maimaiData = segaId ? await getMaimaiData() : sampleData;
+    const maimaiData = segaId
+        ? await getMaimaiData().catch((): MaimaiData => {
+              console.warn('Failed to scrape maimai. Using empty data.');
+              return { expertRecords: [], prefectures: [] };
+          })
+        : sampleData;
     await writeGenerated('maimai', maimaiData);
 };
 
