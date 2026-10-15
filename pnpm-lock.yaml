@@ -15,8 +15,8 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1(@types/react@18.3.20)(react@18.3.1)
       '@next/mdx':
-        specifier: ^16.3.8
-        version: 16.3.8(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))
+        specifier: ^16.4.0
+        version: 16.4.0(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))
       '@styled-icons/fa-brands':
         specifier: ^10.47.0
         version: 10.47.0(react@18.3.1)(styled-components@6.1.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
@@ -1324,8 +1324,8 @@ packages:
   '@next/env@16.4.0':
     resolution: {integrity: sha512-pyLlT5oafGlX8X7xjgGNXz5dNIDSxREm+qD6i9VLSZiZFopA/XWl8NM/KPmLx/8EG/++c49iid3gNWSQW1+2dQ==}
 
-  '@next/mdx@16.3.8':
-    resolution: {integrity: sha512-9Es7/Mf5cDo7dL3NEUQerl98SrwWo0QeBguKC06rX/PydHXKxgHIuXjDuxvu56oO4Yty4hn3FPIbXEOx39oQDw==}
+  '@next/mdx@16.4.0':
+    resolution: {integrity: sha512-qKI9HvbqwSo1F8ebVsia0meLm2iu/DxaB1ynWNKRn4bny0xjQJBGixzEdJ9wsPqCwPcG4Qn4z5Rai1Pee/AQFQ==}
     peerDependencies:
       '@mdx-js/loader': '>=0.15.0'
       '@mdx-js/react': '>=0.15.0'
@@ -5926,7 +5926,7 @@ snapshots:
 
   '@next/env@16.4.0': {}
 
-  '@next/mdx@16.3.8(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))':
+  '@next/mdx@16.4.0(@mdx-js/loader@3.1.1(acorn@8.15.0)(supports-color@10.2.2))(@mdx-js/react@3.1.1(@types/react@18.3.20)(react@18.3.1))':
     dependencies:
       source-map: 0.7.6
     optionalDependencies:
