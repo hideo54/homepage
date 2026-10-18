@@ -1,7 +1,7 @@
 import type { StyledIcon } from '@styled-icons/styled-icon';
-import Link, { type LinkProps } from 'next/link';
 import type React from 'react';
 import type { ComponentProps, ReactNode } from 'react';
+import { Link, type LinkProps } from 'react-router';
 
 export const IconSpan: React.FC<{
     LeftIcon?: StyledIcon;
@@ -26,22 +26,24 @@ export const IconSpan: React.FC<{
         <>
             {LeftIcon && (
                 <LeftIcon
+                className='inline'
                     size={size || '1.2em'}
                     style={{
                         color,
                         marginRight: '0.1em',
-                        verticalAlign: verticalAlign,
+                        verticalAlign,
                     }}
                 />
             )}
             {children}
             {RightIcon && (
                 <RightIcon
+                className='inline'
                     size={size || '1.2em'}
                     style={{
                         color,
                         marginLeft: '0.1em',
-                        verticalAlign: verticalAlign,
+                        verticalAlign,
                     }}
                 />
             )}
@@ -81,9 +83,9 @@ export const IconAnchor: React.FC<
     </a>
 );
 
-export const IconNextLink: React.FC<
+export const IconLink: React.FC<
     ComponentProps<typeof IconSpan> & {
-        href: LinkProps['href']; // string | UrlObject
+        to: LinkProps['to'];
     }
 > = props => {
     const { LeftIcon, RightIcon, ...otherProps } = props;

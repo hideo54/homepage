@@ -41,10 +41,7 @@ const GeoMap: React.FC<{
             });
     }, [props.path]);
 
-    if (loading)
-        return (
-            <div className='h-150 animate-pulse bg-base-200' />
-        );
+    if (loading) return <div className='h-150 animate-pulse bg-base-200' />;
     if (error) return <p className='typography-p'>Error: {error.message}</p>;
     if (!data) return <p className='typography-p'>No data</p>;
 

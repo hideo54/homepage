@@ -1,7 +1,8 @@
 {
     "$schema": "node_modules/wrangler/config-schema.json",
     "assets": {
-        "directory": "./out",
+        "directory": "./build/client",
+        "html_handling": "drop-trailing-slash",
         "not_found_handling": "404-page"
     },
     "compatibility_date": "2025-08-28",

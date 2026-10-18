@@ -1,11 +1,11 @@
 @import 'tailwindcss';
 
-@plugin "daisyui" {
+@plugin 'daisyui' {
     themes: false;
     include: card, badge, avatar, kbd, stat, navbar;
 }
 
-@plugin "daisyui/theme" {
+@plugin 'daisyui/theme' {
     name: 'light';
     default: true;
     color-scheme: light;
@@ -19,7 +19,7 @@
     --color-primary-content: #fff;
 }
 
-@plugin "daisyui/theme" {
+@plugin 'daisyui/theme' {
     name: 'dark';
     prefersdark: true;
     color-scheme: dark;
@@ -46,60 +46,63 @@
  *   U+FFE0-FFE6   … 全角の ￥ ＄ ￡ など
  */
 @font-face {
-  font-family: 'Hiragino Sans JP';
-  src: local(HiraginoSans-W4), local('Hiragino Sans W4');
-  font-weight: 400;
-  unicode-range: U+2026, U+3000-303F, U+3040-30FF, U+31F0-31FF, U+4E00-9FFF,
-    U+F900-FAFF, U+FF01-FF9F, U+FFE0-FFE6;
-  size-adjust: 93.5%;
+    font-family: 'Hiragino Sans JP';
+    src: local(HiraginoSans-W4), local('Hiragino Sans W4');
+    font-weight: 400;
+    unicode-range:
+        U+2026, U+3000-303F, U+3040-30FF, U+31F0-31FF, U+4E00-9FFF, U+F900-FAFF,
+        U+FF01-FF9F, U+FFE0-FFE6;
+    size-adjust: 93.5%;
 }
 
 @font-face {
-  font-family: 'Hiragino Sans JP';
-  src: local(HiraginoSans-W7), local('Hiragino Sans W7');
-  font-weight: 700;
-  unicode-range: U+2026, U+3000-303F, U+3040-30FF, U+31F0-31FF, U+4E00-9FFF,
-    U+F900-FAFF, U+FF01-FF9F, U+FFE0-FFE6;
-  size-adjust: 93.5%;
+    font-family: 'Hiragino Sans JP';
+    src: local(HiraginoSans-W7), local('Hiragino Sans W7');
+    font-weight: 700;
+    unicode-range:
+        U+2026, U+3000-303F, U+3040-30FF, U+31F0-31FF, U+4E00-9FFF, U+F900-FAFF,
+        U+FF01-FF9F, U+FFE0-FFE6;
+    size-adjust: 93.5%;
 }
 
 @font-face {
-  font-family: 'Local Noto Sans JP';
-  src:
-    local('Noto Sans JP Regular'),
-    /* for Windows */ local('Noto Sans CJK JP Regular'); /* for Android */
-  font-weight: 400;
+    font-family: 'Local Noto Sans JP';
+    src:
+        local('Noto Sans JP Regular'),
+        /* for Windows */ local('Noto Sans CJK JP Regular'); /* for Android */
+    font-weight: 400;
 }
 
 @font-face {
-  font-family: 'Local Noto Sans JP';
-  src:
-    local('Noto Sans JP Bold'),
-    /* for Windows */ local('Noto Sans CJK JP Bold'); /* for Android */
-  font-weight: 700;
+    font-family: 'Local Noto Sans JP';
+    src:
+        local('Noto Sans JP Bold'),
+        /* for Windows */ local('Noto Sans CJK JP Bold'); /* for Android */
+    font-weight: 700;
 }
 
 @theme {
-  --animate-shine: shine 1s infinite;
+    --animate-shine: shine 1s infinite;
 
-  --background-image-kcz-gradient: linear-gradient(
-    90deg,
-    #be4df8 30%,
-    #f760f8 50%,
-    #be4df8 70%
-  );
+    --background-image-kcz-gradient: linear-gradient(
+        90deg,
+        #be4df8 30%,
+        #f760f8 50%,
+        #be4df8 70%
+    );
 
-  --font-display:
-    'Hiragino Sans JP', -apple-system, BlinkMacSystemFont, 'Local Noto Sans JP', 'Noto Sans JP', sans-serif;
+    --font-display:
+        'Hiragino Sans JP', -apple-system, BlinkMacSystemFont,
+        'Local Noto Sans JP', 'Noto Sans JP', sans-serif;
 
-  @keyframes shine {
-    0% {
-      background-position: 100% 50%;
+    @keyframes shine {
+        0% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
     }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
 }
 
 @utility typography-h1 {

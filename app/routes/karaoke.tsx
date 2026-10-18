@@ -2,17 +2,15 @@ import { MusicalNote } from '@styled-icons/ionicons-solid';
 import chroma from 'chroma-js';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
-import { type Dictionary, groupBy } from 'lodash';
-import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import damScoresDataJson from '../../data/generated/dam-scores.json';
+import type { DamScore } from '../../data/schema/dam';
 import Layout from '../components/Layout';
-import damScoresDataJson from '../data/generated/dam-scores.json';
-import type { DamScore } from '../data/schema/dam';
 import { sortBy } from '../lib/utils';
 
 const damScoresData = damScoresDataJson as unknown as DamScore[];
 
-const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
+const Plot = lazy(() => import('react-plotly.js'));
 
 const displayScoreThreshold = 88;
 
@@ -163,10 +161,11 @@ const Score: React.FC<{
 );
 
 const BoxPlotByDate: React.FC<{
-    scoreDataByDate: Dictionary<DamScore[]>;
+    scoreDataByDate: Record<string, DamScore[]>;
 }> = ({ scoreDataByDate }) => {
     // Plotly は CSS クラスを受け付けないので、daisyUI のテーマ変数を
     // 実際の計算値として読み出して渡す。テーマが切り替われば追従する。
+    const [isMounted, setIsMounted] = useState(false);
     const [themeColors, setThemeColors] = useState({
         base100: '#ffffff',
         base300: '#d4d4d4',
@@ -184,6 +183,7 @@ const BoxPlotByDate: React.FC<{
             });
         };
         readTheme();
+        setIsMounted(true);
         const query = window.matchMedia('(prefers-color-scheme: dark)');
         query.addEventListener('change', readTheme);
         return () => {
@@ -204,54 +204,58 @@ const BoxPlotByDate: React.FC<{
             '#7F0000',
         ])
         .domain([75, 95]);
+    // Plotly は import 時点で window を触るので、prerender 中は描画しない
+    if (!isMounted) return null;
     return (
-        <Plot
-            config={{
-                staticPlot: true,
-            }}
-            data={Object.entries(scoreDataByDate).map(([date, scores]) => ({
-                marker: {
-                    // その日の平均点を jet で色付け
-                    color: jetScale(
-                        Math.round(
-                            scores
-                                .map(score => Number(score['#text']) / 1000)
-                                .reduce((acc, cur) => acc + cur, 0) /
-                                scores.length,
-                        ),
-                    ).hex(),
-                },
-                name: dayjs(date, 'YYYYMMDD').format('YYYY-MM-DD'),
-                type: 'box',
-                y: scores?.map(score => Number(score['#text']) / 1000),
-            }))}
-            layout={{
-                autosize: true,
-                font: {
-                    color: themeColors.baseContent,
-                },
-                margin: {
-                    b: 60,
-                    l: 20,
-                    r: 0,
-                    t: 0,
-                },
-                paper_bgcolor: themeColors.base100,
-                plot_bgcolor: themeColors.base100,
-                showlegend: false,
-                xaxis: {
-                    tickformat: '%Y-%m-%d',
-                    // type: 'category', // 等間隔にしたい場合はこれ
-                },
-                yaxis: {
-                    gridcolor: themeColors.base300,
-                },
-            }}
-            style={{
-                width: '100%',
-            }}
-            useResizeHandler
-        />
+        <Suspense>
+            <Plot
+                config={{
+                    staticPlot: true,
+                }}
+                data={Object.entries(scoreDataByDate).map(([date, scores]) => ({
+                    marker: {
+                        // その日の平均点を jet で色付け
+                        color: jetScale(
+                            Math.round(
+                                scores
+                                    .map(score => Number(score['#text']) / 1000)
+                                    .reduce((acc, cur) => acc + cur, 0) /
+                                    scores.length,
+                            ),
+                        ).hex(),
+                    },
+                    name: dayjs(date, 'YYYYMMDD').format('YYYY-MM-DD'),
+                    type: 'box',
+                    y: scores?.map(score => Number(score['#text']) / 1000),
+                }))}
+                layout={{
+                    autosize: true,
+                    font: {
+                        color: themeColors.baseContent,
+                    },
+                    margin: {
+                        b: 60,
+                        l: 20,
+                        r: 0,
+                        t: 0,
+                    },
+                    paper_bgcolor: themeColors.base100,
+                    plot_bgcolor: themeColors.base100,
+                    showlegend: false,
+                    xaxis: {
+                        tickformat: '%Y-%m-%d',
+                        // type: 'category', // 等間隔にしたい場合はこれ
+                    },
+                    yaxis: {
+                        gridcolor: themeColors.base300,
+                    },
+                }}
+                style={{
+                    width: '100%',
+                }}
+                useResizeHandler
+            />
+        </Suspense>
     );
 };
 
@@ -262,9 +266,9 @@ const App = () => {
             Number(score.aiSensitivityGraphAddPointsSection24) > 0 ||
             Number(score.aiSensitivityGraphDeductPointsSection24) > 0,
     );
-    const scoreDataByDate = groupBy(applicableScores, score =>
+    const scoreDataByDate = Object.groupBy(applicableScores, score =>
         score.scoringDateTime.slice(0, 8),
-    );
+    ) as Record<string, DamScore[]>;
     return (
         <Layout title='カラオケ得点状況 | hideo54.com'>
             <h1 className='typography-h1'>カラオケ得点状況</h1>

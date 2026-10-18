@@ -28,4 +28,3 @@ jobs:
         SEGA_PASSWORD: '${{ secrets.SEGA_PASSWORD }}'
         DAM_ID: '${{ secrets.DAM_ID }}'
         DAM_PASSWORD: '${{ secrets.DAM_PASSWORD }}'
-        NEXT_TELEMETRY_DISABLED: 1

@@ -6,11 +6,10 @@ import {
     HardwareChip,
     Open,
 } from '@styled-icons/ionicons-outline';
-import type { NextPage } from 'next';
+import githubDataJson from '../../data/generated/github.json';
+import type { GitHubData } from '../../data/schema/github';
 import { IconAnchor, IconSpan } from '../components/iconTools';
 import Layout from '../components/Layout';
-import githubDataJson from '../data/generated/github.json';
-import type { GitHubData } from '../data/schema/github';
 
 const contributions = githubDataJson as unknown as GitHubData;
 
@@ -187,7 +186,7 @@ const getCategoryIcon = (category: Work['category']) => {
     return Globe;
 };
 
-const App: NextPage = () => {
+const App = () => {
     return (
         <Layout
             description='hideo54が個人で制作したものの一部を紹介します。'

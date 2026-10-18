@@ -1,29 +1,25 @@
-import { MDXProvider } from '@mdx-js/react';
 import { ChevronForward, Open } from '@styled-icons/ionicons-outline';
 import clsx from 'clsx';
-import type { AppProps } from 'next/app';
-import { Noto_Sans_JP } from 'next/font/google';
-import { useRouter } from 'next/router';
-import Script from 'next/script';
-import React, { type ComponentPropsWithoutRef, useEffect } from 'react';
-import './globals.css';
-import { IconAnchor, IconNextLink } from '../components/iconTools';
-import * as gtag from '../lib/gtag';
+import React, { type ComponentPropsWithoutRef } from 'react';
+import { IconAnchor, IconLink } from './components/iconTools';
 
-const mdxComponents = {
+export const mdxComponents = {
     a: (
         props: ComponentPropsWithoutRef<'a'> & {
             hasH2Parent?: boolean;
         },
-    ) =>
-        props.href?.startsWith('/') ? (
-            <IconNextLink
-                {...{ ...props, href: props.href }}
-                RightIcon={props.hasH2Parent ? ChevronForward : undefined}
+    ) => {
+        const { hasH2Parent, href, ...rest } = props;
+        return href?.startsWith('/') ? (
+            <IconLink
+                {...rest}
+                RightIcon={hasH2Parent ? ChevronForward : undefined}
+                to={href}
             />
         ) : (
-            <IconAnchor RightIcon={Open} {...props} />
-        ),
+            <IconAnchor RightIcon={Open} {...rest} href={href} />
+        );
+    },
     blockquote: (props: ComponentPropsWithoutRef<'blockquote'>) => (
         <blockquote
             {...props}
@@ -82,48 +78,3 @@ const mdxComponents = {
         <ul {...props} className={clsx('typography-list', props.className)} />
     ),
 };
-
-// Hiragino Sans が使えない環境向けのフォールバックとして 400 / 700 のみ読み込む
-const noto = Noto_Sans_JP({
-    subsets: ['latin'],
-    variable: '--font-noto',
-    weight: ['400', '700'],
-});
-
-const App = ({ Component, pageProps }: AppProps) => {
-    const router = useRouter();
-    useEffect(() => {
-        const handleRouteChange = (url: string) => {
-            gtag.pageview(url);
-        };
-        router.events.on('routeChangeComplete', handleRouteChange);
-        return () => {
-            router.events.off('routeChangeComplete', handleRouteChange);
-        };
-    }, [router.events]);
-    return (
-        <MDXProvider components={mdxComponents}>
-            <Script
-                // biome-ignore lint/security/noDangerouslySetInnerHtml: This is the official way to add gtag
-                dangerouslySetInnerHTML={{
-                    __html: `
-                        if (window.location.hostname === 'hideo54.web.app' || window.location.hostname === 'hideo54.firebaseapp.com') {
-                            window.location.href = 'https://hideo54.com';
-                        }
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', '${gtag.GA_TRACKING_ID}', {
-                            page_path: window.location.pathname,
-                        });
-                    `,
-                }}
-            />
-            <div className={`${noto.variable} font-display h-full`}>
-                <Component {...pageProps} />
-            </div>
-        </MDXProvider>
-    );
-};
-
-export default App;

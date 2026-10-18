@@ -145,7 +145,10 @@ const main = async () => {
     } else {
         const sampleData = JSON.parse(
             await fs.readFile(
-                path.join(__dirname, 'fixtures/dam-scores.sample.json'),
+                path.join(
+                    import.meta.dirname,
+                    'fixtures/dam-scores.sample.json',
+                ),
                 'utf-8',
             ),
         );

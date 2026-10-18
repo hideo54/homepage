@@ -3,21 +3,19 @@ import { Open, Square } from '@styled-icons/ionicons-outline';
 import { Airplane } from '@styled-icons/ionicons-solid';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
-import { sum } from 'lodash';
-import type { NextPage } from 'next';
-import Flag from 'react-world-flags';
-import GeoMap from '../components/GeoMap';
-import { IconAnchor } from '../components/iconTools';
-import Layout from '../components/Layout';
-import maimaiDataJson from '../data/generated/maimai.json';
-import swarmDataJson from '../data/generated/swarm.json';
-import type { MaimaiData } from '../data/schema/maimai';
-import type { SwarmData } from '../data/schema/swarm';
+import FlagModule from 'react-world-flags';
+import maimaiDataJson from '../../data/generated/maimai.json';
+import swarmDataJson from '../../data/generated/swarm.json';
+import type { MaimaiData } from '../../data/schema/maimai';
+import type { SwarmData } from '../../data/schema/swarm';
 import {
     type SenkyokuId,
     senkyokuResultColors,
-} from '../data/senkyoku-result-colors';
-import { type USStateCode, usStateColors } from '../data/us-state-colors';
+} from '../../data/senkyoku-result-colors';
+import { type USStateCode, usStateColors } from '../../data/us-state-colors';
+import GeoMap from '../components/GeoMap';
+import { IconAnchor } from '../components/iconTools';
+import Layout from '../components/Layout';
 
 const ColorSquare: React.FC<{
     color: string;
@@ -48,10 +46,14 @@ const regularizeAirportName = (airportName: string) => {
     return airportName;
 };
 
+// UMD なので Vite が __esModule を検出できず、default import が { default } のまま来る
+const Flag = ((FlagModule as unknown as { default?: typeof FlagModule })
+    .default ?? FlagModule) as typeof FlagModule;
+
 const swarmData = swarmDataJson as unknown as SwarmData;
 const maimaiData = maimaiDataJson as unknown as MaimaiData;
 
-const App: NextPage = () => {
+const App = () => {
     const senkyokuVisitCounts2022: { [key: string]: number } =
         Object.fromEntries(swarmData.senkyokuVisitCounts2022);
 
@@ -200,7 +202,10 @@ const App: NextPage = () => {
                             / 47
                         </p>
                     ))}
-                    count={sum(Object.values(swarmData.keikenchi))}
+                    count={Object.values(swarmData.keikenchi).reduce<number>(
+                        (acc, cur) => acc + cur,
+                        0,
+                    )}
                     fill={Object.fromEntries(
                         Object.entries(swarmData.keikenchi).map(
                             ([prefId, value]) => [
