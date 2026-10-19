@@ -1,8 +1,7 @@
 /** biome-ignore-all lint/correctness/useUniqueElementIds: ID は好きな文字列を置きたい */
-import { Open, Square } from '@styled-icons/ionicons-outline';
-import { Airplane } from '@styled-icons/ionicons-solid';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
+import { IoAirplane, IoOpenOutline, IoSquareOutline } from 'react-icons/io5';
 import FlagModule from 'react-world-flags';
 import maimaiDataJson from '../../data/generated/maimai.json';
 import swarmDataJson from '../../data/generated/swarm.json';
@@ -21,8 +20,8 @@ const ColorSquare: React.FC<{
     color: string;
     verticalAlign?: string;
 }> = ({ color, verticalAlign = '-6px' }) => (
-    <Square
-        className='mr-1 [&>path]:fill-inherit'
+    <IoSquareOutline
+        className='mr-1 inline [&>path]:fill-inherit'
         fill={color}
         size='1.4em'
         style={{ fill: color, verticalAlign }}
@@ -149,7 +148,7 @@ const App = () => {
                         小選挙区マップ:{' '}
                         <IconAnchor
                             href='https://senkyo.watch'
-                            RightIcon={Open}
+                            RightIcon={IoOpenOutline}
                         >
                             選挙ウォッチ
                         </IconAnchor>
@@ -277,7 +276,7 @@ const App = () => {
                         世界地図:{' '}
                         <IconAnchor
                             href='https://github.com/wri/wri-bounds'
-                            RightIcon={Open}
+                            RightIcon={IoOpenOutline}
                         >
                             wri/wri-bounds
                         </IconAnchor>{' '}
@@ -315,7 +314,7 @@ const App = () => {
                         presidential election. Map:{' '}
                         <IconAnchor
                             href='https://commons.wikimedia.org/wiki/File:Blank_US_Map_(states_only).svg'
-                            RightIcon={Open}
+                            RightIcon={IoOpenOutline}
                         >
                             File:Blank US Map (states only).svg by Heitordp,
                             CC0, via Wikimedia Commons
@@ -350,7 +349,7 @@ const App = () => {
                     {swarmData.visitedAirports.map(airport => (
                         <div key={airport.name}>
                             <div className='flex items-center gap-2 font-bold text-2xl'>
-                                <Airplane
+                                <IoAirplane
                                     size='1.2em'
                                     style={{ verticalAlign: 'text-bottom' }}
                                 />

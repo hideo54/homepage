@@ -1,6 +1,6 @@
-import { ChevronForward, Open } from '@styled-icons/ionicons-outline';
 import clsx from 'clsx';
 import React, { type ComponentPropsWithoutRef } from 'react';
+import { IoChevronForwardOutline, IoOpenOutline } from 'react-icons/io5';
 import { IconAnchor, IconLink } from './components/iconTools';
 
 export const mdxComponents = {
@@ -13,11 +13,11 @@ export const mdxComponents = {
         return href?.startsWith('/') ? (
             <IconLink
                 {...rest}
-                RightIcon={hasH2Parent ? ChevronForward : undefined}
+                RightIcon={hasH2Parent ? IoChevronForwardOutline : undefined}
                 to={href}
             />
         ) : (
-            <IconAnchor RightIcon={Open} {...rest} href={href} />
+            <IconAnchor RightIcon={IoOpenOutline} {...rest} href={href} />
         );
     },
     blockquote: (props: ComponentPropsWithoutRef<'blockquote'>) => (

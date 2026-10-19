@@ -1,11 +1,10 @@
-import { Github, Slack, Twitter } from '@styled-icons/fa-brands';
-import { Robot } from '@styled-icons/fa-solid';
+import { FaGithub, FaRobot, FaSlack, FaTwitter } from 'react-icons/fa';
 import {
-    Construct,
-    Globe,
-    HardwareChip,
-    Open,
-} from '@styled-icons/ionicons-outline';
+    IoConstructOutline,
+    IoGlobeOutline,
+    IoHardwareChipOutline,
+    IoOpenOutline,
+} from 'react-icons/io5';
 import githubDataJson from '../../data/generated/github.json';
 import type { GitHubData } from '../../data/schema/github';
 import { IconAnchor, IconSpan } from '../components/iconTools';
@@ -142,7 +141,7 @@ const WorkDetail: React.FC<{
                         </IconSpan>
                     </div>
                     <span className='mr-4 font-bold text-xl'>
-                        <IconAnchor href={work.url} RightIcon={Open}>
+                        <IconAnchor href={work.url} RightIcon={IoOpenOutline}>
                             {work.title}
                         </IconAnchor>
                     </span>
@@ -165,7 +164,7 @@ const WorkDetail: React.FC<{
                 <p className='typography-p'>
                     <IconAnchor
                         href={work.repoUrl}
-                        LeftIcon={Github}
+                        LeftIcon={FaGithub}
                         margin='0.1em'
                     >
                         オープンソースです。
@@ -177,13 +176,13 @@ const WorkDetail: React.FC<{
 );
 
 const getCategoryIcon = (category: Work['category']) => {
-    if (category === 'Web') return Globe;
-    if (category === 'Machine Learning') return Robot;
-    if (category === 'Slack bot') return Slack;
-    if (category === 'Twitter bot') return Twitter;
-    if (category === 'Utility') return Construct;
-    if (category === 'IoT') return HardwareChip;
-    return Globe;
+    if (category === 'Web') return IoGlobeOutline;
+    if (category === 'Machine Learning') return FaRobot;
+    if (category === 'Slack bot') return FaSlack;
+    if (category === 'Twitter bot') return FaTwitter;
+    if (category === 'Utility') return IoConstructOutline;
+    if (category === 'IoT') return IoHardwareChipOutline;
+    return IoGlobeOutline;
 };
 
 const App = () => {
@@ -225,7 +224,10 @@ const App = () => {
                 <ul className='typography-list'>
                     {contributions.map(repo => (
                         <li key={repo.fullName}>
-                            <IconAnchor href={repo.htmlUrl} RightIcon={Open}>
+                            <IconAnchor
+                                href={repo.htmlUrl}
+                                RightIcon={IoOpenOutline}
+                            >
                                 {repo.fullName}
                             </IconAnchor>
                         </li>

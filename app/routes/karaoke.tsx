@@ -1,8 +1,8 @@
-import { MusicalNote } from '@styled-icons/ionicons-solid';
 import chroma from 'chroma-js';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { lazy, Suspense, useEffect, useState } from 'react';
+import { IoMusicalNote } from 'react-icons/io5';
 import damScoresDataJson from '../../data/generated/dam-scores.json';
 import type { DamScore } from '../../data/schema/dam';
 import Layout from '../components/Layout';
@@ -63,7 +63,7 @@ const Score: React.FC<{
     <li className='row-span-2 mb-4 grid grid-rows-subgrid'>
         <div className='flex'>
             <div>
-                <MusicalNote className='mt-1' size={48} />
+                <IoMusicalNote className='mt-1' size={48} />
             </div>
             <div>
                 <span className='mr-2 font-bold text-lg'>

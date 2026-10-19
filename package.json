@@ -1,11 +1,6 @@
 {
     "dependencies": {
         "@mdx-js/react": "^3.1.1",
-        "@styled-icons/fa-brands": "^10.47.0",
-        "@styled-icons/fa-solid": "^10.47.0",
-        "@styled-icons/ionicons-outline": "^10.46.0",
-        "@styled-icons/ionicons-solid": "^10.46.0",
-        "@styled-icons/styled-icon": "^10.7.1",
         "@turf/turf": "^7.4.0",
         "chroma-js": "^3.2.0",
         "clsx": "^2.1.1",
