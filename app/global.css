@@ -2,7 +2,7 @@
 
 @plugin 'daisyui' {
     themes: false;
-    include: card, badge, avatar, kbd, stat, navbar;
+    include: rootcolor, card, badge, avatar, kbd, stat, navbar;
 }
 
 @plugin 'daisyui/theme' {
