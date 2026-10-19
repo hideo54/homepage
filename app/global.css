@@ -179,8 +179,10 @@
 @layer base {
     html,
     body {
-        @apply h-full;
+        @apply h-full antialiased;
         font-synthesis-weight: none;
+        line-break: strict;
+        text-autospace: normal;
         text-spacing-trim: trim-start;
     }
     body {
