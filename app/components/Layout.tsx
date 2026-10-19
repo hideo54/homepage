@@ -1,4 +1,4 @@
-import type { JSX, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import Navbar from './Navbar';
 
 const Layout = ({
@@ -14,7 +14,6 @@ const Layout = ({
     description?: string;
     imageUrl?: string;
     twitterCardType?: 'summary' | 'summary_large_image' | 'app' | 'player';
-    Header?: JSX.Element;
     showNavbar?: boolean;
 }) => (
     <>
