@@ -2,7 +2,6 @@
 
 @plugin 'daisyui' {
     themes: false;
-    include: rootcolor, card, badge, avatar, kbd, stat, navbar;
 }
 
 @plugin 'daisyui/theme' {
@@ -204,13 +203,12 @@
         text-spacing-trim: trim-start;
     }
     body {
-        /* prose の最大幅 (65ch) を踏襲する */
-        @apply m-auto max-w-[65ch] px-4 leading-7;
+        @apply m-auto max-w-(--breakpoint-lg) leading-7;
     }
-    nav {
-        @apply my-4;
-    }
-    :where(main) a {
-        @apply text-primary no-underline;
+    main {
+        @apply overflow-hidden px-4;
+        a {
+            @apply text-primary underline;
+        }
     }
 }

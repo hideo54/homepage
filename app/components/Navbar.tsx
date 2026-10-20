@@ -1,12 +1,11 @@
-import { Link } from 'react-router';
+import { IoChevronBack } from 'react-icons/io5';
+import { IconLink } from './iconTools';
 
 const Navbar = () => (
-    <div className='navbar px-0'>
-        <div className='navbar-start'>
-            <Link className='font-bold text-xl' to='/'>
-                hideo54.com
-            </Link>
-        </div>
+    <div className='relative mx-4 mt-2 -mb-2 max-w-(--breakpoint-lg) transition hover:underline'>
+        <IconLink LeftIcon={IoChevronBack} to='/'>
+            hideo54.com
+        </IconLink>
     </div>
 );
 

@@ -141,7 +141,7 @@ const App = () => {
                     path='/shu-2022-geo.svg'
                     viewBox='137 20 591 740'
                 />
-                <div className='my-4 leading-4'>
+                <div className='my-4 leading-5'>
                     <small>
                         その小選挙区で当選した候補者の所属政党の色で塗っています。
                         <br />
@@ -152,7 +152,6 @@ const App = () => {
                         >
                             選挙ウォッチ
                         </IconAnchor>
-                        から。
                     </small>
                 </div>
                 <section className='text-sm'>
@@ -240,7 +239,7 @@ const App = () => {
             </section>
             <section id='countries'>
                 <h2 className='typography-h2'>訪れたことのある国と地域</h2>
-                <ul className='grid grid-cols-2 gap-4 p-0 min-[600px]:grid-cols-3'>
+                <ul className='mb-4 grid grid-cols-2 gap-4 p-0 md:grid-cols-3'>
                     {swarmData.allVisitedCountryCodes.map((countryCode, i) => (
                         <li
                             className='m-0 flex flex-col items-start gap-y-2'
@@ -250,7 +249,7 @@ const App = () => {
                                 className='m-0 h-8 shadow'
                                 code={countryCode}
                             />
-                            <div className='text-balance text-sm leading-5'>
+                            <div className='text-sm leading-5'>
                                 {swarmData.allVisitedCountries[i]}
                             </div>
                         </li>
@@ -345,7 +344,7 @@ const App = () => {
                             ))}
                     </div>
                 </div>
-                <div className='grid grid-cols-2 gap-4 min-[680px]:grid-cols-3'>
+                <div className='grid grid-cols-2 gap-4 md:grid-cols-3'>
                     {swarmData.visitedAirports.map(airport => (
                         <div key={airport.name}>
                             <div className='flex items-center gap-2 font-bold text-2xl'>
@@ -387,12 +386,12 @@ const App = () => {
                     {Object.keys(swarmData.ramenRestaurantsCheckinCount).length}
                 </p>
                 <h2 className='typography-h2'>たくさん訪れたラーメン屋</h2>
-                <div className='leading-4'>
+                <div className='mb-4 leading-4'>
                     <small>
                         同一ラーメンチェーンの「〇〇店」といった支店名は除去し、まとめて計上しています。
                     </small>
                 </div>
-                <ul className='grid grid-cols-2 gap-4 p-0 min-[640px]:grid-cols-3'>
+                <ul className='grid grid-cols-2 gap-4 p-0 md:grid-cols-3'>
                     {Object.entries(swarmData.ramenRestaurantsCheckinCount)
                         .slice(0, 12)
                         .map(([restaurantName, count]) => (
@@ -406,9 +405,7 @@ const App = () => {
                                     </span>
                                     <span className='text-xs'>回</span>
                                 </div>
-                                <div className='text-balance'>
-                                    {restaurantName}
-                                </div>
+                                <div>{restaurantName}</div>
                             </li>
                         ))}
                 </ul>
