@@ -75,9 +75,9 @@
 
 @font-face {
     font-family: 'Local Noto Sans JP';
-    src:
-        local('Noto Sans JP Bold'),
-        /* for Windows */ local('Noto Sans CJK JP Bold'); /* for Android */
+    src: local('Noto Sans JP Regular'), /* for Windows */
+        local('Noto Sans CJK JP Regular'), /* for Android */
+        local('Noto Sans CJK JP'); /* for Linux */
     font-weight: 700;
 }
 
