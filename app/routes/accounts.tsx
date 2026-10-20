@@ -1,8 +1,8 @@
 import fs from 'node:fs/promises';
 import clsx from 'clsx';
-import type { InferGetStaticPropsType, NextPage } from 'next';
 import yaml from 'yaml';
 import Layout from '../components/Layout';
+import type { Route } from './+types/accounts';
 
 interface Tag {
     color: string;
@@ -48,17 +48,12 @@ const TagComponent: React.FC<Tag> = ({ color, name, username, link }) => {
     return body;
 };
 
-export const getStaticProps = async () => {
+export const loader = async () => {
     const yamlStr = await fs.readFile('data/accounts.yaml', 'utf-8');
-    const data = yaml.parse(yamlStr) as Data;
-    return {
-        props: { data },
-    };
+    return yaml.parse(yamlStr) as Data;
 };
 
-type StaticProps = InferGetStaticPropsType<typeof getStaticProps>;
-
-const App: NextPage<StaticProps> = ({ data }) => (
+const App = ({ loaderData: data }: Route.ComponentProps) => (
     <Layout
         description='hideo54が所持している各サービスのアカウントの一覧です。'
         title='アカウント一覧 | hideo54.com'

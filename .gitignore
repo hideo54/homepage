@@ -9,10 +9,8 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
-next-env.d.ts
+# react-router
+/.react-router/
 
 # production
 /build

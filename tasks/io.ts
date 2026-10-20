@@ -2,14 +2,14 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: path.join(__dirname, '../.env.local') });
+dotenv.config({ path: path.join(import.meta.dirname, '../.env.local') });
 
-const generatedDir = path.join(__dirname, '../data/generated');
-const cacheDir = path.join(__dirname, '.cache');
+const generatedDir = path.join(import.meta.dirname, '../data/generated');
+const cacheDir = path.join(import.meta.dirname, '.cache');
 
 /** data/geo などの読み取り専用素材へのパスを解決する。 */
 export const dataPath = (...segments: string[]) =>
-    path.join(__dirname, '../data', ...segments);
+    path.join(import.meta.dirname, '../data', ...segments);
 
 /** スクレイピング結果を data/generated/<name>.json に書き出す。 */
 export const writeGenerated = async (name: string, data: unknown) => {

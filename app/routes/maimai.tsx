@@ -1,7 +1,7 @@
+import maimaiDataJson from '../../data/generated/maimai.json';
+import type { MaimaiData } from '../../data/schema/maimai';
 import GeoMap from '../components/GeoMap';
 import Layout from '../components/Layout';
-import maimaiDataJson from '../data/generated/maimai.json';
-import type { MaimaiData } from '../data/schema/maimai';
 
 const maimaiData = maimaiDataJson as unknown as MaimaiData;
 
@@ -29,7 +29,6 @@ const App = () => {
                                         {record.name.normalize('NFKC')}
                                     </span>
                                     {!record.isStandard && (
-                                        // biome-ignore lint/performance/noImgElement: 仕方ない
                                         <img
                                             alt='Deluxe'
                                             className='mb-2 ml-2 inline h-4'
