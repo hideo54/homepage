@@ -3,7 +3,7 @@ import path from 'node:path';
 import { XMLParser } from 'fast-xml-parser';
 import * as admin from 'firebase-admin';
 import { getFirestore } from 'firebase-admin/firestore';
-import { scrapeHTML } from 'scrape-it';
+import scrapeIt from 'scrape-it';
 import type { DamScore } from '../data/schema/dam';
 import { writeGenerated } from './io';
 
@@ -83,7 +83,7 @@ const main = async () => {
             },
         },
     );
-    const myPageData = scrapeHTML<{
+    const myPageData = scrapeIt.scrapeHTML<{
         cdmToken: string;
     }>(await myPageRes.text(), {
         cdmToken: {
