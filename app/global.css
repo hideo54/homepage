@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './typography.css';
 
 @plugin 'daisyui' {
     themes: false;
@@ -32,72 +33,6 @@
     --color-primary-content: #fff;
 }
 
-/*
- * Hiragino Sans JP のカバー範囲
- * ("Hiragino Sans" と名付けると macOS で "Hiragino Sans" が優先されてしまうので、"Hiragino Sans JP" としている)
- *   U+2026        … 三点リーダ (全角幅で組みたいので日本語フォント側に寄せる)
- *   U+3000-303F   … 全角スペース・句読点・括弧などの CJK 記号
- *   U+3040-30FF   … ひらがな + カタカナ
- *   U+31F0-31FF   … カタカナ拡張 (小書きカナ)
- *   U+4E00-9FFF   … CJK 統合漢字
- *   U+F900-FAFF   … CJK 互換漢字 (﨑・髙などの異体字。人名で使う)
- *   U+FF01-FF9F   … 全角英数字・全角記号 + 半角カナ
- *   U+FFE0-FFE6   … 全角の ￥ ＄ ￡ など
- */
-@font-face {
-    font-family: 'Hiragino Sans JP';
-    src: local(HiraginoSans-W4), local('Hiragino Sans W4');
-    font-weight: 400;
-    unicode-range:
-        U+2026, U+3000-303F, U+3040-30FF, U+31F0-31FF, U+4E00-9FFF, U+F900-FAFF,
-        U+FF01-FF9F, U+FFE0-FFE6;
-    size-adjust: 93.5%;
-}
-
-@font-face {
-    font-family: 'Hiragino Sans JP';
-    src: local(HiraginoSans-W7), local('Hiragino Sans W7');
-    font-weight: 700;
-    unicode-range:
-        U+2026, U+3000-303F, U+3040-30FF, U+31F0-31FF, U+4E00-9FFF, U+F900-FAFF,
-        U+FF01-FF9F, U+FFE0-FFE6;
-    size-adjust: 93.5%;
-}
-
-@font-face {
-    font-family: 'Hiragino Sans JP';
-    src: local(HiraginoSans-W8), local('Hiragino Sans W8');
-    font-weight: 800;
-    unicode-range:
-        U+2026, U+3000-303F, U+3040-30FF, U+31F0-31FF, U+4E00-9FFF, U+F900-FAFF,
-        U+FF01-FF9F, U+FFE0-FFE6;
-    size-adjust: 93.5%;
-}
-
-@font-face {
-    font-family: 'Local Noto Sans JP';
-    src:
-        local('Noto Sans JP Regular'),
-        /* for Windows */ local('Noto Sans CJK JP Regular'); /* for Android */
-    font-weight: 400;
-}
-
-@font-face {
-    font-family: 'Local Noto Sans JP';
-    src: local('Noto Sans JP Regular'), /* for Windows */
-        local('Noto Sans CJK JP Regular'), /* for Android */
-        local('Noto Sans CJK JP'); /* for Linux */
-    font-weight: 700;
-}
-
-@font-face {
-    font-family: "Local Noto Sans JP";
-    src: local('Noto Sans JP ExtraBold'), /* for Windows */
-        local('Noto Sans CJK JP ExtraBold'), /* for Android */
-        local('Noto Sans CJK JP Bold'); /* for Linux without ExtraBold */
-    font-weight: 800;
-}
-
 @theme {
     --animate-shine: shine 1s infinite;
 
@@ -122,77 +57,6 @@
     }
 }
 
-@utility typography-h1 {
-    @apply mt-8 mb-5 font-extrabold text-5xl;
-}
-
-@utility typography-h2 {
-    @apply mt-8 mb-5 font-extrabold text-3xl;
-}
-
-@utility typography-h3 {
-    @apply mt-7 mb-2 font-bold text-xl;
-}
-
-@utility typography-h4 {
-    @apply mt-6 mb-2 font-bold text-lg;
-}
-
-/* h5 は本文と同じ字送りで、太字だけで見出しであることを示す */
-@utility typography-h5 {
-    @apply mt-5 mb-2 font-bold text-base;
-}
-
-@utility typography-p {
-    @apply my-2;
-}
-
-/* ul / ol で見た目を変える必要が出るまでは同じ定義を共有する */
-@utility typography-list {
-    padding-inline-start: 1.5em;
-    list-style-type: revert;
-    & > li {
-        padding-block: 0.25em;
-        padding-inline-start: 0.5em;
-        &:first-child {
-            padding-block-start: 0.5em;
-        }
-        &:last-child {
-            padding-block-end: 0.5em;
-        }
-    }
-}
-
-@utility typography-blockquote {
-    @apply my-4 border-base-300 border-l-4 pl-4 text-base-content/70;
-}
-
-@utility typography-code {
-    @apply rounded bg-base-200 px-1 py-0.5 font-mono text-[0.9em];
-}
-
-@utility typography-pre {
-    @apply my-4 overflow-x-auto rounded-lg bg-base-200 p-4 text-sm;
-    & code {
-        @apply bg-transparent p-0;
-    }
-}
-
-@utility typography-hr {
-    @apply my-8 border-base-300 border-t;
-}
-
-@utility typography-table {
-    @apply my-4 w-full border-collapse text-left text-sm;
-    & th,
-    & td {
-        @apply border-base-300 border-b px-2 py-2;
-    }
-    & th {
-        @apply font-bold;
-    }
-}
-
 @layer base {
     html,
     body {
@@ -208,7 +72,7 @@
     main {
         @apply overflow-hidden px-4;
         a {
-            @apply text-primary underline;
+            @apply text-primary hover:underline transition;
         }
     }
 }
