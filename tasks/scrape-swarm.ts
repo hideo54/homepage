@@ -4,7 +4,6 @@ import dayjs from 'dayjs';
 import type { Feature, Position } from 'geojson';
 import isoCountries from 'i18n-iso-countries';
 import { prefectureIds, prefectureInfos } from 'jp-local-gov';
-import { countBy, uniqBy } from 'lodash';
 import type { Keikenchi, SwarmData } from '../data/schema/swarm';
 import { dataPath, withCache, writeGenerated } from './io';
 
@@ -210,27 +209,31 @@ const getCheckinData = async () => {
         }
     }
 
-    const visitedAirports = uniqBy(
-        allCheckins
-            .filter(
-                checkin =>
-                    checkin.venue.categories
-                        .map(cat => cat.name)
-                        .some(catName => catName.match(/^(国際)?空港$/)) &&
-                    !checkin.venue.name.includes('滑走路'),
-            )
-            .map(checkin => ({
-                countryCode: checkin.venue.location.cc,
-                name: checkin.venue.name,
-            }))
-            .reverse(), // 訪問順
-        'name',
+    const airportCheckins = allCheckins
+        .filter(
+            checkin =>
+                checkin.venue.categories
+                    .map(cat => cat.name)
+                    .some(catName => catName.match(/^(国際)?空港$/)) &&
+                !checkin.venue.name.includes('滑走路'),
+        )
+        .map(checkin => ({
+            countryCode: checkin.venue.location.cc,
+            name: checkin.venue.name,
+        }))
+        .reverse(); // 訪問順
+    const visitedAirports = airportCheckins.filter(
+        (airport, i) =>
+            airportCheckins.findIndex(a => a.name === airport.name) === i,
     );
 
     const visitedAirportsByCountry = Object.entries(
-        countBy(visitedAirports, 'countryCode'),
+        Object.groupBy(visitedAirports, airport => airport.countryCode),
     )
-        .map(([countryCode, count]) => ({ count, countryCode }))
+        .map(([countryCode, airports]) => ({
+            count: airports?.length ?? 0,
+            countryCode,
+        }))
         .sort((a, b) => -(a.count - b.count));
 
     const allVisitedCountries = Array.from(
