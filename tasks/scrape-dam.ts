@@ -43,9 +43,14 @@ const getScores = async ({
         attributeNamePrefix: '',
         ignoreAttributes: false,
     });
-    const scoresData: DamScore[] = parser
-        .parse(await scoresRes.text())
-        .document.list.data.map((d: { scoring: DamScore }) => d.scoring);
+    const document = parser.parse(await scoresRes.text()).document;
+    if (document.result?.status === 'NG') {
+        return [];
+    }
+    const rawData = document.list.data;
+    const scoresData: DamScore[] = (
+        Array.isArray(rawData) ? rawData : [rawData]
+    ).map((d: { scoring: DamScore }) => d.scoring);
     return scoresData;
 };
 
