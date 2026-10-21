@@ -250,6 +250,11 @@ const App = () => {
                     path='/intl_wintri.svg'
                     viewBox='0 0 800 485'
                 />
+                <MonthlyVisitChart
+                    data={swarmData.monthlyVisitStats}
+                    dataKey='countries'
+                    tickInterval={5}
+                />
                 <div className='my-4 leading-4'>
                     <small>
                         世界地図:{' '}

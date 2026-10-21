@@ -12,9 +12,15 @@ import type { MonthlyVisitStat } from '../../data/schema/swarm';
 
 const MonthlyVisitChart: React.FC<{
     data: MonthlyVisitStat[];
-    dataKey: 'keikenchi' | 'senkyoku';
-    maxCount: number;
-}> = ({ data, dataKey, maxCount }) => (
+    dataKey: 'countries' | 'keikenchi' | 'senkyoku';
+    maxCount?: number;
+    tickInterval?: number;
+}> = ({
+    data,
+    dataKey,
+    maxCount = Math.max(...data.map(stat => stat[dataKey])),
+    tickInterval = 50,
+}) => (
     <LineChart
         data={data}
         margin={{ bottom: 0, left: 8, right: 8, top: 8 }}
@@ -47,8 +53,8 @@ const MonthlyVisitChart: React.FC<{
             tick={{ fill: 'currentColor' }}
             tickLine={false}
             ticks={Array.from(
-                { length: Math.floor(maxCount / 50) + 1 },
-                (_, i) => i * 50,
+                { length: Math.floor(maxCount / tickInterval) + 1 },
+                (_, i) => i * tickInterval,
             )}
             width={32}
         />

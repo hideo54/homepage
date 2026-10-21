@@ -4,7 +4,12 @@ import dayjs from 'dayjs';
 import type { Feature, Position } from 'geojson';
 import isoCountries from 'i18n-iso-countries';
 import { prefectureIds, prefectureInfos } from 'jp-local-gov';
-import type { Keikenchi, PrefectureId, SwarmData } from '../data/schema/swarm';
+import type {
+    CountryCodeAlpha3,
+    Keikenchi,
+    PrefectureId,
+    SwarmData,
+} from '../data/schema/swarm';
 import { dataPath, withCache, writeGenerated } from './io';
 
 interface CheckinResponse {
@@ -157,6 +162,10 @@ const manualSenkyokuVisits: { senkyoku: string; since: string }[] = [
     { senkyoku: 'mie-4', since: '2012-08' }, // 中学1年生、家族旅行
 ];
 
+const manualCountryVisits: { country: CountryCodeAlpha3; since: string }[] = [
+    { country: 'KOR', since: '2012-03' },
+];
+
 const calcKeikenchi = (allCheckins: Checkin[], month?: string) => {
     const checkinsByState = Object.groupBy(
         allCheckins.filter(checkin => !checkin.private),
@@ -237,6 +246,25 @@ const calcMonthlyVisitStats = (
         toMonth(checkin.createdAt),
     );
     const lastMonth = checkinMonths.reduce((a, b) => (a > b ? a : b));
+    const countryFirstVisitMonths = new Map<string, string>();
+    for (const { code, month } of [
+        ...allCheckins.map(checkin => ({
+            code: isoCountries.alpha2ToAlpha3(
+                checkin.venue.location.cc.toUpperCase(),
+            ),
+            month: toMonth(checkin.createdAt),
+        })),
+        ...manualCountryVisits.map(visit => ({
+            code: visit.country,
+            month: visit.since,
+        })),
+    ]) {
+        const earliest = code && countryFirstVisitMonths.get(code);
+        if (code && (!earliest || month < earliest)) {
+            countryFirstVisitMonths.set(code, month);
+        }
+    }
+
     const months: string[] = [];
     for (
         let month = dayjs(checkinMonths.reduce((a, b) => (a < b ? a : b)));
@@ -247,6 +275,9 @@ const calcMonthlyVisitStats = (
     }
 
     return months.map(month => ({
+        countries: Array.from(countryFirstVisitMonths.values()).filter(
+            m => m <= month,
+        ).length,
         keikenchi: Object.values(
             calcKeikenchi(
                 allCheckins.filter(
@@ -440,7 +471,9 @@ const sampleData = {
     keikenchi: {
         hokkaido: 4,
     },
-    monthlyVisitStats: [{ keikenchi: 4, month: '2025-01', senkyoku: 1 }],
+    monthlyVisitStats: [
+        { countries: 1, keikenchi: 4, month: '2025-01', senkyoku: 1 },
+    ],
     newestCheckinDate: '2025-01-11',
     oldestCheckinDate: '2012-09-17',
     ramenRestaurantsCheckinCount: {
