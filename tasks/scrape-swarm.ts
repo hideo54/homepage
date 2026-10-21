@@ -440,7 +440,8 @@ const getCheckinData = async () => {
                 (word, i) =>
                     i === 0 || (!word.endsWith('店') && !word.endsWith('組')),
             )
-            .join(' ');
+            .join(' ')
+            .replace('麺屋もりき都島', '麺屋護城'); // 店舗ごとに表記が異なる。都島は閉店したので寝屋川に寄せる。
     const allRamenRestaurantNames = Array.from(
         new Set(
             checkinsByCategory.ラーメン屋.map(checkin =>
