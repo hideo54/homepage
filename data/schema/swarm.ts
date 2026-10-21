@@ -18,11 +18,19 @@ export interface VisitedAirportCount {
     countryCode: CountryCodeAlpha2;
 }
 
+export interface MonthlyVisitStat {
+    keikenchi: number;
+    /** YYYY-MM */
+    month: string;
+    senkyoku: number;
+}
+
 export interface SwarmData {
     allVisitedCountries: string[];
     allVisitedCountryCodes: CountryCodeAlpha3[];
     allVisitedUSStates: string[];
     keikenchi: Record<PrefectureId, Keikenchi>;
+    monthlyVisitStats: MonthlyVisitStat[];
     newestCheckinDate: string;
     oldestCheckinDate: string;
     ramenRestaurantsCheckinCount: Record<string, number>;

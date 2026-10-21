@@ -126,6 +126,123 @@ const fetchAllCheckins = async () => {
     return allCheckins;
 };
 
+type Checkin = CheckinResponse['response']['checkins']['items'][number];
+
+const manualKeikenchi: Record<string, Keikenchi> = {
+    ehime: 4, // 2019年3月、傷心旅行 (スーパー温泉に宿泊)
+    fukuoka: 4, // 2019年9月、ミニキャンプチューター (チェックイン忘れ)。あと2023年竹中ゼミ。
+    hiroshima: 4, // 2019年3月、傷心旅行 (チェックイン忘れ)
+    hyogo: 4, // 中学1年生、部活動の合宿
+    kagoshima: 4, // 車中泊 (2025/3/30)
+    kanagawa: 4, // 2015年8月、Mine の家
+    nagasaki: 4, // 2014年1月、家族旅行 (チェックイン忘れ)
+    nara: 4, // 小学生時代
+    osaka: 5, // 実家 (1999–2019)
+    shiga: 4, // 小学生時代
+    tokyo: 5, // 一人暮らし (2019–)
+    toyama: 1, // 2014年5月、中学校の野外活動で通過
+    // 以下、やっぱ誤魔化さずにちゃんと住民票ベースにしようということで、廃止
+    // saga: 5, // 2023年3月、免許合宿でホテルに12泊し、佐賀に親しみを覚えたので、実質居住
+    // kumamoto: 5, // 2023年6月、人工知能学会でホテルに5泊し、熊本に親しみを覚えたので、実質居住
+};
+
+const calcKeikenchi = (allCheckins: Checkin[]) => {
+    const checkinsByState = Object.groupBy(
+        allCheckins.filter(checkin => !checkin.private),
+        checkin => checkin.venue.location.state,
+    );
+    const keikenchi = Object.fromEntries(
+        prefectureInfos.map(prefInfo => {
+            const checkins = checkinsByState[prefInfo.name] ?? [];
+            const categories = new Set(
+                checkins.flatMap(checkin =>
+                    checkin.venue.categories.map(category => category.name),
+                ),
+            );
+            const value = ((): Keikenchi => {
+                for (const hotelCategory of [
+                    'ホテル',
+                    'Bed and Breakfast',
+                    'B&Bホテル',
+                    'モーテル',
+                    '宿屋',
+                ]) {
+                    if (categories.has(hotelCategory)) return 4;
+                }
+                if (categories.size === 1 && categories.has('鉄道駅')) return 2;
+                if (checkins.length > 0) return 3;
+                return 0;
+            })();
+            return [prefInfo.id, value];
+        }),
+    );
+    for (const [key, value] of Object.entries(manualKeikenchi)) {
+        if (keikenchi[key] < value) {
+            keikenchi[key] = value;
+        }
+    }
+    return keikenchi;
+};
+
+const toMonth = (unixTime: number) => dayjs(unixTime * 1000).format('YYYY-MM');
+
+const calcMonthlyVisitStats = (
+    allCheckins: Checkin[],
+    senkyokuGeoJson: Parameters<typeof calcSenkyokuVisitCounts>[0],
+) => {
+    const earliestByCoordinates = new Map<string, Checkin>();
+    for (const checkin of allCheckins) {
+        const key = `${checkin.venue.location.lng},${checkin.venue.location.lat}`;
+        const earliest = earliestByCoordinates.get(key);
+        if (!earliest || checkin.createdAt < earliest.createdAt) {
+            earliestByCoordinates.set(key, checkin);
+        }
+    }
+    const points = Array.from(earliestByCoordinates.values()).map(checkin =>
+        turf.point([checkin.venue.location.lng, checkin.venue.location.lat], {
+            month: toMonth(checkin.createdAt),
+        }),
+    );
+    const senkyokuFirstVisitMonths = senkyokuGeoJson.features
+        .map(senkyoku => {
+            const senkyokuPolygon = turf.multiPolygon(
+                senkyoku.geometry.coordinates,
+            );
+            return points
+                .filter(point =>
+                    turf.booleanPointInPolygon(point, senkyokuPolygon),
+                )
+                .map(point => point.properties.month)
+                .sort()[0];
+        })
+        .filter(month => month !== undefined);
+
+    const checkinMonths = allCheckins.map(checkin =>
+        toMonth(checkin.createdAt),
+    );
+    const lastMonth = checkinMonths.reduce((a, b) => (a > b ? a : b));
+    const months: string[] = [];
+    for (
+        let month = dayjs(checkinMonths.reduce((a, b) => (a < b ? a : b)));
+        month.format('YYYY-MM') <= lastMonth;
+        month = month.add(1, 'month')
+    ) {
+        months.push(month.format('YYYY-MM'));
+    }
+
+    return months.map(month => ({
+        keikenchi: Object.values(
+            calcKeikenchi(
+                allCheckins.filter(
+                    checkin => toMonth(checkin.createdAt) <= month,
+                ),
+            ),
+        ).reduce<number>((acc, cur) => acc + cur, 0),
+        month,
+        senkyoku: senkyokuFirstVisitMonths.filter(m => m <= month).length,
+    }));
+};
+
 const getCheckinData = async () => {
     const allCheckins = await withCache('checkins', fetchAllCheckins);
     const allCoordinates = new Set(
@@ -157,57 +274,11 @@ const getCheckinData = async () => {
         allCoordinates,
     );
 
-    const keikenchi = Object.fromEntries(
-        prefectureInfos.map(prefInfo => {
-            const checkins = allCheckins.filter(
-                checkin =>
-                    !checkin.private &&
-                    checkin.venue.location.state === prefInfo.name,
-            );
-            const categories = new Set(
-                checkins.flatMap(checkin =>
-                    checkin.venue.categories.map(category => category.name),
-                ),
-            );
-            const value = ((): Keikenchi => {
-                for (const hotelCategory of [
-                    'ホテル',
-                    'Bed and Breakfast',
-                    'B&Bホテル',
-                    'モーテル',
-                    '宿屋',
-                ]) {
-                    if (categories.has(hotelCategory)) return 4;
-                }
-                if (categories.size === 1 && categories.has('鉄道駅')) return 2;
-                if (checkins.length > 0) return 3;
-                return 0;
-            })();
-            return [prefInfo.id, value];
-        }),
+    const keikenchi = calcKeikenchi(allCheckins);
+    const monthlyVisitStats = calcMonthlyVisitStats(
+        allCheckins,
+        senkyokuGeoJson2022,
     );
-    const manualKeikenchi: Record<string, Keikenchi> = {
-        ehime: 4, // 2019年3月、傷心旅行 (スーパー温泉に宿泊)
-        fukuoka: 4, // 2019年9月、ミニキャンプチューター (チェックイン忘れ)。あと2023年竹中ゼミ。
-        hiroshima: 4, // 2019年3月、傷心旅行 (チェックイン忘れ)
-        hyogo: 4, // 中学1年生、部活動の合宿
-        kagoshima: 4, // 車中泊 (2025/3/30)
-        kanagawa: 4, // 2015年8月、Mine の家
-        nagasaki: 4, // 2014年1月、家族旅行 (チェックイン忘れ)
-        nara: 4, // 小学生時代
-        osaka: 5, // 実家 (1999–2019)
-        shiga: 4, // 小学生時代
-        tokyo: 5, // 一人暮らし (2019–)
-        toyama: 1, // 2014年5月、中学校の野外活動で通過
-        // 以下、やっぱ誤魔化さずにちゃんと住民票ベースにしようということで、廃止
-        // saga: 5, // 2023年3月、免許合宿でホテルに12泊し、佐賀に親しみを覚えたので、実質居住
-        // kumamoto: 5, // 2023年6月、人工知能学会でホテルに5泊し、熊本に親しみを覚えたので、実質居住
-    };
-    for (const [key, value] of Object.entries(manualKeikenchi)) {
-        if (keikenchi[key] < value) {
-            keikenchi[key] = value;
-        }
-    }
 
     const airportCheckins = allCheckins
         .filter(
@@ -324,6 +395,7 @@ const getCheckinData = async () => {
         allVisitedCountryCodes,
         allVisitedUSStates,
         keikenchi,
+        monthlyVisitStats,
         newestCheckinDate,
         oldestCheckinDate,
         ramenRestaurantsCheckinCount,
@@ -342,6 +414,7 @@ const sampleData = {
     keikenchi: {
         hokkaido: 4,
     },
+    monthlyVisitStats: [{ keikenchi: 4, month: '2025-01', senkyoku: 1 }],
     newestCheckinDate: '2025-01-11',
     oldestCheckinDate: '2012-09-17',
     ramenRestaurantsCheckinCount: {
@@ -364,6 +437,7 @@ const main = async () => {
                   allVisitedCountryCodes: [],
                   allVisitedUSStates: [],
                   keikenchi: {},
+                  monthlyVisitStats: [],
                   newestCheckinDate: '',
                   oldestCheckinDate: '',
                   ramenRestaurantsCheckinCount: {},
