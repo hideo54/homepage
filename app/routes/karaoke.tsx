@@ -88,8 +88,8 @@ const Score: React.FC<{
                 />
             </div>
         </div>
-        <div className='ml-5 border-base-300 border-l-2 border-solid pl-3'>
-            <div>{dayjs(scoreData.scoringDateTime).format('YYYY/M/D')}</div>
+        <div className='border-base-200 border-l-2 border-solid pl-3'>
+            <div>{dayjs(scoreData.scoringDateTime).format('YYYY/MM/DD')}</div>
             <div>
                 <div className='font-bold text-sm'>音域</div>
                 <span className='mr-2'>
