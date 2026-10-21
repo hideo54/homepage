@@ -15,6 +15,7 @@ import { type USStateCode, usStateColors } from '../../data/us-state-colors';
 import GeoMap from '../components/GeoMap';
 import { IconAnchor } from '../components/iconTools';
 import Layout from '../components/Layout';
+import MonthlyVisitChart from '../components/MonthlyVisitChart';
 
 const ColorSquare: React.FC<{
     color: string;
@@ -135,6 +136,11 @@ const App = () => {
                     path='/shu-2022-geo.svg'
                     viewBox='137 20 591 740'
                 />
+                <MonthlyVisitChart
+                    data={swarmData.monthlyVisitStats}
+                    dataKey='senkyoku'
+                    maxCount={289}
+                />
                 <div className='my-4 leading-5'>
                     <small>
                         その小選挙区で当選した候補者の所属政党の色で塗っています。
@@ -210,6 +216,11 @@ const App = () => {
                     maxCount={5 * 47}
                     path='/prefectures-simplify-20.svg'
                     viewBox='137.0 20.0 591.0 740.0'
+                />
+                <MonthlyVisitChart
+                    data={swarmData.monthlyVisitStats}
+                    dataKey='keikenchi'
+                    maxCount={5 * 47}
                 />
             </section>
             <section id='maimai'>
