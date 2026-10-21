@@ -53,7 +53,7 @@ const App = () => {
             </section>
             <section>
                 <h2 className='typography-h2'>
-                    全国行脚 (プレイしたことがある都道府県)
+                    全国行脚（プレイしたことがある都道府県）
                 </h2>
                 <GeoMap
                     alt='都道府県地図'
