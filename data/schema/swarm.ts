@@ -19,6 +19,7 @@ export interface VisitedAirportCount {
 }
 
 export interface MonthlyVisitStat {
+    airports: number;
     countries: number;
     keikenchi: number;
     /** YYYY-MM */

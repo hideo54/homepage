@@ -206,6 +206,12 @@ const calcKeikenchi = (allCheckins: Checkin[], month?: string) => {
 
 const toMonth = (unixTime: number) => dayjs(unixTime * 1000).format('YYYY-MM');
 
+const isAirportCheckin = (checkin: Checkin) =>
+    checkin.venue.categories
+        .map(cat => cat.name)
+        .some(catName => catName.match(/^(国際)?空港$/)) &&
+    !checkin.venue.name.includes('滑走路');
+
 const calcFirstVisitMonths = (
     visits: { key: string | undefined; month: string }[],
 ) => {
@@ -272,6 +278,12 @@ const calcMonthlyVisitStats = (
             month: visit.since,
         })),
     ]);
+    const airportFirstVisitMonths = calcFirstVisitMonths(
+        allCheckins.filter(isAirportCheckin).map(checkin => ({
+            key: checkin.venue.name,
+            month: toMonth(checkin.createdAt),
+        })),
+    );
     const usStateFirstVisitMonths = calcFirstVisitMonths(
         allCheckins
             .filter(
@@ -293,6 +305,7 @@ const calcMonthlyVisitStats = (
     }
 
     return months.map(month => ({
+        airports: airportFirstVisitMonths.filter(m => m <= month).length,
         countries: countryFirstVisitMonths.filter(m => m <= month).length,
         keikenchi: Object.values(
             calcKeikenchi(
@@ -355,13 +368,7 @@ const getCheckinData = async () => {
     );
 
     const airportCheckins = allCheckins
-        .filter(
-            checkin =>
-                checkin.venue.categories
-                    .map(cat => cat.name)
-                    .some(catName => catName.match(/^(国際)?空港$/)) &&
-                !checkin.venue.name.includes('滑走路'),
-        )
+        .filter(isAirportCheckin)
         .map(checkin => ({
             countryCode: checkin.venue.location.cc,
             name: checkin.venue.name,
@@ -490,6 +497,7 @@ const sampleData = {
     },
     monthlyVisitStats: [
         {
+            airports: 1,
             countries: 1,
             keikenchi: 4,
             month: '2025-01',

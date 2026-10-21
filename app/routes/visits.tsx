@@ -370,6 +370,11 @@ const App = () => {
                         </div>
                     ))}
                 </div>
+                <MonthlyVisitChart
+                    data={swarmData.monthlyVisitStats}
+                    dataKey='airports'
+                    tickInterval={10}
+                />
             </section>
             <section id='ramen'>
                 <h2 className='typography-h2'>訪れたラーメン屋の総数</h2>
