@@ -291,6 +291,12 @@ const App = () => {
                     svgPadding='0 2em'
                     viewBox='0 0 940 593'
                 />
+                <MonthlyVisitChart
+                    data={swarmData.monthlyVisitStats}
+                    dataKey='usStates'
+                    maxCount={51}
+                    tickInterval={10}
+                />
                 <div className='my-4 leading-4'>
                     <small>
                         50 states + District of Columbia. Color represents the

@@ -12,7 +12,7 @@ import type { MonthlyVisitStat } from '../../data/schema/swarm';
 
 const MonthlyVisitChart: React.FC<{
     data: MonthlyVisitStat[];
-    dataKey: 'countries' | 'keikenchi' | 'senkyoku';
+    dataKey: 'countries' | 'keikenchi' | 'senkyoku' | 'usStates';
     maxCount?: number;
     tickInterval?: number;
 }> = ({

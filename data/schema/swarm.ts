@@ -24,6 +24,7 @@ export interface MonthlyVisitStat {
     /** YYYY-MM */
     month: string;
     senkyoku: number;
+    usStates: number;
 }
 
 export interface SwarmData {

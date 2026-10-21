@@ -206,6 +206,20 @@ const calcKeikenchi = (allCheckins: Checkin[], month?: string) => {
 
 const toMonth = (unixTime: number) => dayjs(unixTime * 1000).format('YYYY-MM');
 
+const calcFirstVisitMonths = (
+    visits: { key: string | undefined; month: string }[],
+) => {
+    const firstVisitMonths = new Map<string, string>();
+    for (const { key, month } of visits) {
+        if (key === undefined) continue;
+        const earliest = firstVisitMonths.get(key);
+        if (!earliest || month < earliest) {
+            firstVisitMonths.set(key, month);
+        }
+    }
+    return Array.from(firstVisitMonths.values());
+};
+
 const calcMonthlyVisitStats = (
     allCheckins: Checkin[],
     senkyokuGeoJson: Parameters<typeof calcSenkyokuVisitCounts>[0],
@@ -246,24 +260,28 @@ const calcMonthlyVisitStats = (
         toMonth(checkin.createdAt),
     );
     const lastMonth = checkinMonths.reduce((a, b) => (a > b ? a : b));
-    const countryFirstVisitMonths = new Map<string, string>();
-    for (const { code, month } of [
+    const countryFirstVisitMonths = calcFirstVisitMonths([
         ...allCheckins.map(checkin => ({
-            code: isoCountries.alpha2ToAlpha3(
+            key: isoCountries.alpha2ToAlpha3(
                 checkin.venue.location.cc.toUpperCase(),
             ),
             month: toMonth(checkin.createdAt),
         })),
         ...manualCountryVisits.map(visit => ({
-            code: visit.country,
+            key: visit.country,
             month: visit.since,
         })),
-    ]) {
-        const earliest = code && countryFirstVisitMonths.get(code);
-        if (code && (!earliest || month < earliest)) {
-            countryFirstVisitMonths.set(code, month);
-        }
-    }
+    ]);
+    const usStateFirstVisitMonths = calcFirstVisitMonths(
+        allCheckins
+            .filter(
+                checkin => checkin.venue.location.country === 'アメリカ合衆国',
+            )
+            .map(checkin => ({
+                key: checkin.venue.location.state,
+                month: toMonth(checkin.createdAt),
+            })),
+    );
 
     const months: string[] = [];
     for (
@@ -275,9 +293,7 @@ const calcMonthlyVisitStats = (
     }
 
     return months.map(month => ({
-        countries: Array.from(countryFirstVisitMonths.values()).filter(
-            m => m <= month,
-        ).length,
+        countries: countryFirstVisitMonths.filter(m => m <= month).length,
         keikenchi: Object.values(
             calcKeikenchi(
                 allCheckins.filter(
@@ -288,6 +304,7 @@ const calcMonthlyVisitStats = (
         ).reduce<number>((acc, cur) => acc + cur, 0),
         month,
         senkyoku: senkyokuFirstVisitMonths.filter(m => m <= month).length,
+        usStates: usStateFirstVisitMonths.filter(m => m <= month).length,
     }));
 };
 
@@ -472,7 +489,13 @@ const sampleData = {
         hokkaido: 4,
     },
     monthlyVisitStats: [
-        { countries: 1, keikenchi: 4, month: '2025-01', senkyoku: 1 },
+        {
+            countries: 1,
+            keikenchi: 4,
+            month: '2025-01',
+            senkyoku: 1,
+            usStates: 1,
+        },
     ],
     newestCheckinDate: '2025-01-11',
     oldestCheckinDate: '2012-09-17',
