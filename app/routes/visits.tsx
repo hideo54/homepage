@@ -30,9 +30,8 @@ const ColorSquare: React.FC<{
 );
 
 const partyColorToText: { [key: string]: string } = {
-    '#2f3b84': '減',
     '#36c200': '維',
-    '#0074bc': '中',
+    '#1447b3': '民',
     '#777777': '無',
     '#d7033a': '自',
     '#f8bc00': '国',
