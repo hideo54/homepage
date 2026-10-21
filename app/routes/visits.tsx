@@ -389,7 +389,7 @@ const App = () => {
                 </div>
                 <ul className='grid grid-cols-2 gap-4 p-0 md:grid-cols-3'>
                     {Object.entries(swarmData.ramenRestaurantsCheckinCount)
-                        .slice(0, 12)
+                        .slice(0, 18)
                         .map(([restaurantName, count]) => (
                             <li
                                 className='m-0 list-none p-0'
