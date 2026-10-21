@@ -25,13 +25,13 @@ const App = () => {
                         .map(record => (
                             <li key={record.name}>
                                 <div>
-                                    <span className='font-bold text-lg'>
+                                    <span className='mr-2 font-bold text-lg'>
                                         {record.name.normalize('NFKC')}
                                     </span>
                                     {!record.isStandard && (
                                         <img
                                             alt='Deluxe'
-                                            className='mb-2 ml-2 inline h-4'
+                                            className='mb-1 inline h-4'
                                             src='https://maimaidx.jp/maimai-mobile/img/music_dx.png'
                                         />
                                     )}
