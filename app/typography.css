@@ -106,7 +106,7 @@
 }
 
 @utility typography-blockquote {
-    @apply my-4 border-base-300 border-l-4 pl-4 text-base-content/70;
+    @apply my-4 border-base-200 border-l-4 pl-4 text-base-content/70;
 }
 
 @utility typography-code {
@@ -121,14 +121,14 @@
 }
 
 @utility typography-hr {
-    @apply my-8 border-base-300 border-t;
+    @apply my-8 border-base-200 border-t;
 }
 
 @utility typography-table {
     @apply my-4 w-full border-collapse text-left text-sm;
     & th,
     & td {
-        @apply border-base-300 border-b px-2 py-2;
+        @apply border-base-200 border-b px-2 py-2;
     }
     & th {
         @apply font-bold;

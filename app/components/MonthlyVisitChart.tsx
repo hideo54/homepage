@@ -27,15 +27,15 @@ const MonthlyVisitChart: React.FC<{
         responsive
         style={{ height: 240, width: '100%' }}
     >
-        <CartesianGrid stroke='var(--color-base-300)' vertical={false} />
+        <CartesianGrid stroke='var(--color-base-200)' vertical={false} />
         <CartesianGrid
             horizontal={false}
-            stroke='var(--color-base-300)'
+            stroke='var(--color-base-200)'
             strokeDasharray='4 4'
             syncWithTicks
         />
         <XAxis
-            axisLine={{ stroke: 'var(--color-base-300)' }}
+            axisLine={{ stroke: 'var(--color-base-200)' }}
             dataKey='month'
             minTickGap={16}
             tick={{ fill: 'currentColor' }}
@@ -61,12 +61,12 @@ const MonthlyVisitChart: React.FC<{
         <Tooltip
             contentStyle={{
                 backgroundColor: 'var(--color-base-100)',
-                borderColor: 'var(--color-base-300)',
+                borderColor: 'var(--color-base-200)',
                 borderRadius: 4,
                 fontSize: '1.2em',
                 textAlign: 'right',
             }}
-            cursor={{ stroke: 'var(--color-base-300)' }}
+            cursor={{ stroke: 'var(--color-base-200)' }}
             formatter={value => [value?.toLocaleString()]}
             itemStyle={{
                 color: 'currentColor',
