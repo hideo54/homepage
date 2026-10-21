@@ -53,13 +53,7 @@ const swarmData = swarmDataJson as unknown as SwarmData;
 const maimaiData = maimaiDataJson as unknown as MaimaiData;
 
 const App = () => {
-    const senkyokuVisitCounts2022: { [key: string]: number } =
-        Object.fromEntries(swarmData.senkyokuVisitCounts2022);
-
-    // Manual edit:
-    senkyokuVisitCounts2022['mie-4'] += 1; // 小学生のとき、伊勢、鳥羽など
-
-    const visitedSenkyoku2022 = Object.entries(senkyokuVisitCounts2022)
+    const visitedSenkyoku2022 = swarmData.senkyokuVisitCounts2022
         .filter(([, count]) => count > 0)
         .map(e => e[0]);
     const visitedSenkyokuColors = visitedSenkyoku2022.map(

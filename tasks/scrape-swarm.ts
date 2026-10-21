@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import type { Feature, Position } from 'geojson';
 import isoCountries from 'i18n-iso-countries';
 import { prefectureIds, prefectureInfos } from 'jp-local-gov';
-import type { Keikenchi, SwarmData } from '../data/schema/swarm';
+import type { Keikenchi, PrefectureId, SwarmData } from '../data/schema/swarm';
 import { dataPath, withCache, writeGenerated } from './io';
 
 interface CheckinResponse {
@@ -77,6 +77,14 @@ const getCheckins = async ({
     return data.response;
 };
 
+const toSenkyokuId = (senkyoku: Feature) => {
+    const prefNum = senkyoku.properties?.ken || senkyoku.properties?.KEN;
+    const senkyokuNum =
+        senkyoku.properties?.ku || senkyoku.properties?.SENKYOKU;
+    const prefId = prefectureIds[parseInt(prefNum, 10) - 1];
+    return `${prefId}-${senkyokuNum}`;
+};
+
 const calcSenkyokuVisitCounts = (
     geoJson: {
         features: (Feature & {
@@ -90,12 +98,7 @@ const calcSenkyokuVisitCounts = (
 ) =>
     geoJson.features
         .map(senkyoku => {
-            const prefNum =
-                senkyoku.properties?.ken || senkyoku.properties?.KEN;
-            const senkyokuNum =
-                senkyoku.properties?.ku || senkyoku.properties?.SENKYOKU;
-            const prefId = prefectureIds[parseInt(prefNum, 10) - 1];
-            const senkyokuId = `${prefId}-${senkyokuNum}`;
+            const senkyokuId = toSenkyokuId(senkyoku);
             const senkyokuPolygon = turf.multiPolygon(
                 senkyoku.geometry.coordinates,
             );
@@ -128,25 +131,33 @@ const fetchAllCheckins = async () => {
 
 type Checkin = CheckinResponse['response']['checkins']['items'][number];
 
-const manualKeikenchi: Record<string, Keikenchi> = {
-    ehime: 4, // 2019年3月、傷心旅行 (スーパー温泉に宿泊)
-    fukuoka: 4, // 2019年9月、ミニキャンプチューター (チェックイン忘れ)。あと2023年竹中ゼミ。
-    hiroshima: 4, // 2019年3月、傷心旅行 (チェックイン忘れ)
-    hyogo: 4, // 中学1年生、部活動の合宿
-    kagoshima: 4, // 車中泊 (2025/3/30)
-    kanagawa: 4, // 2015年8月、Mine の家
-    nagasaki: 4, // 2014年1月、家族旅行 (チェックイン忘れ)
-    nara: 4, // 小学生時代
-    osaka: 5, // 実家 (1999–2019)
-    shiga: 4, // 小学生時代
-    tokyo: 5, // 一人暮らし (2019–)
-    toyama: 1, // 2014年5月、中学校の野外活動で通過
-    // 以下、やっぱ誤魔化さずにちゃんと住民票ベースにしようということで、廃止
-    // saga: 5, // 2023年3月、免許合宿でホテルに12泊し、佐賀に親しみを覚えたので、実質居住
-    // kumamoto: 5, // 2023年6月、人工知能学会でホテルに5泊し、熊本に親しみを覚えたので、実質居住
-};
+// 5は手動にするしかない
+const manualKeikenchi: {
+    pref: PrefectureId;
+    since: string;
+    value: Keikenchi;
+}[] = [
+    { pref: 'osaka', since: '1999-08', value: 5 }, // 生誕
+    { pref: 'shiga', since: '2008-06', value: 4 }, // 小学生、林間学校
+    { pref: 'hyogo', since: '2010-05', value: 4 }, // 小学生、進学する中学の文化祭
+    { pref: 'nara', since: '2010-06', value: 4 }, // 小学生、林間学校
+    { pref: 'nagasaki', since: '2012-02', value: 4 }, // 小学生、修学旅行
+    { pref: 'hyogo', since: '2012-08', value: 4 }, // 中学1年生、部活動の合宿
+    { pref: 'mie', since: '2012-08', value: 4 }, // 中学1年生、家族旅行
+    { pref: 'toyama', since: '2014-05', value: 1 }, // 中学校の野外活動で通過
+    { pref: 'kanagawa', since: '2015-08', value: 4 }, // Mine の家
+    { pref: 'ehime', since: '2019-03', value: 4 }, // 傷心旅行 (スーパー温泉に宿泊)
+    { pref: 'hiroshima', since: '2019-03', value: 4 }, // 傷心旅行 (チェックイン忘れ)
+    { pref: 'tokyo', since: '2019-04', value: 5 }, // 一人暮らし
+    { pref: 'fukuoka', since: '2019-09', value: 4 }, // ミニキャンプチューター (チェックイン忘れ)。あと2023年竹中ゼミ。
+    { pref: 'kagoshima', since: '2025-03', value: 4 }, // 車中泊
+];
 
-const calcKeikenchi = (allCheckins: Checkin[]) => {
+const manualSenkyokuVisits: { senkyoku: string; since: string }[] = [
+    { senkyoku: 'mie-4', since: '2012-08' }, // 中学1年生、家族旅行
+];
+
+const calcKeikenchi = (allCheckins: Checkin[], month?: string) => {
     const checkinsByState = Object.groupBy(
         allCheckins.filter(checkin => !checkin.private),
         checkin => checkin.venue.location.state,
@@ -176,9 +187,9 @@ const calcKeikenchi = (allCheckins: Checkin[]) => {
             return [prefInfo.id, value];
         }),
     );
-    for (const [key, value] of Object.entries(manualKeikenchi)) {
-        if (keikenchi[key] < value) {
-            keikenchi[key] = value;
+    for (const { pref, since, value } of manualKeikenchi) {
+        if ((!month || since <= month) && keikenchi[pref] < value) {
+            keikenchi[pref] = value;
         }
     }
     return keikenchi;
@@ -208,12 +219,17 @@ const calcMonthlyVisitStats = (
             const senkyokuPolygon = turf.multiPolygon(
                 senkyoku.geometry.coordinates,
             );
-            return points
-                .filter(point =>
-                    turf.booleanPointInPolygon(point, senkyokuPolygon),
-                )
-                .map(point => point.properties.month)
-                .sort()[0];
+            const senkyokuId = toSenkyokuId(senkyoku);
+            return [
+                ...manualSenkyokuVisits
+                    .filter(visit => visit.senkyoku === senkyokuId)
+                    .map(visit => visit.since),
+                ...points
+                    .filter(point =>
+                        turf.booleanPointInPolygon(point, senkyokuPolygon),
+                    )
+                    .map(point => point.properties.month),
+            ].sort()[0];
         })
         .filter(month => month !== undefined);
 
@@ -236,6 +252,7 @@ const calcMonthlyVisitStats = (
                 allCheckins.filter(
                     checkin => toMonth(checkin.createdAt) <= month,
                 ),
+                month,
             ),
         ).reduce<number>((acc, cur) => acc + cur, 0),
         month,
@@ -272,6 +289,15 @@ const getCheckinData = async () => {
     const senkyokuVisitCounts2022 = calcSenkyokuVisitCounts(
         senkyokuGeoJson2022,
         allCoordinates,
+    ).map(
+        ([senkyokuId, count]) =>
+            [
+                senkyokuId,
+                count +
+                    manualSenkyokuVisits.filter(
+                        visit => visit.senkyoku === senkyokuId,
+                    ).length,
+            ] as [string, number],
     );
 
     const keikenchi = calcKeikenchi(allCheckins);
