@@ -221,25 +221,6 @@ const App = () => {
                     maxCount={5 * 47}
                 />
             </section>
-            <section id='maimai'>
-                <h2 className='typography-h2'>
-                    maimai 全国行脚（プレイしたことがある都道府県）
-                </h2>
-                <GeoMap
-                    alt='都道府県地図'
-                    count={maimaiData.prefectures.length}
-                    fill={Object.fromEntries(
-                        maimaiData.prefectures.map(prefId => [
-                            prefId,
-                            '#e89402',
-                        ]),
-                    )}
-                    mapId='maimai'
-                    maxCount={47}
-                    path='/prefectures-simplify-20.svg'
-                    viewBox='137.0 20.0 591.0 740.0'
-                />
-            </section>
             <section id='countries'>
                 <h2 className='typography-h2'>訪れたことのある国と地域</h2>
                 <ul className='mb-4 grid grid-cols-2 gap-4 p-0 md:grid-cols-3'>
