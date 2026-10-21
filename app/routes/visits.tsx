@@ -51,7 +51,6 @@ const Flag = ((FlagModule as unknown as { default?: typeof FlagModule })
     .default ?? FlagModule) as typeof FlagModule;
 
 const swarmData = swarmDataJson as unknown as SwarmData;
-const maimaiData = maimaiDataJson as unknown as MaimaiData;
 
 const App = () => {
     const visitedSenkyoku2022 = swarmData.senkyokuVisitCounts2022
