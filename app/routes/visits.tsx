@@ -77,12 +77,10 @@ const App = () => {
                 ] as [string, number, number],
         )
         .sort((a, b) =>
-            a[1] === b[1] // 訪問数が同じだったら // 政党の小選挙区議席数 (母数) で判断
-                ? a[2] === b[2] // それも同じだったら // 上の政党色辞書の順番で判断
-                    ? Object.keys(partyColorToText).indexOf(a[0]) -
-                      Object.keys(partyColorToText).indexOf(b[0])
-                    : -(a[2] - b[2])
-                : -(a[1] - b[1]),
+            a[2] === b[2] // 政党の小選挙区議席数 (分母) 順に
+                ? Object.keys(partyColorToText).indexOf(a[0]) -
+                  Object.keys(partyColorToText).indexOf(b[0])
+                : -(a[2] - b[2]),
         );
 
     const keikenchiToColor = (keikenchi: number) => {
