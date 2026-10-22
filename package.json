@@ -48,7 +48,7 @@
         "typescript": "7.0.2",
         "undici": "^8.11.2",
         "vite": "^8.3.4",
-        "wrangler": "^4.149.0"
+        "wrangler": "^4.151.2"
     },
     "homepage": "https://hideo54.com",
     "license": "Apache-2.0",
