@@ -12,6 +12,7 @@ import {
     senkyokuResultColors,
 } from '../../data/senkyoku-result-colors';
 import { type USStateCode, usStateColors } from '../../data/us-state-colors';
+import FlightGlobe from '../components/FlightGlobe';
 import GeoMap from '../components/GeoMap';
 import { IconAnchor } from '../components/iconTools';
 import Layout from '../components/Layout';
@@ -375,6 +376,10 @@ const App = () => {
                     dataKey='airports'
                     tickInterval={10}
                 />
+            </section>
+            <section id='flights'>
+                <h2 className='typography-h2'>搭乗したことのある路線</h2>
+                <FlightGlobe />
             </section>
             <section id='ramen'>
                 <h2 className='typography-h2'>訪れたラーメン屋の総数</h2>
