@@ -156,6 +156,7 @@ const manualKeikenchi: {
     { pref: 'tokyo', since: '2019-04', value: 5 }, // 一人暮らし
     { pref: 'fukuoka', since: '2019-09', value: 4 }, // ミニキャンプチューター (チェックイン忘れ)。あと2023年竹中ゼミ。
     { pref: 'kagoshima', since: '2025-03', value: 4 }, // 車中泊
+    { pref: 'hyogo', since: '2026-10', value: 5 }, // 実家引っ越し
 ];
 
 const manualSenkyokuVisits: { senkyoku: string; since: string }[] = [
