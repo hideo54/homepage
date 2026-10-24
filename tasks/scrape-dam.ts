@@ -5,24 +5,42 @@ import * as admin from 'firebase-admin';
 import { getFirestore } from 'firebase-admin/firestore';
 import scrapeIt from 'scrape-it';
 import {
+    type DamData,
     type DamScore,
-    type DamScoreSummary,
+    damHighScoreCount,
+    damHighScoreFields,
+    damPlayFields,
     damScoreFailureThreshold,
-    damScoreSummaryFields,
 } from '../data/schema/dam';
 import { writeGenerated } from './io';
 
-const summarize = (scores: DamScore[]) =>
-    scores
+const pick = <K extends keyof DamScore>(
+    score: DamScore,
+    fields: readonly K[],
+) =>
+    Object.fromEntries(fields.map(field => [field, score[field]])) as Pick<
+        DamScore,
+        K
+    >;
+
+const toDamData = (scores: DamScore[]): DamData => ({
+    highScores: scores
+        .toSorted((a, b) => Number(b['#text']) - Number(a['#text']))
+        .slice(0, damHighScoreCount)
+        .map(score => pick(score, damHighScoreFields)),
+    plays: scores
         .filter(
-            score => Number(score['#text']) / 1000 > damScoreFailureThreshold,
-        )
-        .map(
             score =>
-                Object.fromEntries(
-                    damScoreSummaryFields.map(field => [field, score[field]]),
-                ) as DamScoreSummary,
-        );
+                // 途中で歌うのをやめたものは除外
+                (Number(score.aiSensitivityGraphAddPointsSection24) > 0 ||
+                    Number(score.aiSensitivityGraphDeductPointsSection24) >
+                        0) &&
+                Number(score['#text']) / 1000 > damScoreFailureThreshold,
+        )
+        .map(score => pick(score, damPlayFields)),
+});
+
+const emptyDamData: DamData = { highScores: [], plays: [] };
 
 const getUnixTime = () => new Date().getTime();
 
@@ -154,7 +172,7 @@ const main = async () => {
 
     await writeGenerated(
         'dam-scores',
-        summarize(
+        toDamData(
             (await scoresRef.get()).docs.map(doc => doc.data() as DamScore),
         ),
     );
@@ -164,7 +182,7 @@ const main = async () => {
     if (loginId) {
         await main().catch(async () => {
             console.warn('Failed to scrape DAM. Using empty scores.');
-            await writeGenerated('dam-scores', []);
+            await writeGenerated('dam-scores', emptyDamData);
         });
     } else {
         const sampleData: DamScore[] = JSON.parse(
@@ -176,6 +194,6 @@ const main = async () => {
                 'utf-8',
             ),
         );
-        await writeGenerated('dam-scores', summarize(sampleData));
+        await writeGenerated('dam-scores', toDamData(sampleData));
     }
 })();

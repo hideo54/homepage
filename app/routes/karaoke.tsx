@@ -3,17 +3,17 @@ import dayjs from 'dayjs';
 import { IoMusicalNote } from 'react-icons/io5';
 import damScoresDataJson from '../../data/generated/dam-scores.json';
 import {
-    type DamScoreSummary,
+    type DamData,
+    type DamHighScore,
+    type DamPlay,
     damScoreFailureThreshold,
 } from '../../data/schema/dam';
 import TrendChart from '../components/karaoke/TrendChart';
 import Layout from '../components/Layout';
 import { monthlyTrendOf, scoringDateOf, totalScoreOf } from '../lib/dam';
-import { sortBy } from '../lib/utils';
 
-const damScoresData = damScoresDataJson as unknown as DamScoreSummary[];
+const damData = damScoresDataJson as unknown as DamData;
 
-const displayScoreThreshold = 88;
 const movingAverageMonths = 3;
 
 // 線が近くを通る項目どうしが見分けやすい色になるよう割り当てている。凡例に合わせて点数のだいたい高い順。
@@ -27,7 +27,7 @@ const skills = [
     ['radarChartPitch', '音程', 'var(--color-chart-aqua)'],
     ['radarChartStability', '安定性', 'var(--color-chart-violet)'],
     ['radarChartExpressive', '表現力', 'var(--color-chart-pink)'],
-] as const satisfies [keyof DamScoreSummary, string, string][];
+] as const satisfies [keyof DamPlay, string, string][];
 
 const midiNoteToPitch = (note: number) => {
     const noteNames = [
@@ -73,7 +73,7 @@ const ScoreWithAverage: React.FC<{
 );
 
 const Score: React.FC<{
-    scoreData: DamScoreSummary;
+    scoreData: DamHighScore;
 }> = ({ scoreData }) => (
     <li className='row-span-2 mb-4 grid grid-rows-subgrid'>
         <div className='flex'>
@@ -176,13 +176,7 @@ const Score: React.FC<{
 );
 
 const App = () => {
-    const applicableScores = damScoresData.filter(
-        score =>
-            // 途中で歌うのをやめたものは除外
-            Number(score.aiSensitivityGraphAddPointsSection24) > 0 ||
-            Number(score.aiSensitivityGraphDeductPointsSection24) > 0,
-    );
-    const plays = applicableScores
+    const plays = damData.plays
         .map(score => ({ score, time: scoringDateOf(score).getTime() }))
         .sort((a, b) => a.time - b.time);
 
@@ -290,18 +284,9 @@ const App = () => {
             <section>
                 <h2 className='typography-h2'>高かった得点</h2>
                 <ul className='grid auto-rows-min grid-cols-1 gap-x-4 p-0 md:grid-cols-2 lg:grid-cols-3'>
-                    {sortBy(damScoresData, score => -Number(score['#text']))
-                        .filter(
-                            score =>
-                                Number(score['#text']) / 1000 >=
-                                displayScoreThreshold,
-                        )
-                        .map(score => (
-                            <Score
-                                key={score.scoringDateTime}
-                                scoreData={score}
-                            />
-                        ))}
+                    {damData.highScores.map(score => (
+                        <Score key={score.scoringDateTime} scoreData={score} />
+                    ))}
                 </ul>
             </section>
         </Layout>

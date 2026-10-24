@@ -181,20 +181,29 @@ export interface DamScore {
 /** この点数以下の回は data/generated/dam-scores.json に書き出さない */
 export const damScoreFailureThreshold = 84;
 
-/** data/generated/dam-scores.json に書き出す項目。ページで使うものだけに絞る。 */
-export const damScoreSummaryFields = [
+/** 「高かった得点」に出す件数 */
+export const damHighScoreCount = 18;
+
+/** 推移グラフ用に書き出す項目 */
+export const damPlayFields = [
     '#text',
     'scoringDateTime',
-    'scoringEngineVersionNumber',
-    'contentsName',
-    'artistName',
-    'lastPerformKey',
-    'nationalAverageTotalPoints',
     'radarChartPitch',
     'radarChartStability',
     'radarChartExpressive',
     'radarChartVibratoLongtone',
     'radarChartRhythm',
+] as const satisfies (keyof DamScore)[];
+
+export type DamPlay = Pick<DamScore, (typeof damPlayFields)[number]>;
+
+/** 「高かった得点」用に書き出す項目 */
+export const damHighScoreFields = [
+    ...damPlayFields,
+    'contentsName',
+    'artistName',
+    'lastPerformKey',
+    'nationalAverageTotalPoints',
     'nationalAveragePitch',
     'nationalAverageStability',
     'nationalAverageExpression',
@@ -204,19 +213,11 @@ export const damScoreSummaryFields = [
     'singingRangeLowest',
     'vocalRangeHighest',
     'vocalRangeLowest',
-    'kobushiCount',
-    'shakuriCount',
-    'fallCount',
-    'accentCount',
-    'hammeringOnCount',
-    'edgeVoiceCount',
-    'hiccupCount',
-    'vibratoTotalSecond',
-    'aiSensitivityGraphAddPointsSection24',
-    'aiSensitivityGraphDeductPointsSection24',
 ] as const satisfies (keyof DamScore)[];
 
-export type DamScoreSummary = Pick<
-    DamScore,
-    (typeof damScoreSummaryFields)[number]
->;
+export type DamHighScore = Pick<DamScore, (typeof damHighScoreFields)[number]>;
+
+export interface DamData {
+    highScores: DamHighScore[];
+    plays: DamPlay[];
+}

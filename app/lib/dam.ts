@@ -1,11 +1,10 @@
 import dayjs from 'dayjs';
-import type { DamScoreSummary } from '../../data/schema/dam';
+import type { DamPlay } from '../../data/schema/dam';
 
-export const totalScoreOf = (score: DamScoreSummary) =>
-    Number(score['#text']) / 1000;
+export const totalScoreOf = (score: DamPlay) => Number(score['#text']) / 1000;
 
 /** scoringDateTime は YYYYMMDDHHmmss */
-export const scoringDateOf = (score: DamScoreSummary) => {
+export const scoringDateOf = (score: DamPlay) => {
     const s = score.scoringDateTime;
     return new Date(
         Number(s.slice(0, 4)),
