@@ -1,18 +1,19 @@
-import chroma from 'chroma-js';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
-import { lazy, Suspense, useEffect, useState } from 'react';
 import { IoMusicalNote } from 'react-icons/io5';
 import damScoresDataJson from '../../data/generated/dam-scores.json';
-import type { DamScore } from '../../data/schema/dam';
+import {
+    type DamScoreSummary,
+    damScoreFailureThreshold,
+} from '../../data/schema/dam';
+import ScoreCeilingChart from '../components/karaoke/ScoreCeilingChart';
 import Layout from '../components/Layout';
 import { sortBy } from '../lib/utils';
 
-const damScoresData = damScoresDataJson as unknown as DamScore[];
-
-const Plot = lazy(() => import('react-plotly.js'));
+const damScoresData = damScoresDataJson as unknown as DamScoreSummary[];
 
 const displayScoreThreshold = 88;
+const movingAverageMonths = 3;
 
 const midiNoteToPitch = (note: number) => {
     const noteNames = [
@@ -58,12 +59,12 @@ const ScoreWithAverage: React.FC<{
 );
 
 const Score: React.FC<{
-    scoreData: DamScore;
+    scoreData: DamScoreSummary;
 }> = ({ scoreData }) => (
     <li className='row-span-2 mb-4 grid grid-rows-subgrid'>
         <div className='flex'>
             <div>
-                <IoMusicalNote className='mt-1' size={48} />
+                <IoMusicalNote className='mt-1 -ml-4' size={48} />
             </div>
             <div>
                 <span className='mr-2 font-bold text-lg'>
@@ -160,105 +161,6 @@ const Score: React.FC<{
     </li>
 );
 
-const BoxPlotByDate: React.FC<{
-    scoreDataByDate: Record<string, DamScore[]>;
-}> = ({ scoreDataByDate }) => {
-    // Plotly は CSS クラスを受け付けないので、daisyUI のテーマ変数を
-    // 実際の計算値として読み出して渡す。テーマが切り替われば追従する。
-    const [isMounted, setIsMounted] = useState(false);
-    const [themeColors, setThemeColors] = useState({
-        base100: '#ffffff',
-        base300: '#d4d4d4',
-        baseContent: '#171717',
-    });
-    useEffect(() => {
-        const readTheme = () => {
-            const style = getComputedStyle(document.documentElement);
-            const read = (name: string, fallback: string) =>
-                style.getPropertyValue(name).trim() || fallback;
-            setThemeColors({
-                base100: read('--color-base-100', '#ffffff'),
-                base300: read('--color-base-300', '#d4d4d4'),
-                baseContent: read('--color-base-content', '#171717'),
-            });
-        };
-        readTheme();
-        setIsMounted(true);
-        const query = window.matchMedia('(prefers-color-scheme: dark)');
-        query.addEventListener('change', readTheme);
-        return () => {
-            query.removeEventListener('change', readTheme);
-        };
-    }, []);
-    const jetScale = chroma
-        .scale([
-            // Jet style gradation by ChatGPT
-            '#00007F',
-            '#0000BF',
-            '#007FBF',
-            '#00BFBF',
-            '#7FBF7F',
-            '#BFBF00',
-            '#BF7F00',
-            '#BF0000',
-            '#7F0000',
-        ])
-        .domain([75, 95]);
-    // Plotly は import 時点で window を触るので、prerender 中は描画しない
-    if (!isMounted) return null;
-    return (
-        <Suspense>
-            <Plot
-                config={{
-                    staticPlot: true,
-                }}
-                data={Object.entries(scoreDataByDate).map(([date, scores]) => ({
-                    marker: {
-                        // その日の平均点を jet で色付け
-                        color: jetScale(
-                            Math.round(
-                                scores
-                                    .map(score => Number(score['#text']) / 1000)
-                                    .reduce((acc, cur) => acc + cur, 0) /
-                                    scores.length,
-                            ),
-                        ).hex(),
-                    },
-                    name: dayjs(date, 'YYYYMMDD').format('YYYY-MM-DD'),
-                    type: 'box',
-                    y: scores?.map(score => Number(score['#text']) / 1000),
-                }))}
-                layout={{
-                    autosize: true,
-                    font: {
-                        color: themeColors.baseContent,
-                    },
-                    margin: {
-                        b: 60,
-                        l: 20,
-                        r: 0,
-                        t: 0,
-                    },
-                    paper_bgcolor: themeColors.base100,
-                    plot_bgcolor: themeColors.base100,
-                    showlegend: false,
-                    xaxis: {
-                        tickformat: '%Y-%m-%d',
-                        // type: 'category', // 等間隔にしたい場合はこれ
-                    },
-                    yaxis: {
-                        gridcolor: themeColors.base300,
-                    },
-                }}
-                style={{
-                    width: '100%',
-                }}
-                useResizeHandler
-            />
-        </Suspense>
-    );
-};
-
 const App = () => {
     const applicableScores = damScoresData.filter(
         score =>
@@ -266,14 +168,23 @@ const App = () => {
             Number(score.aiSensitivityGraphAddPointsSection24) > 0 ||
             Number(score.aiSensitivityGraphDeductPointsSection24) > 0,
     );
-    const scoreDataByDate = Object.groupBy(applicableScores, score =>
-        score.scoringDateTime.slice(0, 8),
-    ) as Record<string, DamScore[]>;
     return (
         <Layout title='カラオケ得点状況 | hideo54.com'>
             <h1 className='typography-h1'>カラオケ得点状況</h1>
             <section>
-                <ul className='grid auto-rows-min grid-cols-1 gap-x-4 p-0 md:grid-cols-2'>
+                <h2 className='typography-h2'>得点の推移</h2>
+                <ScoreCeilingChart
+                    minScore={damScoreFailureThreshold}
+                    movingAverageMonths={movingAverageMonths}
+                    scores={applicableScores}
+                />
+                <small>
+                    月ごとの第3四分位数の{movingAverageMonths}か月移動平均
+                </small>
+            </section>
+            <section>
+                <h2 className='typography-h2'>高かった得点</h2>
+                <ul className='grid auto-rows-min grid-cols-1 gap-x-4 p-0 md:grid-cols-2 lg:grid-cols-3'>
                     {sortBy(damScoresData, score => -Number(score['#text']))
                         .filter(
                             score =>
@@ -287,12 +198,6 @@ const App = () => {
                             />
                         ))}
                 </ul>
-            </section>
-            <section>
-                <h2 className='typography-h2'>日ごとの得点推移</h2>
-                <div className='mb-8 h-112.5'>
-                    <BoxPlotByDate scoreDataByDate={scoreDataByDate} />
-                </div>
             </section>
         </Layout>
     );

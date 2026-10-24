@@ -4,8 +4,25 @@ import { XMLParser } from 'fast-xml-parser';
 import * as admin from 'firebase-admin';
 import { getFirestore } from 'firebase-admin/firestore';
 import scrapeIt from 'scrape-it';
-import type { DamScore } from '../data/schema/dam';
+import {
+    type DamScore,
+    type DamScoreSummary,
+    damScoreFailureThreshold,
+    damScoreSummaryFields,
+} from '../data/schema/dam';
 import { writeGenerated } from './io';
+
+const summarize = (scores: DamScore[]) =>
+    scores
+        .filter(
+            score => Number(score['#text']) / 1000 > damScoreFailureThreshold,
+        )
+        .map(
+            score =>
+                Object.fromEntries(
+                    damScoreSummaryFields.map(field => [field, score[field]]),
+                ) as DamScoreSummary,
+        );
 
 const getUnixTime = () => new Date().getTime();
 
@@ -137,7 +154,9 @@ const main = async () => {
 
     await writeGenerated(
         'dam-scores',
-        (await scoresRef.get()).docs.map(doc => doc.data()),
+        summarize(
+            (await scoresRef.get()).docs.map(doc => doc.data() as DamScore),
+        ),
     );
 };
 
@@ -148,7 +167,7 @@ const main = async () => {
             await writeGenerated('dam-scores', []);
         });
     } else {
-        const sampleData = JSON.parse(
+        const sampleData: DamScore[] = JSON.parse(
             await fs.readFile(
                 path.join(
                     import.meta.dirname,
@@ -157,6 +176,6 @@ const main = async () => {
                 'utf-8',
             ),
         );
-        await writeGenerated('dam-scores', sampleData);
+        await writeGenerated('dam-scores', summarize(sampleData));
     }
 })();

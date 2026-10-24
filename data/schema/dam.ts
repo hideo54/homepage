@@ -177,3 +177,46 @@ export interface DamScore {
     aiSensitivityGraphIndexSection23: string;
     aiSensitivityGraphIndexSection24: string;
 }
+
+/** この点数以下の回は data/generated/dam-scores.json に書き出さない */
+export const damScoreFailureThreshold = 84;
+
+/** data/generated/dam-scores.json に書き出す項目。ページで使うものだけに絞る。 */
+export const damScoreSummaryFields = [
+    '#text',
+    'scoringDateTime',
+    'scoringEngineVersionNumber',
+    'contentsName',
+    'artistName',
+    'lastPerformKey',
+    'nationalAverageTotalPoints',
+    'radarChartPitch',
+    'radarChartStability',
+    'radarChartExpressive',
+    'radarChartVibratoLongtone',
+    'radarChartRhythm',
+    'nationalAveragePitch',
+    'nationalAverageStability',
+    'nationalAverageExpression',
+    'nationalAverageVibratoAndLongtone',
+    'nationalAverageRhythm',
+    'singingRangeHighest',
+    'singingRangeLowest',
+    'vocalRangeHighest',
+    'vocalRangeLowest',
+    'kobushiCount',
+    'shakuriCount',
+    'fallCount',
+    'accentCount',
+    'hammeringOnCount',
+    'edgeVoiceCount',
+    'hiccupCount',
+    'vibratoTotalSecond',
+    'aiSensitivityGraphAddPointsSection24',
+    'aiSensitivityGraphDeductPointsSection24',
+] as const satisfies (keyof DamScore)[];
+
+export type DamScoreSummary = Pick<
+    DamScore,
+    (typeof damScoreSummaryFields)[number]
+>;
