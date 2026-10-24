@@ -9,4 +9,9 @@ export default defineConfig({
         tailwindcss(),
         reactRouter(),
     ],
+    server: {
+        allowedHosts: [
+            'snivy.local', // for local debug
+        ],
+    },
 });
