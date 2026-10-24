@@ -270,49 +270,6 @@ const App = () => {
                     </small>
                 </div>
             </section>
-            <section id='us'>
-                <h2 className='typography-h2'>
-                    訪れたことのあるアメリカ合衆国の州
-                </h2>
-                <GeoMap
-                    additionalCss='g.state{fill:white;}g.borders>path{stroke:black;stroke-width:0.5;}'
-                    alt='アメリカ合衆国の州の地図'
-                    count={swarmData.allVisitedUSStates.length}
-                    fill={Object.fromEntries(
-                        swarmData.allVisitedUSStates.map(stateId => [
-                            stateId.toLowerCase(),
-                            // According to 2020 presidential election result
-                            usStateColors[stateId as USStateCode],
-                        ]),
-                    )}
-                    idProvidedByClass
-                    mapId='us'
-                    maxCount={51}
-                    path='/us-states.svg'
-                    svgPadding='0 2em'
-                    viewBox='0 0 940 593'
-                />
-                <MonthlyVisitChart
-                    data={swarmData.monthlyVisitStats}
-                    dataKey='usStates'
-                    maxCount={51}
-                    tickInterval={10}
-                />
-                <div className='my-4 leading-4'>
-                    <small>
-                        50 states + District of Columbia. Color represents the
-                        party with the majority of votes of the 2024
-                        presidential election. Map:{' '}
-                        <IconAnchor
-                            href='https://commons.wikimedia.org/wiki/File:Blank_US_Map_(states_only).svg'
-                            RightIcon={IoOpenOutline}
-                        >
-                            File:Blank US Map (states only).svg by Heitordp,
-                            CC0, via Wikimedia Commons
-                        </IconAnchor>
-                    </small>
-                </div>
-            </section>
             <section id='airports'>
                 <h2 className='typography-h2'>訪れたことのある空港</h2>
                 <div className='my-4 flex items-end gap-x-8'>
@@ -380,6 +337,49 @@ const App = () => {
             <section id='flights'>
                 <h2 className='typography-h2'>搭乗したことのある路線</h2>
                 <FlightGlobe />
+            </section>
+            <section id='us'>
+                <h2 className='typography-h2'>
+                    訪れたことのあるアメリカ合衆国の州
+                </h2>
+                <GeoMap
+                    additionalCss='g.state{fill:white;}g.borders>path{stroke:black;stroke-width:0.5;}'
+                    alt='アメリカ合衆国の州の地図'
+                    count={swarmData.allVisitedUSStates.length}
+                    fill={Object.fromEntries(
+                        swarmData.allVisitedUSStates.map(stateId => [
+                            stateId.toLowerCase(),
+                            // According to 2020 presidential election result
+                            usStateColors[stateId as USStateCode],
+                        ]),
+                    )}
+                    idProvidedByClass
+                    mapId='us'
+                    maxCount={51}
+                    path='/us-states.svg'
+                    svgPadding='0 2em'
+                    viewBox='0 0 940 593'
+                />
+                <MonthlyVisitChart
+                    data={swarmData.monthlyVisitStats}
+                    dataKey='usStates'
+                    maxCount={51}
+                    tickInterval={10}
+                />
+                <div className='my-4 leading-4'>
+                    <small>
+                        50 states + District of Columbia. Color represents the
+                        party with the majority of votes of the 2024
+                        presidential election. Map:{' '}
+                        <IconAnchor
+                            href='https://commons.wikimedia.org/wiki/File:Blank_US_Map_(states_only).svg'
+                            RightIcon={IoOpenOutline}
+                        >
+                            File:Blank US Map (states only).svg by Heitordp,
+                            CC0, via Wikimedia Commons
+                        </IconAnchor>
+                    </small>
+                </div>
             </section>
             <section id='ramen'>
                 <h2 className='typography-h2'>訪れたラーメン屋の総数</h2>
