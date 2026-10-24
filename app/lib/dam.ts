@@ -17,9 +17,6 @@ export const scoringDateOf = (score: DamScoreSummary) => {
     );
 };
 
-export const songKeyOf = (score: DamScoreSummary) =>
-    `${score.contentsName} / ${score.artistName}`;
-
 export interface TimedValue {
     time: number;
     value: number;

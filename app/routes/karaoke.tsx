@@ -6,14 +6,28 @@ import {
     type DamScoreSummary,
     damScoreFailureThreshold,
 } from '../../data/schema/dam';
-import ScoreCeilingChart from '../components/karaoke/ScoreCeilingChart';
+import TrendChart from '../components/karaoke/TrendChart';
 import Layout from '../components/Layout';
+import { monthlyTrendOf, scoringDateOf, totalScoreOf } from '../lib/dam';
 import { sortBy } from '../lib/utils';
 
 const damScoresData = damScoresDataJson as unknown as DamScoreSummary[];
 
 const displayScoreThreshold = 88;
 const movingAverageMonths = 3;
+
+// 線が近くを通る項目どうしが見分けやすい色になるよう割り当てている。凡例に合わせて点数のだいたい高い順。
+const skills = [
+    ['radarChartRhythm', 'リズム', 'var(--color-chart-blue)'],
+    [
+        'radarChartVibratoLongtone',
+        'ビブラート&ロングトーン',
+        'var(--color-chart-orange)',
+    ],
+    ['radarChartPitch', '音程', 'var(--color-chart-aqua)'],
+    ['radarChartStability', '安定性', 'var(--color-chart-violet)'],
+    ['radarChartExpressive', '表現力', 'var(--color-chart-pink)'],
+] as const satisfies [keyof DamScoreSummary, string, string][];
 
 const midiNoteToPitch = (note: number) => {
     const noteNames = [
@@ -168,20 +182,111 @@ const App = () => {
             Number(score.aiSensitivityGraphAddPointsSection24) > 0 ||
             Number(score.aiSensitivityGraphDeductPointsSection24) > 0,
     );
+    const plays = applicableScores
+        .map(score => ({ score, time: scoringDateOf(score).getTime() }))
+        .sort((a, b) => a.time - b.time);
+
+    const totalPoints = plays.map(({ score, time }) => ({
+        time,
+        value: totalScoreOf(score),
+    }));
+    const totalTrend = monthlyTrendOf(totalPoints, movingAverageMonths);
+    const skillLines = skills.map(([field, label, color]) => ({
+        color,
+        name: label,
+        values: monthlyTrendOf(
+            plays.map(({ score, time }) => ({
+                time,
+                value: Number(score[field]),
+            })),
+            movingAverageMonths,
+        ),
+    }));
+    const skillValues = skillLines.flatMap(({ values }) =>
+        values.map(({ value }) => value),
+    );
+    const skillTickStep =
+        Math.max(...skillValues) - Math.min(...skillValues) > 40 ? 10 : 5;
+
+    const times = [...totalPoints, ...totalTrend].map(({ time }) => time);
+    const timeDomain: [number, number] = [
+        Math.min(...times),
+        Math.max(...times),
+    ];
+    const totalMax = Math.ceil(
+        Math.max(
+            damScoreFailureThreshold + 1,
+            ...totalPoints.map(({ value }) => value),
+        ),
+    );
+
     return (
         <Layout title='カラオケ得点状況 | hideo54.com'>
             <h1 className='typography-h1'>カラオケ得点状況</h1>
-            <section>
-                <h2 className='typography-h2'>得点の推移</h2>
-                <ScoreCeilingChart
-                    minScore={damScoreFailureThreshold}
-                    movingAverageMonths={movingAverageMonths}
-                    scores={applicableScores}
-                />
-                <small>
-                    月ごとの第3四分位数の{movingAverageMonths}か月移動平均
-                </small>
-            </section>
+            {plays.length > 0 && (
+                <>
+                    <section>
+                        <h2 className='typography-h2'>得点の推移</h2>
+                        <TrendChart
+                            height={320}
+                            lines={[
+                                {
+                                    color: 'var(--color-primary)',
+                                    name: '得点',
+                                    values: totalTrend,
+                                },
+                            ]}
+                            points={totalPoints}
+                            timeDomain={timeDomain}
+                            yMax={totalMax}
+                            yMin={damScoreFailureThreshold}
+                            yTickStep={1}
+                        />
+                        <small>
+                            月ごとの第3四分位数の{movingAverageMonths}
+                            か月移動平均。
+                        </small>
+                    </section>
+                    <section>
+                        <h2 className='typography-h2'>採点要素ごとの推移</h2>
+                        <ul className='m-0 flex flex-wrap gap-x-4 p-0 text-sm'>
+                            {skillLines.map(({ color, name }) => (
+                                <li
+                                    className='flex items-center gap-x-1'
+                                    key={name}
+                                >
+                                    <span
+                                        className='inline-block h-0.5 w-4'
+                                        style={{ backgroundColor: color }}
+                                    />
+                                    {name}
+                                </li>
+                            ))}
+                        </ul>
+                        <TrendChart
+                            height={320}
+                            lines={skillLines}
+                            timeDomain={timeDomain}
+                            yMax={Math.min(
+                                100,
+                                Math.ceil(
+                                    Math.max(...skillValues) / skillTickStep,
+                                ) * skillTickStep,
+                            )}
+                            yMin={
+                                Math.floor(
+                                    Math.min(...skillValues) / skillTickStep,
+                                ) * skillTickStep
+                            }
+                            yTickStep={skillTickStep}
+                        />
+                        <small>
+                            月ごとの第3四分位数の{movingAverageMonths}
+                            か月移動平均。
+                        </small>
+                    </section>
+                </>
+            )}
             <section>
                 <h2 className='typography-h2'>高かった得点</h2>
                 <ul className='grid auto-rows-min grid-cols-1 gap-x-4 p-0 md:grid-cols-2 lg:grid-cols-3'>

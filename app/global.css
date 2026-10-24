@@ -60,6 +60,25 @@
 }
 
 @layer base {
+    :root {
+        --chart-lightness: 62%;
+        --chart-chroma: 0.14;
+        --color-chart-blue: oklch(
+            var(--chart-lightness) var(--chart-chroma) 255
+        );
+        --color-chart-orange: oklch(
+            var(--chart-lightness) var(--chart-chroma) 60
+        );
+        --color-chart-aqua: oklch(
+            var(--chart-lightness) var(--chart-chroma) 160
+        );
+        --color-chart-violet: oklch(
+            var(--chart-lightness) var(--chart-chroma) 280
+        );
+        --color-chart-pink: oklch(
+            var(--chart-lightness) var(--chart-chroma) 10
+        );
+    }
     html,
     body {
         @apply h-full antialiased;
@@ -77,7 +96,12 @@
             @apply text-primary hover:underline transition;
         }
     }
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         word-break: auto-phrase;
     }
 }
