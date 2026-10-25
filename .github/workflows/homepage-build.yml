@@ -1,10 +1,22 @@
-name: Build
+name: Build homepage
 
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'apps/homepage/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '.github/workflows/homepage-build.yml'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'apps/homepage/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '.github/workflows/homepage-build.yml'
 
 jobs:
   build:
@@ -19,14 +31,14 @@ jobs:
       with:
         node-version: 22
         cache: pnpm
-    - run: pnpm install --frozen-lockfile
+    - run: pnpm install --frozen-lockfile --filter homepage
     - uses: google-github-actions/auth@v2
       if: github.actor != 'dependabot[bot]'
       with:
         project_id: '${{ vars.GCP_PROJECT_ID }}'
         workload_identity_provider: '${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}'
         service_account: '${{ vars.GCP_SERVICE_ACCOUNT }}'
-    - run: pnpm run build
+    - run: pnpm --filter homepage build
       env:
         FOURSQUARE_ACCESS_TOKEN: '${{ secrets.FOURSQUARE_ACCESS_TOKEN }}'
         SEGA_ID: '${{ secrets.SEGA_ID }}'

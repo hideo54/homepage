@@ -7,6 +7,12 @@ settings:
 importers:
 
   .:
+    devDependencies:
+      '@biomejs/biome':
+        specifier: 2.5.15
+        version: 2.5.15
+
+  apps/homepage:
     dependencies:
       '@mdx-js/react':
         specifier: ^3.1.1
@@ -69,9 +75,6 @@ importers:
         specifier: ^2.9.1
         version: 2.9.1
     devDependencies:
-      '@biomejs/biome':
-        specifier: 2.5.15
-        version: 2.5.15
       '@mdx-js/rollup':
         specifier: ^3.1.1
         version: 3.1.1(rollup@4.64.7)(supports-color@10.2.2)
@@ -1712,9 +1715,6 @@ packages:
   '@types/mdx-js__react@1.5.8':
     resolution: {integrity: sha512-iLQL8JZ4AZ+rpZvGUsQwENffpsSCMLYB8kE6OhGasLmdYn7aSLq53uOvZrKx5FM+hymE2nm08HDfq7tFx02ElA==}
 
-  '@types/mdx@2.0.13':
-    resolution: {integrity: sha512-+OWZQfAYyio6YkJb3HLxDrvnx6SWWDbC0zVPfBRzUk0/nqoDyf6dNxQi3eArPe8rJ473nobTMQ/8Zk+LxJ+Yuw==}
-
   '@types/mdx@2.0.14':
     resolution: {integrity: sha512-T48PeuJtvLosNTPVhfnIp3i/n3a4g4Bad7YCq5k64D4u7NwDrAotikQ+5+sjtUvBmxCMlbo3dVL+C2dP0rWHzg==}
 
@@ -1998,9 +1998,6 @@ packages:
     resolution: {integrity: sha512-YeesxhUmR4h5y5V8KF8iBCqJb8YFrBJ++XBTeGcWIaQOYXGN19JM0FoiOjAhwuDoln8owMgXcWBmgHtYSkky2w==}
     engines: {node: '>=6.0.0'}
     hasBin: true
-
-  bignumber.js@9.1.2:
-    resolution: {integrity: sha512-2/mKyZH9K85bzOEfhXDBFZTGd1CTs+5IHpeFQo9luiBG7hghdC851Pj2WAhb6E3R6b9tZj/XKhbg4fum+Kepug==}
 
   bignumber.js@9.3.1:
     resolution: {integrity: sha512-Ko0uX15oIUS7wJ3Rb30Fs6SkVbLmPBAKdlm7q9+ak9bbIeFf0MwuBsQV6z7+X768/cHsfg+WlysDWJcmthjsjQ==}
@@ -2753,10 +2750,6 @@ packages:
     resolution: {integrity: sha512-iJ9KMsiu+xKtNRX0PmGLSaIU3bUBAyzWTyqKemKPzNPsmmsBCQYmlNg+brEbES7IHSXtdVwzBPzx1vz3FAaipw==}
     engines: {node: '>=18'}
 
-  gcp-metadata@9.0.4:
-    resolution: {integrity: sha512-p6WvbXOhfwnVtv/MyPq5kBiVhfV/qglMIxwwTVNEI1Ha1HmOgz5uHYHtYO6SfGckFaXe8blA11IJJ3wqXmvmBA==}
-    engines: {node: '>=22'}
-
   gcp-metadata@9.1.0:
     resolution: {integrity: sha512-hV4Abmis9XY9ch/HK8t4oGy/Ho4WNzd6QAj/7PHKF5Ae25LUDviZET0s7DD3i+mG1QpGCqnDji/R/jBiuux4jw==}
     engines: {node: '>=22'}
@@ -2874,10 +2867,6 @@ packages:
   google-auth-library@10.5.0:
     resolution: {integrity: sha512-7ABviyMOlX5hIVD60YOfHw4/CxOfBhyduaYB+wbFWCWoni4N7SLcV46hrVRktuBbZjFC9ONyqamZITN7q3n32w==}
     engines: {node: '>=18'}
-
-  google-auth-library@11.1.0:
-    resolution: {integrity: sha512-YIBq5KNoHQrZ9PM4PeodDBqqBGlSTIxh1zibN8u3zNIO9UJg8gvKuCpdKV7fWXhsZ2zRkU6FhGrgKNgLJ2IRgw==}
-    engines: {node: '>=22'}
 
   google-auth-library@11.2.0:
     resolution: {integrity: sha512-R9/Dwc3swSur04RnizQ6EBUmmcno2cC5cAKtrG/C+pY+W7c5l6rSnFWgMkR7NSYj1n6XWmb/KhcjxGslWm4yIA==}
@@ -3964,10 +3953,6 @@ packages:
     resolution: {integrity: sha512-pI6/7eabUYkZxamkOq0g0uMxKLLGnjzhefY+vL8bVXag5rto4OU2YBTPytWLuHH7aEKD6fn7kJycQfid0Mwnkw==}
     engines: {node: '>=18'}
 
-  retry-request@9.0.1:
-    resolution: {integrity: sha512-4kGHEBl0ME6gR+8QB1sPMyg58jUxLUcCZNeqLDrfqzk0eWQN8XJFmeu7fmZCjlZCRW0S2u64Ik1HkO/0sWgCYQ==}
-    engines: {node: '>=22'}
-
   retry-request@9.0.2:
     resolution: {integrity: sha512-S73r2yk09DSWx7K4mTZG7v5wSOrCK5okQbYLlkgpDjzVsxkUkhKrUR2VpUp69e3iA06Btn0bDXa27gxfnCqZMw==}
     engines: {node: '>=22'}
@@ -4315,10 +4300,6 @@ packages:
 
   undici-types@8.9.0:
     resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
-
-  undici@7.29.0:
-    resolution: {integrity: sha512-IDxfleLmmbSskfWSUATiN1nfn2rDuvnMOqb5CWR92iIfojA0Ud+ulOAAEQ57LPr9rWmsreUyf5lwyao+7GNNVw==}
-    engines: {node: '>=20.18.1'}
 
   undici@7.29.1:
     resolution: {integrity: sha512-RYONW2MeafgYlkVOKYKkA/Ag7BmXqgIWCa8t1m0JcxrQg9pI9lEqRhAOruOBCbAohOa/gkCF+iPi9hrgvTzu6Q==}
@@ -5124,7 +5105,7 @@ snapshots:
       '@types/estree': 1.0.9
       '@types/estree-jsx': 1.0.5
       '@types/hast': 3.0.5
-      '@types/mdx': 2.0.13
+      '@types/mdx': 2.0.14
       acorn: 8.19.0
       collapse-white-space: 2.1.0
       devlop: 1.1.0
@@ -6747,8 +6728,6 @@ snapshots:
     dependencies:
       '@types/react': 19.3.0
 
-  '@types/mdx@2.0.13': {}
-
   '@types/mdx@2.0.14': {}
 
   '@types/ms@2.1.0': {}
@@ -6961,8 +6940,6 @@ snapshots:
 
   baseline-browser-mapping@2.11.29: {}
 
-  bignumber.js@9.1.2: {}
-
   bignumber.js@9.3.1: {}
 
   binary-search-bounds@2.0.5: {}
@@ -7048,7 +7025,7 @@ snapshots:
       parse5: 7.3.0
       parse5-htmlparser2-tree-adapter: 7.1.0
       parse5-parser-stream: 7.1.2
-      undici: 7.29.0
+      undici: 7.29.1
       whatwg-mimetype: 4.0.0
 
   chokidar@5.0.0:
@@ -7299,7 +7276,7 @@ snapshots:
 
   d3-scale@4.0.2:
     dependencies:
-      d3-array: 2.12.1
+      d3-array: 3.2.4
       d3-format: 1.4.5
       d3-interpolate: 3.0.1
       d3-time: 3.1.0
@@ -7323,7 +7300,7 @@ snapshots:
 
   d3-time@3.1.0:
     dependencies:
-      d3-array: 2.12.1
+      d3-array: 3.2.4
 
   d3-timer@1.0.10: {}
 
@@ -7717,7 +7694,7 @@ snapshots:
       '@firebase/database-compat': 2.1.7
       '@firebase/database-types': 1.0.22
       fast-deep-equal: 3.1.3
-      google-auth-library: 11.1.0(supports-color@10.2.2)
+      google-auth-library: 11.2.0(supports-color@10.2.2)
       jsonwebtoken: 9.0.3
       jwks-rsa: 4.1.0(supports-color@10.2.2)
     optionalDependencies:
@@ -7818,14 +7795,6 @@ snapshots:
       - supports-color
     optional: true
 
-  gcp-metadata@9.0.4(supports-color@10.2.2):
-    dependencies:
-      gaxios: 7.3.1(supports-color@10.2.2)
-      google-logging-utils: 2.0.1
-      json-bigint: 1.0.0
-    transitivePeerDependencies:
-      - supports-color
-
   gcp-metadata@9.1.0(supports-color@10.2.2):
     dependencies:
       gaxios: 7.3.1(supports-color@10.2.2)
@@ -7833,7 +7802,6 @@ snapshots:
       json-bigint: 1.0.0
     transitivePeerDependencies:
       - supports-color
-    optional: true
 
   gensync@1.0.0-beta.2: {}
 
@@ -8031,17 +7999,6 @@ snapshots:
       - supports-color
     optional: true
 
-  google-auth-library@11.1.0(supports-color@10.2.2):
-    dependencies:
-      base64-js: 1.5.1
-      ecdsa-sig-formatter: 1.0.11
-      gaxios: 7.3.1(supports-color@10.2.2)
-      gcp-metadata: 9.0.4(supports-color@10.2.2)
-      google-logging-utils: 2.0.1
-      jws: 4.0.1
-    transitivePeerDependencies:
-      - supports-color
-
   google-auth-library@11.2.0(supports-color@10.2.2):
     dependencies:
       base64-js: 1.5.1
@@ -8052,7 +8009,6 @@ snapshots:
       jws: 4.0.1
     transitivePeerDependencies:
       - supports-color
-    optional: true
 
   google-gax@5.0.8(supports-color@10.2.2):
     dependencies:
@@ -8077,13 +8033,13 @@ snapshots:
       '@grpc/proto-loader': 0.8.1
       '@opentelemetry/api': 1.9.1
       duplexify: 4.1.3
-      google-auth-library: 11.1.0(supports-color@10.2.2)
+      google-auth-library: 11.2.0(supports-color@10.2.2)
       google-logging-utils: 2.0.1
       node-fetch: 3.3.2
       object-hash: 3.0.0
       proto3-json-serializer: 4.0.2
       protobufjs: 7.6.6
-      retry-request: 9.0.1(supports-color@10.2.2)
+      retry-request: 9.0.2
     transitivePeerDependencies:
       - supports-color
     optional: true
@@ -9163,7 +9119,7 @@ snapshots:
 
   polyclip-ts@0.16.8:
     dependencies:
-      bignumber.js: 9.1.2
+      bignumber.js: 9.3.1
       splaytree-ts: 1.0.2
 
   postcss@8.5.30:
@@ -9494,14 +9450,6 @@ snapshots:
     dependencies:
       extend: 3.0.2
       teeny-request: 10.1.4(supports-color@10.2.2)
-    transitivePeerDependencies:
-      - supports-color
-    optional: true
-
-  retry-request@9.0.1(supports-color@10.2.2):
-    dependencies:
-      extend: 3.0.2
-      teeny-request: 11.0.1(supports-color@10.2.2)
     transitivePeerDependencies:
       - supports-color
     optional: true
@@ -9840,7 +9788,7 @@ snapshots:
     dependencies:
       '@turf/boolean-point-in-polygon': 7.4.0
       d3-array: 3.2.4
-      d3-geo: 2.0.2
+      d3-geo: 3.1.1
       d3-geo-voronoi: 2.1.0
       d3-scale: 4.0.2
       delaunator: 5.1.0
@@ -9849,7 +9797,7 @@ snapshots:
 
   three-geojson-geometry@2.1.1(three@0.186.1):
     dependencies:
-      d3-geo: 2.0.2
+      d3-geo: 3.1.1
       d3-interpolate: 3.0.1
       earcut: 3.0.1
       three: 0.186.1
@@ -9888,7 +9836,7 @@ snapshots:
 
   three-slippy-map-globe@1.0.6(three@0.186.1):
     dependencies:
-      d3-geo: 2.0.2
+      d3-geo: 3.1.1
       d3-octree: 1.1.0
       d3-scale: 4.0.2
       three: 0.186.1
@@ -9983,8 +9931,6 @@ snapshots:
       function.name: 1.0.14
 
   undici-types@8.9.0: {}
-
-  undici@7.29.0: {}
 
   undici@7.29.1: {}
 
