@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@hideo54/ui':
+        specifier: workspace:*
+        version: link:packages/ui
       '@mdx-js/react':
         specifier: ^3.1.1
         version: 3.1.1(@types/react@19.3.0)(react@19.3.1)
@@ -148,6 +151,8 @@ importers:
   apps/homepage: {}
 
   apps/img: {}
+
+  packages/ui: {}
 
 packages:
 

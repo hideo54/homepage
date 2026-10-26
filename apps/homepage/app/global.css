@@ -1,39 +1,4 @@
-@import 'tailwindcss';
-@import './typography.css';
-
-@plugin 'daisyui' {
-    themes: false;
-}
-
-@plugin 'daisyui/theme' {
-    name: 'light';
-    default: true;
-    color-scheme: light;
-
-    --color-base-100: #ffffff;
-    --color-base-200: #eeeeee;
-    --color-base-300: #aaaaaa;
-    --color-base-content: #333333;
-
-    --color-primary: #e26a6a;
-    --color-primary-content: #ffffff;
-    --color-success: #20a766;
-}
-
-@plugin 'daisyui/theme' {
-    name: 'dark';
-    prefersdark: true;
-    color-scheme: dark;
-
-    --color-base-100: #000000;
-    --color-base-200: #333333;
-    --color-base-300: #888888;
-    --color-base-content: #eeeeee;
-
-    --color-primary: #e26a6a;
-    --color-primary-content: #ffffff;
-    --color-success: #05df72;
-}
+@import '@hideo54/ui/styles.css';
 
 @theme {
     --animate-shine: shine 1s infinite;
@@ -45,10 +10,6 @@
         #be4df8 70%
     );
 
-    --font-display:
-        'Hiragino Sans JP', -apple-system, BlinkMacSystemFont,
-        'Local Noto Sans JP', 'Noto Sans JP', sans-serif;
-
     @keyframes shine {
         0% {
             background-position: 100% 50%;
@@ -56,52 +17,5 @@
         100% {
             background-position: 0% 50%;
         }
-    }
-}
-
-@layer base {
-    :root {
-        --chart-lightness: 62%;
-        --chart-chroma: 0.14;
-        --color-chart-blue: oklch(
-            var(--chart-lightness) var(--chart-chroma) 255
-        );
-        --color-chart-orange: oklch(
-            var(--chart-lightness) var(--chart-chroma) 60
-        );
-        --color-chart-aqua: oklch(
-            var(--chart-lightness) var(--chart-chroma) 160
-        );
-        --color-chart-violet: oklch(
-            var(--chart-lightness) var(--chart-chroma) 280
-        );
-        --color-chart-pink: oklch(
-            var(--chart-lightness) var(--chart-chroma) 10
-        );
-    }
-    html,
-    body {
-        @apply h-full antialiased;
-        font-synthesis-weight: none;
-        line-break: strict;
-        text-autospace: normal;
-        text-spacing-trim: trim-start;
-    }
-    body {
-        @apply m-auto max-w-(--breakpoint-lg) leading-7;
-    }
-    main {
-        @apply overflow-hidden px-4;
-        a {
-            @apply text-primary hover:underline transition;
-        }
-    }
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        word-break: auto-phrase;
     }
 }

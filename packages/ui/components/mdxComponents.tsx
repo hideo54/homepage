@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React, { type ComponentPropsWithoutRef } from 'react';
 import { IoChevronForwardOutline, IoOpenOutline } from 'react-icons/io5';
-import { IconAnchor, IconLink } from './components/iconTools';
+import { IconAnchor, IconLink } from './iconTools';
 
 export const mdxComponents = {
     a: (

@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - 'apps/homepage/**'
+      - 'packages/ui/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - 'pnpm-workspace.yaml'

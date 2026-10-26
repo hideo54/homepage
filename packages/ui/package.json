@@ -1,0 +1,9 @@
+{
+    "exports": {
+        "./components/*": "./components/*.tsx",
+        "./styles.css": "./styles.css"
+    },
+    "name": "@hideo54/ui",
+    "private": true,
+    "type": "module"
+}

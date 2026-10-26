@@ -1,4 +1,6 @@
 /** biome-ignore-all lint/correctness/useUniqueElementIds: ID は好きな文字列を置きたい */
+
+import { IconAnchor } from '@hideo54/ui/components/iconTools';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { IoAirplane, IoOpenOutline, IoSquareOutline } from 'react-icons/io5';
@@ -14,7 +16,6 @@ import {
 import { type USStateCode, usStateColors } from '../../data/us-state-colors';
 import FlightGlobe from '../components/FlightGlobe';
 import GeoMap from '../components/GeoMap';
-import { IconAnchor } from '../components/iconTools';
 import Layout from '../components/Layout';
 import MonthlyVisitChart from '../components/MonthlyVisitChart';
 

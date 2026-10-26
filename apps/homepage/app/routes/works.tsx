@@ -1,3 +1,4 @@
+import { IconAnchor, IconSpan } from '@hideo54/ui/components/iconTools';
 import { FaGithub, FaRobot, FaSlack, FaTwitter } from 'react-icons/fa';
 import {
     IoConstructOutline,
@@ -7,7 +8,6 @@ import {
 } from 'react-icons/io5';
 import githubDataJson from '../../data/generated/github.json';
 import type { GitHubData } from '../../data/schema/github';
-import { IconAnchor, IconSpan } from '../components/iconTools';
 import Layout from '../components/Layout';
 
 const contributions = githubDataJson as unknown as GitHubData;
