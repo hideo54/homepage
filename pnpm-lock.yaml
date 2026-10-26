@@ -29,9 +29,6 @@ importers:
       i18n-iso-countries:
         specifier: ^7.13.0
         version: 7.14.0
-      isbot:
-        specifier: ^5
-        version: 5.2.2
       jp-local-gov:
         specifier: ^2.6.0
         version: 2.6.0

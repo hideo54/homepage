@@ -7,7 +7,6 @@
         "dayjs": "^1.11.23",
         "firebase-admin": "^14.5.0",
         "i18n-iso-countries": "^7.13.0",
-        "isbot": "^5",
         "jp-local-gov": "^2.6.0",
         "plotly.js-dist-min": "^4.1.2",
         "react": "^19.3.1",
