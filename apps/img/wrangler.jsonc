@@ -1,0 +1,19 @@
+{
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "compatibility_date": "2026-10-01",
+    "main": "src/index.ts",
+    "name": "img-hideo54-com",
+    "r2_buckets": [
+        {
+            "binding": "IMG",
+            "bucket_name": "img"
+        }
+    ],
+    "routes": [
+        {
+            "custom_domain": true,
+            "pattern": "img.hideo54.com"
+        }
+    ],
+    "send_metrics": false
+}

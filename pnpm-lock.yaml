@@ -151,6 +151,15 @@ importers:
         specifier: ^4.149.0
         version: 4.149.0(@types/node@26.6.4)
 
+  apps/img:
+    devDependencies:
+      typescript:
+        specifier: 7.0.2
+        version: 7.0.2
+      wrangler:
+        specifier: ^4.149.0
+        version: 4.149.0(@types/node@26.6.4)
+
 packages:
 
   '@babel/code-frame@7.29.7':

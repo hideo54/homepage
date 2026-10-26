@@ -1,0 +1,14 @@
+{
+    "devDependencies": {
+        "typescript": "7.0.2",
+        "wrangler": "^4.149.0"
+    },
+    "name": "img",
+    "private": true,
+    "scripts": {
+        "deploy": "wrangler deploy",
+        "develop": "wrangler dev",
+        "typecheck": "wrangler types && tsc --noEmit"
+    },
+    "type": "module"
+}

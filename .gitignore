@@ -37,3 +37,8 @@ key.json
 /apps/homepage/data/generated/
 
 tsconfig.tsbuildinfo
+
+# wrangler
+.wrangler/
+.dev.vars*
+worker-configuration.d.ts
