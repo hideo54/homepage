@@ -31,7 +31,7 @@ jobs:
       with:
         node-version: 22
         cache: pnpm
-    - run: pnpm install --frozen-lockfile --filter homepage
+    - run: pnpm install --frozen-lockfile
     - uses: google-github-actions/auth@v2
       if: github.actor != 'dependabot[bot]'
       with:

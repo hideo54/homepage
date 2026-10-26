@@ -7,12 +7,6 @@ settings:
 importers:
 
   .:
-    devDependencies:
-      '@biomejs/biome':
-        specifier: 2.5.15
-        version: 2.5.15
-
-  apps/homepage:
     dependencies:
       '@mdx-js/react':
         specifier: ^3.1.1
@@ -75,6 +69,9 @@ importers:
         specifier: ^2.9.1
         version: 2.9.1
     devDependencies:
+      '@biomejs/biome':
+        specifier: 2.5.15
+        version: 2.5.15
       '@mdx-js/rollup':
         specifier: ^3.1.1
         version: 3.1.1(rollup@4.64.7)(supports-color@10.2.2)
@@ -151,14 +148,9 @@ importers:
         specifier: ^4.149.0
         version: 4.149.0(@types/node@26.6.4)
 
-  apps/img:
-    devDependencies:
-      typescript:
-        specifier: 7.0.2
-        version: 7.0.2
-      wrangler:
-        specifier: ^4.149.0
-        version: 4.149.0(@types/node@26.6.4)
+  apps/homepage: {}
+
+  apps/img: {}
 
 packages:
 

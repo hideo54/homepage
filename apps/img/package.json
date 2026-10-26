@@ -1,8 +1,4 @@
 {
-    "devDependencies": {
-        "typescript": "7.0.2",
-        "wrangler": "^4.149.0"
-    },
     "name": "img",
     "private": true,
     "scripts": {

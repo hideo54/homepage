@@ -1,5 +1,5 @@
 {
-    "$schema": "node_modules/wrangler/config-schema.json",
+    "$schema": "../../node_modules/wrangler/config-schema.json",
     "compatibility_date": "2026-10-01",
     "main": "src/index.ts",
     "name": "img-hideo54-com",

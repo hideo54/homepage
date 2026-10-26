@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm install --frozen-lockfile --filter img
+      - run: pnpm install --frozen-lockfile
       - run: pnpm --filter img typecheck
       - uses: cloudflare/wrangler-action@v3
         with:
