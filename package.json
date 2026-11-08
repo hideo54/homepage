@@ -39,7 +39,7 @@
         "airport-data-js": "4.0.0",
         "cheerio": "^1.2.0",
         "concurrently": "^10.0.6",
-        "daisyui": "^5.7.47",
+        "daisyui": "^5.7.50",
         "dotenv": "^18.0.7",
         "fast-xml-parser": "^5.11.2",
         "tailwindcss": "^4.3.2",
