@@ -18,7 +18,7 @@
         "react-router": "^8.4.0",
         "react-world-flags": "^1.6.0",
         "recharts": "^3.10.1",
-        "scrape-it": "^6.1.15",
+        "scrape-it": "^6.1.16",
         "yaml": "^2.9.1"
     },
     "devDependencies": {

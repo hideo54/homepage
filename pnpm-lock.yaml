@@ -63,8 +63,8 @@ importers:
         specifier: ^3.10.1
         version: 3.10.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react-is@19.3.1)(react@19.3.1)(redux@5.0.1)
       scrape-it:
-        specifier: ^6.1.15
-        version: 6.1.15(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
+        specifier: ^6.1.16
+        version: 6.1.16(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       yaml:
         specifier: ^2.9.1
         version: 2.9.1
@@ -1975,8 +1975,8 @@ packages:
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
 
-  axios@1.20.0:
-    resolution: {integrity: sha512-r8aOh8j9cGKpgQAqpzrUHnSIc6a59Y3Xf/cv8sy1DrHCkZHzQGEuoq1tARk6qSyDdtQGSDgpb9kFlruzPvrgwg==}
+  axios@1.21.0:
+    resolution: {integrity: sha512-YCzXMB53Q9PZBsh7yN7wtapit4WepwcHS2fP8QhGsBxSz5YtgYobV7GGlWlAJi+RxfU77GQTQi2DSLUma42EYA==}
 
   babel-dead-code-elimination@1.0.12:
     resolution: {integrity: sha512-GERT7L2TiYcYDtYk1IpD+ASAYXjKbLTDPhBtYj7X1NuRMDTMtAx9kyBenub1Ev41lo91OHCKdmP+egTDmfQ7Ig==}
@@ -2694,8 +2694,8 @@ packages:
     resolution: {integrity: sha512-/kXzuDnnBqyyWyhDMH7+PfP8J/oXiAavGzcRxASOMRHFuReDtofizLLJsf7nnDLAfEaMW4pVWaXrAjtnglpEkg==}
     engines: {node: '>=12'}
 
-  follow-redirects@1.16.0:
-    resolution: {integrity: sha512-y5rN/uOsadFT/JfYwhxRS5R7Qce+g3zG97+JrtFZlC9klX/W5hD7iiLzScI4nZqUS7DNUdhPgw4xI8W2LuXlUw==}
+  follow-redirects@1.16.2:
+    resolution: {integrity: sha512-/kVP2U8z596Ia0gwFrwyIeo74ta5aVmSeU1FfAUMAmcEP5EP7zydmag3SLiN64NaRKef3lxsq7i/g7ltJQDGow==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -4012,8 +4012,8 @@ packages:
   scrape-it-core@1.0.2:
     resolution: {integrity: sha512-gXtUSsL/ikNMTz1678Bge++kfuV0o2fGtkMB+tRO2+J9fyZBkjvFJqjbAFYjb9SHsgb0hT0v0nWa3MVk0rvhsA==}
 
-  scrape-it@6.1.15:
-    resolution: {integrity: sha512-WjDQrUnXeL+npxfmt5eeNtAeuIc2yBI+ighE/q45bidkAJUz2CLmzmUREZDYl9DGmajVLWpi+WCzbZ+k5uI2yQ==}
+  scrape-it@6.1.16:
+    resolution: {integrity: sha512-jv5Y2bvtvuvGgiNT/BGzdZyMe2qhH3R7Uu6mCCL3T+/Crc+LijtKaNFIA8hYUSwh3GgFxal75s1DLEZSGG2Omw==}
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
@@ -6907,9 +6907,9 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  axios@1.20.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
+  axios@1.21.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
     dependencies:
-      follow-redirects: 1.16.0(debug@4.4.3(supports-color@10.2.2))
+      follow-redirects: 1.16.2(debug@4.4.3(supports-color@10.2.2))
       form-data: 4.0.6
       https-proxy-agent: 5.0.1(supports-color@10.2.2)
       proxy-from-env: 2.1.0
@@ -7002,7 +7002,7 @@ snapshots:
 
   cheerio-req@2.0.1(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
     dependencies:
-      axios: 1.20.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
+      axios: 1.21.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       cheerio: 1.2.0
     transitivePeerDependencies:
       - debug
@@ -7720,7 +7720,7 @@ snapshots:
     transitivePeerDependencies:
       - preact-render-to-string
 
-  follow-redirects@1.16.0(debug@4.4.3(supports-color@10.2.2)):
+  follow-redirects@1.16.2(debug@4.4.3(supports-color@10.2.2)):
     optionalDependencies:
       debug: 4.4.3(supports-color@10.2.2)
 
@@ -9554,7 +9554,7 @@ snapshots:
       obj-def: 1.0.10
       typpy: 2.4.0
 
-  scrape-it@6.1.15(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
+  scrape-it@6.1.16(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
     dependencies:
       assured: 1.0.16
       cheerio: 1.2.0
