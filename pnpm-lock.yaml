@@ -91,8 +91,8 @@ importers:
         specifier: ^2.0.14
         version: 2.0.14
       '@types/mdx-js__react':
-        specifier: ^1.5.8
-        version: 1.5.8
+        specifier: ^2.0.0
+        version: 2.0.0(@types/react@19.3.0)(react@19.3.1)
       '@types/node':
         specifier: 26.6.6
         version: 26.6.6
@@ -1727,8 +1727,9 @@ packages:
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
 
-  '@types/mdx-js__react@1.5.8':
-    resolution: {integrity: sha512-iLQL8JZ4AZ+rpZvGUsQwENffpsSCMLYB8kE6OhGasLmdYn7aSLq53uOvZrKx5FM+hymE2nm08HDfq7tFx02ElA==}
+  '@types/mdx-js__react@2.0.0':
+    resolution: {integrity: sha512-CULRBwQwLTb2RrhERg43x4857LaAjWcA2oncJdW0zj9m6eZQbGcOxZTHMiOxYmNmSrbDJQwJ6JiokqzBLAenEA==}
+    deprecated: This is a stub types definition. @mdx-js/react provides its own type definitions, so you do not need this installed.
 
   '@types/mdx@2.0.14':
     resolution: {integrity: sha512-T48PeuJtvLosNTPVhfnIp3i/n3a4g4Bad7YCq5k64D4u7NwDrAotikQ+5+sjtUvBmxCMlbo3dVL+C2dP0rWHzg==}
@@ -6755,9 +6756,12 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  '@types/mdx-js__react@1.5.8':
+  '@types/mdx-js__react@2.0.0(@types/react@19.3.0)(react@19.3.1)':
     dependencies:
-      '@types/react': 19.3.0
+      '@mdx-js/react': 3.1.1(@types/react@19.3.0)(react@19.3.1)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react
 
   '@types/mdx@2.0.14': {}
 
