@@ -82,8 +82,8 @@ importers:
         specifier: ^4.3.3
         version: 4.3.3(vite@8.3.6(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))
       '@types/chroma-js':
-        specifier: ^3.1.2
-        version: 3.1.2
+        specifier: ^3.1.3
+        version: 3.1.3
       '@types/geojson':
         specifier: ^7946.0.16
         version: 7946.0.16
@@ -1658,8 +1658,8 @@ packages:
   '@tweenjs/tween.js@25.0.0':
     resolution: {integrity: sha512-XKLA6syeBUaPzx4j3qwMqzzq+V4uo72BnlbOjmuljLrRqdsd3qnzvZZoxvMHZ23ndsRS4aufU6JOZYpCbU6T1A==}
 
-  '@types/chroma-js@3.1.2':
-    resolution: {integrity: sha512-YBTQqArPN8A0niHXCwrO1z5x++a+6l0mLBykncUpr23oIPW7L4h39s6gokdK/bDrPmSh8+TjMmrhBPnyiaWPmQ==}
+  '@types/chroma-js@3.1.3':
+    resolution: {integrity: sha512-r4kI3HTbLdayBkY1f2Xv7/1TJaHTS//8f6Etv036NQMIj2jVPngUV11NczKiLFKyy01o6hGYVDypP7tJVoFPew==}
 
   '@types/d3-array@3.2.2':
     resolution: {integrity: sha512-hOLWVbm7uRza0BYXpIIW5pxfrKe0W+D5lrFiAEYR+pb6w3N2SwSMaJbXdUfSEv+dT4MfHBLtn5js0LAWaO6otw==}
@@ -6686,7 +6686,7 @@ snapshots:
 
   '@tweenjs/tween.js@25.0.0': {}
 
-  '@types/chroma-js@3.1.2': {}
+  '@types/chroma-js@3.1.3': {}
 
   '@types/d3-array@3.2.2': {}
 
