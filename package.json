@@ -42,7 +42,7 @@
         "daisyui": "^5.7.50",
         "dotenv": "^18.0.9",
         "fast-xml-parser": "^5.11.2",
-        "tailwindcss": "^4.3.2",
+        "tailwindcss": "^4.3.5",
         "tsx": "^4.23.15",
         "typescript": "7.0.2",
         "undici": "^8.12.3",
