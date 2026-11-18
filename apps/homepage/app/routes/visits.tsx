@@ -14,6 +14,10 @@ import {
     senkyokuResultColors,
 } from '../../data/senkyoku-result-colors';
 import { type USStateCode, usStateColors } from '../../data/us-state-colors';
+import intlWintriSvgUrl from '../assets/maps/intl_wintri.svg?url';
+import prefecturesSvgUrl from '../assets/maps/prefectures-simplify-20.svg?url';
+import shu2022SvgUrl from '../assets/maps/shu-2022-geo.svg?url';
+import usStatesSvgUrl from '../assets/maps/us-states.svg?url';
 import FlightGlobe from '../components/FlightGlobe';
 import GeoMap from '../components/GeoMap';
 import Layout from '../components/Layout';
@@ -131,7 +135,7 @@ const App = () => {
                     fill={Object.fromEntries(visitedSenkyokuColors)}
                     mapId='senkyoku'
                     maxCount={289}
-                    path='/shu-2022-geo.svg'
+                    path={shu2022SvgUrl}
                     viewBox='137 20 591 740'
                 />
                 <MonthlyVisitChart
@@ -209,7 +213,7 @@ const App = () => {
                     )}
                     mapId='keikenchi'
                     maxCount={5 * 47}
-                    path='/prefectures-simplify-20.svg'
+                    path={prefecturesSvgUrl}
                     viewBox='137.0 20.0 591.0 740.0'
                 />
                 <MonthlyVisitChart
@@ -248,7 +252,7 @@ const App = () => {
                     )}
                     idProvidedByClass
                     mapId='intl_wintri1'
-                    path='/intl_wintri.svg'
+                    path={intlWintriSvgUrl}
                     viewBox='0 0 800 485'
                 />
                 <MonthlyVisitChart
@@ -356,7 +360,7 @@ const App = () => {
                     idProvidedByClass
                     mapId='us'
                     maxCount={51}
-                    path='/us-states.svg'
+                    path={usStatesSvgUrl}
                     svgPadding='0 2em'
                     viewBox='0 0 940 593'
                 />

@@ -1,5 +1,6 @@
 import maimaiDataJson from '../../data/generated/maimai.json';
 import type { MaimaiData } from '../../data/schema/maimai';
+import prefecturesSvgUrl from '../assets/maps/prefectures-simplify-20.svg?url';
 import GeoMap from '../components/GeoMap';
 import Layout from '../components/Layout';
 
@@ -66,7 +67,7 @@ const App = () => {
                     )}
                     mapId='maimai'
                     maxCount={47}
-                    path='/prefectures-simplify-20.svg'
+                    path={prefecturesSvgUrl}
                     viewBox='137.0 20.0 591.0 740.0'
                 />
             </section>
