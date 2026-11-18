@@ -52,7 +52,7 @@ const GeoMap: React.FC<{
     return (
         <div
             className={clsx([
-                'relative bg-[#a5c1fa] text-neutral-800',
+                'relative bg-sea text-base-content dark:bg-dark-sea',
                 props.wrapperDivClassName,
             ])}
             id={props.mapId}
@@ -60,7 +60,7 @@ const GeoMap: React.FC<{
         >
             <svg
                 className={clsx([
-                    'max-h-200 w-full fill-white stroke-[0.2px] stroke-black',
+                    'max-h-200 w-full fill-base-100 stroke-[0.1px] stroke-base-content',
                     props.className,
                 ])}
                 style={{

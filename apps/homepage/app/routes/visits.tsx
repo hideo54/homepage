@@ -91,7 +91,7 @@ const App = () => {
         if (keikenchi === 3) return '#faff79';
         if (keikenchi === 2) return '#bbf59d';
         if (keikenchi === 1) return '#b7ddfd';
-        return '#ffffff';
+        return 'var(--color-base-100)';
     };
 
     return (
@@ -238,7 +238,7 @@ const App = () => {
                     ))}
                 </ul>
                 <GeoMap
-                    additionalCss='path[class^="ADM0_A3-"],path.land,path.boundary{stroke:black;stroke-width:0.2;}path[class^="ADM0_A3-"],path.land{fill:white;}'
+                    additionalCss='path.land,path.boundary{stroke-width:0.2;}#intl_wintri3,.boundary-disputed{display:none;}'
                     alt='世界地図'
                     count={swarmData.allVisitedCountryCodes.length}
                     fill={Object.fromEntries(
@@ -344,7 +344,7 @@ const App = () => {
                     訪れたことのあるアメリカ合衆国の州
                 </h2>
                 <GeoMap
-                    additionalCss='g.state{fill:white;}g.borders>path{stroke:black;stroke-width:0.5;}'
+                    additionalCss='g.borders>path{stroke-width:0.2;}'
                     alt='アメリカ合衆国の州の地図'
                     count={swarmData.allVisitedUSStates.length}
                     fill={Object.fromEntries(
