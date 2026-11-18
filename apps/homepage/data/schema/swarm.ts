@@ -37,7 +37,6 @@ export interface SwarmData {
     newestCheckinDate: string;
     oldestCheckinDate: string;
     ramenRestaurantsCheckinCount: Record<string, number>;
-    senkyokuVisitCounts2017: [AnySenkyokuId, number][];
     senkyokuVisitCounts2022: [AnySenkyokuId, number][];
     visitedAirports: VisitedAirport[];
     visitedAirportsByCountry: VisitedAirportCount[];

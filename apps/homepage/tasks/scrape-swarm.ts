@@ -338,15 +338,8 @@ const getCheckinData = async () => {
                     (cur[0] !== arr[i - 1][0] && cur[1] !== arr[i - 1][1]),
             ),
     );
-    const senkyokuGeoJson2017 = JSON.parse(
-        await fs.readFile(dataPath('geo/shu-2017.geojson'), 'utf-8'),
-    );
     const senkyokuGeoJson2022 = JSON.parse(
         await fs.readFile(dataPath('geo/shu-2022.geojson'), 'utf-8'),
-    );
-    const senkyokuVisitCounts2017 = calcSenkyokuVisitCounts(
-        senkyokuGeoJson2017,
-        allCoordinates,
     );
     const senkyokuVisitCounts2022 = calcSenkyokuVisitCounts(
         senkyokuGeoJson2022,
@@ -482,7 +475,6 @@ const getCheckinData = async () => {
         newestCheckinDate,
         oldestCheckinDate,
         ramenRestaurantsCheckinCount,
-        senkyokuVisitCounts2017,
         senkyokuVisitCounts2022,
         visitedAirports,
         visitedAirportsByCountry,
@@ -512,7 +504,6 @@ const sampleData = {
     ramenRestaurantsCheckinCount: {
         東京油組総本店: 54,
     },
-    senkyokuVisitCounts2017: [['tokyo-1', 282]],
     senkyokuVisitCounts2022: [['tokyo-1', 282]],
     visitedAirports: [
         { countryCode: 'JP', name: '東京国際空港 (羽田空港) (HND)' },
@@ -533,7 +524,6 @@ const main = async () => {
                   newestCheckinDate: '',
                   oldestCheckinDate: '',
                   ramenRestaurantsCheckinCount: {},
-                  senkyokuVisitCounts2017: [],
                   senkyokuVisitCounts2022: [],
                   visitedAirports: [],
                   visitedAirportsByCountry: [],
