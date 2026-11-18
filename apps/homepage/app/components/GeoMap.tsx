@@ -20,34 +20,18 @@ const GeoMap: React.FC<{
     alt: string;
 }> = props => {
     const [data, setData] = useState<string | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<Error | null>(null);
 
     useEffect(() => {
         fetch(props.path)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.text();
-            })
-            .then(svgData => {
-                setData(svgData);
-                setLoading(false);
-            })
-            .catch(error => {
-                setError(error);
-                setLoading(false);
-            });
+            .then(response => response.text())
+            .then(setData);
     }, [props.path]);
 
-    if (loading) return <div className='h-150 animate-pulse bg-base-200' />;
-    if (error) return <p className='typography-p'>Error: {error.message}</p>;
-    if (!data) return <p className='typography-p'>No data</p>;
-
-    const loadedSvg = new DOMParser().parseFromString(data, 'image/svg+xml');
-    const svgElementChild =
-        loadedSvg.getElementsByTagName('svg')[0]?.firstElementChild;
+    const svgElementChild = data
+        ? new DOMParser()
+              .parseFromString(data, 'image/svg+xml')
+              .getElementsByTagName('svg')[0]?.firstElementChild
+        : null;
 
     return (
         <div
@@ -69,17 +53,20 @@ const GeoMap: React.FC<{
                 viewBox={props.viewBox}
             >
                 <title>{props.alt}</title>
-                <g
-                    ref={ref =>
-                        (svgElementChild &&
-                            ref?.replaceWith(svgElementChild)) ??
-                        undefined
-                    }
-                >
-                    <div className='h-full animate-pulse bg-base-200' />
-                </g>
+                {svgElementChild && (
+                    <g
+                        ref={ref => {
+                            ref?.replaceWith(svgElementChild);
+                        }}
+                    />
+                )}
                 {props.children}
             </svg>
+            {!data && (
+                <div className='absolute inset-0 flex items-center justify-center'>
+                    <span className='loading loading-spinner loading-lg' />
+                </div>
+            )}
             <style
                 // biome-ignore lint/security/noDangerouslySetInnerHtml: 一旦仕方ない
                 dangerouslySetInnerHTML={{
