@@ -173,7 +173,6 @@ const App = () => {
                 <GeoMap
                     alt='都道府県地図'
                     CountSectionChildren={Array.from({ length: 6 }, (_, i) => (
-                        // biome-ignore lint/suspicious/noArrayIndexKey: it can never be reordered
                         <p className='my-1' key={i}>
                             <ColorSquare color={keikenchiToColor(5 - i)} />
                             <span className='mr-1 font-bold'>

@@ -68,7 +68,6 @@ const GeoMap: React.FC<{
                 </div>
             )}
             <style
-                // biome-ignore lint/security/noDangerouslySetInnerHtml: 一旦仕方ない
                 dangerouslySetInnerHTML={{
                     __html:
                         (props.additionalCss || '') +
