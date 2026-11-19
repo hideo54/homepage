@@ -22,3 +22,22 @@
         }
     }
 }
+
+/* Map frames expanding to cover the screen. Only the new snapshot is shown, cropped rather than stretched, so the map is not distorted or doubled while morphing. */
+::view-transition-group(.map-frame) {
+    overflow: clip;
+    animation-duration: 250ms;
+    animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+::view-transition-old(.map-frame) {
+    display: none;
+}
+::view-transition-new(.map-frame) {
+    height: 100%;
+    object-fit: cover;
+    animation: none;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+}
