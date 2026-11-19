@@ -22,6 +22,7 @@ const ZoomableSvg: React.FC<{
     // How far the map moves per pixel of a drag. Above 1, it outruns the pointer to cover the zoomed map quickly.
     panSpeed?: number;
     className?: string;
+    style?: React.CSSProperties;
     captureTouch?: boolean;
     // Called when a pinch ends or the zoom is reset, not on every frame.
     onZoomedChange?: (isZoomed: boolean) => void;
@@ -32,6 +33,7 @@ const ZoomableSvg: React.FC<{
     maxScale = 16,
     panSpeed = 1.4,
     className,
+    style,
     captureTouch = false,
     onZoomedChange,
     children,
@@ -153,7 +155,10 @@ const ZoomableSvg: React.FC<{
                     event.preventDefault();
                 }}
                 ref={svgRef}
-                style={{ touchAction: captureTouch ? 'none' : 'pan-x pan-y' }}
+                style={{
+                    ...style,
+                    touchAction: captureTouch ? 'none' : 'pan-x pan-y',
+                }}
                 viewBox={viewBox}
             >
                 <title>{title}</title>
