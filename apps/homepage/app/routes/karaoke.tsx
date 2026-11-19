@@ -55,7 +55,7 @@ const ScoreWithAverage: React.FC<{
     label?: string;
 }> = ({ myScore, averageScore, label }) => (
     <div>
-        <div className='-mb-1 font-bold text-sm'>{label}</div>
+        <div className='-mb-1 text-sm font-bold'>{label}</div>
         <span
             className={clsx([
                 'mr-2 font-bold',
@@ -81,7 +81,7 @@ const Score: React.FC<{
                 <IoMusicalNote className='mt-1 -ml-4' size={48} />
             </div>
             <div>
-                <span className='mr-2 font-bold text-lg'>
+                <span className='mr-2 text-lg font-bold'>
                     {scoreData.contentsName}
                 </span>
                 {scoreData.lastPerformKey !== '0' && (
@@ -106,7 +106,7 @@ const Score: React.FC<{
         <div className='border-base-200 border-l-2 border-solid pl-3'>
             <div>{dayjs(scoreData.scoringDateTime).format('YYYY/MM/DD')}</div>
             <div>
-                <div className='font-bold text-sm'>音域</div>
+                <div className='text-sm font-bold'>音域</div>
                 <span className='mr-2'>
                     <span
                         className={clsx([

@@ -5,9 +5,7 @@ import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { IoAirplane, IoOpenOutline, IoSquareOutline } from 'react-icons/io5';
 import FlagModule from 'react-world-flags';
-import maimaiDataJson from '../../data/generated/maimai.json';
 import swarmDataJson from '../../data/generated/swarm.json';
-import type { MaimaiData } from '../../data/schema/maimai';
 import type { SwarmData } from '../../data/schema/swarm';
 import {
     type SenkyokuId,
@@ -300,7 +298,7 @@ const App = () => {
                 <div className='grid grid-cols-2 gap-4 md:grid-cols-3'>
                     {swarmData.visitedAirports.map(airport => (
                         <div key={airport.name}>
-                            <div className='flex items-center gap-2 font-bold text-2xl'>
+                            <div className='flex items-center gap-2 text-2xl font-bold'>
                                 <IoAirplane
                                     size='1.2em'
                                     style={{ verticalAlign: 'text-bottom' }}
@@ -405,7 +403,7 @@ const App = () => {
                                 key={restaurantName}
                             >
                                 <div className='flex items-baseline gap-1'>
-                                    <span className='font-bold text-2xl'>
+                                    <span className='text-2xl font-bold'>
                                         {count}
                                     </span>
                                     <span className='text-xs'>回</span>

@@ -37,11 +37,12 @@
     "linter": {
         "enabled": true,
         "rules": {
+            "a11y": "off",
             "correctness": {
                 "noUnusedImports": "on"
             },
             "nursery": {
-                "useSortedClasses": {
+                "useTailwindSortedClasses": {
                     "fix": "safe",
                     "level": "warn",
                     "options": {}
@@ -63,9 +64,17 @@
             }
         }
     },
+    "markdown": {
+        "formatter": { "enabled": false },
+        "linter": { "enabled": false }
+    },
     "vcs": {
         "clientKind": "git",
         "enabled": true,
         "useIgnoreFile": true
+    },
+    "yaml": {
+        "formatter": { "enabled": false },
+        "linter": { "enabled": false }
     }
 }

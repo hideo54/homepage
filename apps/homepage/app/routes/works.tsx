@@ -140,7 +140,7 @@ const WorkDetail: React.FC<{
                             {work.category}
                         </IconSpan>
                     </div>
-                    <span className='mr-4 font-bold text-xl'>
+                    <span className='mr-4 text-xl font-bold'>
                         <IconAnchor href={work.url} RightIcon={IoOpenOutline}>
                             {work.title}
                         </IconAnchor>

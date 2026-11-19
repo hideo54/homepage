@@ -36,7 +36,7 @@ const GeoMap: React.FC<{
     return (
         <div
             className={clsx([
-                'relative bg-sea text-base-content dark:bg-dark-sea',
+                'bg-sea text-base-content dark:bg-dark-sea relative',
                 props.wrapperDivClassName,
             ])}
             id={props.mapId}
@@ -44,7 +44,7 @@ const GeoMap: React.FC<{
         >
             <svg
                 className={clsx([
-                    'max-h-200 w-full fill-base-100 stroke-[0.1px] stroke-base-content',
+                    'fill-base-100 stroke-base-content max-h-200 w-full stroke-[0.1px]',
                     props.className,
                 ])}
                 style={{
@@ -81,7 +81,7 @@ const GeoMap: React.FC<{
             />
             <section className='absolute top-0 p-2'>
                 <p className='m-0'>
-                    <span className='font-bold text-3xl'>{props.count}</span>
+                    <span className='text-3xl font-bold'>{props.count}</span>
                     {props.maxCount && <span> / {props.maxCount}</span>}
                 </p>
                 {props.CountSectionChildren}

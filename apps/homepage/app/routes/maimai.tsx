@@ -26,7 +26,7 @@ const App = () => {
                         .map(record => (
                             <li key={record.name}>
                                 <div>
-                                    <span className='mr-2 font-bold text-lg'>
+                                    <span className='mr-2 text-lg font-bold'>
                                         {record.name.normalize('NFKC')}
                                     </span>
                                     {!record.isStandard && (
@@ -42,7 +42,7 @@ const App = () => {
                                         Lv. {record.level}
                                     </span>
                                     <span>
-                                        <span className='mr-1 font-bold text-xl'>
+                                        <span className='mr-1 text-xl font-bold'>
                                             {(record.score * 100).toFixed(4)}
                                         </span>
                                         %

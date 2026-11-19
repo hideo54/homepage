@@ -47,7 +47,7 @@ export const Document = ({
             />
         </head>
         <body>
-            <div className='h-full font-display'>{children}</div>
+            <div className='font-display h-full'>{children}</div>
             <ScrollRestoration />
             <Scripts />
         </body>
