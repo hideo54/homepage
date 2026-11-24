@@ -115,8 +115,8 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0
       airport-data-js:
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       cheerio:
         specifier: ^1.2.0
         version: 1.2.0
@@ -1992,8 +1992,8 @@ packages:
     resolution: {integrity: sha512-kja8j7PjmncONqaTsB8fQ+wE2mSU2DJ9D4XKoJ5PFWIdRMa6SLSN1ff4mOr4jCbfRSsxR4keIiySJU0N9T5hIQ==}
     engines: {node: '>= 8.0.0'}
 
-  airport-data-js@4.0.0:
-    resolution: {integrity: sha512-GIB55son7LB5fdH/GGb/wA79ZyiJCKf0oeOl38he3rpls03MGENefYFdOVB11AaMiELO+tn5oKbqyze6tF4nlw==}
+  airport-data-js@4.1.0:
+    resolution: {integrity: sha512-78VuDC2pUO6G/NrFxM5us2HDVEJ3tNrK0YKM5chNVCmXNbpEkgFnHlqAVPY/uFh2sygVaeMs+ONQ0z3ocWWhzQ==}
     engines: {node: ^22.18.0 || >=24.11.0}
 
   ansi-regex@5.0.1:
@@ -3647,8 +3647,8 @@ packages:
     resolution: {integrity: sha512-6Lh3jQPLthYujSrlw6ccWXBGZTkoTCz27Hd92g79LH/kjAbgoEu0t442cCCNbegPSJsA0lwDX8z0bcKtkpA32g==}
     engines: {node: '>=18'}
 
-  pako@3.0.2:
-    resolution: {integrity: sha512-uBv6IT2aT1A78iU6dpNEbf6+CyhlV/6g9JlJs9kpgjFGFhruIICVRysF/W0SLzXg5+hCl+KroH7e4YUyfEmgLg==}
+  pako@3.0.3:
+    resolution: {integrity: sha512-tmrebBBYI5FOw8QICGwJNqE8fotC8R+gwcxOvoFNv+GKehOI6Lc6YBolNcQNnC4v96l1wt7rh102ifD4kVeZAQ==}
 
   parenthesis@3.1.8:
     resolution: {integrity: sha512-KF/U8tk54BgQewkJPvB4s/US3VQY68BRDpH638+7O/n58TpnwiwnOtGIOsT2/i+M78s61BBpeC83STB88d8sqw==}
@@ -6940,9 +6940,9 @@ snapshots:
     dependencies:
       humanize-ms: 1.2.1
 
-  airport-data-js@4.0.0:
+  airport-data-js@4.1.0:
     dependencies:
-      pako: 3.0.2
+      pako: 3.0.3
 
   ansi-regex@5.0.1:
     optional: true
@@ -8973,7 +8973,7 @@ snapshots:
 
   p-map@7.1.1: {}
 
-  pako@3.0.2: {}
+  pako@3.0.3: {}
 
   parenthesis@3.1.8: {}
 
