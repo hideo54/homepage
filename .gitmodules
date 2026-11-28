@@ -1,0 +1,3 @@
+[submodule "apps/blog/app/archives"]
+	path = apps/blog/app/archives
+	url = ../blog-archives.git

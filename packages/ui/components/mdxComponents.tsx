@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import React, { type ComponentPropsWithoutRef } from 'react';
 import { IoChevronForwardOutline, IoOpenOutline } from 'react-icons/io5';
 import { IconAnchor, IconLink } from './iconTools';
+import ZoomableImage from './ZoomableImage';
 
 export const mdxComponents = {
     a: (
@@ -59,6 +60,7 @@ export const mdxComponents = {
     hr: (props: ComponentPropsWithoutRef<'hr'>) => (
         <hr {...props} className={clsx('typography-hr', props.className)} />
     ),
+    img: ZoomableImage,
     ol: (props: ComponentPropsWithoutRef<'ol'>) => (
         <ol {...props} className={clsx('typography-list', props.className)} />
     ),

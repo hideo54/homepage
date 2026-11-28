@@ -89,6 +89,18 @@
     }
 }
 
+html:has(dialog[open]) {
+    overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none;
+    }
+}
+
 /*
  * Hiragino Sans JP のカバー範囲
  * ("Hiragino Sans" と名付けると macOS で "Hiragino Sans" が優先されてしまうので、"Hiragino Sans JP" としている)
@@ -158,7 +170,7 @@
 }
 
 @utility typography-h1 {
-    @apply mt-8 mb-5 font-extrabold text-5xl;
+    @apply mt-8 mb-5 font-extrabold text-5xl leading-tight;
 }
 
 @utility typography-h2 {
@@ -226,4 +238,8 @@
     & th {
         @apply font-bold;
     }
+}
+
+@utility typography-img {
+    @apply my-8 max-w-xl mx-auto;
 }
