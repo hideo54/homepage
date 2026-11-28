@@ -1,5 +1,6 @@
 import SiteLayout from '@hideo54/ui/components/SiteLayout';
 import { Outlet, useMatches } from 'react-router';
+import LocalTime from '../components/LocalTime';
 import { siteName } from '../site';
 
 type Frontmatter = {
@@ -27,8 +28,13 @@ const ArticleLayout = () => {
             <article>
                 <h1 className='typography-h1'>{frontmatter.title}</h1>
                 <p className='typography-p'>
-                    {frontmatter.date}
-                    {frontmatter.update && ` (更新: ${frontmatter.update})`}
+                    <LocalTime date={frontmatter.date} />
+                    {frontmatter.update && (
+                        <>
+                            {' (更新: '}
+                            <LocalTime date={frontmatter.update} />)
+                        </>
+                    )}
                 </p>
                 <Outlet />
             </article>
