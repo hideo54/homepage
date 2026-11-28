@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "isolatedModules": true,
+        "jsx": "react-jsx",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "noEmit": true,
+        "resolveJsonModule": true,
+        "rootDirs": [".", "./.react-router/types"],
+        "skipLibCheck": true,
+        "strict": true,
+        "target": "esnext",
+        "types": ["mdx", "node", "vite/client"]
+    },
+    "exclude": ["node_modules", "build"],
+    "include": ["**/*.ts", "**/*.tsx", ".react-router/types/**/*"]
+}

@@ -1,0 +1,13 @@
+{
+    "description": "hideo54's Blog",
+    "homepage": "https://blog.hideo54.com",
+    "name": "blog",
+    "private": true,
+    "scripts": {
+        "build": "pnpm typecheck && react-router build",
+        "develop": "react-router dev",
+        "start": "vite preview",
+        "typecheck": "react-router typegen && tsc --noEmit"
+    },
+    "type": "module"
+}

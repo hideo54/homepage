@@ -44,6 +44,8 @@
         "daisyui": "^5.8.2",
         "dotenv": "^18.0.10",
         "fast-xml-parser": "^5.12.1",
+        "remark-frontmatter": "^5.0.0",
+        "remark-mdx-frontmatter": "^6.0.0",
         "svgo": "^4.1.0",
         "tailwindcss": "^4.3.5",
         "tsx": "^4.23.15",
