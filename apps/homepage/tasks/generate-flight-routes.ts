@@ -1,4 +1,4 @@
-import airportData from 'airport-data-js';
+import { getMultipleAirports } from 'airport-data-js';
 import { flights } from '../data/flights';
 import type {
     Coordinates,
@@ -8,7 +8,7 @@ import { writeGenerated } from './io';
 
 const main = async () => {
     const codes = Array.from(new Set(flights.flat()));
-    const results = await airportData.getMultipleAirports(codes);
+    const results = await getMultipleAirports(codes);
     const missing = codes.filter((_, i) => !results[i]);
     if (missing.length > 0) {
         throw new Error(`Unknown airports: ${missing.join(', ')}`);
