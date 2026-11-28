@@ -59,6 +59,9 @@ export const mdxComponents = {
     hr: (props: ComponentPropsWithoutRef<'hr'>) => (
         <hr {...props} className={clsx('typography-hr', props.className)} />
     ),
+    img: (props: ComponentPropsWithoutRef<'img'>) => (
+        <img {...props} className={clsx('typography-img', props.className)} />
+    ),
     ol: (props: ComponentPropsWithoutRef<'ol'>) => (
         <ol {...props} className={clsx('typography-list', props.className)} />
     ),

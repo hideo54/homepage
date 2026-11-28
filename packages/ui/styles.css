@@ -227,3 +227,7 @@
         @apply font-bold;
     }
 }
+
+@utility typography-img {
+    @apply my-8 max-w-xl mx-auto;
+}
