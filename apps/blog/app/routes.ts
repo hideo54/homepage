@@ -1,6 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { layout, type RouteConfig, route } from '@react-router/dev/routes';
+import {
+    index,
+    layout,
+    type RouteConfig,
+    route,
+} from '@react-router/dev/routes';
 
 const ids = fs
     .readdirSync(path.join(import.meta.dirname, 'archives'))
@@ -8,6 +13,7 @@ const ids = fs
     .map(file => path.basename(file, '.mdx'));
 
 export default [
+    index('routes/index.tsx'),
     layout(
         'routes/article-layout.tsx',
         ids.map(id => route(`archives/${id}`, `archives/${id}.mdx`)),
