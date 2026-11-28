@@ -97,7 +97,8 @@
         "Xeuui",
         "Yasumoto",
         "yaxis",
-        "Yoshida"
+        "Yoshida",
+        "zoomable"
     ],
     "editor.codeActionsOnSave": {
         "source.fixAll.biome": "explicit",

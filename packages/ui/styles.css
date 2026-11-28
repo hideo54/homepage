@@ -89,6 +89,18 @@
     }
 }
 
+html:has(dialog[open]) {
+    overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none;
+    }
+}
+
 /*
  * Hiragino Sans JP のカバー範囲
  * ("Hiragino Sans" と名付けると macOS で "Hiragino Sans" が優先されてしまうので、"Hiragino Sans JP" としている)
