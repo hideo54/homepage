@@ -38,6 +38,11 @@ const ArticleLayout = () => {
                             </>
                         )}
                     </div>
+                    <p className='typography-p text-success'>
+                        このブログの記事の文章はすべて、AIに任せきりにせず、私が誇りをもってキーボードを叩き、執筆しています。
+                        <br />
+                        人間味ある文体をお楽しみください。
+                    </p>
                     <hr className='border-base-200 my-6' />
                 </header>
                 <Outlet />
