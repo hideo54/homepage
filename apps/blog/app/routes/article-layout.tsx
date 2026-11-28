@@ -26,16 +26,20 @@ const ArticleLayout = () => {
             }
         >
             <article>
-                <h1 className='typography-h1'>{frontmatter.title}</h1>
-                <p className='typography-p'>
-                    <LocalTime date={frontmatter.date} />
-                    {frontmatter.update && (
-                        <>
-                            {' (更新: '}
-                            <LocalTime date={frontmatter.update} />)
-                        </>
-                    )}
-                </p>
+                <header className='my-8'>
+                    <div className='text-lg'>{siteName}</div>
+                    <h1 className='typography-h1'>{frontmatter.title}</h1>
+                    <div>
+                        <LocalTime date={frontmatter.date} />
+                        {frontmatter.update && (
+                            <>
+                                {' (更新: '}
+                                <LocalTime date={frontmatter.update} />)
+                            </>
+                        )}
+                    </div>
+                    <hr className='border-base-200 my-6' />
+                </header>
                 <Outlet />
             </article>
         </SiteLayout>

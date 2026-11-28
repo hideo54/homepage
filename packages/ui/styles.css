@@ -170,7 +170,7 @@ html:has(dialog[open]) {
 }
 
 @utility typography-h1 {
-    @apply mt-8 mb-5 font-extrabold text-5xl;
+    @apply mt-8 mb-5 font-extrabold text-5xl leading-tight;
 }
 
 @utility typography-h2 {
